@@ -1,0 +1,661 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Working with Containers</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/production-pods.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Working with Containers</h1>
+		<p>You’ve seen <a href="/docs/user-guide/configuring-containers">how to configure and deploy pods and containers</a>, using some of the most common configuration parameters. This section dives into additional features that are especially useful for running applications in production.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#persistent-storage" id="markdown-toc-persistent-storage">Persistent storage</a></li>
+  <li><a href="#distributing-credentials" id="markdown-toc-distributing-credentials">Distributing credentials</a></li>
+  <li><a href="#authenticating-with-a-private-image-registry" id="markdown-toc-authenticating-with-a-private-image-registry">Authenticating with a private image registry</a></li>
+  <li><a href="#helper-containers" id="markdown-toc-helper-containers">Helper containers</a></li>
+  <li><a href="#resource-management" id="markdown-toc-resource-management">Resource management</a></li>
+  <li><a href="#liveness-and-readiness-probes-aka-health-checks" id="markdown-toc-liveness-and-readiness-probes-aka-health-checks">Liveness and readiness probes (aka health checks)</a></li>
+  <li><a href="#lifecycle-hooks-and-termination-notice" id="markdown-toc-lifecycle-hooks-and-termination-notice">Lifecycle hooks and termination notice</a></li>
+  <li><a href="#termination-message" id="markdown-toc-termination-message">Termination message</a></li>
+  <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next?</a></li>
+</ul>
+
+<h2 id="persistent-storage">Persistent storage</h2>
+
+<p>The container file system only lives as long as the container does, so when a container crashes and restarts, changes to the filesystem will be lost and the container will restart from a clean slate. To access more-persistent storage, outside the container file system, you need a <a href="/docs/user-guide/volumes"><em>volume</em></a>. This is especially important to stateful applications, such as key-value stores and databases.</p>
+
+<p>For example, <a href="http://redis.io/">Redis</a> is a key-value cache and store, which we use in the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook/">guestbook</a> and other examples. We can add a volume to it to store persistent data as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">redis</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">redis</span>
+        <span class="s">tier</span><span class="pi">:</span> <span class="s">backend</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="c1"># Provision a fresh volume for the pod</span>
+      <span class="s">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">data</span>
+          <span class="s">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">redis</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">kubernetes/redis:v1</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">6379</span>
+        <span class="c1"># Mount the volume into the pod</span>
+        <span class="s">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/redis-master-data</span>
+          <span class="s">name</span><span class="pi">:</span> <span class="s">data</span>   <span class="c1"># must match the name of the volume, above</span>
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">emptyDir</code> volumes live for the lifespan of the <a href="/docs/user-guide/pods">pod</a>, which is longer than the lifespan of any one container, so if the container fails and is restarted, our storage will live on.</p>
+
+<p>In addition to the local disk storage provided by <code class="highlighter-rouge">emptyDir</code>, Kubernetes supports many different network-attached storage solutions, including PD on GCE and EBS on EC2, which are preferred for critical data, and will handle details such as mounting and unmounting the devices on the nodes. See <a href="/docs/user-guide/volumes">the volumes doc</a> for more details.</p>
+
+<h2 id="distributing-credentials">Distributing credentials</h2>
+
+<p>Many applications need credentials, such as passwords, OAuth tokens, and TLS keys, to authenticate with other applications, databases, and services. Storing these credentials in container images or environment variables is less than ideal, since the credentials can then be copied by anyone with access to the image, pod/container specification, host file system, or host Docker daemon.</p>
+
+<p>Kubernetes provides a mechanism, called <a href="/docs/user-guide/secrets"><em>secrets</em></a>, that facilitates delivery of sensitive credentials to applications. A <code class="highlighter-rouge">Secret</code> is a simple resource containing a map of data. For instance, a simple secret with a username and password might look as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Secret</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">mysecret</span>
+<span class="s">type</span><span class="pi">:</span> <span class="s">Opaque</span>
+<span class="s">data</span><span class="pi">:</span>
+  <span class="s">password</span><span class="pi">:</span> <span class="s">dmFsdWUtMg0K</span>
+  <span class="s">username</span><span class="pi">:</span> <span class="s">dmFsdWUtMQ0K</span>
+</code></pre>
+</div>
+
+<p>As with other resources, this secret can be instantiated using <code class="highlighter-rouge">create</code> and can be viewed with <code class="highlighter-rouge">get</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f ./secret.yaml
+secrets/mysecret
+<span class="gp">$ </span>kubectl get secrets
+NAME                  TYPE                                  DATA
+default-token-v9pyz   kubernetes.io/service-account-token   2
+mysecret              Opaque                                2
+</code></pre>
+</div>
+
+<p>To use the secret, you need to reference it in a pod or pod template. The <code class="highlighter-rouge">secret</code> volume source enables you to mount it as an in-memory directory into your containers.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">redis</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">redis</span>
+        <span class="s">tier</span><span class="pi">:</span> <span class="s">backend</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">volumes</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">data</span>
+          <span class="s">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">supersecret</span>
+          <span class="s">secret</span><span class="pi">:</span>
+            <span class="s">secretName</span><span class="pi">:</span> <span class="s">mysecret</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">redis</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">kubernetes/redis:v1</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">6379</span>
+        <span class="c1"># Mount the volume into the pod</span>
+        <span class="s">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/redis-master-data</span>
+          <span class="s">name</span><span class="pi">:</span> <span class="s">data</span>   <span class="c1"># must match the name of the volume, above</span>
+        <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/var/run/secrets/super</span>
+          <span class="s">name</span><span class="pi">:</span> <span class="s">supersecret</span>
+</code></pre>
+</div>
+
+<p>For more details, see the <a href="/docs/user-guide/secrets">secrets document</a>, <a href="/docs/user-guide/secrets/">example</a> and <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/secrets.md">design doc</a>.</p>
+
+<h2 id="authenticating-with-a-private-image-registry">Authenticating with a private image registry</h2>
+
+<p>Secrets can also be used to pass <a href="/docs/user-guide/images/#using-a-private-registry">image registry credentials</a>.</p>
+
+<p>First, create a <code class="highlighter-rouge">.dockercfg</code> file, such as running <code class="highlighter-rouge">docker login &lt;registry.domain&gt;</code>.
+Then put the resulting <code class="highlighter-rouge">.dockercfg</code> file into a <a href="/docs/user-guide/secrets">secret resource</a>.  For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker login
+Username: janedoe
+Password: <span class="k">*******</span>
+Email: jdoe@example.com
+WARNING: login credentials saved <span class="k">in</span> /Users/jdoe/.dockercfg.
+Login Succeeded
+
+<span class="gp">$ </span><span class="nb">echo</span> <span class="k">$(</span>cat ~/.dockercfg<span class="k">)</span>
+<span class="o">{</span> <span class="s2">"https://index.docker.io/v1/"</span>: <span class="o">{</span> <span class="s2">"auth"</span>: <span class="s2">"ZmFrZXBhc3N3b3JkMTIK"</span>, <span class="s2">"email"</span>: <span class="s2">"jdoe@example.com"</span> <span class="o">}</span> <span class="o">}</span>
+
+<span class="gp">$ </span>cat ~/.dockercfg | base64
+eyAiaHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjogeyAiYXV0aCI6ICJabUZyWlhCaGMzTjNiM0prTVRJSyIsICJlbWFpbCI6ICJqZG9lQGV4YW1wbGUuY29tIiB9IH0K
+
+<span class="gp">$ </span>cat &gt; /tmp/image-pull-secret.yaml <span class="sh">&lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myregistrykey
+data:
+  .dockercfg: eyAiaHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjogeyAiYXV0aCI6ICJabUZyWlhCaGMzTjNiM0prTVRJSyIsICJlbWFpbCI6ICJqZG9lQGV4YW1wbGUuY29tIiB9IH0K
+type: kubernetes.io/dockercfg
+EOF
+
+</span><span class="gp">$ </span>kubectl create -f ./image-pull-secret.yaml
+secrets/myregistrykey
+</code></pre>
+</div>
+
+<p>Now, you can create pods which reference that secret by adding an <code class="highlighter-rouge">imagePullSecrets</code>
+section to a pod definition.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">foo</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">foo</span>
+      <span class="s">image</span><span class="pi">:</span> <span class="s">janedoe/awesomeapp:v1</span>
+  <span class="s">imagePullSecrets</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">myregistrykey</span>
+</code></pre>
+</div>
+
+<h2 id="helper-containers">Helper containers</h2>
+
+<p><a href="/docs/user-guide/pods">Pods</a> support running multiple containers co-located together. They can be used to host vertically integrated application stacks, but their primary motivation is to support auxiliary helper programs that assist the primary application. Typical examples are data pullers, data pushers, and proxies.</p>
+
+<p>Such containers typically need to communicate with one another, often through the file system. This can be achieved by mounting the same volume into both containers. An example of this pattern would be a web server with a <a href="http://releases.k8s.io/release-1.1/contrib/git-sync/">program that polls a git repository</a> for new updates:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">my-nginx</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">www-data</span>
+        <span class="s">emptyDir</span><span class="pi">:</span> <span class="pi">{}</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="c1"># This container reads from the www-data volume</span>
+        <span class="s">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/srv/www</span>
+          <span class="s">name</span><span class="pi">:</span> <span class="s">www-data</span>
+          <span class="s">readOnly</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">git-monitor</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">myrepo/git-monitor</span>
+        <span class="s">env</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">GIT_REPO</span>
+          <span class="s">value</span><span class="pi">:</span> <span class="s">http://github.com/some/repo.git</span>
+        <span class="c1"># This container writes to the www-data volume</span>
+        <span class="s">volumeMounts</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/data</span>
+          <span class="s">name</span><span class="pi">:</span> <span class="s">www-data</span>
+</code></pre>
+</div>
+
+<p>More examples can be found in our <a href="http://blog.kubernetes.io/2015/06/the-distributed-system-toolkit-patterns">blog article</a> and <a href="http://www.slideshare.net/Docker/slideshare-burns">presentation slides</a>.</p>
+
+<h2 id="resource-management">Resource management</h2>
+
+<p>Kubernetes’s scheduler will place applications only where they have adequate CPU and memory, but it can only do so if it knows how much <a href="/docs/user-guide/compute-resources">resources they require</a>. The consequence of specifying too little CPU is that the containers could be starved of CPU if too many other containers were scheduled onto the same node. Similarly, containers could die unpredictably due to running out of memory if no memory were requested, which can be especially likely for large-memory applications.</p>
+
+<p>If no resource requirements are specified, a nominal amount of resources is assumed. (This default is applied via a <a href="/docs/admin/limitrange/">LimitRange</a> for the default <a href="/docs/user-guide/namespaces">Namespace</a>. It can be viewed with <code class="highlighter-rouge">kubectl describe limitrange limits</code>.) You may explicitly specify the amount of resources required as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">my-nginx</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+        <span class="s">resources</span><span class="pi">:</span>
+          <span class="s">limits</span><span class="pi">:</span>
+            <span class="c1"># cpu units are cores</span>
+            <span class="s">cpu</span><span class="pi">:</span> <span class="s">500m</span>
+            <span class="c1"># memory units are bytes</span>
+            <span class="s">memory</span><span class="pi">:</span> <span class="s">64Mi</span>
+          <span class="s">requests</span><span class="pi">:</span>
+            <span class="c1"># cpu units are cores</span>
+            <span class="s">cpu</span><span class="pi">:</span> <span class="s">500m</span>
+            <span class="c1"># memory units are bytes</span>
+            <span class="s">memory</span><span class="pi">:</span> <span class="s">64Mi</span>
+</code></pre>
+</div>
+
+<p>The container will die due to OOM (out of memory) if it exceeds its specified limit, so specifying a value a little higher than expected generally improves reliability. By specifying request, pod is guaranteed to be able to use that much of resource when needed. See <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/resource-qos.md">Resource QoS</a> for the difference between resource limits and requests.</p>
+
+<p>If you’re not sure how much resources to request, you can first launch the application without specifying resources, and use <a href="/docs/user-guide/monitoring">resource usage monitoring</a> to determine appropriate values.</p>
+
+<h2 id="liveness-and-readiness-probes-aka-health-checks">Liveness and readiness probes (aka health checks)</h2>
+
+<p>Many applications running for long periods of time eventually transition to broken states, and cannot recover except by restarting them. Kubernetes provides <a href="/docs/user-guide/pod-states/#container-probes"><em>liveness probes</em></a> to detect and remedy such situations.</p>
+
+<p>A common way to probe an application is using HTTP, which can be specified as follows:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">my-nginx</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+        <span class="s">livenessProbe</span><span class="pi">:</span>
+          <span class="s">httpGet</span><span class="pi">:</span>
+            <span class="c1"># Path to probe; should be cheap, but representative of typical behavior</span>
+            <span class="s">path</span><span class="pi">:</span> <span class="s">/index.html</span>
+            <span class="s">port</span><span class="pi">:</span> <span class="s">80</span>
+          <span class="s">initialDelaySeconds</span><span class="pi">:</span> <span class="s">30</span>
+          <span class="s">timeoutSeconds</span><span class="pi">:</span> <span class="s">1</span>
+</code></pre>
+</div>
+
+<p>Other times, applications are only temporarily unable to serve, and will recover on their own. Typically in such cases you’d prefer not to kill the application, but don’t want to send it requests, either, since the application won’t respond correctly or at all. A common such scenario is loading large data or configuration files during application startup. Kubernetes provides <em>readiness probes</em> to detect and mitigate such situations. Readiness probes are configured similarly to liveness probes, just using the <code class="highlighter-rouge">readinessProbe</code> field. A pod with containers reporting that they are not ready will not receive traffic through Kubernetes <a href="/docs/user-guide/connecting-applications">services</a>.</p>
+
+<p>For more details (e.g., how to specify command-based probes), see the <a href="/docs/user-guide/walkthrough/k8s201/#health-checking">example in the walkthrough</a>, the <a href="/docs/user-guide/liveness/">standalone example</a>, and the <a href="/docs/user-guide/pod-states/#container-probes">documentation</a>.</p>
+
+<h2 id="lifecycle-hooks-and-termination-notice">Lifecycle hooks and termination notice</h2>
+
+<p>Of course, nodes and applications may fail at any time, but many applications benefit from clean shutdown, such as to complete in-flight requests, when the termination of the application is deliberate. To support such cases, Kubernetes supports two kinds of notifications:</p>
+
+<ul>
+  <li>Kubernetes will send SIGTERM to applications, which can be handled in order to effect graceful termination. SIGKILL is sent a configurable number of seconds later if the application does not terminate sooner (defaults to 30 seconds, controlled by <code class="highlighter-rouge">spec.terminationGracePeriodSeconds</code>).</li>
+  <li>Kubernetes supports the (optional) specification of a <a href="/docs/user-guide/container-environment/#container-hooks"><em>pre-stop lifecycle hook</em></a>, which will execute prior to sending SIGTERM.</li>
+</ul>
+
+<p>The specification of a pre-stop hook is similar to that of probes, but without the timing-related parameters. For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">my-nginx</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">2</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+        <span class="s">lifecycle</span><span class="pi">:</span>
+          <span class="s">preStop</span><span class="pi">:</span>
+            <span class="s">exec</span><span class="pi">:</span>
+              <span class="c1"># SIGTERM triggers a quick exit; gracefully terminate instead</span>
+              <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/usr/sbin/nginx"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-s"</span><span class="pi">,</span><span class="s2">"</span><span class="s">quit"</span><span class="pi">]</span>
+</code></pre>
+</div>
+
+<h2 id="termination-message">Termination message</h2>
+
+<p>In order to achieve a reasonably high level of availability, especially for actively developed applications, it’s important to debug failures quickly. Kubernetes can speed debugging by surfacing causes of fatal errors in a way that can be display using <a href="/docs/user-guide/kubectl/kubectl"><code class="highlighter-rouge">kubectl</code></a> or the <a href="/docs/user-guide/ui">UI</a>, in addition to general <a href="/docs/user-guide/logging">log collection</a>. It is possible to specify a <code class="highlighter-rouge">terminationMessagePath</code> where a container will write its ‘death rattle’?, such as assertion failure messages, stack traces, exceptions, and so on. The default path is <code class="highlighter-rouge">/dev/termination-log</code>.</p>
+
+<p>Here is a toy example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">pod-w-message</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">messager</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s2">"</span><span class="s">ubuntu:14.04"</span>
+    <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">/bin/sh"</span><span class="pi">,</span><span class="s2">"</span><span class="s">-c"</span><span class="pi">]</span>
+    <span class="s">args</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">sleep</span><span class="nv"> </span><span class="s">60</span><span class="nv"> </span><span class="s">&amp;&amp;</span><span class="nv"> </span><span class="s">/bin/echo</span><span class="nv"> </span><span class="s">Sleep</span><span class="nv"> </span><span class="s">expired</span><span class="nv"> </span><span class="s">&gt;</span><span class="nv"> </span><span class="s">/dev/termination-log"</span><span class="pi">]</span>
+</code></pre>
+</div>
+
+<p>The message is recorded along with the other state of the last (i.e., most recent) termination:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f ./pod.yaml
+pods/pod-w-message
+<span class="gp">$ </span>sleep 70
+<span class="gp">$ </span>kubectl get pods/pod-w-message -o go-template<span class="o">=</span><span class="s2">"{{range .status.containerStatuses}}{{.lastState.terminated.message}}{{end}}"</span>
+Sleep expired
+<span class="gp">$ </span>kubectl get pods/pod-w-message -o go-template<span class="o">=</span><span class="s2">"{{range .status.containerStatuses}}{{.lastState.terminated.exitCode}}{{end}}"</span>
+0
+</code></pre>
+</div>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p><a href="/docs/user-guide/managing-deployments">Learn more about managing deployments.</a></p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/production-pods.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/production-pods/",
+        "title" : "Working with Containers",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/production-pods/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

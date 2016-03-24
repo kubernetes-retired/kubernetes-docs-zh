@@ -1,0 +1,644 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Deployments</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/deployments.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Deployments</h1>
+		<ul id="markdown-toc">
+  <li><a href="#what-is-a-deployment" id="markdown-toc-what-is-a-deployment">What is a <em>Deployment</em>?</a></li>
+  <li><a href="#enabling-deployments-on-kubernetes-cluster" id="markdown-toc-enabling-deployments-on-kubernetes-cluster">Enabling Deployments on kubernetes cluster</a></li>
+  <li><a href="#creating-a-deployment" id="markdown-toc-creating-a-deployment">Creating a Deployment</a></li>
+  <li><a href="#updating-a-deployment" id="markdown-toc-updating-a-deployment">Updating a Deployment</a>    <ul>
+      <li><a href="#multiple-updates" id="markdown-toc-multiple-updates">Multiple Updates</a></li>
+    </ul>
+  </li>
+  <li><a href="#writing-a-deployment-spec" id="markdown-toc-writing-a-deployment-spec">Writing a Deployment Spec</a>    <ul>
+      <li><a href="#pod-template" id="markdown-toc-pod-template">Pod Template</a></li>
+      <li><a href="#replicas" id="markdown-toc-replicas">Replicas</a></li>
+      <li><a href="#selector" id="markdown-toc-selector">Selector</a></li>
+      <li><a href="#unique-label-key" id="markdown-toc-unique-label-key">Unique Label Key</a></li>
+      <li><a href="#strategy" id="markdown-toc-strategy">Strategy</a>        <ul>
+          <li><a href="#recreate-deployment" id="markdown-toc-recreate-deployment">Recreate Deployment</a></li>
+          <li><a href="#rolling-update-deployment" id="markdown-toc-rolling-update-deployment">Rolling Update Deployment</a>            <ul>
+              <li><a href="#max-unavailable" id="markdown-toc-max-unavailable">Max Unavailable</a></li>
+              <li><a href="#max-surge" id="markdown-toc-max-surge">Max Surge</a></li>
+              <li><a href="#min-ready-seconds" id="markdown-toc-min-ready-seconds">Min Ready Seconds</a></li>
+            </ul>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><a href="#alternative-to-deployments" id="markdown-toc-alternative-to-deployments">Alternative to Deployments</a>    <ul>
+      <li><a href="#kubectl-rolling-update" id="markdown-toc-kubectl-rolling-update">kubectl rolling update</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="what-is-a-deployment">What is a <em>Deployment</em>?</h2>
+
+<p>A <em>Deployment</em> provides declarative update for Pods and ReplicationControllers.
+Users describe the desired state in deployment object and deployment
+controller changes the actual state to that at a controlled rate.
+Users can define deployments to create new resources, or replace existing ones
+by new ones.</p>
+
+<p>A typical use case is:</p>
+
+<ul>
+  <li>Create a deployment to bring up a replication controller and pods.</li>
+  <li>Later, update that deployment to recreate the pods (for ex: to use a new image).</li>
+</ul>
+
+<h2 id="enabling-deployments-on-kubernetes-cluster">Enabling Deployments on kubernetes cluster</h2>
+
+<p>Deployments is part of the <a href="/docs/api/#api-groups"><code class="highlighter-rouge">extensions</code> API Group</a> and is not enabled by default.
+Set <code class="highlighter-rouge">--runtime-config=extensions/v1beta1/deployments=true</code> on API server to
+enable it.
+This can be achieved by exporting <code class="highlighter-rouge">ENABLE_DEPLOYMENTS=true</code> before running
+<code class="highlighter-rouge">kube-up.sh</code> script on GCE.</p>
+
+<p>Note that Deployment objects effectively have <a href="/docs/api/">API version
+<code class="highlighter-rouge">v1alpha1</code></a>#api-versioning).
+Alpha objects may change or even be discontinued in future software releases.
+However, due to to a known issue, they will appear as API version <code class="highlighter-rouge">v1beta1</code> if
+enabled.</p>
+
+<h2 id="creating-a-deployment">Creating a Deployment</h2>
+
+<p>Here is an example Deployment. It creates a replication controller to
+bring up 3 nginx pods.</p>
+
+<p> </p>
+<table class="includecode"><thead><tr><th><a href="https://github.com/kubernetes/kubernetes.github.io/blob/master/docs/user-guide/nginx-deployment.yaml"><code>nginx-deployment.yaml</code></a></th></tr></thead>
+<tr><td>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">nginx-deployment</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">3</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx:1.7.9</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<p>Run the example by downloading the example file and then running this command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f docs/user-guide/nginx-deployment.yaml
+deployment <span class="s2">"nginx-deployment"</span> created
+</code></pre>
+</div>
+
+<p>Running a get immediately will give:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get deployments
+NAME               UPDATEDREPLICAS   AGE
+nginx-deployment   0/3               8s
+</code></pre>
+</div>
+
+<p>This indicates that deployment is trying to update 3 replicas. It has not
+updated any one of those yet.</p>
+
+<p>Running a get again after a minute, will give:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get deployments
+NAME               UPDATEDREPLICAS   AGE
+nginx-deployment   3/3               1m
+</code></pre>
+</div>
+
+<p>This indicates that deployent has created all the 3 replicas.
+Running <code class="highlighter-rouge">kubectl get rc</code>
+and <code class="highlighter-rouge">kubectl get pods</code>
+will show the replication controller (RC) and pods created.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get rc
+CONTROLLER                      CONTAINER<span class="o">(</span>S<span class="o">)</span>   IMAGE<span class="o">(</span>S<span class="o">)</span>      SELECTOR                                                        REPLICAS   AGE
+REPLICAS   AGE
+deploymentrc-1975012602         nginx          nginx:1.7.9   deployment.kubernetes.io/podTemplateHash<span class="o">=</span>1975012602,app<span class="o">=</span>nginx   3          2m
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+NAME                            READY          STATUS        RESTARTS       AGE
+deploymentrc-1975012602-4f2tb   1/1            Running       0              1m
+deploymentrc-1975012602-j975u   1/1            Running       0              1m
+deploymentrc-1975012602-uashb   1/1            Running       0              1m
+</code></pre>
+</div>
+
+<p>The created RC will ensure that there are 3 nginx pods at all time.</p>
+
+<h2 id="updating-a-deployment">Updating a Deployment</h2>
+
+<p>Lets say, now we want to update the nginx pods to start using nginx:1.9.1 image
+instead of nginx:1.7.9.
+For this, we update our deployment to be as follows:</p>
+
+<p> </p>
+<table class="includecode"><thead><tr><th><a href="https://github.com/kubernetes/kubernetes.github.io/blob/master/docs/user-guide/new-nginx-deployment.yaml"><code>new-nginx-deployment.yaml</code></a></th></tr></thead>
+<tr><td>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Deployment</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">nginx-deployment</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">3</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx:1.9.1</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl apply -f docs/user-guide/new-nginx-deployment.yaml
+deployment <span class="s2">"nginx-deployment"</span> configured
+</code></pre>
+</div>
+
+<p>Running a get immediately will still give:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get deployments
+NAME               UPDATEDREPLICAS   AGE
+nginx-deployment   3/3               8s
+</code></pre>
+</div>
+
+<p>This indicates that deployment status has not been updated yet (it is still
+showing old status).
+Running a get again after a minute, will give:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get deployments
+NAME               UPDATEDREPLICAS   AGE
+nginx-deployment   1/3               1m
+</code></pre>
+</div>
+
+<p>This indicates that deployment has updated one of the three pods that it needs
+to update.
+Eventually, it will get around to updating all the pods.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get deployments
+NAME               UPDATEDREPLICAS   AGE
+nginx-deployment   3/3               3m
+</code></pre>
+</div>
+
+<p>We can run <code class="highlighter-rouge">kubectl get rc</code>
+to see that deployment updated the pods by creating a new RC
+which it scaled up to 3 and scaled down the old RC to 0.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get rc
+CONTROLLER                CONTAINER<span class="o">(</span>S<span class="o">)</span>   IMAGE<span class="o">(</span>S<span class="o">)</span>      SELECTOR                                                         REPLICAS   AGE
+deploymentrc-1562004724   nginx          nginx:1.9.1   deployment.kubernetes.io/podTemplateHash<span class="o">=</span>1562004724,app<span class="o">=</span>nginx   3          5m
+deploymentrc-1975012602   nginx          nginx:1.7.9   deployment.kubernetes.io/podTemplateHash<span class="o">=</span>1975012602,app<span class="o">=</span>nginx   0          7m
+</code></pre>
+</div>
+
+<p>Running get pods, will only show the new pods.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get pods
+NAME                            READY     STATUS    RESTARTS   AGE
+deploymentrc-1562004724-0tgk5   1/1       Running   0          9m
+deploymentrc-1562004724-1rkfl   1/1       Running   0          8m
+deploymentrc-1562004724-6v702   1/1       Running   0          8m
+</code></pre>
+</div>
+
+<p>Next time we want to update pods, we can just update the deployment again.</p>
+
+<p>Deployment ensures that not all pods are down while they are being updated. By
+default, it ensures that minimum of 1 less than the desired number of pods are
+up. For example, if you look at the above deployment closely, you will see that
+it first created a new pod, then deleted some old pods and created new ones. It
+does not kill old pods until a sufficient number of new pods have come up.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl describe deployments
+Name:                           nginx-deployment
+Namespace:                      default
+CreationTimestamp:              Thu, 22 Oct 2015 17:58:49 -0700
+Labels:                         <span class="nv">app</span><span class="o">=</span>nginx-deployment
+Selector:                       <span class="nv">app</span><span class="o">=</span>nginx
+Replicas:                       3 updated / 3 total
+StrategyType:                   RollingUpdate
+RollingUpdateStrategy:          1 max unavailable, 1 max surge, 0 min ready seconds
+OldReplicationControllers:      deploymentrc-1562004724 <span class="o">(</span>3/3 replicas created<span class="o">)</span>
+NewReplicationController:       &lt;none&gt;
+Events:
+  FirstSeen     LastSeen        Count   From                            SubobjectPath   Reason          Message
+  10m           10m             1       <span class="o">{</span>deployment-controller <span class="o">}</span>                        ScalingRC       Scaled up rc deploymentrc-1975012602 to 3
+  2m            2m              1       <span class="o">{</span>deployment-controller <span class="o">}</span>                        ScalingRC       Scaled up rc deploymentrc-1562004724 to 1
+  2m            2m              1       <span class="o">{</span>deployment-controller <span class="o">}</span>                        ScalingRC       Scaled down rc deploymentrc-1975012602 to 1
+  1m            1m              1       <span class="o">{</span>deployment-controller <span class="o">}</span>                        ScalingRC       Scaled up rc deploymentrc-1562004724 to 3
+  1m            1m              1       <span class="o">{</span>deployment-controller <span class="o">}</span>                        ScalingRC       Scaled down rc deploymentrc-1975012602 to 0
+</code></pre>
+</div>
+
+<p>Here we see that when we first created the deployment, it created an RC and scaled it up to 3 replicas directly.
+When we updated the deployment, it created a new RC and scaled it up to 1 and then scaled down the old RC by 1, so that at least 2 pods were available at all times.
+It then scaled up the new RC to 3 and when those pods were ready, it scaled down the old RC to 0.</p>
+
+<h3 id="multiple-updates">Multiple Updates</h3>
+
+<p>Each time a new deployment object is observed, a replication controller is
+created to bring up the desired pods if there is no existing RC doing so.
+Existing RCs controlling pods whose labels match <code class="highlighter-rouge">.spec.selector</code> but the
+template does not match <code class="highlighter-rouge">.spec.template</code> are scaled down.
+Eventually, the new RC will be scaled to <code class="highlighter-rouge">.spec.replicas</code> and all old RCs will
+be scaled to 0.
+If the user updates the deployment while an existing deployment was in progress,
+deployment will create a new RC as per the update and start scaling that up and
+will roll the RC that it was scaling up before in its list of old RCs and will
+start scaling it down.
+For example: If user creates a deployment to create 5 replicas of nginx:1.7.9.
+But then updates the deployment to create 5 replicas of nging:1.9.1, when only 3
+replicas of nginx:1.7.9 had been created, then deployment will immediately start
+killing the 3 nginx:1.7.9 pods that it had created and will start creating
+nginx:1.9.1 pods. It will not wait for 5 replicas of nginx:1.7.9 to be created
+before changing course.</p>
+
+<h2 id="writing-a-deployment-spec">Writing a Deployment Spec</h2>
+
+<p>As with all other Kubernetes configs, a Deployment needs <code class="highlighter-rouge">apiVersion</code>, <code class="highlighter-rouge">kind</code>, and
+<code class="highlighter-rouge">metadata</code> fields.  For general information about working with config files,
+see <a href="/docs/user-guide/deploying-applications">here</a>, <a href="/docs/user-guide/configuring-containers">here</a>, and <a href="/docs/user-guide/working-with-resources">here</a>.</p>
+
+<p>A Deployment also needs a <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api-conventions.md#spec-and-status"><code class="highlighter-rouge">.spec</code> section</a>.</p>
+
+<h3 id="pod-template">Pod Template</h3>
+
+<p>The <code class="highlighter-rouge">.spec.template</code> is the only required field of the <code class="highlighter-rouge">.spec</code>.</p>
+
+<p>The <code class="highlighter-rouge">.spec.template</code> is a <a href="/docs/user-guide/replication-controller/#pod-template">pod template</a>.  It has exactly
+the same schema as a <a href="/docs/user-guide/pods">pod</a>, except it is nested and does not have an
+<code class="highlighter-rouge">apiVersion</code> or <code class="highlighter-rouge">kind</code>.</p>
+
+<h3 id="replicas">Replicas</h3>
+
+<p><code class="highlighter-rouge">.spec.replicas</code> is an optional field that specifies the number of desired pods. Defaults
+to 1.</p>
+
+<h3 id="selector">Selector</h3>
+
+<p><code class="highlighter-rouge">.spec.selector</code> is an optional field that specifies label selectors for pods
+targeted by this deployment. Deployment kills some of these pods, if their
+template is different than <code class="highlighter-rouge">.spec.template</code> or if the total number of such pods
+exceeds <code class="highlighter-rouge">.spec.replicas</code>. It will bring up new pods with <code class="highlighter-rouge">.spec.template</code> if
+number of pods are less than the desired number.</p>
+
+<h3 id="unique-label-key">Unique Label Key</h3>
+
+<p><code class="highlighter-rouge">.spec.uniqueLabelKey</code> is an optional field specifying key of the selector that
+is added to existing RCs (and label key that is added to its pods) to prevent
+the existing RCs to select new pods (and old pods being selected by new RC).
+Users can set this to an empty string to indicate that the system should
+not add any selector and label. If unspecified, system uses
+“deployment.kubernetes.io/podTemplateHash”.
+Value of this key is hash of <code class="highlighter-rouge">.spec.template</code>.
+No label is added if this is set to empty string.</p>
+
+<h3 id="strategy">Strategy</h3>
+
+<p><code class="highlighter-rouge">.spec.strategy</code> specifies the strategy to replace old pods by new ones.
+<code class="highlighter-rouge">.spec.strategy.type</code> can be “Recreate” or “RollingUpdate”. “RollingUpdate” is
+the default value.</p>
+
+<h4 id="recreate-deployment">Recreate Deployment</h4>
+
+<p>All existing pods are killed before new ones are created when
+<code class="highlighter-rouge">.spec.strategy.type==Recreate</code>.
+Note: This is not implemented yet.</p>
+
+<h4 id="rolling-update-deployment">Rolling Update Deployment</h4>
+
+<p>Deployment updates pods in a [rolling update][update-demo/] fashion
+when <code class="highlighter-rouge">.spec.strategy.type==RollingUpdate</code>.
+Users can specify <code class="highlighter-rouge">maxUnavailable</code>, <code class="highlighter-rouge">maxSurge</code> and <code class="highlighter-rouge">minReadySeconds</code> to control
+the rolling update process.</p>
+
+<h5 id="max-unavailable">Max Unavailable</h5>
+
+<p><code class="highlighter-rouge">.spec.strategy.rollingUpdate.maxUnavailable</code> is an optional field that specifies the
+maximum number of pods that can be unavailable during the update process.
+Value can be an absolute number (ex: 5) or a percentage of desired pods (ex:
+10%).
+Absolute number is calculated from percentage by rounding up.
+This can not be 0 if <code class="highlighter-rouge">.spec.strategy.rollingUpdate.maxSurge</code> is 0.
+By default, a fixed value of 1 is used.
+Example: when this is set to 30%, the old RC can be scaled down to
+70% of desired pods immediately when the rolling update starts. Once new pods are
+ready, old RC can be scaled down further, followed by scaling up the new RC,
+ensuring that the total number of pods available at all times during the
+update is at least 70% of desired pods.</p>
+
+<h5 id="max-surge">Max Surge</h5>
+
+<p><code class="highlighter-rouge">.spec.strategy.rollingUpdate.maxSurge</code> is an optional field that specifies the
+maximum number of pods that can be created above the desired number of pods.
+Value can be an absolute number (ex: 5) or a percentage of desired pods (ex:
+10%).
+This can not be 0 if MaxUnavailable is 0.
+Absolute number is calculated from percentage by rounding up.
+By default, a value of 1 is used.
+Example: when this is set to 30%, the new RC can be scaled up immediately when
+the rolling update starts, such that the total number of old and new pods do not exceed
+130% of desired pods. Once old pods have been killed,
+new RC can be scaled up further, ensuring that total number of pods running
+at any time during the update is atmost 130% of desired pods.</p>
+
+<h5 id="min-ready-seconds">Min Ready Seconds</h5>
+
+<p><code class="highlighter-rouge">.spec.strategy.rollingUpdate.minReadySeconds</code> is an optional field that specifies the
+minimum number of seconds for which a newly created pod should be ready
+without any of its container crashing, for it to be considered available.
+Defaults to 0 (pod will be considered available as soon as it is ready).
+Note: This is not implemented yet.</p>
+
+<h2 id="alternative-to-deployments">Alternative to Deployments</h2>
+
+<h3 id="kubectl-rolling-update">kubectl rolling update</h3>
+
+<p><a href="/docs/user-guide/kubectl/kubectl_rolling-update">Kubectl rolling update</a> also updates pods and replication controllers in a similar fashion.
+But deployments is declarative and is server side.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/deployments.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/deployments/",
+        "title" : "Deployments",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/deployments/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

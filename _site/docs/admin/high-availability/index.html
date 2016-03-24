@@ -1,0 +1,559 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Building High-Availability Clusters</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/admin/high-availability.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Building High-Availability Clusters</h1>
+		<p>This document describes how to build a high-availability (HA) Kubernetes cluster.  This is a fairly advanced topic.
+Users who merely want to experiment with Kubernetes are encouraged to use configurations that are simpler to set up such as
+the simple <a href="/docs/getting-started-guides/docker">Docker based single node cluster instructions</a>,
+or try <a href="https://cloud.google.com/container-engine/">Google Container Engine</a> for hosted Kubernetes.</p>
+
+<p>Also, at this time high availability support for Kubernetes is not continuously tested in our end-to-end (e2e) testing.  We will
+be working to add this continuous testing, but for now the single-node master installations are more heavily tested.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#overview" id="markdown-toc-overview">Overview</a></li>
+  <li><a href="#initial-set-up" id="markdown-toc-initial-set-up">Initial set-up</a></li>
+  <li><a href="#reliable-nodes" id="markdown-toc-reliable-nodes">Reliable nodes</a></li>
+  <li><a href="#establishing-a-redundant-reliable-data-storage-layer" id="markdown-toc-establishing-a-redundant-reliable-data-storage-layer">Establishing a redundant, reliable data storage layer</a>    <ul>
+      <li><a href="#clustering-etcd" id="markdown-toc-clustering-etcd">Clustering etcd</a>        <ul>
+          <li><a href="#validating-your-cluster" id="markdown-toc-validating-your-cluster">Validating your cluster</a></li>
+        </ul>
+      </li>
+      <li><a href="#even-more-reliable-storage" id="markdown-toc-even-more-reliable-storage">Even more reliable storage</a></li>
+    </ul>
+  </li>
+  <li><a href="#replicated-api-servers" id="markdown-toc-replicated-api-servers">Replicated API Servers</a>    <ul>
+      <li><a href="#installing-configuration-files" id="markdown-toc-installing-configuration-files">Installing configuration files</a></li>
+      <li><a href="#starting-the-api-server" id="markdown-toc-starting-the-api-server">Starting the API Server</a></li>
+      <li><a href="#load-balancing" id="markdown-toc-load-balancing">Load balancing</a></li>
+    </ul>
+  </li>
+  <li><a href="#master-elected-components" id="markdown-toc-master-elected-components">Master elected components</a>    <ul>
+      <li><a href="#installing-configuration-files-1" id="markdown-toc-installing-configuration-files-1">Installing configuration files</a></li>
+      <li><a href="#running-the-podmaster" id="markdown-toc-running-the-podmaster">Running the podmaster</a></li>
+    </ul>
+  </li>
+  <li><a href="#conclusion" id="markdown-toc-conclusion">Conclusion</a></li>
+  <li><a href="#vagrant-up" id="markdown-toc-vagrant-up">Vagrant up!</a></li>
+</ul>
+
+<h2 id="overview">Overview</h2>
+
+<p>Setting up a truly reliable, highly available distributed system requires a number of steps, it is akin to
+wearing underwear, pants, a belt, suspenders, another pair of underwear, and another pair of pants.  We go into each
+of these steps in detail, but a summary is given here to help guide and orient the user.</p>
+
+<p>The steps involved are as follows:</p>
+
+<ul>
+  <li><a href="#reliable-nodes">Creating the reliable constituent nodes that collectively form our HA master implementation.</a></li>
+  <li><a href="#establishing-a-redundant-reliable-data-storage-layer">Setting up a redundant, reliable storage layer with clustered etcd.</a></li>
+  <li><a href="#replicated-api-servers">Starting replicated, load balanced Kubernetes API servers</a></li>
+  <li><a href="#master-elected-components">Setting up master-elected Kubernetes scheduler and controller-manager daemons</a></li>
+</ul>
+
+<p>Here’s what the system should look like when it’s finished:
+<img src="/images/docs/ha.svg" alt="High availability Kubernetes diagram" /></p>
+
+<p>Ready? Let’s get started.</p>
+
+<h2 id="initial-set-up">Initial set-up</h2>
+
+<p>The remainder of this guide assumes that you are setting up a 3-node clustered master, where each machine is running some flavor of Linux.
+Examples in the guide are given for Debian distributions, but they should be easily adaptable to other distributions.
+Likewise, this set up should work whether you are running in a public or private cloud provider, or if you are running
+on bare metal.</p>
+
+<p>The easiest way to implement an HA Kubernetes cluster is to start with an existing single-master cluster.  The
+instructions at <a href="https://get.k8s.io">https://get.k8s.io</a>
+describe easy installation for single-master clusters on a variety of platforms.</p>
+
+<h2 id="reliable-nodes">Reliable nodes</h2>
+
+<p>On each master node, we are going to run a number of processes that implement the Kubernetes API.  The first step in making these reliable is
+to make sure that each automatically restarts when it fails.  To achieve this, we need to install a process watcher.  We choose to use
+the <code class="highlighter-rouge">kubelet</code> that we run on each of the worker nodes.  This is convenient, since we can use containers to distribute our binaries, we can
+establish resource limits, and introspect the resource usage of each daemon.  Of course, we also need something to monitor the kubelet
+itself (insert who watches the watcher jokes here).  For Debian systems, we choose monit, but there are a number of alternate
+choices. For example, on systemd-based systems (e.g. RHEL, CentOS), you can run ‘systemctl enable kubelet’.</p>
+
+<p>If you are extending from a standard Kubernetes installation, the <code class="highlighter-rouge">kubelet</code> binary should already be present on your system.  You can run
+<code class="highlighter-rouge">which kubelet</code> to determine if the binary is in fact installed.  If it is not installed,
+you should install the <a href="https://storage.googleapis.com/kubernetes-release/release/v0.19.3/bin/linux/amd64/kubelet">kubelet binary</a>, the
+<a href="http://releases.k8s.io/release-1.1/cluster/saltbase/salt/kubelet/initd">kubelet init file</a> and <a href="/docs/admin/high-availability/default-kubelet">high-availability/default-kubelet</a>
+scripts.</p>
+
+<p>If you are using monit, you should also install the monit daemon (<code class="highlighter-rouge">apt-get install monit</code>) and the <a href="/docs/admin/high-availability/monit-kubelet">high-availability/monit-kubelet</a> and
+<a href="/docs/admin/high-availability/monit-docker">high-availability/monit-docker</a> configs.</p>
+
+<p>On systemd systems you <code class="highlighter-rouge">systemctl enable kubelet</code> and <code class="highlighter-rouge">systemctl enable docker</code>.</p>
+
+<h2 id="establishing-a-redundant-reliable-data-storage-layer">Establishing a redundant, reliable data storage layer</h2>
+
+<p>The central foundation of a highly available solution is a redundant, reliable storage layer.  The number one rule of high-availability is
+to protect the data.  Whatever else happens, whatever catches on fire, if you have the data, you can rebuild.  If you lose the data, you’re
+done.</p>
+
+<p>Clustered etcd already replicates your storage to all master instances in your cluster.  This means that to lose data, all three nodes would need
+to have their physical (or virtual) disks fail at the same time.  The probability that this occurs is relatively low, so for many people
+running a replicated etcd cluster is likely reliable enough.  You can add additional reliability by increasing the
+size of the cluster from three to five nodes.  If that is still insufficient, you can add
+<a href="#even-more-reliable-storage">even more redundancy to your storage layer</a>.</p>
+
+<h3 id="clustering-etcd">Clustering etcd</h3>
+
+<p>The full details of clustering etcd are beyond the scope of this document, lots of details are given on the
+<a href="https://github.com/coreos/etcd/blob/master/Documentation/clustering.md">etcd clustering page</a>.  This example walks through
+a simple cluster set up, using etcd’s built in discovery to build our cluster.</p>
+
+<p>First, hit the etcd discovery service to create a new token:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl https://discovery.etcd.io/new?size<span class="o">=</span>3
+</code></pre>
+</div>
+
+<p>On each node, copy the <a href="/docs/admin/high-availability/etcd.yaml">etcd.yaml</a> file into <code class="highlighter-rouge">/etc/kubernetes/manifests/etcd.yaml</code></p>
+
+<p>The kubelet on each node actively monitors the contents of that directory, and it will create an instance of the <code class="highlighter-rouge">etcd</code>
+server from the definition of the pod specified in <code class="highlighter-rouge">etcd.yaml</code>.</p>
+
+<p>Note that in <code class="highlighter-rouge">etcd.yaml</code> you should substitute the token URL you got above for <code class="highlighter-rouge">${DISCOVERY_TOKEN}</code> on all three machines,
+and you should substitute a different name (e.g. <code class="highlighter-rouge">node-1</code>) for ${NODE_NAME} and the correct IP address
+for <code class="highlighter-rouge">${NODE_IP}</code> on each machine.</p>
+
+<h4 id="validating-your-cluster">Validating your cluster</h4>
+
+<p>Once you copy this into all three nodes, you should have a clustered etcd set up.  You can validate with</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>etcdctl member list
+</code></pre>
+</div>
+
+<p>and</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>etcdctl cluster-health
+</code></pre>
+</div>
+
+<p>You can also validate that this is working with <code class="highlighter-rouge">etcdctl set foo bar</code> on one node, and <code class="highlighter-rouge">etcd get foo</code>
+on a different node.</p>
+
+<h3 id="even-more-reliable-storage">Even more reliable storage</h3>
+
+<p>Of course, if you are interested in increased data reliability, there are further options which makes the place where etcd
+installs it’s data even more reliable than regular disks (belts <em>and</em> suspenders, ftw!).</p>
+
+<p>If you use a cloud provider, then they usually provide this
+for you, for example <a href="https://cloud.google.com/compute/docs/disks/persistent-disks">Persistent Disk</a> on the Google Cloud Platform.  These
+are block-device persistent storage that can be mounted onto your virtual machine. Other cloud providers provide similar solutions.</p>
+
+<p>If you are running on physical machines, you can also use network attached redundant storage using an iSCSI or NFS interface.
+Alternatively, you can run a clustered file system like Gluster or Ceph.  Finally, you can also run a RAID array on each physical machine.</p>
+
+<p>Regardless of how you choose to implement it, if you chose to use one of these options, you should make sure that your storage is mounted
+to each machine.  If your storage is shared between the three masters in your cluster, you should create a different directory on the storage
+for each node.  Throughout these instructions, we assume that this storage is mounted to your machine in <code class="highlighter-rouge">/var/etcd/data</code></p>
+
+<h2 id="replicated-api-servers">Replicated API Servers</h2>
+
+<p>Once you have replicated etcd set up correctly, we will also install the apiserver using the kubelet.</p>
+
+<h3 id="installing-configuration-files">Installing configuration files</h3>
+
+<p>First you need to create the initial log file, so that Docker mounts a file instead of a directory:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>touch /var/log/kube-apiserver.log
+</code></pre>
+</div>
+
+<p>Next, you need to create a <code class="highlighter-rouge">/srv/kubernetes/</code> directory on each node.  This directory includes:</p>
+
+<ul>
+  <li>basic_auth.csv  - basic auth user and password</li>
+  <li>ca.crt - Certificate Authority cert</li>
+  <li>known_tokens.csv - tokens that entities (e.g. the kubelet) can use to talk to the apiserver</li>
+  <li>kubecfg.crt - Client certificate, public key</li>
+  <li>kubecfg.key - Client certificate, private key</li>
+  <li>server.cert - Server certificate, public key</li>
+  <li>server.key - Server certificate, private key</li>
+</ul>
+
+<p>The easiest way to create this directory, may be to copy it from the master node of a working cluster, or you can manually generate these files yourself.</p>
+
+<h3 id="starting-the-api-server">Starting the API Server</h3>
+
+<p>Once these files exist, copy the <a href="/docs/admin/high-availability/kube-apiserver.yaml">kube-apiserver.yaml</a> into <code class="highlighter-rouge">/etc/kubernetes/manifests/</code> on each master node.</p>
+
+<p>The kubelet monitors this directory, and will automatically create an instance of the <code class="highlighter-rouge">kube-apiserver</code> container using the pod definition specified
+in the file.</p>
+
+<h3 id="load-balancing">Load balancing</h3>
+
+<p>At this point, you should have 3 apiservers all working correctly.  If you set up a network load balancer, you should
+be able to access your cluster via that load balancer, and see traffic balancing between the apiserver instances.  Setting
+up a load balancer will depend on the specifics of your platform, for example instructions for the Google Cloud
+Platform can be found <a href="https://cloud.google.com/compute/docs/load-balancing/">here</a></p>
+
+<p>Note, if you are using authentication, you may need to regenerate your certificate to include the IP address of the balancer,
+in addition to the IP addresses of the individual nodes.</p>
+
+<p>For pods that you deploy into the cluster, the <code class="highlighter-rouge">kubernetes</code> service/dns name should provide a load balanced endpoint for the master automatically.</p>
+
+<p>For external users of the API (e.g. the <code class="highlighter-rouge">kubectl</code> command line interface, continuous build pipelines, or other clients) you will want to configure
+them to talk to the external load balancer’s IP address.</p>
+
+<h2 id="master-elected-components">Master elected components</h2>
+
+<p>So far we have set up state storage, and we have set up the API server, but we haven’t run anything that actually modifies
+cluster state, such as the controller manager and scheduler.  To achieve this reliably, we only want to have one actor modifying state at a time, but we want replicated
+instances of these actors, in case a machine dies.  To achieve this, we are going to use a lease-lock in etcd to perform
+master election.  On each of the three apiserver nodes, we run a small utility application named <code class="highlighter-rouge">podmaster</code>. It’s job is to implement a master
+election protocol using etcd “compare and swap”. If the apiserver node wins the election, it starts the master component it is managing (e.g. the scheduler), if it
+loses the election, it ensures that any master components running on the node (e.g. the scheduler) are stopped.</p>
+
+<p>In the future, we expect to more tightly integrate this lease-locking into the scheduler and controller-manager binaries directly, as described in the <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/high-availability.md">high availability design proposal</a></p>
+
+<h3 id="installing-configuration-files-1">Installing configuration files</h3>
+
+<p>First, create empty log files on each node, so that Docker will mount the files not make new directories:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>touch /var/log/kube-scheduler.log
+touch /var/log/kube-controller-manager.log
+</code></pre>
+</div>
+
+<p>Next, set up the descriptions of the scheduler and controller manager pods on each node.
+by copying <a href="/docs/admin/high-availability/kube-scheduler.yaml">kube-scheduler.yaml</a> and <a href="high-availability//v1.1/docs/admin/kube-controller-manager.yaml">kube-controller-manager.yaml</a> into the <code class="highlighter-rouge">/srv/kubernetes/</code> directory.</p>
+
+<h3 id="running-the-podmaster">Running the podmaster</h3>
+
+<p>Now that the configuration files are in place, copy the <a href="/docs/admin/high-availability/podmaster.yaml">podmaster.yaml</a> config file into <code class="highlighter-rouge">/etc/kubernetes/manifests/</code></p>
+
+<p>As before, the kubelet on the node monitors this directory, and will start an instance of the podmaster using the pod specification provided in <code class="highlighter-rouge">podmaster.yaml</code>.</p>
+
+<p>Now you will have one instance of the scheduler process running on a single master node, and likewise one
+controller-manager process running on a single (possibly different) master node.  If either of these processes fail,
+the kubelet will restart them.  If any of these nodes fail, the process will move to a different instance of a master
+node.</p>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>At this point, you are done (yeah!) with the master components, but you still need to add worker nodes (boo!).</p>
+
+<p>If you have an existing cluster, this is as simple as reconfiguring your kubelets to talk to the load-balanced endpoint, and
+restarting the kubelets on each node.</p>
+
+<p>If you are turning up a fresh cluster, you will need to install the kubelet and kube-proxy on each worker node, and
+set the <code class="highlighter-rouge">--apiserver</code> flag to your replicated endpoint.</p>
+
+<h2 id="vagrant-up">Vagrant up!</h2>
+
+<p>We indeed have an initial proof of concept tester for this, which is available <a href="https://releases.k8s.io/release-1.1/examples/high-availability">here</a>.</p>
+
+<p>It implements the major concepts (with a few minor reductions for simplicity), of the podmaster HA implementation alongside a quick smoke test using k8petstore.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/admin/high-availability.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/admin/high-availability/",
+        "title" : "Building High-Availability Clusters",
+        "permalink" : "http://kubernetes.github.io/docs/admin/high-availability/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

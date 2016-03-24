@@ -1,0 +1,706 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Debugging Services</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Support</h1>
+	<h5>Troubleshooting resources, frequently asked questions, and community support channels.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Support" href="/docs/troubleshooting/"></a>
+<div class="item" data-title="Troubleshooting">
+  <div class="container">
+    <a class="item" data-title="Web Interface" href="/docs/user-guide/ui/"></a>
+    <a class="item" data-title="Application Introspection and Debugging" href="/docs/user-guide/introspection-and-debugging/"></a>
+    <a class="item" data-title="Retrieving Logs" href="/docs/user-guide/logging/"></a>
+    <a class="item" data-title="Troubleshooting Applications" href="/docs/user-guide/application-troubleshooting/"></a>
+    <a class="item" data-title="Troubleshooting Clusters" href="/docs/admin/cluster-troubleshooting/"></a>
+    <a class="item" data-title="Debugging Services" href="/docs/user-guide/debugging-services/"></a>
+  </div>
+</div>
+<div class="item" data-title="Frequently Asked Questions">
+  <div class="container">
+    <a class="item" data-title="User FAQ" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ/" target='_blank'></a>
+    <a class="item" data-title="Debugging FAQ" href="https://github.com/kubernetes/kubernetes/wiki/Debugging-FAQ/" target='_blank'></a>
+    <a class="item" data-title="Services FAQ" href="https://github.com/kubernetes/kubernetes/wiki/Services-FAQ/" target='_blank'></a>
+  </div>
+</div>
+<div class="item" data-title="Other Resources">
+  <div class="container">
+    <a class="item" data-title="Known Issues" href="/docs/user-guide/known-issues/"></a>
+    <a class="item" data-title="Kubernetes Issue Tracker on GitHub" href="https://github.com/kubernetes/kubernetes/issues/" target='_blank'></a>
+    <a class="item" data-title="Report a Security Vulnerability" href="/docs/reporting-security-issues/"></a>
+    <a class="item" data-title="Release Notes" href="https://github.com/kubernetes/kubernetes/releases/" target='_blank'></a>
+    <a class="item" data-title="Release Roadmap" href="/docs/roadmap/"></a>
+    <a class="item" data-title="Contributing to Kubernetes Documentation" href="/docs/editdocs/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/debugging-services.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Debugging Services</h1>
+		<p>An issue that comes up rather frequently for new installations of Kubernetes is
+that <code class="highlighter-rouge">Services</code> are not working properly.  You’ve run all your <code class="highlighter-rouge">Pod</code>s and
+<code class="highlighter-rouge">ReplicationController</code>s, but you get no response when you try to access them.
+This document will hopefully help you to figure out what’s going wrong.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#conventions" id="markdown-toc-conventions">Conventions</a></li>
+  <li><a href="#running-commands-in-a-pod" id="markdown-toc-running-commands-in-a-pod">Running commands in a Pod</a></li>
+  <li><a href="#setup" id="markdown-toc-setup">Setup</a></li>
+  <li><a href="#does-the-service-exist" id="markdown-toc-does-the-service-exist">Does the Service exist?</a></li>
+  <li><a href="#does-the-service-work-by-dns" id="markdown-toc-does-the-service-work-by-dns">Does the Service work by DNS?</a>    <ul>
+      <li><a href="#does-any-service-exist-in-dns" id="markdown-toc-does-any-service-exist-in-dns">Does any Service exist in DNS?</a></li>
+    </ul>
+  </li>
+  <li><a href="#does-the-service-work-by-ip" id="markdown-toc-does-the-service-work-by-ip">Does the Service work by IP?</a></li>
+  <li><a href="#is-the-service-correct" id="markdown-toc-is-the-service-correct">Is the Service correct?</a></li>
+  <li><a href="#does-the-service-have-any-endpoints" id="markdown-toc-does-the-service-have-any-endpoints">Does the Service have any Endpoints?</a></li>
+  <li><a href="#are-the-pods-working" id="markdown-toc-are-the-pods-working">Are the Pods working?</a></li>
+  <li><a href="#is-the-kube-proxy-working" id="markdown-toc-is-the-kube-proxy-working">Is the kube-proxy working?</a>    <ul>
+      <li><a href="#is-kube-proxy-running" id="markdown-toc-is-kube-proxy-running">Is kube-proxy running?</a></li>
+      <li><a href="#is-kube-proxy-writing-iptables-rules" id="markdown-toc-is-kube-proxy-writing-iptables-rules">Is kube-proxy writing iptables rules?</a></li>
+      <li><a href="#is-kube-proxy-proxying" id="markdown-toc-is-kube-proxy-proxying">Is kube-proxy proxying?</a></li>
+    </ul>
+  </li>
+  <li><a href="#seek-help" id="markdown-toc-seek-help">Seek help</a></li>
+  <li><a href="#more-information" id="markdown-toc-more-information">More information</a></li>
+</ul>
+
+<h2 id="conventions">Conventions</h2>
+
+<p>Throughout this doc you will see various commands that you can run.  Some
+commands need to be run within <code class="highlighter-rouge">Pod</code>, others on a Kubernetes <code class="highlighter-rouge">Node</code>, and others
+can run anywhere you have <code class="highlighter-rouge">kubectl</code> and credentials for the cluster.  To make it
+clear what is expected, this document will use the following conventions.</p>
+
+<p>If the command “COMMAND” is expected to run in a <code class="highlighter-rouge">Pod</code> and produce “OUTPUT”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>COMMAND
+OUTPUT
+</code></pre>
+</div>
+
+<p>If the command “COMMAND” is expected to run on a <code class="highlighter-rouge">Node</code> and produce “OUTPUT”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>COMMAND
+OUTPUT
+</code></pre>
+</div>
+
+<p>If the command is “kubectl ARGS”:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl ARGS
+OUTPUT
+</code></pre>
+</div>
+
+<h2 id="running-commands-in-a-pod">Running commands in a Pod</h2>
+
+<p>For many steps here you will want to see what a <code class="highlighter-rouge">Pod</code> running in the cluster
+sees.  Kubernetes does not directly support interactive <code class="highlighter-rouge">Pod</code>s (yet), but you can
+approximate it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cat <span class="sh">&lt;&lt;EOF | kubectl create -f -
+apiVersion: v1
+kind: Pod
+metadata:
+  name: busybox-sleep
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    args:
+    - sleep
+    - "1000000"
+EOF
+</span>pods/busybox-sleep
+</code></pre>
+</div>
+
+<p>Now, when you need to run a command (even an interactive shell) in a <code class="highlighter-rouge">Pod</code>-like
+context, use:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl <span class="nb">exec </span>busybox-sleep -- &lt;COMMAND&gt;
+</code></pre>
+</div>
+
+<p>or</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl <span class="nb">exec</span> -ti busybox-sleep sh
+/ <span class="c">#</span>
+</code></pre>
+</div>
+
+<h2 id="setup">Setup</h2>
+
+<p>For the purposes of this walk-through, let’s run some <code class="highlighter-rouge">Pod</code>s.  Since you’re
+probably debugging your own <code class="highlighter-rouge">Service</code> you can substitute your own details, or you
+can follow along and get a second data point.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl run hostnames --image<span class="o">=</span>gcr.io/google_containers/serve_hostname <span class="se">\</span>
+                        --labels<span class="o">=</span><span class="nv">app</span><span class="o">=</span>hostnames <span class="se">\</span>
+                        --port<span class="o">=</span>9376 <span class="se">\</span>
+                        --replicas<span class="o">=</span>3
+CONTROLLER   CONTAINER<span class="o">(</span>S<span class="o">)</span>   IMAGE<span class="o">(</span>S<span class="o">)</span>                                  SELECTOR        REPLICAS
+hostnames    hostnames      gcr.io/google_containers/serve_hostname   <span class="nv">app</span><span class="o">=</span>hostnames   3
+</code></pre>
+</div>
+
+<p>Note that this is the same as if you had started the <code class="highlighter-rouge">ReplicationController</code> with
+the following YAML:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">hostnames</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">selector</span><span class="pi">:</span>
+    <span class="s">app</span><span class="pi">:</span> <span class="s">hostnames</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">3</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">hostnames</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">hostnames</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">gcr.io/google_containers/serve_hostname</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">9376</span>
+          <span class="s">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+</code></pre>
+</div>
+
+<p>Confirm your <code class="highlighter-rouge">Pod</code>s are running:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>hostnames
+NAME              READY     STATUS    RESTARTS   AGE
+hostnames-0uton   1/1       Running   0          12s
+hostnames-bvc05   1/1       Running   0          12s
+hostnames-yp2kp   1/1       Running   0          12s
+</code></pre>
+</div>
+
+<h2 id="does-the-service-exist">Does the Service exist?</h2>
+
+<p>The astute reader will have noticed that we did not actually create a <code class="highlighter-rouge">Service</code>
+yet - that is intentional.  This is a step that sometimes gets forgotten, and
+is the first thing to check.</p>
+
+<p>So what would happen if I tried to access a non-existent <code class="highlighter-rouge">Service</code>?  Assuming you
+have another <code class="highlighter-rouge">Pod</code> that consumes this <code class="highlighter-rouge">Service</code> by name you would get something
+like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>wget -qO- hostnames
+wget: bad address <span class="s1">'hostname'</span>
+</code></pre>
+</div>
+
+<p>or:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span><span class="nb">echo</span> <span class="nv">$HOSTNAMES_SERVICE_HOST</span>
+</code></pre>
+</div>
+
+<p>So the first thing to check is whether that <code class="highlighter-rouge">Service</code> actually exists:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get svc hostnames
+Error from server: service <span class="s2">"hostnames"</span> not found
+</code></pre>
+</div>
+
+<p>So we have a culprit, let’s create the <code class="highlighter-rouge">Service</code>.  As before, this is for the
+walk-through - you can use your own <code class="highlighter-rouge">Service</code>’s details here.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl expose rc hostnames --port<span class="o">=</span>80 --target-port<span class="o">=</span>9376
+service <span class="s2">"hostnames"</span> exposed
+</code></pre>
+</div>
+
+<p>And read it back, just to be sure:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get svc hostnames
+NAME              CLUSTER_IP       EXTERNAL_IP       PORT<span class="o">(</span>S<span class="o">)</span>       SELECTOR               AGE
+hostnames         10.0.0.1         &lt;none&gt;            80/TCP        <span class="nv">run</span><span class="o">=</span>hostnames          1h
+</code></pre>
+</div>
+
+<p>As before, this is the same as if you had started the <code class="highlighter-rouge">Service</code> with YAML:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">hostnames</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">selector</span><span class="pi">:</span>
+    <span class="s">app</span><span class="pi">:</span> <span class="s">hostnames</span>
+  <span class="s">ports</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">default</span>
+    <span class="s">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+    <span class="s">port</span><span class="pi">:</span> <span class="s">80</span>
+    <span class="s">targetPort</span><span class="pi">:</span> <span class="s">9376</span>
+</code></pre>
+</div>
+
+<p>Now you can confirm that the <code class="highlighter-rouge">Service</code> exists.</p>
+
+<h2 id="does-the-service-work-by-dns">Does the Service work by DNS?</h2>
+
+<p>From a <code class="highlighter-rouge">Pod</code> in the same <code class="highlighter-rouge">Namespace</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>nslookup hostnames
+Server:         10.0.0.10
+Address:        10.0.0.10#53
+
+Name:   hostnames
+Address: 10.0.1.175
+</code></pre>
+</div>
+
+<p>If this fails, perhaps your <code class="highlighter-rouge">Pod</code> and <code class="highlighter-rouge">Service</code> are in different
+<code class="highlighter-rouge">Namespace</code>s, try a namespace-qualified name:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>nslookup hostnames.default
+Server:         10.0.0.10
+Address:        10.0.0.10#53
+
+Name:   hostnames.default
+Address: 10.0.1.175
+</code></pre>
+</div>
+
+<p>If this works, you’ll need to ensure that <code class="highlighter-rouge">Pod</code>s and <code class="highlighter-rouge">Service</code>s run in the same
+<code class="highlighter-rouge">Namespace</code>.  If this still fails, try a fully-qualified name:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>nslookup hostnames.default.svc.cluster.local
+Server:         10.0.0.10
+Address:        10.0.0.10#53
+
+Name:   hostnames.default.svc.cluster.local
+Address: 10.0.1.175
+</code></pre>
+</div>
+
+<p>Note the suffix here: “default.svc.cluster.local”.  The “default” is the
+<code class="highlighter-rouge">Namespace</code> we’re operating in.  The “svc” denotes that this is a <code class="highlighter-rouge">Service</code>.
+The “cluster.local” is your cluster domain.</p>
+
+<p>You can also try this from a <code class="highlighter-rouge">Node</code> in the cluster (note: 10.0.0.10 is my DNS
+<code class="highlighter-rouge">Service</code>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>nslookup hostnames.default.svc.cluster.local 10.0.0.10
+Server:         10.0.0.10
+Address:        10.0.0.10#53
+
+Name:   hostnames.default.svc.cluster.local
+Address: 10.0.1.175
+</code></pre>
+</div>
+
+<p>If you are able to do a fully-qualified name lookup but not a relative one, you
+need to check that your <code class="highlighter-rouge">kubelet</code> is running with the right flags.
+The <code class="highlighter-rouge">--cluster-dns</code> flag needs to point to your DNS <code class="highlighter-rouge">Service</code>’s IP and the
+<code class="highlighter-rouge">--cluster-domain</code> flag needs to be your cluster’s domain - we assumed
+“cluster.local” in this document, but yours might be different, in which case
+you should change that in all of the commands above.</p>
+
+<h3 id="does-any-service-exist-in-dns">Does any Service exist in DNS?</h3>
+
+<p>If the above still fails - DNS lookups are not working for your <code class="highlighter-rouge">Service</code> - we
+can take a step back and see what else is not working.  The Kubernetes master
+<code class="highlighter-rouge">Service</code> should always work:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>nslookup kubernetes.default
+Server:    10.0.0.10
+Address 1: 10.0.0.10
+
+Name:      kubernetes
+Address 1: 10.0.0.1
+</code></pre>
+</div>
+
+<p>If this fails, you might need to go to the kube-proxy section of this doc, or
+even go back to the top of this document and start over, but instead of
+debugging your own <code class="highlighter-rouge">Service</code>, debug DNS.</p>
+
+<h2 id="does-the-service-work-by-ip">Does the Service work by IP?</h2>
+
+<p>The next thing to test is whether your <code class="highlighter-rouge">Service</code> works at all.  From a
+<code class="highlighter-rouge">Node</code> in your cluster, access the <code class="highlighter-rouge">Service</code>’s IP (from <code class="highlighter-rouge">kubectl get</code> above).</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>curl 10.0.1.175:80
+hostnames-0uton
+
+<span class="gp">u@node$ </span>curl 10.0.1.175:80
+hostnames-yp2kp
+
+<span class="gp">u@node$ </span>curl 10.0.1.175:80
+hostnames-bvc05
+</code></pre>
+</div>
+
+<p>If your <code class="highlighter-rouge">Service</code> is working, you should get correct responses.  If not, there
+are a number of things that could be going wrong.  Read on.</p>
+
+<h2 id="is-the-service-correct">Is the Service correct?</h2>
+
+<p>It might sound silly, but you should really double and triple check that your
+<code class="highlighter-rouge">Service</code> is correct and matches your <code class="highlighter-rouge">Pods</code>.  Read back your <code class="highlighter-rouge">Service</code> and
+verify it:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get service hostnames -o json
+<span class="o">{</span>
+    <span class="s2">"kind"</span>: <span class="s2">"Service"</span>,
+    <span class="s2">"apiVersion"</span>: <span class="s2">"v1"</span>,
+    <span class="s2">"metadata"</span>: <span class="o">{</span>
+        <span class="s2">"name"</span>: <span class="s2">"hostnames"</span>,
+        <span class="s2">"namespace"</span>: <span class="s2">"default"</span>,
+        <span class="s2">"selfLink"</span>: <span class="s2">"/api/v1/namespaces/default/services/hostnames"</span>,
+        <span class="s2">"uid"</span>: <span class="s2">"428c8b6c-24bc-11e5-936d-42010af0a9bc"</span>,
+        <span class="s2">"resourceVersion"</span>: <span class="s2">"347189"</span>,
+        <span class="s2">"creationTimestamp"</span>: <span class="s2">"2015-07-07T15:24:29Z"</span>,
+        <span class="s2">"labels"</span>: <span class="o">{</span>
+            <span class="s2">"app"</span>: <span class="s2">"hostnames"</span>
+        <span class="o">}</span>
+    <span class="o">}</span>,
+    <span class="s2">"spec"</span>: <span class="o">{</span>
+        <span class="s2">"ports"</span>: <span class="o">[</span>
+            <span class="o">{</span>
+                <span class="s2">"name"</span>: <span class="s2">"default"</span>,
+                <span class="s2">"protocol"</span>: <span class="s2">"TCP"</span>,
+                <span class="s2">"port"</span>: 80,
+                <span class="s2">"targetPort"</span>: 9376,
+                <span class="s2">"nodePort"</span>: 0
+            <span class="o">}</span>
+        <span class="o">]</span>,
+        <span class="s2">"selector"</span>: <span class="o">{</span>
+            <span class="s2">"app"</span>: <span class="s2">"hostnames"</span>
+        <span class="o">}</span>,
+        <span class="s2">"clusterIP"</span>: <span class="s2">"10.0.1.175"</span>,
+        <span class="s2">"type"</span>: <span class="s2">"ClusterIP"</span>,
+        <span class="s2">"sessionAffinity"</span>: <span class="s2">"None"</span>
+    <span class="o">}</span>,
+    <span class="s2">"status"</span>: <span class="o">{</span>
+        <span class="s2">"loadBalancer"</span>: <span class="o">{}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre>
+</div>
+
+<p>Is the port you are trying to access in <code class="highlighter-rouge">spec.ports[]</code>?  Is the <code class="highlighter-rouge">targetPort</code>
+correct for your <code class="highlighter-rouge">Pod</code>s?  If you meant it to be a numeric port, is it a number
+(9376) or a string “9376”?  If you meant it to be a named port, do your <code class="highlighter-rouge">Pod</code>s
+expose a port with the same name?  Is the port’s <code class="highlighter-rouge">protocol</code> the same as the
+<code class="highlighter-rouge">Pod</code>’s?</p>
+
+<h2 id="does-the-service-have-any-endpoints">Does the Service have any Endpoints?</h2>
+
+<p>If you got this far, we assume that you have confirmed that your <code class="highlighter-rouge">Service</code>
+exists and resolves by DNS.  Now let’s check that the <code class="highlighter-rouge">Pod</code>s you ran are
+actually being selected by the <code class="highlighter-rouge">Service</code>.</p>
+
+<p>Earlier we saw that the <code class="highlighter-rouge">Pod</code>s were running.  We can re-check that:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods -l <span class="nv">app</span><span class="o">=</span>hostnames
+NAME              READY     STATUS    RESTARTS   AGE
+hostnames-0uton   1/1       Running   0          1h
+hostnames-bvc05   1/1       Running   0          1h
+hostnames-yp2kp   1/1       Running   0          1h
+</code></pre>
+</div>
+
+<p>The “AGE” column says that these <code class="highlighter-rouge">Pod</code>s are about an hour old, which implies that
+they are running fine and not crashing.</p>
+
+<p>The <code class="highlighter-rouge">-l app=hostnames</code> argument is a label selector - just like our <code class="highlighter-rouge">Service</code>
+has.  Inside the Kubernetes system is a control loop which evaluates the
+selector of every <code class="highlighter-rouge">Service</code> and save the results into an <code class="highlighter-rouge">Endpoints</code> object.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get endpoints hostnames
+NAME        ENDPOINTS
+hostnames   10.244.0.5:9376,10.244.0.6:9376,10.244.0.7:9376
+</code></pre>
+</div>
+
+<p>This confirms that the control loop has found the correct <code class="highlighter-rouge">Pod</code>s for your
+<code class="highlighter-rouge">Service</code>.  If the <code class="highlighter-rouge">hostnames</code> row is blank, you should check that the
+<code class="highlighter-rouge">spec.selector</code> field of your <code class="highlighter-rouge">Service</code> actually selects for <code class="highlighter-rouge">metadata.labels</code>
+values on your <code class="highlighter-rouge">Pod</code>s.</p>
+
+<h2 id="are-the-pods-working">Are the Pods working?</h2>
+
+<p>At this point, we know that your <code class="highlighter-rouge">Service</code> exists and has selected your <code class="highlighter-rouge">Pod</code>s.
+Let’s check that the <code class="highlighter-rouge">Pod</code>s are actually working - we can bypass the <code class="highlighter-rouge">Service</code>
+mechanism and go straight to the <code class="highlighter-rouge">Pod</code>s.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@pod$ </span>wget -qO- 10.244.0.5:9376
+hostnames-0uton
+
+pod <span class="nv">$ </span>wget -qO- 10.244.0.6:9376
+hostnames-bvc05
+
+<span class="gp">u@pod$ </span>wget -qO- 10.244.0.7:9376
+hostnames-yp2kp
+</code></pre>
+</div>
+
+<p>We expect each <code class="highlighter-rouge">Pod</code> in the <code class="highlighter-rouge">Endpoints</code> list to return its own hostname.  If
+this is not what happens (or whatever the correct behavior is for your own
+<code class="highlighter-rouge">Pod</code>s), you should investigate what’s happening there.  You might find
+<code class="highlighter-rouge">kubectl logs</code> to be useful or <code class="highlighter-rouge">kubectl exec</code> directly to your <code class="highlighter-rouge">Pod</code>s and check
+service from there.</p>
+
+<h2 id="is-the-kube-proxy-working">Is the kube-proxy working?</h2>
+
+<p>If you get here, your <code class="highlighter-rouge">Service</code> is running, has <code class="highlighter-rouge">Endpoints</code>, and your <code class="highlighter-rouge">Pod</code>s
+are actually serving.  At this point, the whole <code class="highlighter-rouge">Service</code> proxy mechanism is
+suspect.  Let’s confirm it, piece by piece.</p>
+
+<h3 id="is-kube-proxy-running">Is kube-proxy running?</h3>
+
+<p>Confirm that <code class="highlighter-rouge">kube-proxy</code> is running on your <code class="highlighter-rouge">Node</code>s.  You should get something
+like the below:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>ps auxw | grep kube-proxy
+root  4194  0.4  0.1 101864 17696 ?    Sl Jul04  25:43 /usr/local/bin/kube-proxy --master<span class="o">=</span>https://kubernetes-master --kubeconfig<span class="o">=</span>/var/lib/kube-proxy/kubeconfig --v<span class="o">=</span>2
+</code></pre>
+</div>
+
+<p>Next, confirm that it is not failing something obvious, like contacting the
+master.  To do this, you’ll have to look at the logs.  Accessing the logs
+depends on your <code class="highlighter-rouge">Node</code> OS.  On some OSes it is a file, such as
+/var/log/kube-proxy.log, while other OSes use <code class="highlighter-rouge">journalctl</code> to access logs.  You
+should see something like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>I0707 17:34:53.945651   30031 server.go:88] Running <span class="k">in </span>resource-only container <span class="s2">"/kube-proxy"</span>
+I0707 17:34:53.945921   30031 proxier.go:121] Setting proxy IP to 10.240.115.247 and initializing iptables
+I0707 17:34:54.053023   30031 roundrobin.go:262] LoadBalancerRR: Setting endpoints <span class="k">for </span>default/kubernetes: to <span class="o">[</span>10.240.169.188:443]
+I0707 17:34:54.053175   30031 roundrobin.go:262] LoadBalancerRR: Setting endpoints <span class="k">for </span>default/hostnames:default to <span class="o">[</span>10.244.0.5:9376 10.244.0.6:9376 10.244.0.7:9376]
+I0707 17:34:54.053284   30031 roundrobin.go:262] LoadBalancerRR: Setting endpoints <span class="k">for </span>default/kube-dns:dns to <span class="o">[</span>10.244.3.3:53]
+I0707 17:34:54.053310   30031 roundrobin.go:262] LoadBalancerRR: Setting endpoints <span class="k">for </span>default/kube-dns:dns-tcp to <span class="o">[</span>10.244.3.3:53]
+I0707 17:34:54.054780   30031 proxier.go:306] Adding new service <span class="s2">"default/kubernetes:"</span> at 10.0.0.1:443/TCP
+I0707 17:34:54.054903   30031 proxier.go:247] Proxying <span class="k">for </span>service <span class="s2">"default/kubernetes:"</span> on TCP port 40074
+I0707 17:34:54.079181   30031 proxier.go:306] Adding new service <span class="s2">"default/hostnames:default"</span> at 10.0.1.175:80/TCP
+I0707 17:34:54.079273   30031 proxier.go:247] Proxying <span class="k">for </span>service <span class="s2">"default/hostnames:default"</span> on TCP port 48577
+I0707 17:34:54.113665   30031 proxier.go:306] Adding new service <span class="s2">"default/kube-dns:dns"</span> at 10.0.0.10:53/UDP
+I0707 17:34:54.113776   30031 proxier.go:247] Proxying <span class="k">for </span>service <span class="s2">"default/kube-dns:dns"</span> on UDP port 34149
+I0707 17:34:54.120224   30031 proxier.go:306] Adding new service <span class="s2">"default/kube-dns:dns-tcp"</span> at 10.0.0.10:53/TCP
+I0707 17:34:54.120297   30031 proxier.go:247] Proxying <span class="k">for </span>service <span class="s2">"default/kube-dns:dns-tcp"</span> on TCP port 53476
+I0707 17:34:54.902313   30031 proxysocket.go:130] Accepted TCP connection from 10.244.3.3:42670 to 10.244.3.1:40074
+I0707 17:34:54.903107   30031 proxysocket.go:130] Accepted TCP connection from 10.244.3.3:42671 to 10.244.3.1:40074
+I0707 17:35:46.015868   30031 proxysocket.go:246] New UDP connection from 10.244.3.2:57493
+I0707 17:35:46.017061   30031 proxysocket.go:246] New UDP connection from 10.244.3.2:55471
+</code></pre>
+</div>
+
+<p>If you see error messages about not being able to contact the master, you
+should double-check your <code class="highlighter-rouge">Node</code> configuration and installation steps.</p>
+
+<h3 id="is-kube-proxy-writing-iptables-rules">Is kube-proxy writing iptables rules?</h3>
+
+<p>One of the main responsibilities of <code class="highlighter-rouge">kube-proxy</code> is to write the <code class="highlighter-rouge">iptables</code>
+rules which implement <code class="highlighter-rouge">Service</code>s.  Let’s check that those rules are getting
+written.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>iptables-save | grep hostnames
+-A KUBE-PORTALS-CONTAINER -d 10.0.1.175/32 -p tcp -m comment --comment <span class="s2">"default/hostnames:default"</span> -m tcp --dport 80 -j REDIRECT --to-ports 48577
+-A KUBE-PORTALS-HOST -d 10.0.1.175/32 -p tcp -m comment --comment <span class="s2">"default/hostnames:default"</span> -m tcp --dport 80 -j DNAT --to-destination 10.240.115.247:48577
+</code></pre>
+</div>
+
+<p>There should be 2 rules for each port on your <code class="highlighter-rouge">Service</code> (just one in this
+example) - a “KUBE-PORTALS-CONTAINER” and a “KUBE-PORTALS-HOST”.  If you do
+not see these, try restarting <code class="highlighter-rouge">kube-proxy</code> with the <code class="highlighter-rouge">-V</code> flag set to 4, and
+then look at the logs again.</p>
+
+<h3 id="is-kube-proxy-proxying">Is kube-proxy proxying?</h3>
+
+<p>Assuming you do see the above rules, try again to access your <code class="highlighter-rouge">Service</code> by IP:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>curl 10.0.1.175:80
+hostnames-0uton
+</code></pre>
+</div>
+
+<p>If this fails, we can try accessing the proxy directly.  Look back at the
+<code class="highlighter-rouge">iptables-save</code> output above, and extract the port number that <code class="highlighter-rouge">kube-proxy</code> is
+using for your <code class="highlighter-rouge">Service</code>.  In the above examples it is “48577”.  Now connect to
+that:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">u@node$ </span>curl localhost:48577
+hostnames-yp2kp
+</code></pre>
+</div>
+
+<p>If this still fails, look at the <code class="highlighter-rouge">kube-proxy</code> logs for specific lines like:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>Setting endpoints <span class="k">for </span>default/hostnames:default to <span class="o">[</span>10.244.0.5:9376 10.244.0.6:9376 10.244.0.7:9376]
+</code></pre>
+</div>
+
+<p>If you don’t see those, try restarting <code class="highlighter-rouge">kube-proxy</code> with the <code class="highlighter-rouge">-V</code> flag set to 4, and
+then look at the logs again.</p>
+
+<h2 id="seek-help">Seek help</h2>
+
+<p>If you get this far, something very strange is happening.  Your <code class="highlighter-rouge">Service</code> is
+running, has <code class="highlighter-rouge">Endpoints</code>, and your <code class="highlighter-rouge">Pod</code>s are actually serving.  You have DNS
+working, <code class="highlighter-rouge">iptables</code> rules installed, and <code class="highlighter-rouge">kube-proxy</code> does not seem to be
+misbehaving.  And yet your <code class="highlighter-rouge">Service</code> is not working.  You should probably let
+us know, so we can help investigate!</p>
+
+<p>Contact us on
+<a href="/docs/troubleshooting/#slack">Slack</a> or
+<a href="https://groups.google.com/forum/#!forum/google-containers">email</a> or
+<a href="https://github.com/kubernetes/kubernetes">GitHub</a>.</p>
+
+<h2 id="more-information">More information</h2>
+
+<p>Visit <a href="/docs/troubleshooting/">troubleshooting document</a> for more information.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/debugging-services.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/debugging-services/",
+        "title" : "Debugging Services",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/debugging-services/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

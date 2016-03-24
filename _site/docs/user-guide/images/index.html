@@ -1,0 +1,556 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Images</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/images.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Images</h1>
+		<p>Each container in a pod has its own image.  Currently, the only type of image supported is a <a href="https://docs.docker.com/userguide/dockerimages/">Docker Image</a>.</p>
+
+<p>You create your Docker image and push it to a registry before referring to it in a Kubernetes pod.</p>
+
+<p>The <code class="highlighter-rouge">image</code> property of a container supports the same syntax as the <code class="highlighter-rouge">docker</code> command does, including private registries and tags.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#updating-images" id="markdown-toc-updating-images">Updating Images</a></li>
+  <li><a href="#using-a-private-registry" id="markdown-toc-using-a-private-registry">Using a Private Registry</a>    <ul>
+      <li><a href="#using-google-container-registry" id="markdown-toc-using-google-container-registry">Using Google Container Registry</a></li>
+      <li><a href="#configuring-nodes-to-authenticate-to-a-private-repository" id="markdown-toc-configuring-nodes-to-authenticate-to-a-private-repository">Configuring Nodes to Authenticate to a Private Repository</a></li>
+      <li><a href="#pre-pulling-images" id="markdown-toc-pre-pulling-images">Pre-pulling Images</a></li>
+      <li><a href="#specifying-imagepullsecrets-on-a-pod" id="markdown-toc-specifying-imagepullsecrets-on-a-pod">Specifying ImagePullSecrets on a Pod</a></li>
+      <li><a href="#use-cases" id="markdown-toc-use-cases">Use Cases</a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="updating-images">Updating Images</h2>
+
+<p>The default pull policy is <code class="highlighter-rouge">IfNotPresent</code> which causes the Kubelet to not
+pull an image if it already exists. If you would like to always force a pull
+you must set a pull image policy of <code class="highlighter-rouge">Always</code> or specify a <code class="highlighter-rouge">:latest</code> tag on
+your image.</p>
+
+<h2 id="using-a-private-registry">Using a Private Registry</h2>
+
+<p>Private registries may require keys to read images from them.
+Credentials can be provided in several ways:</p>
+
+<ul>
+  <li>Using Google Container Registry
+    <ul>
+      <li>Per-cluster</li>
+      <li>automatically configured on Google Compute Engine or Google Container Engine</li>
+      <li>all pods can read the project’s private registry</li>
+    </ul>
+  </li>
+  <li>Configuring Nodes to Authenticate to a Private Registry
+    <ul>
+      <li>all pods can read any configured private registries</li>
+      <li>requires node configuration by cluster administrator</li>
+    </ul>
+  </li>
+  <li>Pre-pulling Images
+    <ul>
+      <li>all pods can use any images cached on a node</li>
+      <li>requires root access to all nodes to setup</li>
+    </ul>
+  </li>
+  <li>Specifying ImagePullSecrets on a Pod
+    <ul>
+      <li>only pods which provide own keys can access the private registry
+Each option is described in more detail below.</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="using-google-container-registry">Using Google Container Registry</h3>
+
+<p>Kubernetes has native support for the <a href="https://cloud.google.com/tools/container-registry/">Google Container
+Registry (GCR)</a>, when running on Google Compute
+Engine (GCE).  If you are running your cluster on GCE or Google Container Engine (GKE), simply
+use the full image name (e.g. gcr.io/my_project/image:tag).</p>
+
+<p>All pods in a cluster will have read access to images in this registry.</p>
+
+<p>The kubelet will authenticate to GCR using the instance’s
+Google service account.  The service account on the instance
+will have a <code class="highlighter-rouge">https://www.googleapis.com/auth/devstorage.read_only</code>,
+so it can pull from the project’s GCR, but not push.</p>
+
+<h3 id="configuring-nodes-to-authenticate-to-a-private-repository">Configuring Nodes to Authenticate to a Private Repository</h3>
+
+<p><strong>Note:</strong> if you are running on Google Container Engine (GKE), there will already be a <code class="highlighter-rouge">.dockercfg</code> on each node
+with credentials for Google Container Registry.  You cannot use this approach.</p>
+
+<p><strong>Note:</strong> this approach is suitable if you can control node configuration.  It
+will not work reliably on GCE, and any other cloud provider that does automatic
+node replacement.</p>
+
+<p>Docker stores keys for private registries in the <code class="highlighter-rouge">$HOME/.dockercfg</code> file.  If you put this
+in the <code class="highlighter-rouge">$HOME</code> of <code class="highlighter-rouge">root</code> on a kubelet, then docker will use it.</p>
+
+<p>Here are the recommended steps to configuring your nodes to use a private registry.  In this
+example, run these on your desktop/laptop:</p>
+
+<ol>
+  <li>run <code class="highlighter-rouge">docker login [server]</code> for each set of credentials you want to use.</li>
+  <li>view <code class="highlighter-rouge">$HOME/.dockercfg</code> in an editor to ensure it contains just the credentials you want to use.</li>
+  <li>get a list of your nodes
+    <ul>
+      <li>for example: <code class="highlighter-rouge">nodes=$(kubectl get nodes -o template --template=' ')</code></li>
+    </ul>
+  </li>
+  <li>copy your local <code class="highlighter-rouge">.dockercfg</code> to the home directory of root on each node.
+    <ul>
+      <li>for example: <code class="highlighter-rouge">for n in $nodes; do scp ~/.dockercfg root@$n:/root/.dockercfg; done</code></li>
+    </ul>
+  </li>
+</ol>
+
+<p>Verify by creating a pod that uses a private image, e.g.:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">$ cat &lt;&lt;EOF &gt; /tmp/private-image-test-1.yaml</span>
+<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">private-image-test-1</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">uses-private-image</span>
+      <span class="s">image</span><span class="pi">:</span> <span class="s">$PRIVATE_IMAGE_NAME</span>
+      <span class="s">imagePullPolicy</span><span class="pi">:</span> <span class="s">Always</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span> <span class="s2">"</span><span class="s">echo"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">SUCCESS"</span> <span class="pi">]</span>
+<span class="s">EOF</span>
+<span class="s">$ kubectl create -f /tmp/private-image-test-1.yaml</span>
+<span class="s">pods/private-image-test-1</span>
+<span class="s">$</span>
+</code></pre>
+</div>
+
+<p>If everything is working, then, after a few moments, you should see:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl logs private-image-test-1
+SUCCESS
+</code></pre>
+</div>
+
+<p>If it failed, then you will see:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl describe pods/private-image-test-1 | grep <span class="s2">"Failed"</span>
+  Fri, 26 Jun 2015 15:36:13 -0700	Fri, 26 Jun 2015 15:39:13 -0700	19	<span class="o">{</span>kubelet node-i2hq<span class="o">}</span>	spec.containers<span class="o">{</span>uses-private-image<span class="o">}</span>	failed		Failed to pull image <span class="s2">"user/privaterepo:v1"</span>: Error: image user/privaterepo:v1 not found
+</code></pre>
+</div>
+
+<p>You must ensure all nodes in the cluster have the same <code class="highlighter-rouge">.dockercfg</code>.  Otherwise, pods will run on
+some nodes and fail to run on others.  For example, if you use node autoscaling, then each instance
+template needs to include the <code class="highlighter-rouge">.dockercfg</code> or mount a drive that contains it.</p>
+
+<p>All pods will have read access to images in any private registry once private
+registry keys are added to the <code class="highlighter-rouge">.dockercfg</code>.</p>
+
+<p><strong>This was tested with a private docker repository as of 26 June with Kubernetes version v0.19.3.
+It should also work for a private registry such as quay.io, but that has not been tested.</strong></p>
+
+<h3 id="pre-pulling-images">Pre-pulling Images</h3>
+
+<p><strong>Note:</strong> if you are running on Google Container Engine (GKE), there will already be a <code class="highlighter-rouge">.dockercfg</code> on each node
+with credentials for Google Container Registry.  You cannot use this approach.</p>
+
+<p><strong>Note:</strong> this approach is suitable if you can control node configuration.  It
+will not work reliably on GCE, and any other cloud provider that does automatic
+node replacement.</p>
+
+<p>Be default, the kubelet will try to pull each image from the specified registry.
+However, if the <code class="highlighter-rouge">imagePullPolicy</code> property of the container is set to <code class="highlighter-rouge">IfNotPresent</code> or <code class="highlighter-rouge">Never</code>,
+then a local image is used (preferentially or exclusively, respectively).</p>
+
+<p>If you want to rely on pre-pulled images as a substitute for registry authentication,
+you must ensure all nodes in the cluster have the same pre-pulled images.</p>
+
+<p>This can be used to preload certain images for speed or as an alternative to authenticating to a private registry.</p>
+
+<p>All pods will have read access to any pre-pulled images.</p>
+
+<h3 id="specifying-imagepullsecrets-on-a-pod">Specifying ImagePullSecrets on a Pod</h3>
+
+<p><strong>Note:</strong> This approach is currently the recommended approach for GKE, GCE, and any cloud-providers
+where node creation is automated.</p>
+
+<p>Kubernetes supports specifying registry keys on a pod.</p>
+
+<p>First, create a <code class="highlighter-rouge">.dockercfg</code>, such as running <code class="highlighter-rouge">docker login &lt;registry.domain&gt;</code>.
+Then put the resulting <code class="highlighter-rouge">.dockercfg</code> file into a <a href="/docs/user-guide/secrets">secret resource</a>.  For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker login
+Username: janedoe
+Password: <span class="s1">'�?'</span>�?<span class="s1">'�?'</span>�?<span class="s1">'�?'</span>�?<span class="s1">'�?'</span>�?<span class="s1">'�?'</span>�?<span class="s1">'�?
+Email: jdoe@example.com
+WARNING: login credentials saved in /Users/jdoe/.dockercfg.
+Login Succeeded
+
+$ echo $(cat ~/.dockercfg)
+{ "https://index.docker.io/v1/": { "auth": "ZmFrZXBhc3N3b3JkMTIK", "email": "jdoe@example.com" } }
+
+$ cat ~/.dockercfg | base64
+eyAiaHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjogeyAiYXV0aCI6ICJabUZyWlhCaGMzTjNiM0prTVRJSyIsICJlbWFpbCI6ICJqZG9lQGV4YW1wbGUuY29tIiB9IH0K
+
+$ cat &gt; /tmp/image-pull-secret.yaml &lt;&lt;EOF
+apiVersion: v1
+kind: Secret
+metadata:
+  name: myregistrykey
+data:
+  .dockercfg: eyAiaHR0cHM6Ly9pbmRleC5kb2NrZXIuaW8vdjEvIjogeyAiYXV0aCI6ICJabUZyWlhCaGMzTjNiM0prTVRJSyIsICJlbWFpbCI6ICJqZG9lQGV4YW1wbGUuY29tIiB9IH0K
+type: kubernetes.io/dockercfg
+EOF
+
+$ kubectl create -f /tmp/image-pull-secret.yaml
+secrets/myregistrykey
+$
+</span></code></pre>
+</div>
+
+<p>If you get the error message <code class="highlighter-rouge">error: no objects passed to create</code>, it may mean the base64 encoded string is invalid.
+If you get an error message like <code class="highlighter-rouge">Secret "myregistrykey" is invalid: data[.dockercfg]: invalid value ...</code> it means
+the data was successfully un-base64 encoded, but could not be parsed as a dockercfg file.</p>
+
+<p>This process only needs to be done one time (per namespace).</p>
+
+<p>Now, you can create pods which reference that secret by adding an <code class="highlighter-rouge">imagePullSecrets</code>
+section to a pod definition.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">foo</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">foo</span>
+      <span class="s">image</span><span class="pi">:</span> <span class="s">janedoe/awesomeapp:v1</span>
+  <span class="s">imagePullSecrets</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">myregistrykey</span>
+</code></pre>
+</div>
+
+<p>This needs to be done for each pod that is using a private registry.
+However, setting of this field can be automated by setting the imagePullSecrets
+in a <a href="/docs/user-guide/service-accounts">serviceAccount</a> resource.</p>
+
+<p>Currently, all pods will potentially have read access to any images which were
+pulled using imagePullSecrets.  That is, imagePullSecrets does <em>NOT</em> protect your
+images from being seen by other users in the cluster.  Our intent
+is to fix that.</p>
+
+<p>You can use this in conjunction with a per-node <code class="highlighter-rouge">.dockerfile</code>.  The credentials
+will be merged.  This approach will work on Google Container Engine (GKE).</p>
+
+<h3 id="use-cases">Use Cases</h3>
+
+<p>There are a number of solutions for configuring private registries.  Here are some
+common use cases and suggested solutions.</p>
+
+<ol>
+  <li>Cluster running only non-proprietary (e.g open-source) images.  No need to hide images.
+    <ul>
+      <li>Use public images on the Docker hub.</li>
+      <li>no configuration required</li>
+      <li>on GCE/GKE, a local mirror is automatically used for improved speed and availability</li>
+    </ul>
+  </li>
+  <li>Cluster running some proprietary images which should be hidden to those outside the company, but
+   visible to all cluster users.
+    <ul>
+      <li>Use a hosted private <a href="https://docs.docker.com/registry/">Docker registry</a></li>
+      <li>may be hosted on the <a href="https://hub.docker.com/account/signup/">Docker Hub</a>, or elsewhere.</li>
+      <li>manually configure .dockercfg on each node as described above
+        <ul>
+          <li>Or, run an internal private registry behind your firewall with open read access.</li>
+        </ul>
+      </li>
+      <li>no Kubernetes configuration required
+        <ul>
+          <li>Or, when on GCE/GKE, use the project’s Google Container Registry.</li>
+        </ul>
+      </li>
+      <li>will work better with cluster autoscaling than manual node configuration
+        <ul>
+          <li>Or, on a cluster where changing the node configuration is inconvenient, use <code class="highlighter-rouge">imagePullSecrets</code>.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li>Cluster with a proprietary images, a few of which require stricter access control
+    <ul>
+      <li>Move sensitive data into a “Secret” resource, instead of packaging it in an image.</li>
+      <li>DO NOT use imagePullSecrets for this use case yet.</li>
+    </ul>
+  </li>
+  <li>A multi-tenant cluster where each tenant needs own private registry
+    <ul>
+      <li>NOT supported yet.</li>
+    </ul>
+  </li>
+</ol>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/images.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/images/",
+        "title" : "Images",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/images/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

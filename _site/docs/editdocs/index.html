@@ -1,0 +1,295 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Contributing to Kubernetes Documentation</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Support</h1>
+	<h5>Troubleshooting resources, frequently asked questions, and community support channels.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Support" href="/docs/troubleshooting/"></a>
+<div class="item" data-title="Troubleshooting">
+  <div class="container">
+    <a class="item" data-title="Web Interface" href="/docs/user-guide/ui/"></a>
+    <a class="item" data-title="Application Introspection and Debugging" href="/docs/user-guide/introspection-and-debugging/"></a>
+    <a class="item" data-title="Retrieving Logs" href="/docs/user-guide/logging/"></a>
+    <a class="item" data-title="Troubleshooting Applications" href="/docs/user-guide/application-troubleshooting/"></a>
+    <a class="item" data-title="Troubleshooting Clusters" href="/docs/admin/cluster-troubleshooting/"></a>
+    <a class="item" data-title="Debugging Services" href="/docs/user-guide/debugging-services/"></a>
+  </div>
+</div>
+<div class="item" data-title="Frequently Asked Questions">
+  <div class="container">
+    <a class="item" data-title="User FAQ" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ/" target='_blank'></a>
+    <a class="item" data-title="Debugging FAQ" href="https://github.com/kubernetes/kubernetes/wiki/Debugging-FAQ/" target='_blank'></a>
+    <a class="item" data-title="Services FAQ" href="https://github.com/kubernetes/kubernetes/wiki/Services-FAQ/" target='_blank'></a>
+  </div>
+</div>
+<div class="item" data-title="Other Resources">
+  <div class="container">
+    <a class="item" data-title="Known Issues" href="/docs/user-guide/known-issues/"></a>
+    <a class="item" data-title="Kubernetes Issue Tracker on GitHub" href="https://github.com/kubernetes/kubernetes/issues/" target='_blank'></a>
+    <a class="item" data-title="Report a Security Vulnerability" href="/docs/reporting-security-issues/"></a>
+    <a class="item" data-title="Release Notes" href="https://github.com/kubernetes/kubernetes/releases/" target='_blank'></a>
+    <a class="item" data-title="Release Roadmap" href="/docs/roadmap/"></a>
+    <a class="item" data-title="Contributing to Kubernetes Documentation" href="/docs/editdocs/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/editdocs.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Contributing to Kubernetes Documentation</h1>
+		<p>Welcome! We are very pleased you want to contribute to the docs for Kubernetes.</p>
+
+<!-- BEGIN: Gotta keep this section JS/HTML because it swaps out content dynamically -->
+<p> </p>
+<script language="JavaScript">
+var forwarding=window.location.hash.replace("#","");
+$( document ).ready(function() {
+    if(forwarding) {
+    	$("#generalInstructions").hide();
+    	$("#continueEdit").show();
+    	$("#continueEditButton").text("Edit " + forwarding);
+    	$("#continueEditButton").attr("href", "https://github.com/kubernetes/kubernetes.github.io/edit/master/" + forwarding)
+    } else {
+        $("#generalInstructions").show();
+    	$("#continueEdit").hide();
+    }
+});
+</script>
+
+<div id="continueEdit">
+  <h2 id="continue-your-edit">Continue your edit</h2>
+  <p>Click the below link to edit the page you were just on. When you are done, press "Commit Changes" at the bottom of the screen. This will create a copy of our site on your GitHub account called a "fork." You can make other changes in your fork after it is created, if you want. When you are ready to send us all your changes, go to the index page for your fork and click "New Pull Request" to let us know about it.</p>
+  <p><a id="continueEditButton" class="button"></a></p>
+</div>
+<div id="generalInstructions">
+  <h2 id="edit-our-site-in-the-cloud">Edit our site in the cloud</h2>
+  <p>Click the below button to visit the repo for our site. You can then click the "Fork" button in the upper-right area of the screen to create a copy of our site on your GitHub account called a "fork." Make any changes you want in your fork, and when you are ready to send those changes to us, go to the index page for your fork and click "New Pull Request" to let us know about it.</p>
+  <p><a class="button" href="https://github.com/kubernetes/kubernetes.github.io/">Browse this site's source code</a></p>
+</div>
+<!-- END: Dynamic section -->
+
+<h2 id="staging-your-changes-in-the-cloud">Staging your changes in the cloud</h2>
+
+<p>If you want to see your changes staged without having to install anything locally,
+change your fork of our repo to be named:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>YOUR_GITHUB_USERNAME.github.io
+</code></pre>
+</div>
+
+<p>Then, visit: <a href="http://YOUR_GITHUB_USERNAME.github.io">http://YOUR_GITHUB_USERNAME.github.io</a></p>
+
+<p>You should see a special-to-you version of the site.</p>
+
+<h2 id="editing-and-staging-the-site-locally">Editing and staging the site locally</h2>
+
+<p>If you want to work offline, run the below commands to setup
+your environment for running GitHub pages locally. Then, any edits you make will be viewable
+on a lightweight webserver that runs on your local machine.</p>
+
+<p>First install rvm</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>\curl -sSL https://get.rvm.io | bash -s stable
+</code></pre>
+</div>
+
+<p>Then load it into your environment</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">source</span> /Users/<span class="o">(</span>USERNAME<span class="o">)</span>/.rvm/scripts/rvm <span class="o">(</span>or whatever is prompted by the installer<span class="o">)</span>
+</code></pre>
+</div>
+
+<p>Then install Ruby 2.2 or higher</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rvm install ruby-2.2.4
+rvm use ruby-2.2.4 --default
+</code></pre>
+</div>
+
+<p>Verify that this new version is running (optional)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>which ruby
+ruby -v
+</code></pre>
+</div>
+
+<p>Install the GitHub Pages package, which includes Jekyll:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gem install github-pages
+</code></pre>
+</div>
+
+<p>Clone our site</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>git clone https://github.com/kubernetes/kubernetes.github.io.git
+</code></pre>
+</div>
+
+<p>Then, to see it run locally:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd </span>kubernetes.github.io
+jekyll serve
+</code></pre>
+</div>
+
+<p>Your copy of the site will then be viewable at: <a href="http://0.0.0.0:4000">http://0.0.0.0:4000</a>
+(or wherever Ruby tells you).</p>
+
+<p>If you’re a bit rusty with git/GitHub, you might wanna read
+<a href="http://readwrite.com/2013/10/02/github-for-beginners-part-2">this</a> for a refresher.</p>
+
+<p>The above instructions work on Mac and Linux.
+Windows users, follow <a href="https://martinbuberl.com/blog/setup-jekyll-on-windows-and-host-it-on-github-pages/">these instructions</a>.</p>
+
+<h2 id="thank-you">Thank you!</h2>
+
+<p>Kubernetes thrives on community participation and we really appreciate your
+contributions to our site and our documentation!</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/editdocs.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/editdocs/",
+        "title" : "Contributing to Kubernetes Documentation",
+        "permalink" : "http://kubernetes.github.io/docs/editdocs/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

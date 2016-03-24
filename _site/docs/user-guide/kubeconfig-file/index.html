@@ -1,0 +1,521 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Authenticating Across Clusters with kubeconfig</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/kubeconfig-file.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Authenticating Across Clusters with kubeconfig</h1>
+		<p>Authentication in kubernetes can differ for different individuals.</p>
+
+<ul>
+  <li>A running kubelet might have one way of authenticating (i.e. certificates).</li>
+  <li>Users might have a different way of authenticating (i.e. tokens).</li>
+  <li>Administrators might have a list of certificates which they provide individual users.</li>
+  <li>There may be multiple clusters, and we may want to define them all in one place - giving users the ability to use their own certificates and reusing the same global configuration.</li>
+</ul>
+
+<p>So in order to easily switch between multiple clusters, for multiple users, a kubeconfig file was defined.</p>
+
+<p>This file contains a series of authentication mechanisms and cluster connection information associated with nicknames.  It also introduces the concept of a tuple of authentication information (user) and cluster connection information called a context that is also associated with a nickname.</p>
+
+<p>Multiple kubeconfig files are allowed.  At runtime they are loaded and merged together along with override options specified from the command line (see rules below).</p>
+
+<h2 id="related-discussion">Related discussion</h2>
+
+<p>http://issue.k8s.io/1755</p>
+
+<h2 id="example-kubeconfig-file">Example kubeconfig file</h2>
+
+<p>The below file contains a <code class="highlighter-rouge">current-context</code> which will be used by default by clients which are using the file to connect to a cluster.  Thus, this kubeconfig file has more information in it then we will necessarily have to use in a given session.  You can see it defines many clusters, and users associated with those clusters.  The context itself is associated with both a cluster AND a user.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">current-context</span><span class="pi">:</span> <span class="s">federal-context</span>
+<span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">clusters</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">cluster</span><span class="pi">:</span>
+    <span class="s">api-version</span><span class="pi">:</span> <span class="s">v1</span>
+    <span class="s">server</span><span class="pi">:</span> <span class="s">http://cow.org:8080</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">cow-cluster</span>
+<span class="pi">-</span> <span class="s">cluster</span><span class="pi">:</span>
+    <span class="s">certificate-authority</span><span class="pi">:</span> <span class="s">path/to/my/cafile</span>
+    <span class="s">server</span><span class="pi">:</span> <span class="s">https://horse.org:4443</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">horse-cluster</span>
+<span class="pi">-</span> <span class="s">cluster</span><span class="pi">:</span>
+    <span class="s">insecure-skip-tls-verify</span><span class="pi">:</span> <span class="s">true</span>
+    <span class="s">server</span><span class="pi">:</span> <span class="s">https://pig.org:443</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">pig-cluster</span>
+<span class="s">contexts</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">context</span><span class="pi">:</span>
+    <span class="s">cluster</span><span class="pi">:</span> <span class="s">horse-cluster</span>
+    <span class="s">namespace</span><span class="pi">:</span> <span class="s">chisel-ns</span>
+    <span class="s">user</span><span class="pi">:</span> <span class="s">green-user</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">federal-context</span>
+<span class="pi">-</span> <span class="s">context</span><span class="pi">:</span>
+    <span class="s">cluster</span><span class="pi">:</span> <span class="s">pig-cluster</span>
+    <span class="s">namespace</span><span class="pi">:</span> <span class="s">saw-ns</span>
+    <span class="s">user</span><span class="pi">:</span> <span class="s">black-user</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">queen-anne-context</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Config</span>
+<span class="s">preferences</span><span class="pi">:</span>
+  <span class="s">colors</span><span class="pi">:</span> <span class="s">true</span>
+<span class="s">users</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">blue-user</span>
+  <span class="s">user</span><span class="pi">:</span>
+    <span class="s">token</span><span class="pi">:</span> <span class="s">blue-token</span>
+<span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">green-user</span>
+  <span class="s">user</span><span class="pi">:</span>
+    <span class="s">client-certificate</span><span class="pi">:</span> <span class="s">path/to/my/client/cert</span>
+    <span class="s">client-key</span><span class="pi">:</span> <span class="s">path/to/my/client/key</span>
+</code></pre>
+</div>
+
+<h3 id="building-your-own-kubeconfig-file">Building your own kubeconfig file</h3>
+
+<p>NOTE, that if you are deploying k8s via kube-up.sh, you do not need to create your own kubeconfig files, the script will do it for you.</p>
+
+<p>In any case, you can easily use this file as a template to create your own kubeconfig files.</p>
+
+<p>So, lets do a quick walk through the basics of the above file so you can easily modify it as needed…</p>
+
+<p>The above file would likely correspond to an api-server which was launched using the <code class="highlighter-rouge">--token-auth-file=tokens.csv</code> option, where the tokens.csv file looked something like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">blue</span>-<span class="n">user</span>,<span class="n">blue</span>-<span class="n">user</span>,<span class="m">1</span>
+<span class="n">mister</span>-<span class="n">red</span>,<span class="n">mister</span>-<span class="n">red</span>,<span class="m">2</span>
+</code></pre>
+</div>
+
+<p>Also, since we have other users who validate using <strong>other</strong> mechanisms, the api-server would have probably been launched with other authentication options (there are many such options, make sure you understand which ones YOU care about before crafting a kubeconfig file, as nobody needs to implement all the different permutations of possible authentication schemes).</p>
+
+<ul>
+  <li>Since the user for the current context is “green-user”, any client of the api-server using this kubeconfig file would naturally be able to log in succesfully, because we are providigin the green-user’s client credentials.</li>
+  <li>Similarly, we can operate as the “blue-user” if we choose to change the value of current-context.</li>
+</ul>
+
+<p>In the above scenario, green-user would have to log in by providing certificates, whereas blue-user would just provide the token.  All this information would be handled for us by the</p>
+
+<h2 id="loading-and-merging-rules">Loading and merging rules</h2>
+
+<p>The rules for loading and merging the kubeconfig files are straightforward, but there are a lot of them.  The final config is built in this order:
+  1.  Get the kubeconfig  from disk.  This is done with the following hierarchy and merge rules:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  If the CommandLineLocation (the value of the `kubeconfig` command line option) is set, use this file only.  No merging.  Only one instance of this flag is allowed.
+
+
+  Else, if EnvVarLocation (the value of $KUBECONFIG) is available, use it as a list of files that should be merged.
+  Merge files together based on the following rules.
+  Empty filenames are ignored.  Files with non-deserializable content produced errors.
+  The first file to set a particular value or map key wins and the value or map key is never changed.
+  This means that the first file to set CurrentContext will have its context preserved.  It also means that if two files specify a "red-user", only values from the first file's red-user are used.  Even non-conflicting entries from the second file's "red-user" are discarded.
+
+
+  Otherwise, use HomeDirectoryLocation (~/.kube/config) with no merging.   1.  Determine the context to use based on the first hit in this chain
+  1.  command line argument - the value of the `context` command line option
+  1.  current-context from the merged kubeconfig file
+  1.  Empty is allowed at this stage   1.  Determine the cluster info and user to use.  At this point, we may or may not have a context.  They are built based on the first hit in this chain.  (run it twice, once for user, once for cluster)
+  1.  command line argument - `user` for user name and `cluster` for cluster name
+  1.  If context is present, then use the context's value
+  1.  Empty is allowed   1.  Determine the actual cluster info to use.  At this point, we may or may not have a cluster info.  Build each piece of the cluster info based on the chain (first hit wins):
+  1.  command line arguments - `server`, `api-version`, `certificate-authority`, and `insecure-skip-tls-verify`
+  1.  If cluster info is present and a value for the attribute is present, use it.
+  1.  If you don't have a server location, error.   1.  Determine the actual user info to use. User is built using the same rules as cluster info, EXCEPT that you can only have one authentication technique per user.
+  1. Load precedence is 1) command line flag, 2) user fields from kubeconfig
+  1. The command line flags are: `client-certificate`, `client-key`, `username`, `password`, and `token`.
+  1. If there are two conflicting techniques, fail.   1.  For any information still missing, use default values and potentially prompt for authentication information
+</code></pre>
+</div>
+
+<h2 id="manipulation-of-kubeconfig-via-kubectl-config-subcommand">Manipulation of kubeconfig via <code class="highlighter-rouge">kubectl config &lt;subcommand&gt;</code></h2>
+
+<p>In order to more easily manipulate kubeconfig files, there are a series of subcommands to <code class="highlighter-rouge">kubectl config</code> to help.
+See <a href="/docs/user-guide/kubectl/kubectl_config">kubectl/kubectl_config.md</a> for help.</p>
+
+<h3 id="example">Example</h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl config <span class="nb">set</span>-credentials myself --username<span class="o">=</span>admin --password<span class="o">=</span>secret
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-cluster <span class="nb">local</span>-server --server<span class="o">=</span>http://localhost:8080
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-context default-context --cluster<span class="o">=</span><span class="nb">local</span>-server --user<span class="o">=</span>myself
+<span class="gp">$ </span>kubectl config use-context default-context
+<span class="gp">$ </span>kubectl config <span class="nb">set </span>contexts.default-context.namespace the-right-prefix
+<span class="gp">$ </span>kubectl config view
+</code></pre>
+</div>
+
+<p>produces this output</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">clusters</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">cluster</span><span class="pi">:</span>
+    <span class="s">server</span><span class="pi">:</span> <span class="s">http://localhost:8080</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">local-server</span>
+<span class="s">contexts</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">context</span><span class="pi">:</span>
+    <span class="s">cluster</span><span class="pi">:</span> <span class="s">local-server</span>
+    <span class="s">namespace</span><span class="pi">:</span> <span class="s">the-right-prefix</span>
+    <span class="s">user</span><span class="pi">:</span> <span class="s">myself</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">default-context</span>
+<span class="s">current-context</span><span class="pi">:</span> <span class="s">default-context</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Config</span>
+<span class="s">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
+<span class="s">users</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">myself</span>
+  <span class="s">user</span><span class="pi">:</span>
+    <span class="s">password</span><span class="pi">:</span> <span class="s">secret</span>
+    <span class="s">username</span><span class="pi">:</span> <span class="s">admin</span>
+</code></pre>
+</div>
+
+<p>and a kubeconfig file that looks like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">clusters</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">cluster</span><span class="pi">:</span>
+    <span class="s">server</span><span class="pi">:</span> <span class="s">http://localhost:8080</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">local-server</span>
+<span class="s">contexts</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">context</span><span class="pi">:</span>
+    <span class="s">cluster</span><span class="pi">:</span> <span class="s">local-server</span>
+    <span class="s">namespace</span><span class="pi">:</span> <span class="s">the-right-prefix</span>
+    <span class="s">user</span><span class="pi">:</span> <span class="s">myself</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">default-context</span>
+<span class="s">current-context</span><span class="pi">:</span> <span class="s">default-context</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Config</span>
+<span class="s">preferences</span><span class="pi">:</span> <span class="pi">{}</span>
+<span class="s">users</span><span class="pi">:</span>
+<span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">myself</span>
+  <span class="s">user</span><span class="pi">:</span>
+    <span class="s">password</span><span class="pi">:</span> <span class="s">secret</span>
+    <span class="s">username</span><span class="pi">:</span> <span class="s">admin</span>
+</code></pre>
+</div>
+
+<h4 id="commands-for-the-example-file">Commands for the example file</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl config <span class="nb">set </span>preferences.colors <span class="nb">true</span>
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-cluster cow-cluster --server<span class="o">=</span>http://cow.org:8080 --api-version<span class="o">=</span>v1
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-cluster horse-cluster --server<span class="o">=</span>https://horse.org:4443 --certificate-authority<span class="o">=</span>path/to/my/cafile
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-cluster pig-cluster --server<span class="o">=</span>https://pig.org:443 --insecure-skip-tls-verify<span class="o">=</span><span class="nb">true</span>
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-credentials blue-user --token<span class="o">=</span>blue-token
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-credentials green-user --client-certificate<span class="o">=</span>path/to/my/client/cert --client-key<span class="o">=</span>path/to/my/client/key
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-context queen-anne-context --cluster<span class="o">=</span>pig-cluster --user<span class="o">=</span>black-user --namespace<span class="o">=</span>saw-ns
+<span class="gp">$ </span>kubectl config <span class="nb">set</span>-context federal-context --cluster<span class="o">=</span>horse-cluster --user<span class="o">=</span>green-user --namespace<span class="o">=</span>chisel-ns
+<span class="gp">$ </span>kubectl config use-context federal-context
+</code></pre>
+</div>
+
+<h3 id="final-notes-for-tying-it-all-together">Final notes for tying it all together</h3>
+
+<p>So, tying this all together, a quick start to creating your own kubeconfig file:</p>
+
+<ul>
+  <li>
+    <p>Take a good look and understand how you’re api-server is being launched: You need to know YOUR security requirements and policies before you can design a kubeconfig file for convenient authentication.</p>
+  </li>
+  <li>
+    <p>Replace the snippet above with information for your cluster’s api-server endpoint.</p>
+  </li>
+  <li>
+    <p>Make sure your api-server is launched in such a way that at least one user (i.e. green-user) credentials are provided to it.  You will of course have to look at api-server documentation in order to determine the current state-of-the-art in terms of providing authentication details.</p>
+  </li>
+</ul>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/kubeconfig-file.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/kubeconfig-file/",
+        "title" : "Authenticating Across Clusters with kubeconfig",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/kubeconfig-file/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

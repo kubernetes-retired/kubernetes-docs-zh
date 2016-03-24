@@ -1,0 +1,656 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - MEAN stack on Google Cloud Platform</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Samples</h1>
+	<h5>A collection of example applications that show how to use Kubernetes.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Samples" href="/docs/samples/"></a>
+<div class="item" data-title="Clustered Application Samples">
+  <div class="container">
+    <a class="item" data-title="Apache Cassandra Database" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cassandra" target='_blank'></a>
+    <a class="item" data-title="Apache Spark" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/spark" target='_blank'></a>
+    <a class="item" data-title="Apache Storm" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/storm" target='_blank'></a>
+    <a class="item" data-title="Distributed Task Queue" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/celery-rabbitmq" target='_blank'></a>
+    <a class="item" data-title="Hazelcast" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/hazelcast" target='_blank'></a>
+    <a class="item" data-title="Meteor Applications" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/meteor/" target='_blank'></a>
+    <a class="item" data-title="Redis" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/redis/" target='_blank'></a>
+    <a class="item" data-title="RethinkDB" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/rethinkdb/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch/Kibana Logging Demonstration" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/logging-demo/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/elasticsearch/" target='_blank'></a>
+    <a class="item" data-title="OpenShift Origin" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/openshift-origin/" target='_blank'></a>
+    <a class="item" data-title="Ceph" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/rbd/" target='_blank'></a>
+    <a class="item" data-title="MEAN stack on Google Cloud Platform" href="/docs/getting-started-guides/meanstack/"></a>
+  </div>
+</div>
+<div class="item" data-title="Persistent Volume Samples">
+  <div class="container">
+    <a class="item" data-title="WordPress on a Kubernetes Persistent Volume" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/mysql-wordpress-pd/" target='_blank'></a>
+    <a class="item" data-title="GlusterFS" href="/https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/glusterfs/"></a>
+    <a class="item" data-title="iSCSI" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/iscsi/" target='_blank'></a>
+    <a class="item" data-title="NFS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/nfs/" target='_blank'></a>
+    <a class="item" data-title="Downward API Volumes" href="/docs/user-guide/downward-api/volume/"></a>
+  </div>
+</div>
+<div class="item" data-title="Multi-tier Application Samples">
+  <div class="container">
+    <a class="item" data-title="Guestbook - Go Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook-go/" target='_blank'></a>
+    <a class="item" data-title="GuestBook - PHP Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook/" target='_blank'></a>
+    <a class="item" data-title="MySQL - Phabricator Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/phabricator/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch/Kibana Logging Demo" href="https://github.com/kubernetes/kubernetes.github.io/tree/master/docs/user-guide/logging-demo" target='_blank'></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/getting-started-guides/meanstack.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>MEAN stack on Google Cloud Platform</h1>
+		<p><strong>By: Sandeep Dinesh</strong> - <em>July 29, 2015</em></p>
+
+<p><img src="/images/docs/meanstack/image_0.png" alt="image" /></p>
+
+<p>In <a href="http://blog.sandeepdinesh.com/2015/07/running-mean-web-application-in-docker.html">a recent post</a>, I talked about running a MEAN stack with <a href="http://docker.com/">Docker Containers.</a></p>
+
+<p>Manually deploying Containers is all fine and dandy, but is rather fragile and clumsy. What happens if the app crashes? How can the app be updated? Rolled back?</p>
+
+<p>Thankfully, there is a system we can use to manage our containers in a cluster environment called Kubernetes. Even better, Google has a managed version of Kubernetes called <a href="https://cloud.google.com/container-engine/">Google Container Engine</a> so you can get up and running in minutes.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#the-basics-of-using-kubernetes" id="markdown-toc-the-basics-of-using-kubernetes">The Basics of Using Kubernetes</a></li>
+  <li><a href="#step-1-creating-the-container" id="markdown-toc-step-1-creating-the-container">Step 1: Creating the Container</a></li>
+  <li><a href="#step-2-building-our-container" id="markdown-toc-step-2-building-our-container">Step 2: Building our Container</a></li>
+  <li><a href="#step-3-pushing-our-container" id="markdown-toc-step-3-pushing-our-container">Step 3: Pushing our Container</a></li>
+  <li><a href="#step-4-creating-the-cluster" id="markdown-toc-step-4-creating-the-cluster"><strong>Step 4: Creating the Cluster</strong></a></li>
+  <li><a href="#step-5-creating-the-database-service" id="markdown-toc-step-5-creating-the-database-service"><strong>Step 5: Creating the Database Service</strong></a>    <ul>
+      <li><a href="#db-controlleryml" id="markdown-toc-db-controlleryml"><code class="highlighter-rouge">db-controller.yml</code></a></li>
+      <li><a href="#db-serviceyml" id="markdown-toc-db-serviceyml"><code class="highlighter-rouge">db-service.yml</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#step-6-running-the-database" id="markdown-toc-step-6-running-the-database">Step 6: Running the Database</a></li>
+  <li><a href="#step-7-creating-the-web-server" id="markdown-toc-step-7-creating-the-web-server">Step 7: Creating the Web Server</a>    <ul>
+      <li><a href="#web-controlleryml" id="markdown-toc-web-controlleryml"><code class="highlighter-rouge">web-controller.yml</code></a></li>
+      <li><a href="#web-serviceyml" id="markdown-toc-web-serviceyml"><code class="highlighter-rouge">web-service.yml</code></a></li>
+    </ul>
+  </li>
+  <li><a href="#step-8-running-the-web-server" id="markdown-toc-step-8-running-the-web-server">Step 8: Running the Web Server</a></li>
+  <li><a href="#step-9-accessing-the-app" id="markdown-toc-step-9-accessing-the-app">Step 9: Accessing the App</a>    <ul>
+      <li><a href="#final-thoughts" id="markdown-toc-final-thoughts"><strong>Final Thoughts</strong></a></li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="the-basics-of-using-kubernetes">The Basics of Using Kubernetes</h2>
+
+<p>Before we jump in and start kube’ing it up, it’s important to understand some of the fundamentals of Kubernetes.</p>
+
+<ul>
+  <li>Containers: These are the Docker, rtk, AppC, or whatever Container you are running. You can think of these like subatomic particles; everything is made up of them, but you rarely (if ever) interact with them directly.</li>
+  <li>Pods: Pods are the basic component of Kubernetes. They are a group of Containers that are scheduled, live, and die together. Why would you want to have a group of containers instead of just a single container? Let’s say you had a log processor, a web server, and a database. If you couldn’t use Pods, you would have to bundle the log processor in the web server and database containers, and each time you updated one you would have to update the other. With Pods, you can just reuse the same log processor for both the web server and database.</li>
+  <li>Replication Controllers: This is the management component of Kubernetes, and it’s pretty cool. You give it a set of Pods, tell it “I want three copies of this,” and it creates those copies on your cluster. It will do its best to keep those copies always running, so if one crashes it will start another.</li>
+  <li>Services: This is the other side to Replication Controllers. A service is the single point of contact for a group of Pods. For example, let’s say you have a Replication Controller that creates four copies of a web server pod. A Service will split the traffic to each of the four copies. Services are “permanent” while the pods behind them can come and go, so it’s a good idea to use Services.</li>
+</ul>
+
+<h2 id="step-1-creating-the-container">Step 1: Creating the Container</h2>
+
+<p>In my previous post, I used off-the-shelf containers to keep things simple.</p>
+
+<p>I had a stock MongoDB container and a stock Node.js container. The Mongo container ran fine without any modification. However, I had to manually enter the Node container to pull and run the code. Obviously this isn’t ideal in Kubernetes land, as you aren’t supposed to log into your servers!</p>
+
+<p>Instead, you have to build a custom container that has the code already inside it and runs automatically.</p>
+
+<p>To do this, you need to use more Docker. Make sure you have the latest version installed for the rest of this tutorial.</p>
+
+<p>Getting the code:</p>
+
+<p>Before starting, let’s get some code to run. You can follow along on your personal machine or a Linux VM in the cloud. I recommend using Linux or a Linux VM; running Docker on Mac and Windows is outside the scope of this tutorial.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git clone https://github.com/ijason/NodeJS-Sample-App.git app
+<span class="gp">$ </span>mv app/EmployeeDB/<span class="k">*</span> app/
+<span class="gp">$ </span>sed -i -- <span class="s1">'s/localhost/mongo/g'</span> ./app/app.js
+</code></pre>
+</div>
+
+<p>This is the same sample app we ran before. The second line just moves everything from the <code class="highlighter-rouge">EmployeeDB</code> subfolder up into the app folder so it’s easier to access. The third line, once again, replaces the hardcoded <code class="highlighter-rouge">localhost</code> with the <code class="highlighter-rouge">mongo</code> proxy.</p>
+
+<p>Building the Docker image:</p>
+
+<p>First, you need a <code class="highlighter-rouge">Dockerfile</code>. This is basically the list of instructions Docker uses to build a container image.</p>
+
+<p>Here is the <code class="highlighter-rouge">Dockerfile</code> for the web server:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>FROM node:0.10.40
+
+RUN mkdir -p /usr/src/app
+WORKDIR /usr/src/app
+COPY ./app/ ./
+RUN npm install
+
+CMD <span class="o">[</span><span class="s2">"node"</span>, <span class="s2">"app.js"</span><span class="o">]</span>
+</code></pre>
+</div>
+
+<p>A <code class="highlighter-rouge">Dockerfile</code> is pretty self explanatory, and this one is dead simple.</p>
+
+<p>First, it uses the official Node.js image as the base image.</p>
+
+<p>Then, it creates a folder to store the code, <code class="highlighter-rouge">cd</code>s into that directory, copies the code in, and installs the dependencies with npm.</p>
+
+<p>Finally, it specifies the command Docker should run when the container starts, which is to start the app.</p>
+
+<h2 id="step-2-building-our-container">Step 2: Building our Container</h2>
+
+<p>Right now, the directory should look like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls
+
+Dockerfile app
+</code></pre>
+</div>
+
+<p>Let’s build.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker build -t myapp .
+</code></pre>
+</div>
+
+<p>This will build a new Docker image for your app. This might take a few minutes as it is downloading and building everything.</p>
+
+<p>After that is done, test it out:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker run myapp
+</code></pre>
+</div>
+
+<p>At this point, you should have a server running on <code class="highlighter-rouge">http://localhost:3000</code> (or wherever Docker tells you). The website will error out as there is no database running, but we know it works!</p>
+
+<p><img src="/images/docs/meanstack/image_1.png" alt="image" /></p>
+
+<h2 id="step-3-pushing-our-container">Step 3: Pushing our Container</h2>
+
+<p>Now you have a custom Docker image, you have to actually access it from the cloud.</p>
+
+<p>As we are going to be using the image with Google Container Engine, the best place to push the image is the <a href="https://cloud.google.com/tools/container-registry/">Google Container Registry</a>. The Container Registry is built on top of <a href="https://cloud.google.com/storage/">Google Cloud Storage</a>, so you get the advantage of scalable storage and very fast access from Container Engine.</p>
+
+<p>First, make sure you have the latest version of the <a href="https://cloud.google.com/sdk/">Google Cloud SDK installed</a>.</p>
+
+<p><a href="https://dl.google.com/dl/cloudsdk/release/GoogleCloudSDKInstaller.exe">Windows users click here.</a></p>
+
+<p>For Linux/Mac:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>curl https://sdk.cloud.google.com | bash
+</code></pre>
+</div>
+
+<p>Then, make sure you log in and update.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gcloud auth login
+<span class="gp">$ </span>gcloud components update
+</code></pre>
+</div>
+
+<p>You’re ready to push your container live, but you’ll need a destination. Create a Project in <a href="https://console.developers.google.com/">the Google Cloud Platform Console</a>, and leave it blank. Use the Project ID below, and push your project live.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>docker tag myapp gcr.io/&lt;YOUR-PROJECT-ID&gt;/myapp
+<span class="gp">$ </span>gcloud docker push gcr.io/&lt;YOUR-PROJECT-ID&gt;/myapp
+</code></pre>
+</div>
+
+<p>After some time, it will finish. You can check the console to see the container has been pushed up.</p>
+
+<p><img src="/images/docs/meanstack/image_2.png" alt="image" /></p>
+
+<h2 id="step-4-creating-the-cluster"><strong>Step 4: Creating the Cluster</strong></h2>
+
+<p>So now you have the custom container, let’s create a cluster to run it.</p>
+
+<p>Currently, a cluster can be as small as one machine to as big as 100 machines. You can pick any machine type you want, so you can have a cluster of a single <code class="highlighter-rouge">f1-micro</code> instance, 100 <code class="highlighter-rouge">n1-standard-32</code> instances (3,200 cores!), and anything in between.</p>
+
+<p>For this tutorial I’m going to use the following:</p>
+
+<ul>
+  <li>Create a cluster named <code class="highlighter-rouge">mean-cluster</code></li>
+  <li>Give it a size of 2 nodes</li>
+  <li>Machine type will be <code class="highlighter-rouge">n1-standard-1</code></li>
+  <li>Zone will be <code class="highlighter-rouge">us-central-1f</code> (Use a zone close to you)</li>
+</ul>
+
+<p>There are two ways to create this cluster. Take your pick.</p>
+
+<p><strong>Command Line:</strong></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gcloud beta container <span class="se">\</span>
+ --project <span class="s2">"&lt;YOUR-PROJECT-ID&gt;"</span> <span class="se">\</span>
+ clusters create <span class="s2">"mean-cluster"</span> <span class="se">\</span>
+ --zone <span class="s2">"us-central1-f"</span> <span class="se">\</span>
+ --machine-type <span class="s2">"n1-standard-1"</span> <span class="se">\</span>
+ --num-nodes <span class="s2">"2"</span> <span class="se">\</span>
+ --network <span class="s2">"default"</span>
+</code></pre>
+</div>
+
+<p><strong>GUI:</strong></p>
+
+<p><img src="/images/docs/meanstack/image_3.png" alt="image" /></p>
+
+<p>After a few minutes, you should see this in the console.</p>
+
+<p><img src="/images/docs/meanstack/image_4.png" alt="image" /></p>
+
+<h2 id="step-5-creating-the-database-service"><strong>Step 5: Creating the Database Service</strong></h2>
+
+<p>Three things need to be created:</p>
+
+<ol>
+  <li>Persistent Disk to store the data (pods are ephemeral, so we shouldn’t save data locally)</li>
+  <li>Replication Controller running MongoDB</li>
+  <li>Service mapping to that Replication Controller</li>
+</ol>
+
+<p>To create the disk, run this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gcloud compute disks create <span class="se">\</span>
+ --project <span class="s2">"&lt;YOUR-PROJECT-ID&gt;"</span> <span class="se">\</span>
+ --zone <span class="s2">"us-central1-f"</span> <span class="se">\</span>
+ --size 200GB <span class="se">\</span>
+ mongo-disk
+</code></pre>
+</div>
+
+<p>Pick the same zone as your cluster and an appropriate disk size for your application.</p>
+
+<p>Now, we need to create a Replication Controller that will run the database. I’m using a Replication Controller and not a Pod, because if a standalone Pod dies, it won’t restart automatically.</p>
+
+<h3 id="db-controlleryml"><code class="highlighter-rouge">db-controller.yml</code></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+ <span class="s">labels</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+ <span class="s">name</span><span class="pi">:</span> <span class="s">mongo-controller</span>
+<span class="s">spec</span><span class="pi">:</span>
+ <span class="s">replicas</span><span class="pi">:</span> <span class="s">1</span>
+ <span class="s">template</span><span class="pi">:</span>
+   <span class="s">metadata</span><span class="pi">:</span>
+     <span class="s">labels</span><span class="pi">:</span>
+       <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+   <span class="s">spec</span><span class="pi">:</span>
+     <span class="s">containers</span><span class="pi">:</span>
+     <span class="pi">-</span> <span class="s">image</span><span class="pi">:</span> <span class="s">mongo</span>
+       <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+       <span class="s">ports</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+         <span class="s">containerPort</span><span class="pi">:</span> <span class="s">27017</span>
+         <span class="s">hostPort</span><span class="pi">:</span> <span class="s">27017</span>
+       <span class="s">volumeMounts</span><span class="pi">:</span>
+           <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">mongo-persistent-storage</span>
+             <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/data/db</span>
+     <span class="s">volumes</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">mongo-persistent-storage</span>
+         <span class="s">gcePersistentDisk</span><span class="pi">:</span>
+           <span class="s">pdName</span><span class="pi">:</span> <span class="s">mongo-disk</span>
+           <span class="s">fsType</span><span class="pi">:</span> <span class="s">ext4</span>
+</code></pre>
+</div>
+
+<p>We call the controller <code class="highlighter-rouge">mongo-controller</code>, specify one replica, and open the appropriate ports. The image is <code class="highlighter-rouge">mongo</code>, which is the off the shelf MongoDB image.</p>
+
+<p>The <code class="highlighter-rouge">volumes</code> section creates the volume for Kubernetes to use. There is a Google Container Engine-specific <code class="highlighter-rouge">gcePersistentDisk</code> section that maps the disk we made into a Kubernetes volume, and we mount the volume into the <code class="highlighter-rouge">/data/db</code> directory (as described in the MongoDB Docker documentation)</p>
+
+<p>Now we have the Controller, let’s create the Service:</p>
+
+<h3 id="db-serviceyml"><code class="highlighter-rouge">db-service.yml</code></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="s">metadata</span><span class="pi">:</span>
+ <span class="s">labels</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+ <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+<span class="s">spec</span><span class="pi">:</span>
+ <span class="s">ports</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="s">port</span><span class="pi">:</span> <span class="s">27017</span>
+     <span class="s">targetPort</span><span class="pi">:</span> <span class="s">27017</span>
+ <span class="s">selector</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">mongo</span>
+</code></pre>
+</div>
+
+<p>Again, pretty simple stuff. We “select” the mongo Controller to be served, open up the ports, and call the service <code class="highlighter-rouge">mongo</code>.</p>
+
+<p>This is just like the “link” command line option we used with Docker in my previous post. Instead of connecting to <code class="highlighter-rouge">localhost</code>, we connect to <code class="highlighter-rouge">mongo</code>, and Kubernetes redirects traffic to the mongo service!</p>
+
+<p>At this point, the local directory looks like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls
+
+Dockerfile
+app
+db-controller.yml
+db-service.yml
+</code></pre>
+</div>
+
+<h2 id="step-6-running-the-database">Step 6: Running the Database</h2>
+
+<p>First, let’s “log in” to the cluster</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gcloud container clusters get-credentials mean-cluster
+</code></pre>
+</div>
+
+<p>Now create the controller.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f db-controller.yml
+</code></pre>
+</div>
+
+<p>And the Service.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f db-service.yml
+</code></pre>
+</div>
+
+<p><code class="highlighter-rouge">kubectl</code> is the Kubernetes command line tool (automatically installed with the Google Cloud SDK). We are just creating the resources specified in the files.</p>
+
+<p>At this point, the database is spinning up! You can check progress with the following command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+</code></pre>
+</div>
+
+<p>Once you see the mongo pod in running status, we are good to go!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+
+NAME                    READY  REASON   RESTARTS AGE
+mongo-controller-xxxx   1/1    Running  0        3m
+</code></pre>
+</div>
+
+<h2 id="step-7-creating-the-web-server">Step 7: Creating the Web Server</h2>
+
+<p>Now the database is running, let’s start the web server.</p>
+
+<p>We need two things:</p>
+
+<ol>
+  <li>Replication Controller to spin up and down web server pods</li>
+  <li>Service to expose our website to the interwebs</li>
+</ol>
+
+<p>Let’s look at the Replication Controller configuration:</p>
+
+<h3 id="web-controlleryml"><code class="highlighter-rouge">web-controller.yml</code></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+ <span class="s">labels</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+ <span class="s">name</span><span class="pi">:</span> <span class="s">web-controller</span>
+<span class="s">spec</span><span class="pi">:</span>
+ <span class="s">replicas</span><span class="pi">:</span> <span class="s">2</span>
+ <span class="s">template</span><span class="pi">:</span>
+   <span class="s">metadata</span><span class="pi">:</span>
+     <span class="s">labels</span><span class="pi">:</span>
+       <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+   <span class="s">spec</span><span class="pi">:</span>
+     <span class="s">containers</span><span class="pi">:</span>
+     <span class="pi">-</span> <span class="s">image</span><span class="pi">:</span> <span class="s">gcr.io/&lt;YOUR-PROJECT-ID&gt;/myapp</span>
+       <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+       <span class="s">ports</span><span class="pi">:</span>
+       <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">3000</span>
+         <span class="s">name</span><span class="pi">:</span> <span class="s">http-server</span>
+</code></pre>
+</div>
+
+<p>Here, we create a controller called <code class="highlighter-rouge">web-controller</code>, and we tell it to create two replicas. Replicas of what you ask? You may notice the <code class="highlighter-rouge">template</code> section looks just like a Pod configuration, and that’s because it is. We are creating a Pod with our custom Node.js container and exposing port 3000.</p>
+
+<p>Now for the Service</p>
+
+<h3 id="web-serviceyml"><code class="highlighter-rouge">web-service.yml</code></h3>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Service</span>
+<span class="s">metadata</span><span class="pi">:</span>
+ <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+ <span class="s">labels</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+<span class="s">spec</span><span class="pi">:</span>
+ <span class="s">type</span><span class="pi">:</span> <span class="s">LoadBalancer</span>
+ <span class="s">ports</span><span class="pi">:</span>
+   <span class="pi">-</span> <span class="s">port</span><span class="pi">:</span> <span class="s">80</span>
+     <span class="s">targetPort</span><span class="pi">:</span> <span class="s">3000</span>
+     <span class="s">protocol</span><span class="pi">:</span> <span class="s">TCP</span>
+ <span class="s">selector</span><span class="pi">:</span>
+   <span class="s">name</span><span class="pi">:</span> <span class="s">web</span>
+</code></pre>
+</div>
+
+<p>Notice two things here:</p>
+
+<ol>
+  <li>The type is <em>LoadBalancer</em>. This is a cool feature that will make Google Cloud Platform create an external network load balancer automatically for this service!</li>
+  <li>We map external port 80 to the internal port 3000, so we can serve HTTP traffic without messing with Firewalls.</li>
+</ol>
+
+<p>At this point, the local directory looks like this</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ls
+
+Dockerfile app db-pod.yml db-service.yml web-service.yml web-controller.yml
+</code></pre>
+</div>
+
+<h2 id="step-8-running-the-web-server">Step 8: Running the Web Server</h2>
+
+<p>Create the Controller.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f web-controller.yml
+</code></pre>
+</div>
+
+<p>And the Service.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f web-service.yml
+</code></pre>
+</div>
+
+<p>And check the status.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+</code></pre>
+</div>
+
+<p>Once you see the web pods in running status, we are good to go!</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+
+NAME                   READY     REASON    RESTARTS   AGE
+mongo-controller-xxxx  1/1       Running   0          4m
+web-controller-xxxx    1/1       Running   0          1m
+web-controller-xxxx    1/1       Running   0          1m
+</code></pre>
+</div>
+
+<h2 id="step-9-accessing-the-app">Step 9: Accessing the App</h2>
+
+<p>At this point, everything is up and running. The architecture looks something like this:</p>
+
+<p><img src="/images/docs/meanstack/image_5.png" alt="image" /></p>
+
+<p>By default, port 80 should be open on the load balancer. In order to find the IP address of our app, run this command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gcloud compute forwarding-rules list
+
+NAME     REGION        IP_ADDRESS       IP_PROTOCOL TARGET
+abcdef   us-central1   104.197.XXX.XXX  TCP         us-xxxx
+</code></pre>
+</div>
+
+<p>If you go to the IP address listed, you should see the app up and running!</p>
+
+<p><img src="/images/docs/meanstack/image_6.png" alt="image" /></p>
+
+<p>And the Database works!</p>
+
+<p><img src="/images/docs/meanstack/image_7.png" alt="image" /></p>
+
+<h4 id="final-thoughts"><strong>Final Thoughts</strong></h4>
+
+<p>By using Container Engine and Kubernetes, we have a very robust, container based MEAN stack running in production.</p>
+
+<p><a href="https://medium.com/google-cloud/mongodb-replica-sets-with-kubernetes-d96606bd9474#.e93x7kuq5">In anoter post</a>, I cover how to setup a MongoDB replica set. This is very important for running in production.</p>
+
+<p>Hopefully I can do some more posts about advanced Kubernetes topics such as changing the cluster size and number of Node.js web server replicas, using different environments (dev, staging, prod) on the same cluster, and doing rolling updates.</p>
+
+<p>Thanks to <a href="https://medium.com/@markmandel">Mark Mandel</a>, <a href="https://medium.com/@thagomizer">Aja Hammerly</a>, and <a href="https://medium.com/@jack.g.wilber">Jack Wilber</a>. <a href="http://creativecommons.org/licenses/by/4.0/">Some rights reserved</a> by the author.</p>
+
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/getting-started-guides/meanstack.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/getting-started-guides/meanstack/",
+        "title" : "MEAN stack on Google Cloud Platform",
+        "permalink" : "http://kubernetes.github.io/docs/getting-started-guides/meanstack/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

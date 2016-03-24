@@ -1,0 +1,30 @@
+name: Kubernetes
+markdown: kramdown
+kramdown:
+  input: GFM
+  html_to_native: true
+  hard_wrap: false
+  syntax_highlighter: rouge
+baseurl: /
+incremental: true
+
+safe: false
+lsi: false
+
+defaults:
+  -
+    scope:
+      path: "docs"
+    values:
+      version: "v1.1"
+      layout: docwithnav
+      showedit: true
+      githubbranch: "release-1.1"
+      docsbranch: "release-1.1"
+permalink: pretty
+
+exclude:
+  - githubpagesites-0405247c814f.json.enc
+  - githubpagesites-0405247c814f.json
+  - Gemfile
+  - Gemfile.lock

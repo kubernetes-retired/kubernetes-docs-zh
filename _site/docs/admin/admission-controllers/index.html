@@ -1,0 +1,419 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Using Admission Controllers</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/admin/admission-controllers.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Using Admission Controllers</h1>
+		<ul id="markdown-toc">
+  <li><a href="#what-are-they" id="markdown-toc-what-are-they">What are they?</a></li>
+  <li><a href="#why-do-i-need-them" id="markdown-toc-why-do-i-need-them">Why do I need them?</a></li>
+  <li><a href="#how-do-i-turn-on-an-admission-control-plug-in" id="markdown-toc-how-do-i-turn-on-an-admission-control-plug-in">How do I turn on an admission control plug-in?</a></li>
+  <li><a href="#what-does-each-plug-in-do" id="markdown-toc-what-does-each-plug-in-do">What does each plug-in do?</a>    <ul>
+      <li><a href="#alwaysadmit" id="markdown-toc-alwaysadmit">AlwaysAdmit</a></li>
+      <li><a href="#alwaysdeny" id="markdown-toc-alwaysdeny">AlwaysDeny</a></li>
+      <li><a href="#denyexeconprivileged-deprecated" id="markdown-toc-denyexeconprivileged-deprecated">DenyExecOnPrivileged (deprecated)</a></li>
+      <li><a href="#denyescalatingexec" id="markdown-toc-denyescalatingexec">DenyEscalatingExec</a></li>
+      <li><a href="#serviceaccount" id="markdown-toc-serviceaccount">ServiceAccount</a></li>
+      <li><a href="#securitycontextdeny" id="markdown-toc-securitycontextdeny">SecurityContextDeny</a></li>
+      <li><a href="#resourcequota" id="markdown-toc-resourcequota">ResourceQuota</a></li>
+      <li><a href="#limitranger" id="markdown-toc-limitranger">LimitRanger</a></li>
+      <li><a href="#initialresources-experimental" id="markdown-toc-initialresources-experimental">InitialResources (experimental)</a></li>
+      <li><a href="#namespaceexists-deprecated" id="markdown-toc-namespaceexists-deprecated">NamespaceExists (deprecated)</a></li>
+      <li><a href="#namespaceautoprovision-deprecated" id="markdown-toc-namespaceautoprovision-deprecated">NamespaceAutoProvision (deprecated)</a></li>
+      <li><a href="#namespacelifecycle" id="markdown-toc-namespacelifecycle">NamespaceLifecycle</a></li>
+    </ul>
+  </li>
+  <li><a href="#is-there-a-recommended-set-of-plug-ins-to-use" id="markdown-toc-is-there-a-recommended-set-of-plug-ins-to-use">Is there a recommended set of plug-ins to use?</a></li>
+</ul>
+
+<h2 id="what-are-they">What are they?</h2>
+
+<p>An admission control plug-in is a piece of code that intercepts requests to the Kubernetes
+API server prior to persistence of the object, but after the request is authenticated
+and authorized.  The plug-in code is in the API server process
+and must be compiled into the binary in order to be used at this time.</p>
+
+<p>Each admission control plug-in is run in sequence before a request is accepted into the cluster.  If
+any of the plug-ins in the sequence reject the request, the entire request is rejected immediately
+and an error is returned to the end-user.</p>
+
+<p>Admission control plug-ins may mutate the incoming object in some cases to apply system configured
+defaults.  In addition, admission control plug-ins may mutate related resources as part of request
+processing to do things like increment quota usage.</p>
+
+<h2 id="why-do-i-need-them">Why do I need them?</h2>
+
+<p>Many advanced features in Kubernetes require an admission control plug-in to be enabled in order
+to properly support the feature.  As a result, a Kubernetes API server that is not properly
+configured with the right set of admission control plug-ins is an incomplete server and will not
+support all the features you expect.</p>
+
+<h2 id="how-do-i-turn-on-an-admission-control-plug-in">How do I turn on an admission control plug-in?</h2>
+
+<p>The Kubernetes API server supports a flag, <code class="highlighter-rouge">admission-control</code> that takes a comma-delimited,
+ordered list of admission control choices to invoke prior to modifying objects in the cluster.</p>
+
+<h2 id="what-does-each-plug-in-do">What does each plug-in do?</h2>
+
+<h3 id="alwaysadmit">AlwaysAdmit</h3>
+
+<p>Use this plugin by itself to pass-through all requests.</p>
+
+<h3 id="alwaysdeny">AlwaysDeny</h3>
+
+<p>Rejects all requests.  Used for testing.</p>
+
+<h3 id="denyexeconprivileged-deprecated">DenyExecOnPrivileged (deprecated)</h3>
+
+<p>This plug-in will intercept all requests to exec a command in a pod if that pod has a privileged container.</p>
+
+<p>If your cluster supports privileged containers, and you want to restrict the ability of end-users to exec
+commands in those containers, we strongly encourage enabling this plug-in.</p>
+
+<p>This functionality has been merged into <a href="#denyescalatingexec">DenyEscalatingExec</a>.</p>
+
+<h3 id="denyescalatingexec">DenyEscalatingExec</h3>
+
+<p>This plug-in will deny exec and attach commands to pods that run with escalated privileges that
+allow host access.  This includes pods that run as privileged, have access to the host IPC namespace, and
+have access to the host PID namespace.</p>
+
+<p>If your cluster supports containers that run with escalated privileges, and you want to
+restrict the ability of end-users to exec commands in those containers, we strongly encourage
+enabling this plug-in.</p>
+
+<h3 id="serviceaccount">ServiceAccount</h3>
+
+<p>This plug-in implements automation for <a href="/docs/user-guide/service-accounts">serviceAccounts</a>.
+We strongly recommend using this plug-in if you intend to make use of Kubernetes <code class="highlighter-rouge">ServiceAccount</code> objects.</p>
+
+<h3 id="securitycontextdeny">SecurityContextDeny</h3>
+
+<p>This plug-in will deny any pod with a <a href="/docs/user-guide/security-context">SecurityContext</a> that defines options that were not available on the <code class="highlighter-rouge">Container</code>.</p>
+
+<h3 id="resourcequota">ResourceQuota</h3>
+
+<p>This plug-in will observe the incoming request and ensure that it does not violate any of the constraints
+enumerated in the <code class="highlighter-rouge">ResourceQuota</code> object in a <code class="highlighter-rouge">Namespace</code>.  If you are using <code class="highlighter-rouge">ResourceQuota</code>
+objects in your Kubernetes deployment, you MUST use this plug-in to enforce quota constraints.</p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/admission_control_resource_quota.md">resourceQuota design doc</a> and the <a href="/docs/admin/resourcequota/">example of Resource Quota</a> for more details.</p>
+
+<p>It is strongly encouraged that this plug-in is configured last in the sequence of admission control plug-ins.  This is
+so that quota is not prematurely incremented only for the request to be rejected later in admission control.</p>
+
+<h3 id="limitranger">LimitRanger</h3>
+
+<p>This plug-in will observe the incoming request and ensure that it does not violate any of the constraints
+enumerated in the <code class="highlighter-rouge">LimitRange</code> object in a <code class="highlighter-rouge">Namespace</code>.  If you are using <code class="highlighter-rouge">LimitRange</code> objects in
+your Kubernetes deployment, you MUST use this plug-in to enforce those constraints. LimitRanger can also
+be used to apply default resource requests to Pods that don’t specify any; currently, the default LimitRanger
+applies a 0.1 CPU requirement to all Pods in the <code class="highlighter-rouge">default</code> namespace.</p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/admission_control_limit_range.md">limitRange design doc</a> and the <a href="/docs/admin/limitrange/">example of Limit Range</a> for more details.</p>
+
+<h3 id="initialresources-experimental">InitialResources (experimental)</h3>
+
+<p>This plug-in observes pod creation requests. If a container omits compute resource requests and limits,
+then the plug-in auto-populates a compute resource request based on historical usage of containers running the same image.
+If there is not enough data to make a decision the Request is left unchanged.
+When the plug-in sets a compute resource request, it annotates the pod with information on what compute resources it auto-populated.</p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/initial-resources.md">InitialResouces proposal</a> for more details.</p>
+
+<h3 id="namespaceexists-deprecated">NamespaceExists (deprecated)</h3>
+
+<p>This plug-in will observe all incoming requests that attempt to create a resource in a Kubernetes <code class="highlighter-rouge">Namespace</code>
+and reject the request if the <code class="highlighter-rouge">Namespace</code> was not previously created.  We strongly recommend running
+this plug-in to ensure integrity of your data.</p>
+
+<p>The functionality of this admission controller has been merged into <code class="highlighter-rouge">NamespaceLifecycle</code></p>
+
+<h3 id="namespaceautoprovision-deprecated">NamespaceAutoProvision (deprecated)</h3>
+
+<p>This plug-in will observe all incoming requests that attempt to create a resource in a Kubernetes <code class="highlighter-rouge">Namespace</code>
+and create a new <code class="highlighter-rouge">Namespace</code> if one did not already exist previously.</p>
+
+<p>We strongly recommend <code class="highlighter-rouge">NamespaceLifecycle</code> over <code class="highlighter-rouge">NamespaceAutoProvision</code>.</p>
+
+<h3 id="namespacelifecycle">NamespaceLifecycle</h3>
+
+<p>This plug-in enforces that a <code class="highlighter-rouge">Namespace</code> that is undergoing termination cannot have new objects created in it,
+and ensures that requests in a non-existant <code class="highlighter-rouge">Namespace</code> are rejected.</p>
+
+<p>A <code class="highlighter-rouge">Namespace</code> deletion kicks off a sequence of operations that remove all objects (pods, services, etc.) in that
+namespace.  In order to enforce integrity of that process, we strongly recommend running this plug-in.</p>
+
+<h2 id="is-there-a-recommended-set-of-plug-ins-to-use">Is there a recommended set of plug-ins to use?</h2>
+
+<p>Yes.</p>
+
+<p>For Kubernetes 1.0, we strongly recommend running the following set of admission control plug-ins (order matters):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>--admission-control<span class="o">=</span>NamespaceLifecycle,LimitRanger,SecurityContextDeny,ServiceAccount,ResourceQuota
+</code></pre>
+</div>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/admin/admission-controllers.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/admin/admission-controllers/",
+        "title" : "Using Admission Controllers",
+        "permalink" : "http://kubernetes.github.io/docs/admin/admission-controllers/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

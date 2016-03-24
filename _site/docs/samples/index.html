@@ -1,0 +1,283 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Samples</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Samples</h1>
+	<h5>A collection of example applications that show how to use Kubernetes.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Samples" href="/docs/samples/"></a>
+<div class="item" data-title="Clustered Application Samples">
+  <div class="container">
+    <a class="item" data-title="Apache Cassandra Database" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cassandra" target='_blank'></a>
+    <a class="item" data-title="Apache Spark" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/spark" target='_blank'></a>
+    <a class="item" data-title="Apache Storm" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/storm" target='_blank'></a>
+    <a class="item" data-title="Distributed Task Queue" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/celery-rabbitmq" target='_blank'></a>
+    <a class="item" data-title="Hazelcast" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/hazelcast" target='_blank'></a>
+    <a class="item" data-title="Meteor Applications" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/meteor/" target='_blank'></a>
+    <a class="item" data-title="Redis" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/redis/" target='_blank'></a>
+    <a class="item" data-title="RethinkDB" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/rethinkdb/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch/Kibana Logging Demonstration" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/logging-demo/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/elasticsearch/" target='_blank'></a>
+    <a class="item" data-title="OpenShift Origin" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/openshift-origin/" target='_blank'></a>
+    <a class="item" data-title="Ceph" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/rbd/" target='_blank'></a>
+    <a class="item" data-title="MEAN stack on Google Cloud Platform" href="/docs/getting-started-guides/meanstack/"></a>
+  </div>
+</div>
+<div class="item" data-title="Persistent Volume Samples">
+  <div class="container">
+    <a class="item" data-title="WordPress on a Kubernetes Persistent Volume" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/mysql-wordpress-pd/" target='_blank'></a>
+    <a class="item" data-title="GlusterFS" href="/https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/glusterfs/"></a>
+    <a class="item" data-title="iSCSI" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/iscsi/" target='_blank'></a>
+    <a class="item" data-title="NFS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/nfs/" target='_blank'></a>
+    <a class="item" data-title="Downward API Volumes" href="/docs/user-guide/downward-api/volume/"></a>
+  </div>
+</div>
+<div class="item" data-title="Multi-tier Application Samples">
+  <div class="container">
+    <a class="item" data-title="Guestbook - Go Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook-go/" target='_blank'></a>
+    <a class="item" data-title="GuestBook - PHP Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook/" target='_blank'></a>
+    <a class="item" data-title="MySQL - Phabricator Server" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/phabricator/" target='_blank'></a>
+    <a class="item" data-title="Elasticsearch/Kibana Logging Demo" href="https://github.com/kubernetes/kubernetes.github.io/tree/master/docs/user-guide/logging-demo" target='_blank'></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/samples.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Samples</h1>
+		<p>We have a wide variety of samples to choose from:</p>
+
+<ul>
+  <li>
+    <p>“Clustered Application Samples” and “Persistent Volume Samples” provide some
+examples that show how to implement some popular software packages such as OpenShift, Ceph, Cassandra, and WordPress. These guides 
+try to serve as canonical walkthroughs that help you use familiar packages with Kubernetes.</p>
+  </li>
+  <li>
+    <p>“Mulit-tier Application Samples” are generally of a more contrived and instructional nature, highlighting key concepts that
+you’ll encounter when developing with Kubernetes, and teaching some principles of building Kubernetes applications.</p>
+  </li>
+</ul>
+
+<h2 id="recently-updated-samples">Recently updated samples</h2>
+
+<p>The Kubernetes team is highlighting these samples as being the most up-to-date. Active upkeep is being done or has recently been done
+on these samples to ensure they are high quality and work on Kubernetes v1.1.</p>
+
+<p> </p>
+
+<style>
+h2, h3, h4 {
+  border-bottom: 0px !important;
+}
+.colContainer {
+  padding-top:2px;
+  padding-left: 2px;
+  overflow: auto;
+}
+#samples a {
+  color: #000;
+}
+.col3rd {
+  display: block;
+  width: 250px;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+.col3rd h3, .col2nd h3 {
+  margin-bottom: 0px !important;
+}
+.col3rd .button, .col2nd .button {
+  margin-top: 20px;
+  border-radius: 2px;
+}
+.col3rd p, .col2nd p {
+  margin-left: 2px;
+}
+.col2nd {
+  display: block;
+  width: 400px;
+  float: left;
+  margin-right: 30px;
+  margin-bottom: 30px;
+}
+.shadowbox {
+  display: inline;
+  float: left;
+  text-transform: none;
+  font-weight: bold;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  line-height: 24px;
+  position: relative;
+  display: block;
+  cursor: pointer;
+  box-shadow: 0 2px 2px rgba(0,0,0,.24),0 0 2px rgba(0,0,0,.12);
+  border-radius: 10px;
+  background: #fff;
+  transition: all .3s;
+  padding: 16px;
+  margin: 0 16px 16px 0;
+  text-decoration: none;
+  letter-spacing: .01em;
+}
+.shadowbox img {
+    min-width: 150px;
+    max-width: 150px;
+    max-height: 50px;
+}
+</style>
+
+<div id="samples" class="colContainer">
+<a href="/docs/getting-started-guides/meanstack/" class="shadowbox"> <img src="/images/docs/meanstack/image_0.png" /><br />MEAN Stack </a> <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/guestbook" target="_blank" class="shadowbox"> <img src="/images/docs/redis.svg" /><br />Guestbook + Redis </a> <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cassandra" target="_blank" class="shadowbox"> <img src="/images/docs/cassandra.svg" /><br />Cloud Native Cassandra </a> <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/mysql-wordpress-pd/" target="_blank" class="shadowbox"> <img src="/images/docs/wordpress.svg" /><br />WordPress + MySQL </a>
+</div>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/samples.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/samples/",
+        "title" : "Samples",
+        "permalink" : "http://kubernetes.github.io/docs/samples/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

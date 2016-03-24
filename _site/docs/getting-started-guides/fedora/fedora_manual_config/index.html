@@ -1,0 +1,557 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Fedora (Single Node)</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/getting-started-guides/fedora/fedora_manual_config.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Fedora (Single Node)</h1>
+		<ul id="markdown-toc">
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#instructions" id="markdown-toc-instructions">Instructions</a></li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ol>
+  <li>You need 2 or more machines with Fedora installed.</li>
+</ol>
+
+<h2 id="instructions">Instructions</h2>
+
+<p>This is a getting started guide for <a href="http://fedoraproject.org">Fedora</a>.  It is a manual configuration so you understand all the underlying packages / services / ports, etc…</p>
+
+<p>This guide will only get ONE node (previously minion) working.  Multiple nodes require a functional <a href="/docs/admin/networking">networking configuration</a>
+done outside of Kubernetes.  Although the additional Kubernetes configuration requirements should be obvious.</p>
+
+<p>The Kubernetes package provides a few services: kube-apiserver, kube-scheduler, kube-controller-manager, kubelet, kube-proxy.  These
+services are managed by systemd and the configuration resides in a central location: /etc/kubernetes.  We will break the services up
+between the hosts.  The first host, fed-master, will be the Kubernetes master.  This host will run the kube-apiserver, kube-controller-manager,
+and kube-scheduler.  In addition, the master will also run <em>etcd</em> (not needed if <em>etcd</em> runs on a different host but this guide assumes
+that <em>etcd</em> and Kubernetes master run on the same host).  The remaining host, fed-node will be the node and run kubelet, proxy and docker.</p>
+
+<p><strong>System Information:</strong></p>
+
+<p>Hosts:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">fed</span>-<span class="n">master</span> = <span class="m">192</span>.<span class="m">168</span>.<span class="m">121</span>.<span class="m">9</span>
+<span class="n">fed</span>-<span class="n">node</span> = <span class="m">192</span>.<span class="m">168</span>.<span class="m">121</span>.<span class="m">65</span>
+</code></pre>
+</div>
+
+<p><strong>Prepare the hosts:</strong></p>
+
+<ul>
+  <li>Install Kubernetes on all hosts - fed-{master,node}.  This will also pull in docker. Also install etcd on fed-master. 
+This guide has been tested with kubernetes-0.18 and beyond.</li>
+  <li>The <a href="https://fedoraproject.org/wiki/QA:Updates_Testing">–enablerepo=updates-testing</a> directive in the yum 
+command below will ensure that the most recent Kubernetes version that is scheduled for pre-release will
+be installed. This should be a more recent version than the Fedora “stable” release for Kubernetes that you
+would get without adding the directive.</li>
+  <li>If you want the very latest Kubernetes release <a href="http://koji.fedoraproject.org/koji/packageinfo?packageID=19202">you can download and yum install the RPM directly from
+Fedora Koji</a> instead of using the yum
+install command below.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>yum -y install --enablerepo<span class="o">=</span>updates-testing kubernetes
+</code></pre>
+</div>
+
+<ul>
+  <li>Install etcd and iptables</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>yum -y install etcd iptables
+</code></pre>
+</div>
+
+<ul>
+  <li>Add master and node to /etc/hosts on all machines (not needed if hostnames already in DNS). Make sure that communication works between fed-master and fed-node by using a utility such as ping.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">echo</span> <span class="s2">"192.168.121.9	fed-master
+192.168.121.65	fed-node"</span> &gt;&gt; /etc/hosts
+</code></pre>
+</div>
+
+<ul>
+  <li>Edit /etc/kubernetes/config which will be the same on all hosts (master and node) to contain:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># Comma separated list of nodes in the etcd cluster</span>
+<span class="nv">KUBE_MASTER</span><span class="o">=</span><span class="s2">"--master=http://fed-master:8080"</span>
+
+<span class="c"># logging to stderr means we get it in the systemd journal</span>
+<span class="nv">KUBE_LOGTOSTDERR</span><span class="o">=</span><span class="s2">"--logtostderr=true"</span>
+
+<span class="c"># journal message level, 0 is debug</span>
+<span class="nv">KUBE_LOG_LEVEL</span><span class="o">=</span><span class="s2">"--v=0"</span>
+
+<span class="c"># Should this cluster be allowed to run privileged docker containers</span>
+<span class="nv">KUBE_ALLOW_PRIV</span><span class="o">=</span><span class="s2">"--allow-privileged=false"</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Disable the firewall on both the master and node, as docker does not play well with other firewall rule managers.  Please note that iptables-services does not exist on default fedora server install.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>systemctl disable iptables-services firewalld
+systemctl stop iptables-services firewalld
+</code></pre>
+</div>
+
+<p><strong>Configure the Kubernetes services on the master.</strong></p>
+
+<ul>
+  <li>Edit /etc/kubernetes/apiserver to appear as such.  The service-cluster-ip-range IP addresses must be an unused block of addresses, not used anywhere else. 
+They do not need to be routed or assigned to anything.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c"># The address on the local server to listen to.</span>
+<span class="nv">KUBE_API_ADDRESS</span><span class="o">=</span><span class="s2">"--address=0.0.0.0"</span>
+
+<span class="c"># Comma separated list of nodes in the etcd cluster</span>
+<span class="nv">KUBE_ETCD_SERVERS</span><span class="o">=</span><span class="s2">"--etcd-servers=http://127.0.0.1:4001"</span>
+
+<span class="c"># Address range to use for services</span>
+<span class="nv">KUBE_SERVICE_ADDRESSES</span><span class="o">=</span><span class="s2">"--service-cluster-ip-range=10.254.0.0/16"</span>
+
+<span class="c"># Add your own!</span>
+<span class="nv">KUBE_API_ARGS</span><span class="o">=</span><span class="s2">""</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Edit /etc/etcd/etcd.conf,let the etcd to listen all the ip instead of 127.0.0.1, if not, you will get the error like “connection refused”. Note that Fedora 22 uses etcd 2.0, One of the changes in etcd 2.0 is that now uses port 2379 and 2380 (as opposed to etcd 0.46 which userd 4001 and 7001).</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">ETCD_LISTEN_CLIENT_URLS</span><span class="o">=</span><span class="s2">"http://0.0.0.0:4001"</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Create /var/run/kubernetes on master:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir /var/run/kubernetes
+chown kube:kube /var/run/kubernetes
+chmod 750 /var/run/kubernetes
+</code></pre>
+</div>
+
+<ul>
+  <li>Start the appropriate services on master:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for </span>SERVICES <span class="k">in </span>etcd kube-apiserver kube-controller-manager kube-scheduler; <span class="k">do
+	</span>systemctl restart <span class="nv">$SERVICES</span>
+	systemctl <span class="nb">enable</span> <span class="nv">$SERVICES</span>
+	systemctl status <span class="nv">$SERVICES</span>
+<span class="k">done</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>
+    <p>Addition of nodes:</p>
+  </li>
+  <li>
+    <p>Create following node.json file on Kubernetes master node:</p>
+  </li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Node"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fed-node"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"labels"</span><span class="p">:{</span><span class="w"> </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fed-node-label"</span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"externalID"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fed-node"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Now create a node object internally in your Kubernetes cluster by running:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f ./node.json
+
+<span class="gp">$ </span>kubectl get nodes
+NAME                LABELS              STATUS
+fed-node           <span class="nv">name</span><span class="o">=</span>fed-node-label     Unknown
+</code></pre>
+</div>
+
+<p>Please note that in the above, it only creates a representation for the node
+<em>fed-node</em> internally. It does not provision the actual <em>fed-node</em>. Also, it
+is assumed that <em>fed-node</em> (as specified in <code class="highlighter-rouge">name</code>) can be resolved and is
+reachable from Kubernetes master node. This guide will discuss how to provision
+a Kubernetes node (fed-node) below.</p>
+
+<p><strong>Configure the Kubernetes services on the node.</strong></p>
+
+<p><strong><em>We need to configure the kubelet on the node.</em></strong></p>
+
+<ul>
+  <li>Edit /etc/kubernetes/kubelet to appear as such:</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c">###</span>
+<span class="c"># Kubernetes kubelet (node) config</span>
+
+<span class="c"># The address for the info server to serve on (set to 0.0.0.0 or "" for all interfaces)</span>
+<span class="nv">KUBELET_ADDRESS</span><span class="o">=</span><span class="s2">"--address=0.0.0.0"</span>
+
+<span class="c"># You may leave this blank to use the actual hostname</span>
+<span class="nv">KUBELET_HOSTNAME</span><span class="o">=</span><span class="s2">"--hostname-override=fed-node"</span>
+
+<span class="c"># location of the api-server</span>
+<span class="nv">KUBELET_API_SERVER</span><span class="o">=</span><span class="s2">"--api-servers=http://fed-master:8080"</span>
+
+<span class="c"># Add your own!</span>
+<span class="c">#KUBELET_ARGS=""</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Start the appropriate services on the node (fed-node).</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for </span>SERVICES <span class="k">in </span>kube-proxy kubelet docker; <span class="k">do 
+    </span>systemctl restart <span class="nv">$SERVICES</span>
+    systemctl <span class="nb">enable</span> <span class="nv">$SERVICES</span>
+    systemctl status <span class="nv">$SERVICES</span> 
+<span class="k">done</span>
+</code></pre>
+</div>
+
+<ul>
+  <li>Check to make sure now the cluster can see the fed-node on fed-master, and its status changes to <em>Ready</em>.</li>
+</ul>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get nodes
+NAME                LABELS              STATUS
+fed-node          <span class="nv">name</span><span class="o">=</span>fed-node-label     Ready
+</code></pre>
+</div>
+
+<ul>
+  <li>Deletion of nodes:</li>
+</ul>
+
+<p>To delete <em>fed-node</em> from your Kubernetes cluster, one should run the following on fed-master (Please do not do it, it is just for information):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl delete -f ./node.json
+</code></pre>
+</div>
+
+<p><em>You should be finished!</em></p>
+
+<p><strong>The cluster should be running! Launch a test pod.</strong></p>
+
+<p>You should have a functional cluster, check out <a href="/docs/user-guide/walkthrough/">101</a>!</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/getting-started-guides/fedora/fedora_manual_config.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/getting-started-guides/fedora/fedora_manual_config/",
+        "title" : "Fedora (Single Node)",
+        "permalink" : "http://kubernetes.github.io/docs/getting-started-guides/fedora/fedora_manual_config/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

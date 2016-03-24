@@ -1,0 +1,682 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Volumes</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/volumes.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Volumes</h1>
+		<p>On-disk files in a container are ephemeral, which presents some problems for
+non-trivial applications when running in containers.  First, when a container
+crashes kubelet will restart it, but the files will be lost - the
+container starts with a clean slate.  Second, when running containers together
+in a <code class="highlighter-rouge">Pod</code> it is often necessary to share files between those containers.  The
+Kubernetes <code class="highlighter-rouge">Volume</code> abstraction solves both of these problems.</p>
+
+<p>Familiarity with <a href="/docs/user-guide/pods">pods</a> is suggested.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#background" id="markdown-toc-background">Background</a></li>
+  <li><a href="#types-of-volumes" id="markdown-toc-types-of-volumes">Types of Volumes</a>    <ul>
+      <li><a href="#emptydir" id="markdown-toc-emptydir">emptyDir</a></li>
+      <li><a href="#hostpath" id="markdown-toc-hostpath">hostPath</a></li>
+      <li><a href="#gcepersistentdisk" id="markdown-toc-gcepersistentdisk">gcePersistentDisk</a>        <ul>
+          <li><a href="#creating-a-pd" id="markdown-toc-creating-a-pd">Creating a PD</a></li>
+          <li><a href="#example-pod" id="markdown-toc-example-pod">Example pod</a></li>
+        </ul>
+      </li>
+      <li><a href="#awselasticblockstore" id="markdown-toc-awselasticblockstore">awsElasticBlockStore</a>        <ul>
+          <li><a href="#creating-an-ebs-volume" id="markdown-toc-creating-an-ebs-volume">Creating an EBS volume</a></li>
+          <li><a href="#aws-ebs-example-configuration" id="markdown-toc-aws-ebs-example-configuration">AWS EBS Example configuration</a></li>
+        </ul>
+      </li>
+      <li><a href="#nfs" id="markdown-toc-nfs">nfs</a></li>
+      <li><a href="#iscsi" id="markdown-toc-iscsi">iscsi</a></li>
+      <li><a href="#flocker" id="markdown-toc-flocker">flocker</a></li>
+      <li><a href="#glusterfs" id="markdown-toc-glusterfs">glusterfs</a></li>
+      <li><a href="#rbd" id="markdown-toc-rbd">rbd</a></li>
+      <li><a href="#gitrepo" id="markdown-toc-gitrepo">gitRepo</a></li>
+      <li><a href="#secret" id="markdown-toc-secret">secret</a></li>
+      <li><a href="#persistentvolumeclaim" id="markdown-toc-persistentvolumeclaim">persistentVolumeClaim</a></li>
+      <li><a href="#downwardapi" id="markdown-toc-downwardapi">downwardAPI</a></li>
+    </ul>
+  </li>
+  <li><a href="#resources" id="markdown-toc-resources">Resources</a></li>
+</ul>
+
+<h2 id="background">Background</h2>
+
+<p>Docker also has a concept of
+<a href="https://docs.docker.com/userguide/dockervolumes/">volumes</a>, though it is
+somewhat looser and less managed.  In Docker, a volume is simply a directory on
+disk or in another container.  Lifetimes are not managed and until very
+recently there were only local-disk-backed volumes.  Docker now provides volume
+drivers, but the functionality is very limited for now (e.g. as of Docker 1.7
+only one volume driver is allowed per container and there is no way to pass
+parameters to volumes).</p>
+
+<p>A Kubernetes volume, on the other hand, has an explicit lifetime - the same as
+the pod that encloses it.  Consequently, a volume outlives any containers that run
+within the Pod, and data is preserved across Container restarts. Of course, when a
+Pod ceases to exist, the volume will cease to exist, too.  Perhaps more
+importantly than this, Kubernetes supports many type of volumes, and a Pod can
+use any number of them simultaneously.</p>
+
+<p>At its core, a volume is just a directory, possibly with some data in it, which
+is accessible to the containers in a pod.  How that directory comes to be, the
+medium that backs it, and the contents of it are determined by the particular
+volume type used.</p>
+
+<p>To use a volume, a pod specifies what volumes to provide for the pod (the
+<a href="http://kubernetes.io/third_party/swagger-ui/#!/v1/createPod"><code class="highlighter-rouge">spec.volumes</code></a>
+field) and where to mount those into containers(the
+<a href="http://kubernetes.io/third_party/swagger-ui/#!/v1/createPod"><code class="highlighter-rouge">spec.containers.volumeMounts</code></a>
+field).</p>
+
+<p>A process in a container sees a filesystem view composed from their Docker
+image and volumes.  The <a href="https://docs.docker.com/userguide/dockerimages/">Docker
+image</a> is at the root of the
+filesystem hierarchy, and any volumes are mounted at the specified paths within
+the image.  Volumes can not mount onto other volumes or have hard links to
+other volumes.  Each container in the Pod must independently specify where to
+mount each volume.</p>
+
+<h2 id="types-of-volumes">Types of Volumes</h2>
+
+<p>Kubernetes supports several types of Volumes:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">emptyDir</code></li>
+  <li><code class="highlighter-rouge">hostPath</code></li>
+  <li><code class="highlighter-rouge">gcePersistentDisk</code></li>
+  <li><code class="highlighter-rouge">awsElasticBlockStore</code></li>
+  <li><code class="highlighter-rouge">nfs</code></li>
+  <li><code class="highlighter-rouge">iscsi</code></li>
+  <li><code class="highlighter-rouge">flocker</code></li>
+  <li><code class="highlighter-rouge">glusterfs</code></li>
+  <li><code class="highlighter-rouge">rbd</code></li>
+  <li><code class="highlighter-rouge">gitRepo</code></li>
+  <li><code class="highlighter-rouge">secret</code></li>
+  <li><code class="highlighter-rouge">persistentVolumeClaim</code></li>
+</ul>
+
+<p>We welcome additional contributions.</p>
+
+<h3 id="emptydir">emptyDir</h3>
+
+<p>An <code class="highlighter-rouge">emptyDir</code> volume is first created when a Pod is assigned to a Node, and
+exists as long as that Pod is running on that node.  As the name says, it is
+initially empty.  Containers in the pod can all read and write the same
+files in the <code class="highlighter-rouge">emptyDir</code> volume, though that volume can be mounted at the same
+or different paths in each container.  When a Pod is removed from a node for
+any reason, the data in the <code class="highlighter-rouge">emptyDir</code> is deleted forever.  NOTE: a container
+crashing does <em>NOT</em> remove a pod from a node, so the data in an <code class="highlighter-rouge">emptyDir</code>
+volume is safe across container crashes.</p>
+
+<p>Some uses for an <code class="highlighter-rouge">emptyDir</code> are:</p>
+
+<ul>
+  <li>scratch space, such as for a disk-based mergesortcw</li>
+  <li>checkpointing a long computation for recovery from crashes</li>
+  <li>holding files that a content-manager container fetches while a webserver
+container serves the data</li>
+</ul>
+
+<p>By default, <code class="highlighter-rouge">emptyDir</code> volumes are stored on whatever medium is backing the
+machine - that might be disk or SSD or network storage, depending on your
+environment.  However, you can set the <code class="highlighter-rouge">emptyDir.medium</code> field to <code class="highlighter-rouge">"Memory"</code>
+to tell Kubernetes to mount a tmpfs (RAM-backed filesystem) for you instead.
+While tmpfs is very fast, be aware that unlike disks, tmpfs is cleared on
+machine reboot and any files you write will count against your container’s
+memory limit.</p>
+
+<h3 id="hostpath">hostPath</h3>
+
+<p>A <code class="highlighter-rouge">hostPath</code> volume mounts a file or directory from the host node’s filesystem
+into your pod.  This is not something that most Pods will need, but it offers a
+powerful escape hatch for some applications.</p>
+
+<p>For example, some uses for a <code class="highlighter-rouge">hostPath</code> are:</p>
+
+<ul>
+  <li>running a container that needs access to Docker internals; use a <code class="highlighter-rouge">hostPath</code>
+of <code class="highlighter-rouge">/var/lib/docker</code></li>
+  <li>running cAdvisor in a container; use a <code class="highlighter-rouge">hostPath</code> of <code class="highlighter-rouge">/dev/cgroups</code></li>
+</ul>
+
+<p>Watch out when using this type of volume, because:</p>
+
+<ul>
+  <li>pods with identical configuration (such as created from a podTemplate) may
+behave differently on different nodes due to different files on the nodes</li>
+  <li>when Kubernetes adds resource-aware scheduling, as is planned, it will not be
+able to account for resources used by a <code class="highlighter-rouge">hostPath</code></li>
+</ul>
+
+<h3 id="gcepersistentdisk">gcePersistentDisk</h3>
+
+<p>A <code class="highlighter-rouge">gcePersistentDisk</code> volume mounts a Google Compute Engine (GCE) <a href="http://cloud.google.com/compute/docs/disks">Persistent
+Disk</a> into your pod.  Unlike
+<code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is removed, the contents of a PD are
+preserved and the volume is merely unmounted.  This means that a PD can be
+pre-populated with data, and that data can be “handed off” between pods.</p>
+
+<p><strong>Important: You must create a PD using <code class="highlighter-rouge">gcloud</code> or the GCE API or UI
+before you can use it</strong></p>
+
+<p>There are some restrictions when using a <code class="highlighter-rouge">gcePersistentDisk</code>:</p>
+
+<ul>
+  <li>the nodes on which pods are running must be GCE VMs</li>
+  <li>those VMs need to be in the same GCE project and zone as the PD</li>
+</ul>
+
+<p>A feature of PD is that they can be mounted as read-only by multiple consumers
+simultaneously.  This means that you can pre-populate a PD with your dataset
+and then serve it in parallel from as many pods as you need.  Unfortunately,
+PDs can only be mounted by a single consumer in read-write mode - no
+simultaneous readers allowed.</p>
+
+<p>Using a PD on a pod controlled by a ReplicationController will fail unless
+the PD is read-only or the replica count is 0 or 1.</p>
+
+<h4 id="creating-a-pd">Creating a PD</h4>
+
+<p>Before you can use a GCE PD with a pod, you need to create it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud compute disks create --size<span class="o">=</span>500GB --zone<span class="o">=</span>us-central1-a my-data-disk
+</code></pre>
+</div>
+
+<h4 id="example-pod">Example pod</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">test-pd</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">image</span><span class="pi">:</span> <span class="s">gcr.io/google_containers/test-webserver</span>
+    <span class="s">name</span><span class="pi">:</span> <span class="s">test-container</span>
+    <span class="s">volumeMounts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/test-pd</span>
+      <span class="s">name</span><span class="pi">:</span> <span class="s">test-volume</span>
+  <span class="s">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-volume</span>
+    <span class="c1"># This GCE PD must already exist.</span>
+    <span class="s">gcePersistentDisk</span><span class="pi">:</span>
+      <span class="s">pdName</span><span class="pi">:</span> <span class="s">my-data-disk</span>
+      <span class="s">fsType</span><span class="pi">:</span> <span class="s">ext4</span>
+</code></pre>
+</div>
+
+<h3 id="awselasticblockstore">awsElasticBlockStore</h3>
+
+<p>An <code class="highlighter-rouge">awsElasticBlockStore</code> volume mounts an Amazon Web Services (AWS) <a href="http://aws.amazon.com/ebs/">EBS
+Volume</a> into your pod.  Unlike
+<code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is removed, the contents of an EBS
+volume are preserved and the volume is merely unmounted.  This means that an
+EBS volume can be pre-populated with data, and that data can be “handed off”
+between pods.</p>
+
+<p><strong>Important: You must create an EBS volume using <code class="highlighter-rouge">aws ec2 create-volume</code> or
+the AWS API before you can use it</strong></p>
+
+<p>There are some restrictions when using an awsElasticBlockStore volume:</p>
+
+<ul>
+  <li>the nodes on which pods are running must be AWS EC2 instances</li>
+  <li>those instances need to be in the same region and availability-zone as the EBS volume</li>
+  <li>EBS only supports a single EC2 instance mounting a volume</li>
+</ul>
+
+<h4 id="creating-an-ebs-volume">Creating an EBS volume</h4>
+
+<p>Before you can use a EBS volume with a pod, you need to create it.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>aws ec2 create-volume --availability-zone eu-west-1a --size 10 --volume-type gp2
+</code></pre>
+</div>
+
+<p>Make sure the zone matches the zone you brought up your cluster in.  (And also check that the size and EBS volume
+type are suitable for your use!)</p>
+
+<h4 id="aws-ebs-example-configuration">AWS EBS Example configuration</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">test-ebs</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">image</span><span class="pi">:</span> <span class="s">gcr.io/google_containers/test-webserver</span>
+    <span class="s">name</span><span class="pi">:</span> <span class="s">test-container</span>
+    <span class="s">volumeMounts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/test-ebs</span>
+      <span class="s">name</span><span class="pi">:</span> <span class="s">test-volume</span>
+  <span class="s">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">test-volume</span>
+    <span class="c1"># This AWS EBS volume must already exist.</span>
+    <span class="s">awsElasticBlockStore</span><span class="pi">:</span>
+      <span class="s">volumeID</span><span class="pi">:</span> <span class="s">aws://&lt;availability-zone&gt;/&lt;volume-id&gt;</span>
+      <span class="s">fsType</span><span class="pi">:</span> <span class="s">ext4</span>
+</code></pre>
+</div>
+
+<p>(Note: the syntax of volumeID is currently awkward; #10181 fixes it)</p>
+
+<h3 id="nfs">nfs</h3>
+
+<p>An <code class="highlighter-rouge">nfs</code> volume allows an existing NFS (Network File System) share to be
+mounted into your pod. Unlike <code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is
+removed, the contents of an <code class="highlighter-rouge">nfs</code> volume are preserved and the volume is merely
+unmounted.  This means that an NFS volume can be pre-populated with data, and
+that data can be “handed off” between pods.  NFS can be mounted by multiple
+writers simultaneously.</p>
+
+<p><strong>Important: You must have your own NFS server running with the share exported
+before you can use it</strong></p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/nfs/">NFS example</a> for more details.</p>
+
+<h3 id="iscsi">iscsi</h3>
+
+<p>An <code class="highlighter-rouge">iscsi</code> volume allows an existing iSCSI (SCSI over IP) volume to be mounted
+into your pod.  Unlike <code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is removed, the
+contents of an <code class="highlighter-rouge">iscsi</code> volume are preserved and the volume is merely
+unmounted.  This means that an iscsi volume can be pre-populated with data, and
+that data can be “handed off” between pods.</p>
+
+<p><strong>Important: You must have your own iSCSI server running with the volume
+created before you can use it</strong></p>
+
+<p>A feature of iSCSI is that it can be mounted as read-only by multiple consumers
+simultaneously.  This means that you can pre-populate a volume with your dataset
+and then serve it in parallel from as many pods as you need.  Unfortunately,
+iSCSI volumes can only be mounted by a single consumer in read-write mode - no
+simultaneous readers allowed.</p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/iscsi/">iSCSI example</a> for more details.</p>
+
+<h3 id="flocker">flocker</h3>
+
+<p><a href="https://clusterhq.com/flocker">Flocker</a> is an open-source clustered container data volume manager. It provides management
+and orchestration of data volumes backed by a variety of storage backends.</p>
+
+<p>A <code class="highlighter-rouge">flocker</code> volume allows a Flocker dataset to be mounted into a pod. If the
+dataset does not already exist in Flocker, it needs to be created with Flocker
+CLI or the using the Flocker API. If the dataset already exists it will
+reattached by Flocker to the node that the pod is scheduled. This means data
+can be “handed off” between pods as required.</p>
+
+<p><strong>Important: You must have your own Flocker installation running before you can use it</strong></p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/flocker/">Flocker example</a> for more details.</p>
+
+<h3 id="glusterfs">glusterfs</h3>
+
+<p>A <code class="highlighter-rouge">glusterfs</code> volume allows a <a href="http://www.gluster.org">Glusterfs</a> (an open
+source networked filesystem) volume to be mounted into your pod.  Unlike
+<code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is removed, the contents of a
+<code class="highlighter-rouge">glusterfs</code> volume are preserved and the volume is merely unmounted.  This
+means that a glusterfs volume can be pre-populated with data, and that data can
+be “handed off” between pods.  GlusterFS can be mounted by multiple writers
+simultaneously.</p>
+
+<p><strong>Important: You must have your own GlusterFS installation running before you
+can use it</strong></p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/glusterfs/">GlusterFS example</a> for more details.</p>
+
+<h3 id="rbd">rbd</h3>
+
+<p>An <code class="highlighter-rouge">rbd</code> volume allows a <a href="http://ceph.com/docs/master/rbd/rbd/">Rados Block
+Device</a> volume to be mounted into your
+pod.  Unlike <code class="highlighter-rouge">emptyDir</code>, which is erased when a Pod is removed, the contents of
+a <code class="highlighter-rouge">rbd</code> volume are preserved and the volume is merely unmounted.  This
+means that a RBD volume can be pre-populated with data, and that data can
+be “handed off” between pods.</p>
+
+<p><strong>Important: You must have your own Ceph installation running before you
+can use RBD</strong></p>
+
+<p>A feature of RBD is that it can be mounted as read-only by multiple consumers
+simultaneously.  This means that you can pre-populate a volume with your dataset
+and then serve it in parallel from as many pods as you need.  Unfortunately,
+RBD volumes can only be mounted by a single consumer in read-write mode - no
+simultaneous writers allowed.</p>
+
+<p>See the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/rbd/">RBD example</a> for more details.</p>
+
+<h3 id="gitrepo">gitRepo</h3>
+
+<p>A <code class="highlighter-rouge">gitRepo</code> volume is an example of what can be done as a volume plugin.  It
+mounts an empty directory and clones a git repository into it for your pod to
+use.  In the future, such volumes may be moved to an even more decoupled model,
+rather than extending the Kubernetes API for every such use case.</p>
+
+<p>Here is a example for gitRepo volume:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">server</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">volumeMounts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/mypath</span>
+      <span class="s">name</span><span class="pi">:</span> <span class="s">git-volume</span>
+  <span class="s">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">git-volume</span>
+    <span class="s">gitRepo</span><span class="pi">:</span>
+      <span class="s">repository</span><span class="pi">:</span> <span class="s2">"</span><span class="s">git@somewhere:me/my-git-repository.git"</span>
+      <span class="s">revision</span><span class="pi">:</span> <span class="s2">"</span><span class="s">22f1d8406d464b0c0874075539c1f2e96c253775"</span>
+</code></pre>
+</div>
+
+<h3 id="secret">secret</h3>
+
+<p>A <code class="highlighter-rouge">secret</code> volume is used to pass sensitive information, such as passwords, to
+pods.  You can store secrets in the Kubernetes API and mount them as files for
+use by pods without coupling to Kubernetes directly.  <code class="highlighter-rouge">secret</code> volumes are
+backed by tmpfs (a RAM-backed filesystem) so they are never written to
+non-volatile storage.</p>
+
+<p><strong>Important: You must create a secret in the Kubernetes API before you can use
+it</strong></p>
+
+<p>Secrets are described in more detail <a href="/docs/user-guide/secrets">here</a>.</p>
+
+<h3 id="persistentvolumeclaim">persistentVolumeClaim</h3>
+
+<p>A <code class="highlighter-rouge">persistentVolumeClaim</code> volume is used to mount a
+<a href="/docs/user-guide/persistent-volumes">PersistentVolume</a> into a pod.  PersistentVolumes are a
+way for users to “claim” durable storage (such as a GCE PersistentDisk or an
+iSCSI volume) without knowing the details of the particular cloud environment.</p>
+
+<p>See the <a href="/docs/user-guide/persistent-volumes/">PersistentVolumes example</a> for more
+details.</p>
+
+<h3 id="downwardapi">downwardAPI</h3>
+
+<p>A <code class="highlighter-rouge">downwardAPI</code> volume is used to make downward API data available to applications.
+It mounts a directory and writes the requested data in plain text files.</p>
+
+<p>See the <a href="/docs/user-guide/downward-api/volume/"><code class="highlighter-rouge">downwardAPI</code> volume example</a>  for more details.</p>
+
+<h2 id="resources">Resources</h2>
+
+<p>The storage media (Disk, SSD, etc) of an <code class="highlighter-rouge">emptyDir</code> volume is determined by the
+medium of the filesystem holding the kubelet root dir (typically
+<code class="highlighter-rouge">/var/lib/kubelet</code>).  There is no limit on how much space an <code class="highlighter-rouge">emptyDir</code> or
+<code class="highlighter-rouge">hostPath</code> volume can consume, and no isolation between containers or between
+pods.</p>
+
+<p>In the future, we expect that <code class="highlighter-rouge">emptyDir</code> and <code class="highlighter-rouge">hostPath</code> volumes will be able to
+request a certain amount of space using a <a href="/docs/user-guide/compute-resources">resource</a>
+specification, and to select the type of media to use, for clusters that have
+several media types.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/volumes.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/volumes/",
+        "title" : "Volumes",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/volumes/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

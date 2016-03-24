@@ -1,0 +1,808 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Hello World Walkthrough</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/hellonode.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Hello World Walkthrough</h1>
+		<ul id="markdown-toc">
+  <li><a href="#introduction" id="markdown-toc-introduction">Introduction</a></li>
+  <li><a href="#setup-and-requirements" id="markdown-toc-setup-and-requirements">Setup and Requirements</a>    <ul>
+      <li><a href="#self-paced-environment-setup" id="markdown-toc-self-paced-environment-setup">Self-paced environment setup</a></li>
+      <li><a href="#codelab-at-a-conference-setup" id="markdown-toc-codelab-at-a-conference-setup">Codelab-at-a-conference setup</a></li>
+      <li><a href="#google-cloud-shell" id="markdown-toc-google-cloud-shell">Google Cloud Shell</a></li>
+    </ul>
+  </li>
+  <li><a href="#create-your-nodejs-application" id="markdown-toc-create-your-nodejs-application">Create your Node.js application</a></li>
+  <li><a href="#create-a-docker-container-image" id="markdown-toc-create-a-docker-container-image">Create a Docker container image</a>    <ul>
+      <li><a href="#dockerfile" id="markdown-toc-dockerfile">Dockerfile</a></li>
+    </ul>
+  </li>
+  <li><a href="#create-your-cluster" id="markdown-toc-create-your-cluster">Create your cluster</a></li>
+  <li><a href="#create-your-pod" id="markdown-toc-create-your-pod">Create your pod</a></li>
+  <li><a href="#allow-external-traffic" id="markdown-toc-allow-external-traffic">Allow external traffic</a></li>
+  <li><a href="#scale-up-your-website" id="markdown-toc-scale-up-your-website">Scale up your website</a></li>
+  <li><a href="#roll-out-an-upgrade-to-your-website" id="markdown-toc-roll-out-an-upgrade-to-your-website">Roll out an upgrade to your website</a></li>
+  <li><a href="#observe-the-kubernetes-graphical-dashboard-optional" id="markdown-toc-observe-the-kubernetes-graphical-dashboard-optional">Observe the Kubernetes Graphical dashboard (optional)</a></li>
+  <li><a href="#cleanup" id="markdown-toc-cleanup">Cleanup</a></li>
+  <li><a href="#whats-next" id="markdown-toc-whats-next">What’s next?</a></li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<p>The goal of this codelab is for you to turn your code (a simple Hello World node.js app here) into a replicated application running on Kubernetes. We will show you how to take code that you have developed on your machine, turn it into a Docker container image, and then run that image on <a href="https://cloud.google.com/container-engine/">Google Container Engine</a>.</p>
+
+<p>Here’s a diagram of the various parts in play in this codelab to help you understand how pieces fit with one another. Use this as a reference as we progress through the codelab; it should all make sense by the time we get to the end (but feel free to ignore this for now).</p>
+
+<p><img src="/images/hellonode/image_1.png" alt="image" /></p>
+
+<p>Kubernetes is an open source project which can run on many different environments, from laptops to high-availability multi-node clusters, from public clouds to on-premise deployments, from virtual machines to bare metal.</p>
+
+<p>For the purpose of this codelab, using a managed environment such as Google Container Engine (a Google-hosted version of Kubernetes running on Compute Engine) will allow you to focus more on experiencing Kubernetes rather than setting up the underlying infrastructure.</p>
+
+<h2 id="setup-and-requirements">Setup and Requirements</h2>
+
+<h3 id="self-paced-environment-setup">Self-paced environment setup</h3>
+
+<p>Environment: Web</p>
+
+<p>If you don’t already have a Google Account (Gmail or Google Apps), you must <a href="https://accounts.google.com/SignUp">create one</a>. Sign-in to Google Cloud Platform console (<a href="http://console.cloud.google.com">console.cloud.google.com</a>) and create a new project:</p>
+
+<p><img src="/images/hellonode/image_2.png" alt="image" /></p>
+
+<p><img src="/images/hellonode/image_3.png" alt="image" /></p>
+
+<p>Remember the project ID, a unique name across all Google Cloud projects (the name above has already been taken and will not work for you, sorry!). It will be referred to later in this codelab as <code class="highlighter-rouge">PROJECT_ID</code>.</p>
+
+<p>Next, you’ll need to <a href="https://console.developers.google.com/billing">enable billing</a> in the Developers Console in order to use Google Cloud resources and <a href="https://console.developers.google.com/project/_/kubernetes/list">enable the Container Engine API</a>.</p>
+
+<p>Running through this codelab shouldn’t cost you more than a few dollars, but it could be more if you decide to use more resources or if you leave them running (see “cleanup” section at the end of this document). Google Container Engine pricing is documented <a href="https://cloud.google.com/container-engine/docs/#pricing">here</a>.</p>
+
+<p>New users of Google Cloud Platform are eligible for a <a href="https://console.developers.google.com/billing/freetrial?hl=en">$300 free trial</a>.</p>
+
+<h3 id="codelab-at-a-conference-setup">Codelab-at-a-conference setup</h3>
+
+<p>Environment: gcp-next</p>
+
+<p>The instructor will be sharing with you temporary accounts with existing projects that are already setup so you do not need to worry about enabling billing or any cost associated with running this codelab. Note that all these accounts will be disabled soon after the codelab is over.</p>
+
+<p>TODO: what will they find when they log in? See <a href="https://docs.google.com/document/d/1WwSTJErQyfQrFE6dXhkAcxE3NLX95dd2CHass8muFvg/edit#">https://docs.google.com/document/d/1WwSTJErQyfQrFE6dXhkAcxE3NLX95dd2CHass8muFvg/edit#</a></p>
+
+<h3 id="google-cloud-shell">Google Cloud Shell</h3>
+
+<p>While Google Cloud and Kubernetes can be operated remotely from your laptop, in this codelab we will be using <a href="https://cloud.google.com/cloud-shell/">Google Cloud Shell</a>, a command line environment running in the Cloud. This Debian-based virtual machine is loaded with all the development tools you’ll need (docker, gcloud, kubectl and more), it offers a persistent 5GB home directory, and runs on the Google Cloud, greatly enhancing network performance and authentication. This means that all you will need for this codelab is a browser (yes, it works on a Chromebook).</p>
+
+<p>To activate Google Cloud Shell, from the developer console simply click the button on the top right-hand side (it should only take a few moments to provision and connect to the environment):</p>
+
+<p><img src="/images/hellonode/image_4.png" alt="image" /></p>
+
+<p><img src="/images/hellonode/image_5.png" alt="image" /></p>
+
+<p>Once connected to the cloud shell, you should see that you are already authenticated and that the project is already set to your <code class="highlighter-rouge">PROJECT_ID</code>:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud auth list
+Credentialed accounts:
+ - &lt;myaccount&gt;@&lt;mydomain&gt;.com <span class="o">(</span>active<span class="o">)</span>
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud config list project
+<span class="o">[</span>core]
+project <span class="o">=</span> &lt;PROJECT_ID&gt;
+</code></pre>
+</div>
+
+<p>If the project is not set, simply issue the following command :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud config <span class="nb">set </span>project &lt;PROJECT_ID&gt;
+</code></pre>
+</div>
+
+<p>Looking for you PROJECT_ID? Check out what ID you used in the setup steps or look it up in the console dashboard :</p>
+
+<p><img src="/images/hellonode/image_6.png" alt="image" /></p>
+
+<p>Finally, set the default zone and project configuration:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud config <span class="nb">set </span>compute/zone us-central1-f
+<span class="gp">$ </span>gcloud config <span class="nb">set </span>compute/region us-central1
+</code></pre>
+</div>
+
+<p>You can pick and choose different zones too. Learn more about zones in <a href="https://cloud.google.com/compute/docs/zones">Regions &amp; Zones documentation</a>.</p>
+
+<p>Note: When you run gcloud on your own machine, the config settings would’ve been persisted across sessions.  But in Cloud Shell, you will need to set this for every new session or reconnection.</p>
+
+<h2 id="create-your-nodejs-application">Create your Node.js application</h2>
+
+<p>The first step is to write the application that we want to deploy to Google Container Engine. Here is a simple Node.js server:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nano server.js
+</code></pre>
+</div>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="kd">var</span> <span class="nx">http</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'http'</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">handleRequest</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">request</span><span class="p">,</span> <span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">writeHead</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">"Hello World!"</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="kd">var</span> <span class="nx">www</span> <span class="o">=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">createServer</span><span class="p">(</span><span class="nx">handleRequest</span><span class="p">);</span>
+<span class="nx">www</span><span class="p">.</span><span class="nx">listen</span><span class="p">(</span><span class="mi">8080</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>We recommend using the nano editor but vi and emacs are also available in Cloud Shell.</p>
+
+<p>From Cloud Shell simply exit the editor and save the server.js file. Since CloudShell has the node executable installed we can now run this simple command :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nano server.js
+</code></pre>
+</div>
+
+<p>and use the built-in Web <a href="https://cloud.google.com/cloud-shell/docs/features#web_preview">preview feature</a> of CloudShell to open a new browser tab and proxy a request to the instance you just started on port 8080.</p>
+
+<p><img src="/images/hellonode/image_7.png" alt="image" /></p>
+
+<p><img src="/images/hellonode/image_8.png" alt="image" /></p>
+
+<p>Now, more importantly, let’s package this application in a Docker container.</p>
+
+<p>Before we continue, simply stop the running node server by pressing Ctrl-C in CloudShell.</p>
+
+<h2 id="create-a-docker-container-image">Create a Docker container image</h2>
+
+<p>Next, create a Dockerfile which describes the image that you want to build. Docker container images can extend from other existing images so for this image, we’ll extend from an existing Node image.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>nano Dockerfile
+</code></pre>
+</div>
+
+<h4 id="dockerfile">Dockerfile</h4>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">FROM</span> <span class="n">node</span>:<span class="m">0</span>.<span class="m">12</span>
+<span class="n">EXPOSE</span> <span class="m">8080</span>
+<span class="n">COPY</span> <span class="n">server</span>.<span class="n">js</span> .
+<span class="n">CMD</span> <span class="n">node</span> <span class="n">server</span>.<span class="n">js</span>
+</code></pre>
+</div>
+
+<p>This “recipe” for the Docker image will start from the node image found on the Docker hub, expose port 8080, copy our server.js file to the image and start the node server as we previously did manually.</p>
+
+<p>Save this Dockerfile and build this image by running :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker build -t gcr.io/PROJECT_ID/hello-node:v1 .
+</code></pre>
+</div>
+
+<p>Once this completes (it’ll take some time to download and extract everything) you can test the image locally with the following command which will run a Docker container as a daemon on port 8080 from our newly-created container image:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker run -d -p 8080:8080 gcr.io/PROJECT_ID/hello-node:v1
+325301e6b2bffd1d0049c621866831316d653c0b25a496d04ce0ec6854cb7998
+</code></pre>
+</div>
+
+<p>And again take advantage of the Web preview feature of CloudShell :</p>
+
+<p><img src="/images/hellonode/image_9.png" alt="image" /></p>
+
+<p>Or use <code class="highlighter-rouge">curl</code> or <code class="highlighter-rouge">wget</code> from your CloudShell prompt if you’d like :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>curl http://localhost:8080
+Hello World!
+</code></pre>
+</div>
+
+<p>Here’s <a href="https://docs.docker.com/reference/run/">the full documentation for the docker run command</a>.</p>
+
+<p>Let’s now stop the container :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker ps
+CONTAINER ID        IMAGE                              COMMAND
+2c66d0efcbd4        gcr.io/PROJECT_ID/hello-node:v1    <span class="s2">"/bin/sh -c 'node    
+</span><span class="nv">$ </span><span class="s2">docker stop 2c66d0efcbd4
+2c66d0efcbd4
+</span></code></pre>
+</div>
+
+<p>Now that the image works as intended we can push it to the <a href="https://cloud.google.com/tools/container-registry/">Google Container Registry</a>, a private repository for your Docker images accessible from every Google Cloud project (but also from outside Google Cloud Platform) :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud docker push gcr.io/PROJECT_ID/hello-node:v1
+</code></pre>
+</div>
+
+<p>If all goes well, you should be able to see the container image listed in the console: <em>Compute &gt; Container Engine &gt; Container Registry</em>. We now have a project-wide Docker image available which Kubernetes can access and orchestrate as we’ll see in a few minutes.</p>
+
+<p><img src="/images/hellonode/image_10.png" alt="image" /></p>
+
+<p>Note that while here we used a generic domain for the registry (gcr.io), you can also be more specific about which zone and bucket to use, details are documented here: https://cloud.google.com/container-registry/#pushing_to_the_registry</p>
+
+<p>If you’re curious, you can navigate through the container images as they are stored in Google Cloud Storage by following this link: <a href="https://console.cloud.google.com/storage/browser/">https://console.cloud.google.com/storage/browser/</a></p>
+
+<p>(the full link should read https://console.cloud.google.com/project/<em>PROJECT_ID</em>/storage/browser/)</p>
+
+<h2 id="create-your-cluster">Create your cluster</h2>
+
+<p>Ok, you are now ready to create your Container Engine cluster. A cluster consists of a master API server hosted by Google and a set of worker nodes. The worker nodes are Compute Engine virtual machines. Let’s create a cluster with two <a href="https://cloud.google.com/compute/docs/machine-types">n1-standard-1</a> nodes (this will take a few minutes to complete):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud container clusters create hello-world <span class="se">\</span>
+		--num-nodes 2 <span class="se">\</span>
+		--machine-type n1-standard-1
+Creating cluster hello-world...done.
+Created <span class="o">[</span>https://container.googleapis.com/v1/projects/kubernetes-codelab/zones/us-central1-f/clusters/hello-world].
+kubeconfig entry generated <span class="k">for </span>hello-world.
+NAME         ZONE           MASTER_VERSION  MASTER_IP       MACHINE_TYPE   STATUS
+hello-world  us-central1-f  1.0.7           146.148.46.124  n1-standard-1  RUNNING
+</code></pre>
+</div>
+
+<p>Alternatively, you could create this cluster via the Console: Compute &gt; Container Engine &gt; Container Clusters &gt; New container cluster.</p>
+
+<p>You should now have a fully-functioning Kubernetes cluster powered by Google Container Engine:</p>
+
+<p><img src="/images/hellonode/image_11.png" alt="image" /></p>
+
+<p>Each node in the cluster is a Compute Engine instance provisioned with Kubernetes and docker binaries. If you are curious, you can list all Compute Engine instances in the project:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud compute instances list
+NAME                ZONE          MACHINE_TYPE   INTERNAL_IP   EXTERNAL_IP    STATUS
+gke-hello-world-... us-central1-f n1-standard-1  10.240.223.99 104.197.29.149 RUNNING
+gke-hello-world-... us-central1-f n1-standard-1  10.240.22.199 104.197.53.8   RUNNING
+</code></pre>
+</div>
+
+<p>But you really shouldn’t have to use anything Compute Engine-specific but rather stick to the kubectl Kubernetes command line.</p>
+
+<p>It’s now time to deploy your own containerized application to the Kubernetes cluster!</p>
+
+<h2 id="create-your-pod">Create your pod</h2>
+
+<p>From now on we’ll be using the standard Kubernetes command line tool: kubectl (already set up in your Cloud Shell environment).</p>
+
+<p>A kubernetes <strong>pod</strong> is a group of containers, tied together for the purposes of administration and networking. It can contain a single container or multiple. Here we’ll simply use one container built with your Node.js image stored in our private container registry. It will serve content on port 8080.</p>
+
+<p>Let’s now create a pod with the kubectl run command (replace PROJECT_ID with your own project name) :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl run hello-node <span class="se">\</span>
+    --image<span class="o">=</span>gcr.io/PROJECT_ID/hello-node:v1 <span class="se">\</span>
+    --port<span class="o">=</span>8080
+CONTROLLER  CONTAINER<span class="o">(</span>S<span class="o">)</span>  IMAGE<span class="o">(</span>S<span class="o">)</span>                     SELECTOR        REPLICAS
+hello-node  hello-node    gcr.io/..../hello-node:v1    <span class="nv">run</span><span class="o">=</span>hello-node  1
+</code></pre>
+</div>
+
+<p>Note you can also <a href="https://cloud.google.com/container-engine/docs/kubectl/create">create pods from JSON or YAML templates</a>.</p>
+
+<p>Now is probably a good time to run through some of the following interesting kubectl commands (none of these will change the state of the cluster, full documentation is available <a href="https://cloud.google.com/container-engine/docs/kubectl/">here</a>):</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+<span class="gp">$ </span>kubectl logs
+<span class="gp">$ </span>kubectl cluster-info
+<span class="gp">$ </span>kubectl config view
+<span class="gp">$ </span>kubectl get events
+</code></pre>
+</div>
+
+<p>At this point you should have our container running under the control of Kubernetes but we still have to make it accessible to the outside world.</p>
+
+<h2 id="allow-external-traffic">Allow external traffic</h2>
+
+<p>By default, the pod is only accessible by its internal IP within the cluster. In order to make the hello-node container accessible from outside the kubernetes virtual network, you have to expose the pod as a kubernetes service.</p>
+
+<p>From our development machine we can expose the pod with the kubectl expose command and the –create-external-load-balancer=true flag which creates an external IP to accept traffic:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl expose rc hello-node --type<span class="o">=</span><span class="s2">"LoadBalancer"</span>
+</code></pre>
+</div>
+
+<p>The flag used in this command specifies that we’ll be using the load-balancer provided by the underlying infrastructure (in this case the <a href="https://cloud.google.com/compute/docs/load-balancing/">Compute Engine load balancer</a>) and “rc” is a reference to the implicit replication controller created when the pod was created.</p>
+
+<p>The Kubernetes master creates the load balancer and related Compute Engine forwarding rules, target pools, and firewall rules to make the service fully accessible from outside of Google Cloud Platform.</p>
+
+<p><strong>A note on Kubernetes replication controllers</strong></p>
+
+<p>A <a href="https://cloud.google.com/container-engine/docs/replicationcontrollers/">replication controller</a> is responsible for ensuring that a specified number of pod “replicas” are running at any given time (more on that in the next section) and it will create or delete replicas to reach the desired state.</p>
+
+<p>While in this simple codelab the replication controller is implicitly created, this is a critical (and arguably somewhat awesome) piece of the Kubernetes architecture. For anything beyond this codelab you will probably have to configure your own controller. Here’s a simple example of a nginx replication controller :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">ReplicationController</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">replicas</span><span class="pi">:</span> <span class="s">3</span>
+  <span class="s">selector</span><span class="pi">:</span>
+    <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">nginx</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">nginx</span>
+        <span class="s">ports</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">containerPort</span><span class="pi">:</span> <span class="s">80</span>
+</code></pre>
+</div>
+
+<p>More details on defining and configuring replication controllers can be found <a href="https://cloud.google.com/container-engine/docs/replicationcontrollers/operations">here</a>.</p>
+
+<p>If you’re interested in what Container Engine does under the covers with Compute Engine VMs, you can check how all of your VMs are tagged with a common prefix (kubectl get nodes). This tag can be used to operate on all of the VMs in your container cluster with a single command.</p>
+
+<p>To find the publicly-accessible IP address of the service, simply request kubectl to list the hello-node cluster service:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get services hello-node
+NAME         CLUSTER_IP    EXTERNAL_IP     PORT<span class="o">(</span>S<span class="o">)</span>    SELECTOR         AGE
+hello-node   10.3.246.12   23.251.159.72   8080/TCP   <span class="nv">run</span><span class="o">=</span>hello-node   53s
+</code></pre>
+</div>
+
+<p>Note there are 2 IP addresses listed, both serving port 8080. One is the internal IP that is only visible inside your cloud virtual network; the other is the external load-balanced IP. In this example, the external IP address is 23.251.159.72.</p>
+
+<p>You should now be able to reach the service by pointing your browser to this address: http://  <external_ip>**:8080**</external_ip>
+</p>
+
+<p><img src="/images/hellonode/image_12.png" alt="image" /></p>
+
+<h2 id="scale-up-your-website">Scale up your website</h2>
+
+<p>One of the powerful features offered by Kubernetes is how easy it is to scale your application. Suppose you suddenly need more capacity for your application; you can simply tell the replication controller to manage a new number of replicas for your pod:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl scale rc hello-node --replicas<span class="o">=</span>3
+<span class="gp">$ </span>kubectl get pods
+NAME               READY     STATUS    RESTARTS   AGE
+hello-node-6uzt8   1/1       Running   0          8m
+hello-node-gxhty   1/1       Running   0          34s
+hello-node-z2odh   1/1       Running   0          34s
+</code></pre>
+</div>
+
+<p>You now have three replicas of your application, each running independently on the cluster with the load balancer you created earlier and serving traffic to all of them.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get rc hello-node
+CONTROLLER   CONTAINER<span class="o">(</span>S<span class="o">)</span>   IMAGE<span class="o">(</span>S<span class="o">)</span>                    SELECTOR         REPLICAS
+hello-node   hello-node     gcr.io/..../hello-node:v1   <span class="nv">run</span><span class="o">=</span>hello-node   3
+</code></pre>
+</div>
+
+<p>Note the <strong>declarative approach</strong> here - rather than starting or stopping new instances you declare how many instances you want to be running. Kubernetes reconciliation loops simply make sure the reality matches what you requested and take action if needed.</p>
+
+<p>Here’s a diagram summarizing the state of our Kubernetes cluster:</p>
+
+<p><img src="/images/hellonode/image_13.png" alt="image" /></p>
+
+<h2 id="roll-out-an-upgrade-to-your-website">Roll out an upgrade to your website</h2>
+
+<p>As always, the application you deployed to production requires bug fixes or additional features. Kubernetes is here to help you deploy a new version to production without impacting your users.</p>
+
+<p>First, let’s modify the application. On the development machine, edit server.js and update the response message:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  <span class="nx">response</span><span class="p">.</span><span class="nx">end</span><span class="p">(</span><span class="s2">"Hello Kubernetes World!"</span><span class="p">);</span>
+</code></pre>
+</div>
+
+<p>We can now build and publish a new container image to the registry with an incremented tag:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>docker build -t gcr.io/PROJECT_ID/hello-node:v2 . 
+gcloud docker push gcr.io/PROJECT_ID/hello-node:v2
+</code></pre>
+</div>
+
+<p>Building and pushing this updated image should be much quicker as we take full advantage of the Docker cache.</p>
+
+<p>We’re now ready for kubernetes to smoothly update our replication controller to the new version of the application:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl rolling-update hello-node <span class="se">\</span>
+    --image<span class="o">=</span>gcr.io/PROJECT_ID/hello-node:v2 <span class="se">\</span>
+    --update-period<span class="o">=</span>2s
+Creating hello-node-324d23dd3e0e2474d6b76dc599abb519
+At beginning of loop: hello-node replicas: 2, hello-node-324d23dd3e0e2474d6b76dc599abb519 replicas: 1
+...
+At end of loop: hello-node replicas: 0, hello-node-324d23dd3e0e2474d6b76dc599abb519 replicas: 3
+Update succeeded. Deleting old controller: hello-node
+Renaming hello-node-324d23dd3e0e2474d6b76dc599abb519 to hello-node
+hello-node
+</code></pre>
+</div>
+
+<p>You should see in the standard output how the rolling update actually works:</p>
+
+<ol>
+  <li>
+    <p>A new replication controller is created based on the new image</p>
+  </li>
+  <li>
+    <p>The replica count on the new and old controllers is increased/decreased by one respectively until the desired number of replicas is reached</p>
+  </li>
+  <li>
+    <p>The original replication controller is deleted.</p>
+  </li>
+</ol>
+
+<p>While this is happening, the users of the services should not see any interruption. After a little while they will start accessing the new version of your application. You can find more details on rolling updates in <a href="https://cloud.google.com/container-engine/docs/rolling-updates">this documentation</a>.</p>
+
+<p>Hopefully with these deployment, scaling and update features you’ll agree that once you’ve setup your environment (your GKE/Kubernetes cluster here), Kubernetes is here to help you focus on the application rather than the infrastructure.</p>
+
+<h2 id="observe-the-kubernetes-graphical-dashboard-optional">Observe the Kubernetes Graphical dashboard (optional)</h2>
+
+<p>While logged into your development machine, execute the following commands:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud container clusters describe hello-world | egrep <span class="s2">"password"</span>
+    password: vUYwC5ATJMWa6goh
+<span class="gp">$ </span>kubectl cluster-info
+  ... 
+  KubeUI is running at https://&lt;ip-address&gt;/api/v1/proxy/namespaces/kube-system/services/kube-ui
+  ...
+</code></pre>
+</div>
+
+<p>Navigate to the URL that is shown under after KubeUI is running at and log in with username “admin” and the password retrieved above and enjoy the Kubernetes graphical dashboard!</p>
+
+<p><img src="/images/hellonode/image_14.png" alt="image" /></p>
+
+<h2 id="cleanup">Cleanup</h2>
+
+<p>Time for some cleaning of the resources used (to save on cost and to be a good cloud citizen).</p>
+
+<p>First, delete the Service, which also deletes your external load balancer:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl delete services hello-node
+</code></pre>
+</div>
+
+<p>Delete the running pods:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl delete rc hello-node
+</code></pre>
+</div>
+
+<p>Delete your cluster:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gcloud container clusters delete hello-world
+Waiting <span class="k">for </span>cluster deletion...done.
+name: operation-xxxxxxxxxxxxxxxx
+operationType: deleteCluster
+status: <span class="k">done
+</span>target: /projects/kubernetes-codelab/zones/us-central1-f/clusters/hello-world
+zone: us-central1-f
+</code></pre>
+</div>
+
+<p>This deletes the Google Compute Engine instances that are running the cluster.</p>
+
+<p>Finally delete the Docker registry storage bucket hosting your image(s) :</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>gsutil ls
+gs://artifacts.&lt;PROJECT_ID&gt;.appspot.com/
+<span class="gp">$ </span>gsutil rm -r gs://artifacts.&lt;PROJECT_ID&gt;.appspot.com/
+Removing gs://artifacts.&lt;PROJECT_ID&gt;.appspot.com/...
+</code></pre>
+</div>
+
+<p>Of course, you can also delete the entire project but note that you must first disable billing on the project. Additionally, deleting a project will only happen after the current billing cycle ends.</p>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>This concludes this simple getting started codelab with Kubernetes. We’ve only scratched the surface of this technology and we encourage you to explore further with your own pods, replication controllers, and services but also to check out liveness probes (health checks) and consider using the Kubernetes API directly.</p>
+
+<p>Here are some follow-up steps :</p>
+
+<ul>
+  <li>
+    <p>Go through the more advanced <a href="https://codelabs.developers.google.com/codelabs/compute-kubernetes/">“Compute Engine &amp; Kubernetes” codelab</a> from <a href="https://codelabs.developers.google.com">https://codelabs.developers.google.com</a>.</p>
+  </li>
+  <li>
+    <p>Try out other Google Cloud Platform features for yourself. Have a look at our <a href="https://cloud.google.com/docs/tutorials">tutorials</a>.</p>
+  </li>
+  <li>
+    <p>Remember, Kubernetes is an open source project hosted on <a href="https://github.com/kubernetes/kubernetes">GitHub</a>. Your feedback and contributions are always welcome.</p>
+  </li>
+  <li>
+    <p>You can follow the Kubernetes news on <a href="https://twitter.com/kubernetesio">Twitter</a> and on the <a href="http://blog.kubernetes.io/">community’s blog</a>.</p>
+  </li>
+</ul>
+
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/hellonode.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/hellonode/",
+        "title" : "Hello World Walkthrough",
+        "permalink" : "http://kubernetes.github.io/docs/hellonode/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

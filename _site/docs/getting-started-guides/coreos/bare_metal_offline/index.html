@@ -1,0 +1,1068 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Offline</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/getting-started-guides/coreos/bare_metal_offline.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Offline</h1>
+		<p>Deploy a CoreOS running Kubernetes environment. This particular guild is made to help those in an OFFLINE system, 
+whether for testing a POC before the real deal, or you are restricted to be totally offline for your applications.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#prerequisites" id="markdown-toc-prerequisites">Prerequisites</a></li>
+  <li><a href="#high-level-design" id="markdown-toc-high-level-design">High Level Design</a></li>
+  <li><a href="#this-guides-variables" id="markdown-toc-this-guides-variables">This Guides variables</a></li>
+  <li><a href="#setup-pxelinux-centos" id="markdown-toc-setup-pxelinux-centos">Setup PXELINUX CentOS</a></li>
+  <li><a href="#adding-coreos-to-pxe" id="markdown-toc-adding-coreos-to-pxe">Adding CoreOS to PXE</a></li>
+  <li><a href="#dhcp-configuration" id="markdown-toc-dhcp-configuration">DHCP configuration</a></li>
+  <li><a href="#kubernetes" id="markdown-toc-kubernetes">Kubernetes</a></li>
+  <li><a href="#cloud-configs" id="markdown-toc-cloud-configs">Cloud Configs</a>    <ul>
+      <li><a href="#masteryml" id="markdown-toc-masteryml">master.yml</a></li>
+      <li><a href="#nodeyml" id="markdown-toc-nodeyml">node.yml</a></li>
+    </ul>
+  </li>
+  <li><a href="#new-pxelinuxcfg-file" id="markdown-toc-new-pxelinuxcfg-file">New pxelinux.cfg file</a></li>
+  <li><a href="#specify-the-pxelinux-targets" id="markdown-toc-specify-the-pxelinux-targets">Specify the pxelinux targets</a></li>
+  <li><a href="#creating-test-pod" id="markdown-toc-creating-test-pod">Creating test pod</a></li>
+  <li><a href="#helping-commands-for-debugging" id="markdown-toc-helping-commands-for-debugging">Helping commands for debugging</a></li>
+</ul>
+
+<h2 id="prerequisites">Prerequisites</h2>
+
+<ol>
+  <li>Installed <em>CentOS 6</em> for PXE server</li>
+  <li>At least two bare metal nodes to work with</li>
+</ol>
+
+<h2 id="high-level-design">High Level Design</h2>
+
+<ol>
+  <li>Manage the tftp directory
+    <ul>
+      <li>/tftpboot/(coreos)(centos)(RHEL)</li>
+      <li>/tftpboot/pxelinux.0/(MAC) -&gt; linked to Linux image config file</li>
+    </ul>
+  </li>
+  <li>Update per install the link for pxelinux</li>
+  <li>Update the DHCP config to reflect the host needing deployment</li>
+  <li>Setup nodes to deploy CoreOS creating a etcd cluster.</li>
+  <li>Have no access to the public <a href="https://discovery.etcd.io/">etcd discovery tool</a>.</li>
+  <li>Installing the CoreOS slaves to become Kubernetes nodes.</li>
+</ol>
+
+<h2 id="this-guides-variables">This Guides variables</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: left">Node Description</th>
+      <th style="text-align: center">MAC</th>
+      <th style="text-align: center">IP</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: left">CoreOS/etcd/Kubernetes Master</td>
+      <td style="text-align: center">d0:00:67:13:0d:00</td>
+      <td style="text-align: center">10.20.30.40</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CoreOS Slave 1</td>
+      <td style="text-align: center">d0:00:67:13:0d:01</td>
+      <td style="text-align: center">10.20.30.41</td>
+    </tr>
+    <tr>
+      <td style="text-align: left">CoreOS Slave 2</td>
+      <td style="text-align: center">d0:00:67:13:0d:02</td>
+      <td style="text-align: center">10.20.30.42</td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 id="setup-pxelinux-centos">Setup PXELINUX CentOS</h2>
+
+<p>To setup CentOS PXELINUX environment there is a complete <a href="http://docs.fedoraproject.org/en-US/Fedora/7/html/Installation_Guide/ap-pxe-server">guide here</a>. This section is the abbreviated version.</p>
+
+<ol>
+  <li>Install packages needed on CentOS</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>sudo yum install tftp-server dhcp syslinux
+</code></pre>
+</div>
+
+<ol>
+  <li><code class="highlighter-rouge">vi /etc/xinetd.d/tftp</code> to enable tftp service and change disable to ‘no’</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">disable</span> = <span class="n">no</span>
+</code></pre>
+</div>
+
+<ol>
+  <li>Copy over the syslinux images we will need.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>su -
+mkdir -p /tftpboot
+<span class="nb">cd</span> /tftpboot
+cp /usr/share/syslinux/pxelinux.0 /tftpboot
+cp /usr/share/syslinux/menu.c32 /tftpboot
+cp /usr/share/syslinux/memdisk /tftpboot
+cp /usr/share/syslinux/mboot.c32 /tftpboot
+cp /usr/share/syslinux/chain.c32 /tftpboot
+
+/sbin/service dhcpd start
+/sbin/service xinetd start
+/sbin/chkconfig tftp on
+</code></pre>
+</div>
+
+<ol>
+  <li>Setup default boot menu</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>mkdir /tftpboot/pxelinux.cfg
+touch /tftpboot/pxelinux.cfg/default
+</code></pre>
+</div>
+
+<ol>
+  <li>Edit the menu <code class="highlighter-rouge">vi /tftpboot/pxelinux.cfg/default</code></li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">default</span> <span class="n">menu</span>.<span class="n">c32</span>
+<span class="n">prompt</span> <span class="m">0</span>
+<span class="n">timeout</span> <span class="m">15</span>
+<span class="n">ONTIMEOUT</span> <span class="n">local</span>
+<span class="n">display</span> <span class="n">boot</span>.<span class="n">msg</span>
+
+<span class="n">MENU</span> <span class="n">TITLE</span> <span class="n">Main</span> <span class="n">Menu</span>
+
+<span class="n">LABEL</span> <span class="n">local</span>
+        <span class="n">MENU</span> <span class="n">LABEL</span> <span class="n">Boot</span> <span class="n">local</span> <span class="n">hard</span> <span class="n">drive</span>
+        <span class="n">LOCALBOOT</span> <span class="m">0</span>
+</code></pre>
+</div>
+
+<p>Now you should have a working PXELINUX setup to image CoreOS nodes. You can verify the services by using VirtualBox locally or with bare metal servers.</p>
+
+<h2 id="adding-coreos-to-pxe">Adding CoreOS to PXE</h2>
+
+<p>This section describes how to setup the CoreOS images to live alongside a pre-existing PXELINUX environment.</p>
+
+<ol>
+  <li>Find or create the TFTP root directory that everything will be based off of.
+    <ul>
+      <li>For this document we will assume <code class="highlighter-rouge">/tftpboot/</code> is our root directory.</li>
+    </ul>
+  </li>
+  <li>Once we know and have our tftp root directory we will create a new directory structure for our CoreOS images.</li>
+  <li>Download the CoreOS PXE files provided by the CoreOS team.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">MY_TFTPROOT_DIR</span><span class="o">=</span>/tftpboot
+mkdir -p <span class="nv">$MY_TFTPROOT_DIR</span>/images/coreos/
+<span class="nb">cd</span> <span class="nv">$MY_TFTPROOT_DIR</span>/images/coreos/
+wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz
+wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe.vmlinuz.sig
+wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz
+wget http://stable.release.core-os.net/amd64-usr/current/coreos_production_pxe_image.cpio.gz.sig
+gpg --verify coreos_production_pxe.vmlinuz.sig
+gpg --verify coreos_production_pxe_image.cpio.gz.sig
+</code></pre>
+</div>
+
+<ol>
+  <li>Edit the menu <code class="highlighter-rouge">vi /tftpboot/pxelinux.cfg/default</code> again</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">default</span> <span class="n">menu</span>.<span class="n">c32</span>
+<span class="n">prompt</span> <span class="m">0</span>
+<span class="n">timeout</span> <span class="m">300</span>
+<span class="n">ONTIMEOUT</span> <span class="n">local</span>
+<span class="n">display</span> <span class="n">boot</span>.<span class="n">msg</span>
+
+<span class="n">MENU</span> <span class="n">TITLE</span> <span class="n">Main</span> <span class="n">Menu</span>
+
+<span class="n">LABEL</span> <span class="n">local</span>
+        <span class="n">MENU</span> <span class="n">LABEL</span> <span class="n">Boot</span> <span class="n">local</span> <span class="n">hard</span> <span class="n">drive</span>
+        <span class="n">LOCALBOOT</span> <span class="m">0</span>
+
+<span class="n">MENU</span> <span class="n">BEGIN</span> <span class="n">CoreOS</span> <span class="n">Menu</span>
+
+    <span class="n">LABEL</span> <span class="n">coreos</span>-<span class="n">master</span>
+        <span class="n">MENU</span> <span class="n">LABEL</span> <span class="n">CoreOS</span> <span class="n">Master</span>
+        <span class="n">KERNEL</span> <span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe</span>.<span class="n">vmlinuz</span>
+        <span class="n">APPEND</span> <span class="n">initrd</span>=<span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe_image</span>.<span class="n">cpio</span>.<span class="n">gz</span> <span class="n">cloud</span>-<span class="n">config</span>-<span class="n">url</span>=<span class="n">http</span>://&lt;<span class="n">xxx</span>.<span class="n">xxx</span>.<span class="n">xxx</span>.<span class="n">xxx</span>&gt;/<span class="n">pxe</span>-<span class="n">cloud</span>-<span class="n">config</span>-<span class="n">single</span>-<span class="n">master</span>.<span class="n">yml</span>
+
+    <span class="n">LABEL</span> <span class="n">coreos</span>-<span class="n">slave</span>
+        <span class="n">MENU</span> <span class="n">LABEL</span> <span class="n">CoreOS</span> <span class="n">Slave</span>
+        <span class="n">KERNEL</span> <span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe</span>.<span class="n">vmlinuz</span>
+        <span class="n">APPEND</span> <span class="n">initrd</span>=<span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe_image</span>.<span class="n">cpio</span>.<span class="n">gz</span> <span class="n">cloud</span>-<span class="n">config</span>-<span class="n">url</span>=<span class="n">http</span>://&lt;<span class="n">xxx</span>.<span class="n">xxx</span>.<span class="n">xxx</span>.<span class="n">xxx</span>&gt;/<span class="n">pxe</span>-<span class="n">cloud</span>-<span class="n">config</span>-<span class="n">slave</span>.<span class="n">yml</span>
+<span class="n">MENU</span> <span class="n">END</span>
+</code></pre>
+</div>
+
+<p>This configuration file will now boot from local drive but have the option to PXE image CoreOS.</p>
+
+<h2 id="dhcp-configuration">DHCP configuration</h2>
+
+<p>This section covers configuring the DHCP server to hand out our new images. In this case we are assuming that there are other servers that will boot alongside other images.</p>
+
+<ol>
+  <li>Add the <code class="highlighter-rouge">filename</code> to the <em>host</em> or <em>subnet</em> sections.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">filename</span> <span class="s2">"/tftpboot/pxelinux.0"</span>;
+</code></pre>
+</div>
+
+<ol>
+  <li>At this point we want to make pxelinux configuration files that will be the templates for the different CoreOS deployments.</li>
+</ol>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">subnet</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">0</span> <span class="n">netmask</span> <span class="m">255</span>.<span class="m">255</span>.<span class="m">255</span>.<span class="m">0</span> {
+        <span class="n">next</span>-<span class="n">server</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">242</span>;
+        <span class="n">option</span> <span class="n">broadcast</span>-<span class="n">address</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">255</span>;
+        <span class="n">filename</span> <span class="s2">"&lt;other default image&gt;"</span>;
+
+        ...
+        <span class="c"># http://www.syslinux.org/wiki/index.php/PXELINUX
+</span>        <span class="n">host</span> <span class="n">core_os_master</span> {
+                <span class="n">hardware</span> <span class="n">ethernet</span> <span class="n">d0</span>:<span class="m">00</span>:<span class="m">67</span>:<span class="m">13</span>:<span class="m">0</span><span class="n">d</span>:<span class="m">00</span>;
+                <span class="n">option</span> <span class="n">routers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">1</span>;
+                <span class="n">fixed</span>-<span class="n">address</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">40</span>;
+                <span class="n">option</span> <span class="n">domain</span>-<span class="n">name</span>-<span class="n">servers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">242</span>;
+                <span class="n">filename</span> <span class="s2">"/pxelinux.0"</span>;
+        }
+        <span class="n">host</span> <span class="n">core_os_slave</span> {
+                <span class="n">hardware</span> <span class="n">ethernet</span> <span class="n">d0</span>:<span class="m">00</span>:<span class="m">67</span>:<span class="m">13</span>:<span class="m">0</span><span class="n">d</span>:<span class="m">01</span>;
+                <span class="n">option</span> <span class="n">routers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">1</span>;
+                <span class="n">fixed</span>-<span class="n">address</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">41</span>;
+                <span class="n">option</span> <span class="n">domain</span>-<span class="n">name</span>-<span class="n">servers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">242</span>;
+                <span class="n">filename</span> <span class="s2">"/pxelinux.0"</span>;
+        }
+        <span class="n">host</span> <span class="n">core_os_slave2</span> {
+                <span class="n">hardware</span> <span class="n">ethernet</span> <span class="n">d0</span>:<span class="m">00</span>:<span class="m">67</span>:<span class="m">13</span>:<span class="m">0</span><span class="n">d</span>:<span class="m">02</span>;
+                <span class="n">option</span> <span class="n">routers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">1</span>;
+                <span class="n">fixed</span>-<span class="n">address</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">42</span>;
+                <span class="n">option</span> <span class="n">domain</span>-<span class="n">name</span>-<span class="n">servers</span> <span class="m">10</span>.<span class="m">20</span>.<span class="m">30</span>.<span class="m">242</span>;
+                <span class="n">filename</span> <span class="s2">"/pxelinux.0"</span>;
+        }
+        ...
+}
+</code></pre>
+</div>
+
+<p>We will be specifying the node configuration later in the guide.</p>
+
+<h2 id="kubernetes">Kubernetes</h2>
+
+<p>To deploy our configuration we need to create an <code class="highlighter-rouge">etcd</code> master. To do so we want to pxe CoreOS with a specific cloud-config.yml. There are two options we have here.
+1. Is to template the cloud config file and programmatically create new static configs for different cluster setups.
+2. Have a service discovery protocol running in our stack to do auto discovery.</p>
+
+<p>This demo we just make a static single <code class="highlighter-rouge">etcd</code> server to host our Kubernetes and <code class="highlighter-rouge">etcd</code> master servers.</p>
+
+<p>Since we are OFFLINE here most of the helping processes in CoreOS and Kubernetes are then limited. To do our setup we will then have to download and serve up our binaries for Kubernetes in our local environment.</p>
+
+<p>An easy solution is to host a small web server on the DHCP/TFTP host for all our binaries to make them available to the local CoreOS PXE machines.</p>
+
+<p>To get this up and running we are going to setup a simple <code class="highlighter-rouge">apache</code> server to serve our binaries needed to bootstrap Kubernetes.</p>
+
+<p>This is on the PXE server from the previous section:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>rm /etc/httpd/conf.d/welcome.conf
+<span class="nb">cd</span> /var/www/html/
+wget -O kube-register  https://github.com/kelseyhightower/kube-register/releases/download/v0.0.2/kube-register-0.0.2-linux-amd64
+wget -O setup-network-environment https://github.com/kelseyhightower/setup-network-environment/releases/download/v1.0.0/setup-network-environment
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kubernetes --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kube-apiserver --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kube-controller-manager --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kube-scheduler --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kubectl --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kubecfg --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kubelet --no-check-certificate
+wget https://storage.googleapis.com/kubernetes-release/release/v0.15.0/bin/linux/amd64/kube-proxy --no-check-certificate
+wget -O flanneld https://storage.googleapis.com/k8s/flanneld --no-check-certificate
+</code></pre>
+</div>
+
+<p>This sets up our binaries we need to run Kubernetes. This would need to be enhanced to download from the Internet for updates in the future.</p>
+
+<p>Now for the good stuff!</p>
+
+<h2 id="cloud-configs">Cloud Configs</h2>
+
+<p>The following config files are tailored for the OFFLINE version of a Kubernetes deployment.</p>
+
+<p>These are based on the work found here: <a href="/docs/getting-started-guides/coreos/cloud-configs/master.yaml">master.yml</a>, <a href="/docs/getting-started-guides/coreos/cloud-configs/node.yaml">node.yml</a></p>
+
+<p>To make the setup work, you need to replace a few placeholders:</p>
+
+<ul>
+  <li>Replace <code class="highlighter-rouge">&lt;PXE_SERVER_IP&gt;</code> with your PXE server ip address (e.g. 10.20.30.242)</li>
+  <li>Replace <code class="highlighter-rouge">&lt;MASTER_SERVER_IP&gt;</code> with the Kubernetes master ip address (e.g. 10.20.30.40)</li>
+  <li>If you run a private docker registry, replace <code class="highlighter-rouge">rdocker.example.com</code> with your docker registry dns name.</li>
+  <li>If you use a proxy, replace <code class="highlighter-rouge">rproxy.example.com</code> with your proxy server (and port)</li>
+  <li>Add your own SSH public key(s) to the cloud config at the end</li>
+</ul>
+
+<h3 id="masteryml">master.yml</h3>
+
+<p>On the PXE server make and fill in the variables <code class="highlighter-rouge">vi /var/www/html/coreos/pxe-cloud-config-master.yml</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#cloud-config</span>
+<span class="nn">---</span>
+<span class="s">write_files</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">path</span><span class="pi">:</span> <span class="s">/opt/bin/waiter.sh</span>
+    <span class="s">owner</span><span class="pi">:</span> <span class="s">root</span>
+    <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">#! /usr/bin/bash</span>
+      <span class="no">until curl http://127.0.0.1:4001/v2/machines; do sleep 2; done</span>
+  <span class="pi">-</span> <span class="s">path</span><span class="pi">:</span> <span class="s">/opt/bin/kubernetes-download.sh</span>
+    <span class="s">owner</span><span class="pi">:</span> <span class="s">root</span>
+    <span class="s">permissions</span><span class="pi">:</span> <span class="s">0755</span>
+    <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">#! /usr/bin/bash</span>
+      <span class="no">/usr/bin/wget -N -P "/opt/bin" "http://&lt;PXE_SERVER_IP&gt;/kubectl"</span>
+      <span class="no">/usr/bin/wget -N -P "/opt/bin" "http://&lt;PXE_SERVER_IP&gt;/kubernetes"</span>
+      <span class="no">/usr/bin/wget -N -P "/opt/bin" "http://&lt;PXE_SERVER_IP&gt;/kubecfg"</span>
+      <span class="no">chmod +x /opt/bin/*</span>
+  <span class="pi">-</span> <span class="s">path</span><span class="pi">:</span> <span class="s">/etc/profile.d/opt-path.sh</span>
+    <span class="s">owner</span><span class="pi">:</span> <span class="s">root</span>
+    <span class="s">permissions</span><span class="pi">:</span> <span class="s">0755</span>
+    <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">#! /usr/bin/bash</span>
+      <span class="no">PATH=$PATH/opt/bin</span>
+<span class="s">coreos</span><span class="pi">:</span>
+  <span class="s">units</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">10-eno1.network</span>
+      <span class="s">runtime</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Match]</span>
+        <span class="no">Name=eno1</span>
+        <span class="no">[Network]</span>
+        <span class="no">DHCP=yes</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">20-nodhcp.network</span>
+      <span class="s">runtime</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Match]</span>
+        <span class="no">Name=en*</span>
+        <span class="no">[Network]</span>
+        <span class="no">DHCP=none</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">get-kube-tools.service</span>
+      <span class="s">runtime</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStart=/opt/bin/kubernetes-download.sh</span>
+        <span class="no">RemainAfterExit=yes</span>
+        <span class="no">Type=oneshot</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">setup-network-environment.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Setup Network Environment</span>
+        <span class="no">Documentation=https://github.com/kelseyhightower/setup-network-environment</span>
+        <span class="no">Requires=network-online.target</span>
+        <span class="no">After=network-online.target</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/setup-network-environment</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment</span>
+        <span class="no">ExecStart=/opt/bin/setup-network-environment</span>
+        <span class="no">RemainAfterExit=yes</span>
+        <span class="no">Type=oneshot</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">etcd.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=etcd</span>
+        <span class="no">Requires=setup-network-environment.service</span>
+        <span class="no">After=setup-network-environment.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">EnvironmentFile=/etc/network-environment</span>
+        <span class="no">User=etcd</span>
+        <span class="no">PermissionsStartOnly=true</span>
+        <span class="no">ExecStart=/usr/bin/etcd \</span>
+        <span class="no">--name ${DEFAULT_IPV4} \</span>
+        <span class="no">--addr ${DEFAULT_IPV4}:4001 \</span>
+        <span class="no">--bind-addr 0.0.0.0 \</span>
+        <span class="no">--cluster-active-size 1 \</span>
+        <span class="no">--data-dir /var/lib/etcd \</span>
+        <span class="no">--http-read-timeout 86400 \</span>
+        <span class="no">--peer-addr ${DEFAULT_IPV4}:7001 \</span>
+        <span class="no">--snapshot true</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10s</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">fleet.socket</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Socket]</span>
+        <span class="no">ListenStream=/var/run/fleet.sock</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">fleet.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=fleet daemon</span>
+        <span class="no">Wants=etcd.service</span>
+        <span class="no">After=etcd.service</span>
+        <span class="no">Wants=fleet.socket</span>
+        <span class="no">After=fleet.socket</span>
+        <span class="no">[Service]</span>
+        <span class="no">Environment="FLEET_ETCD_SERVERS=http://127.0.0.1:4001"</span>
+        <span class="no">Environment="FLEET_METADATA=role=master"</span>
+        <span class="no">ExecStart=/usr/bin/fleetd</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10s</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">etcd-waiter.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=etcd waiter</span>
+        <span class="no">Wants=network-online.target</span>
+        <span class="no">Wants=etcd.service</span>
+        <span class="no">After=etcd.service</span>
+        <span class="no">After=network-online.target</span>
+        <span class="no">Before=flannel.service</span>
+        <span class="no">Before=setup-network-environment.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/waiter.sh</span>
+        <span class="no">ExecStart=/usr/bin/bash /opt/bin/waiter.sh</span>
+        <span class="no">RemainAfterExit=true</span>
+        <span class="no">Type=oneshot</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">flannel.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Wants=etcd-waiter.service</span>
+        <span class="no">After=etcd-waiter.service</span>
+        <span class="no">Requires=etcd.service</span>
+        <span class="no">After=etcd.service</span>
+        <span class="no">After=network-online.target</span>
+        <span class="no">Wants=network-online.target</span>
+        <span class="no">Description=flannel is an etcd backed overlay network for containers</span>
+        <span class="no">[Service]</span>
+        <span class="no">Type=notify</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/flanneld</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/flanneld</span>
+        <span class="no">ExecStartPre=-/usr/bin/etcdctl mk /coreos.com/network/config '{"Network":"10.100.0.0/16", "Backend": {"Type": "vxlan"}}'</span>
+        <span class="no">ExecStart=/opt/bin/flanneld</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-apiserver.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes API Server</span>
+        <span class="no">Documentation=https://github.com/kubernetes/kubernetes</span>
+        <span class="no">Requires=etcd.service</span>
+        <span class="no">After=etcd.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kube-apiserver</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-apiserver</span>
+        <span class="no">ExecStart=/opt/bin/kube-apiserver \</span>
+        <span class="no">--address=0.0.0.0 \</span>
+        <span class="no">--port=8080 \</span>
+        <span class="no">--service-cluster-ip-range=10.100.0.0/16 \</span>
+        <span class="no">--etcd-servers=http://127.0.0.1:4001 \</span>
+        <span class="no">--logtostderr=true</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-controller-manager.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes Controller Manager</span>
+        <span class="no">Documentation=https://github.com/kubernetes/kubernetes</span>
+        <span class="no">Requires=kube-apiserver.service</span>
+        <span class="no">After=kube-apiserver.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kube-controller-manager</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-controller-manager</span>
+        <span class="no">ExecStart=/opt/bin/kube-controller-manager \</span>
+        <span class="no">--master=127.0.0.1:8080 \</span>
+        <span class="no">--logtostderr=true</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-scheduler.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes Scheduler</span>
+        <span class="no">Documentation=https://github.com/kubernetes/kubernetes</span>
+        <span class="no">Requires=kube-apiserver.service</span>
+        <span class="no">After=kube-apiserver.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kube-scheduler</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-scheduler</span>
+        <span class="no">ExecStart=/opt/bin/kube-scheduler --master=127.0.0.1:8080</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-register.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes Registration Service</span>
+        <span class="no">Documentation=https://github.com/kelseyhightower/kube-register</span>
+        <span class="no">Requires=kube-apiserver.service</span>
+        <span class="no">After=kube-apiserver.service</span>
+        <span class="no">Requires=fleet.service</span>
+        <span class="no">After=fleet.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kube-register</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-register</span>
+        <span class="no">ExecStart=/opt/bin/kube-register \</span>
+        <span class="no">--metadata=role=node \</span>
+        <span class="no">--fleet-endpoint=unix:///var/run/fleet.sock \</span>
+        <span class="no">--healthz-port=10248 \</span>
+        <span class="no">--api-endpoint=http://127.0.0.1:8080</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+  <span class="s">update</span><span class="pi">:</span>
+    <span class="s">group</span><span class="pi">:</span> <span class="s">stable</span>
+    <span class="s">reboot-strategy</span><span class="pi">:</span> <span class="s">off</span>
+<span class="s">ssh_authorized_keys</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">ssh-rsa AAAAB3NzaC1yc2EAAAAD...</span>
+</code></pre>
+</div>
+
+<h3 id="nodeyml">node.yml</h3>
+
+<p>On the PXE server make and fill in the variables <code class="highlighter-rouge">vi /var/www/html/coreos/pxe-cloud-config-slave.yml</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="c1">#cloud-config</span>
+<span class="nn">---</span>
+<span class="s">write_files</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">path</span><span class="pi">:</span> <span class="s">/etc/default/docker</span>
+    <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+      <span class="no">DOCKER_EXTRA_OPTS='--insecure-registry="rdocker.example.com:5000"'</span>
+<span class="s">coreos</span><span class="pi">:</span>
+  <span class="s">units</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">10-eno1.network</span>
+      <span class="s">runtime</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Match]</span>
+        <span class="no">Name=eno1</span>
+        <span class="no">[Network]</span>
+        <span class="no">DHCP=yes</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">20-nodhcp.network</span>
+      <span class="s">runtime</span><span class="pi">:</span> <span class="s">true</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Match]</span>
+        <span class="no">Name=en*</span>
+        <span class="no">[Network]</span>
+        <span class="no">DHCP=none</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">etcd.service</span>
+      <span class="s">mask</span><span class="pi">:</span> <span class="s">true</span>
+    <span class="s">- name</span><span class="pi">:</span> <span class="s">docker.service</span>
+      <span class="s">drop-ins</span><span class="pi">:</span>
+        <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">50-insecure-registry.conf</span>
+          <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+            <span class="no">[Service]</span>
+            <span class="no">Environment="HTTP_PROXY=http://rproxy.example.com:3128/" "NO_PROXY=localhost,127.0.0.0/8,rdocker.example.com"</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">fleet.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=fleet daemon</span>
+        <span class="no">Wants=fleet.socket</span>
+        <span class="no">After=fleet.socket</span>
+        <span class="no">[Service]</span>
+        <span class="no">Environment="FLEET_ETCD_SERVERS=http://&lt;MASTER_SERVER_IP&gt;:4001"</span>
+        <span class="no">Environment="FLEET_METADATA=role=node"</span>
+        <span class="no">ExecStart=/usr/bin/fleetd</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10s</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">flannel.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">After=network-online.target</span>
+        <span class="no">Wants=network-online.target</span>
+        <span class="no">Description=flannel is an etcd backed overlay network for containers</span>
+        <span class="no">[Service]</span>
+        <span class="no">Type=notify</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/flanneld</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/flanneld</span>
+        <span class="no">ExecStart=/opt/bin/flanneld -etcd-endpoints http://&lt;MASTER_SERVER_IP&gt;:4001</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">docker.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">After=flannel.service</span>
+        <span class="no">Wants=flannel.service</span>
+        <span class="no">Description=Docker Application Container Engine</span>
+        <span class="no">Documentation=http://docs.docker.io</span>
+        <span class="no">[Service]</span>
+        <span class="no">EnvironmentFile=-/etc/default/docker</span>
+        <span class="no">EnvironmentFile=/run/flannel/subnet.env</span>
+        <span class="no">ExecStartPre=/bin/mount --make-rprivate /</span>
+        <span class="no">ExecStart=/usr/bin/docker -d --bip=${FLANNEL_SUBNET} --mtu=${FLANNEL_MTU} -s=overlay -H fd:// ${DOCKER_EXTRA_OPTS}</span>
+        <span class="no">[Install]</span>
+        <span class="no">WantedBy=multi-user.target</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">setup-network-environment.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Setup Network Environment</span>
+        <span class="no">Documentation=https://github.com/kelseyhightower/setup-network-environment</span>
+        <span class="no">Requires=network-online.target</span>
+        <span class="no">After=network-online.target</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=-/usr/bin/mkdir -p /opt/bin</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/setup-network-environment</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/setup-network-environment</span>
+        <span class="no">ExecStart=/opt/bin/setup-network-environment</span>
+        <span class="no">RemainAfterExit=yes</span>
+        <span class="no">Type=oneshot</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-proxy.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes Proxy</span>
+        <span class="no">Documentation=https://github.com/kubernetes/kubernetes</span>
+        <span class="no">Requires=setup-network-environment.service</span>
+        <span class="no">After=setup-network-environment.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kube-proxy</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kube-proxy</span>
+        <span class="no">ExecStart=/opt/bin/kube-proxy \</span>
+        <span class="no">--etcd-servers=http://&lt;MASTER_SERVER_IP&gt;:4001 \</span>
+        <span class="no">--logtostderr=true</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">kube-kubelet.service</span>
+      <span class="s">command</span><span class="pi">:</span> <span class="s">start</span>
+      <span class="s">content</span><span class="pi">:</span> <span class="pi">|</span>
+        <span class="no">[Unit]</span>
+        <span class="no">Description=Kubernetes Kubelet</span>
+        <span class="no">Documentation=https://github.com/kubernetes/kubernetes</span>
+        <span class="no">Requires=setup-network-environment.service</span>
+        <span class="no">After=setup-network-environment.service</span>
+        <span class="no">[Service]</span>
+        <span class="no">EnvironmentFile=/etc/network-environment</span>
+        <span class="no">ExecStartPre=/usr/bin/wget -N -P /opt/bin http://&lt;PXE_SERVER_IP&gt;/kubelet</span>
+        <span class="no">ExecStartPre=/usr/bin/chmod +x /opt/bin/kubelet</span>
+        <span class="no">ExecStart=/opt/bin/kubelet \</span>
+        <span class="no">--address=0.0.0.0 \</span>
+        <span class="no">--port=10250 \</span>
+        <span class="no">--hostname-override=${DEFAULT_IPV4} \</span>
+        <span class="no">--api-servers=&lt;MASTER_SERVER_IP&gt;:8080 \</span>
+        <span class="no">--healthz-bind-address=0.0.0.0 \</span>
+        <span class="no">--healthz-port=10248 \</span>
+        <span class="no">--logtostderr=true</span>
+        <span class="no">Restart=always</span>
+        <span class="no">RestartSec=10</span>
+  <span class="s">update</span><span class="pi">:</span>
+    <span class="s">group</span><span class="pi">:</span> <span class="s">stable</span>
+    <span class="s">reboot-strategy</span><span class="pi">:</span> <span class="s">off</span>
+<span class="s">ssh_authorized_keys</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">ssh-rsa AAAAB3NzaC1yc2EAAAAD...</span>
+</code></pre>
+</div>
+
+<h2 id="new-pxelinuxcfg-file">New pxelinux.cfg file</h2>
+
+<p>Create a pxelinux target file for a <em>slave</em> node: <code class="highlighter-rouge">vi /tftpboot/pxelinux.cfg/coreos-node-slave</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">default</span> <span class="n">coreos</span>
+<span class="n">prompt</span> <span class="m">1</span>
+<span class="n">timeout</span> <span class="m">15</span>
+
+<span class="n">display</span> <span class="n">boot</span>.<span class="n">msg</span>
+
+<span class="n">label</span> <span class="n">coreos</span>
+    <span class="n">menu</span> <span class="n">default</span>
+    <span class="n">kernel</span> <span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe</span>.<span class="n">vmlinuz</span>
+    <span class="n">append</span> <span class="n">initrd</span>=<span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe_image</span>.<span class="n">cpio</span>.<span class="n">gz</span> <span class="n">cloud</span>-<span class="n">config</span>-<span class="n">url</span>=<span class="n">http</span>://&lt;<span class="n">pxe</span>-<span class="n">host</span>-<span class="n">ip</span>&gt;/<span class="n">coreos</span>/<span class="n">pxe</span>-<span class="n">cloud</span>-<span class="n">config</span>-<span class="n">slave</span>.<span class="n">yml</span> <span class="n">console</span>=<span class="n">tty0</span> <span class="n">console</span>=<span class="n">ttyS0</span> <span class="n">coreos</span>.<span class="n">autologin</span>=<span class="n">tty1</span> <span class="n">coreos</span>.<span class="n">autologin</span>=<span class="n">ttyS0</span>
+</code></pre>
+</div>
+
+<p>And one for the <em>master</em> node: <code class="highlighter-rouge">vi /tftpboot/pxelinux.cfg/coreos-node-master</code></p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="n">default</span> <span class="n">coreos</span>
+<span class="n">prompt</span> <span class="m">1</span>
+<span class="n">timeout</span> <span class="m">15</span>
+
+<span class="n">display</span> <span class="n">boot</span>.<span class="n">msg</span>
+
+<span class="n">label</span> <span class="n">coreos</span>
+    <span class="n">menu</span> <span class="n">default</span>
+    <span class="n">kernel</span> <span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe</span>.<span class="n">vmlinuz</span>
+    <span class="n">append</span> <span class="n">initrd</span>=<span class="n">images</span>/<span class="n">coreos</span>/<span class="n">coreos_production_pxe_image</span>.<span class="n">cpio</span>.<span class="n">gz</span> <span class="n">cloud</span>-<span class="n">config</span>-<span class="n">url</span>=<span class="n">http</span>://&lt;<span class="n">pxe</span>-<span class="n">host</span>-<span class="n">ip</span>&gt;/<span class="n">coreos</span>/<span class="n">pxe</span>-<span class="n">cloud</span>-<span class="n">config</span>-<span class="n">master</span>.<span class="n">yml</span> <span class="n">console</span>=<span class="n">tty0</span> <span class="n">console</span>=<span class="n">ttyS0</span> <span class="n">coreos</span>.<span class="n">autologin</span>=<span class="n">tty1</span> <span class="n">coreos</span>.<span class="n">autologin</span>=<span class="n">ttyS0</span>
+</code></pre>
+</div>
+
+<h2 id="specify-the-pxelinux-targets">Specify the pxelinux targets</h2>
+
+<p>Now that we have our new targets setup for master and slave we want to configure the specific hosts to those targets. We will do this by using the pxelinux mechanism of setting a specific MAC addresses to a specific pxelinux.cfg file.</p>
+
+<p>Refer to the MAC address table in the beginning of this guide. Documentation for more details can be found <a href="http://www.syslinux.org/wiki/index.php/PXELINUX">here</a>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nb">cd</span> /tftpboot/pxelinux.cfg
+ln -s coreos-node-master 01-d0-00-67-13-0d-00
+ln -s coreos-node-slave 01-d0-00-67-13-0d-01
+ln -s coreos-node-slave 01-d0-00-67-13-0d-02
+</code></pre>
+</div>
+
+<p>Reboot these servers to get the images PXEd and ready for running containers!</p>
+
+<h2 id="creating-test-pod">Creating test pod</h2>
+
+<p>Now that the CoreOS with Kubernetes installed is up and running lets spin up some Kubernetes pods to demonstrate the system.</p>
+
+<p>See <a href="/docs/user-guide/simple-nginx">a simple nginx example</a> to try out your new cluster.</p>
+
+<p>For more complete applications, please look in the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/">examples directory</a>.</p>
+
+<h2 id="helping-commands-for-debugging">Helping commands for debugging</h2>
+
+<p>List all keys in etcd:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>etcdctl ls --recursive
+</code></pre>
+</div>
+
+<p>List fleet machines</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>fleetctl list-machines
+</code></pre>
+</div>
+
+<p>Check system status of services on master:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>systemctl status kube-apiserver
+systemctl status kube-controller-manager
+systemctl status kube-scheduler
+systemctl status kube-register
+</code></pre>
+</div>
+
+<p>Check system status of services on a node:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>systemctl status kube-kubelet
+systemctl status docker.service
+</code></pre>
+</div>
+
+<p>List Kubernetes</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>kubectl get pods
+kubectl get nodes
+</code></pre>
+</div>
+
+<p>Kill all pods:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="k">for </span>i <span class="k">in</span> <span class="sb">`</span>kubectl get pods | awk <span class="s1">'{print $1}'</span><span class="sb">`</span>; <span class="k">do </span>kubectl stop pod <span class="nv">$i</span>; <span class="k">done</span>
+</code></pre>
+</div>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/getting-started-guides/coreos/bare_metal_offline.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/getting-started-guides/coreos/bare_metal_offline/",
+        "title" : "Offline",
+        "permalink" : "http://kubernetes.github.io/docs/getting-started-guides/coreos/bare_metal_offline/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

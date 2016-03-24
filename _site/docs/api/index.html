@@ -1,0 +1,411 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Kubernetes API Overview</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/api.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Kubernetes API Overview</h1>
+		<p>Primary system and API concepts are documented in the <a href="/docs/user-guide/">User guide</a>.</p>
+
+<p>Overall API conventions are described in the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api-conventions.md">API conventions doc</a>.</p>
+
+<p>Complete API details are documented via <a href="http://swagger.io/">Swagger</a>. The Kubernetes apiserver (aka “master”) exports an API that can be used to retrieve the <a href="https://github.com/swagger-api/swagger-spec/tree/master/schemas/v1.2">Swagger spec</a> for the Kubernetes API, by default at <code class="highlighter-rouge">/swaggerapi</code>, and a UI you can use to browse the API documentation at <code class="highlighter-rouge">/swagger-ui</code>. We also periodically update a <a href="http://kubernetes.io/third_party/swagger-ui/">statically generated UI</a>.</p>
+
+<p>Remote access to the API is discussed in the <a href="/docs/admin/accessing-the-api">access doc</a>.</p>
+
+<p>The Kubernetes API also serves as the foundation for the declarative configuration schema for the system. The <a href="/docs/user-guide/kubectl/kubectl">Kubectl</a> command-line tool can be used to create, update, delete, and get API objects.</p>
+
+<p>Kubernetes also stores its serialized state (currently in <a href="https://coreos.com/docs/distributed-configuration/getting-started-with-etcd/">etcd</a>) in terms of the API resources.</p>
+
+<p>Kubernetes itself is decomposed into multiple components, which interact through its API.</p>
+
+<h2 id="api-changes">API changes</h2>
+
+<p>In our experience, any system that is successful needs to grow and change as new use cases emerge or existing ones change. Therefore, we expect the Kubernetes API to continuously change and grow. However, we intend to not break compatibility with existing clients, for an extended period of time. In general, new API resources and new resource fields can be expected to be added frequently. Elimination of resources or fields will require following a deprecation process. The precise deprecation policy for eliminating features is TBD, but once we reach our 1.0 milestone, there will be a specific policy.</p>
+
+<p>What constitutes a compatible change and how to change the API are detailed by the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api_changes.md">API change document</a>.</p>
+
+<h2 id="api-versioning">API versioning</h2>
+
+<p>To make it easier to eliminate fields or restructure resource representations, Kubernetes supports
+multiple API versions, each at a different API path, such as <code class="highlighter-rouge">/api/v1</code> or
+<code class="highlighter-rouge">/apis/extensions/v1beta1</code>.</p>
+
+<p>We chose to version at the API level rather than at the resource or field level to ensure that the API presents a clear, consistent view of system resources and behavior, and to enable controlling access to end-of-lifed and/or experimental APIs.</p>
+
+<p>Note that API versioning and Software versioning are only indirectly related.  The <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/versioning.md">API and release
+versioning proposal</a> describes the relationship between API versioning and
+software versioning.</p>
+
+<p>Different API versions imply different levels of stability and support.  The criteria for each level are described
+in more detail in the <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api_changes.md#alpha-beta-and-stable-versions">API Changes documentation</a>.  They are summarized here:</p>
+
+<ul>
+  <li>Alpha level:
+    <ul>
+      <li>The version names contain <code class="highlighter-rouge">alpha</code> (e.g. <code class="highlighter-rouge">v1alpha1</code>).</li>
+      <li>May be buggy.  Enabling the feature may expose bugs.  Disabled by default.</li>
+      <li>Support for feature may be dropped at any time without notice.</li>
+      <li>The API may change in incompatible ways in a later software release without notice.</li>
+      <li>Recommended for use only in short-lived testing clusters, due to increased risk of bugs and lack of long-term support.</li>
+    </ul>
+  </li>
+  <li>Beta level:
+    <ul>
+      <li>The version names contain <code class="highlighter-rouge">beta</code> (e.g. <code class="highlighter-rouge">v2beta3</code>).</li>
+      <li>Code is well tested.  Enabling the feature is considered safe.  Enabled by default.</li>
+      <li>Support for the overall feature will not be dropped, though details may change.</li>
+      <li>The schema and/or semantics of objects may change in incompatible ways in a subsequent beta or stable release.  When this happens,
+we will provide instructions for migrating to the next version.  This may require deleting, editing, and re-creating
+API objects.  The editing process may require some thought.   This may require downtime for appplications that rely on the feature.</li>
+      <li>Recommended for only non-business-critical uses because of potential for incompatible changes in subsequent releases.  If you have
+multiple clusters which can be upgraded independently, you may be able to relax this restriction.</li>
+      <li><strong>Please do try our beta features and give feedback on them!  Once they exit beta, it may not be practical for us to make more changes.</strong></li>
+    </ul>
+  </li>
+  <li>Stable level:
+    <ul>
+      <li>The version name is <code class="highlighter-rouge">vX</code> where <code class="highlighter-rouge">X</code> is an integer.</li>
+      <li>Stable versions of features will appear in released software for many subsequent versions.</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="api-groups">API groups</h2>
+
+<p>To make it easier to extend the Kubernetes API, we are in the process of implementing <a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/proposals/api-group.md"><em>API
+groups</em></a>.  These are simply different interfaces to read and/or modify the
+same underlying resources.  The API group is specified in a REST path and in the <code class="highlighter-rouge">apiVersion</code> field
+of a serialized object.</p>
+
+<p>Currently there are two API groups in use:</p>
+
+<ol>
+  <li>the “core” group, which is at REST path <code class="highlighter-rouge">/api/v1</code> and is not specified as part of the <code class="highlighter-rouge">apiVersion</code> field, e.g.
+<code class="highlighter-rouge">apiVersion: v1</code>.</li>
+  <li>the “extensions” group, which is at REST path <code class="highlighter-rouge">/apis/extensions/$VERSION</code>, and which uses
+  <code class="highlighter-rouge">apiVersion: extensions/$VERSION</code> (e.g. currently <code class="highlighter-rouge">apiVersion: extensions/v1beta1</code>).</li>
+</ol>
+
+<p>In the future we expect that there will be more API groups, all at REST path <code class="highlighter-rouge">/apis/$API_GROUP</code> and
+using <code class="highlighter-rouge">apiVersion: $API_GROUP/$VERSION</code>.  We expect that there will be a way for (third parties to
+create their own API groups](https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/extending-api.md), and to avoid naming collisions.</p>
+
+<h2 id="enabling-resources-in-the-extensions-group">Enabling resources in the extensions group</h2>
+
+<p>Jobs, Ingress and HorizontalPodAutoscalers are enabled by default.
+Other extensions resources can be enabled by setting runtime-config on
+apiserver. runtime-config accepts comma separated values. For ex: to enable deployments and disable jobs, set
+<code class="highlighter-rouge">--runtime-config=extensions/v1beta1/deployments=true,extensions/v1beta1/jobs=false</code></p>
+
+<h2 id="v1beta1-v1beta2-and-v1beta3-are-deprecated-please-move-to-v1-asap">v1beta1, v1beta2, and v1beta3 are deprecated; please move to v1 ASAP</h2>
+
+<p>As of June 4, 2015, the Kubernetes v1 API has been enabled by default. The v1beta1 and v1beta2 APIs were deleted on June 1, 2015. v1beta3 is planned to be deleted on July 6, 2015.</p>
+
+<h3 id="v1-conversion-tips-from-v1beta3">v1 conversion tips (from v1beta3)</h3>
+
+<p>We’re working to convert all documentation and examples to v1. A simple <a href="/docs/admin/cluster-management/#switching-your-config-files-to-a-new-api-version">API conversion tool</a> has been written to simplify the translation process. Use <code class="highlighter-rouge">kubectl create --validate</code> in order to validate your json or yaml against our Swagger spec.</p>
+
+<p>Changes to services are the most significant difference between v1beta3 and v1.</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge">service.spec.portalIP</code> property is renamed to <code class="highlighter-rouge">service.spec.clusterIP</code>.</li>
+  <li>The <code class="highlighter-rouge">service.spec.createExternalLoadBalancer</code> property is removed. Specify <code class="highlighter-rouge">service.spec.type: "LoadBalancer"</code> to create an external load balancer instead.</li>
+  <li>The <code class="highlighter-rouge">service.spec.publicIPs</code> property is deprecated and now called <code class="highlighter-rouge">service.spec.deprecatedPublicIPs</code>. This property will be removed entirely when v1beta3 is removed. The vast majority of users of this field were using it to expose services on ports on the node. Those users should specify <code class="highlighter-rouge">service.spec.type: "NodePort"</code> instead. Read <a href="/docs/user-guide/services/#external-services">External Services</a> for more info. If this is not sufficient for your use case, please file an issue or contact @thockin.</li>
+</ul>
+
+<p>Some other difference between v1beta3 and v1:</p>
+
+<ul>
+  <li>The <code class="highlighter-rouge">pod.spec.containers[*].privileged</code> and <code class="highlighter-rouge">pod.spec.containers[*].capabilities</code> properties are now nested under the <code class="highlighter-rouge">pod.spec.containers[*].securityContext</code> property. See <a href="/docs/user-guide/security-context">Security Contexts</a>.</li>
+  <li>The <code class="highlighter-rouge">pod.spec.host</code> property is renamed to <code class="highlighter-rouge">pod.spec.nodeName</code>.</li>
+  <li>The <code class="highlighter-rouge">endpoints.subsets[*].addresses.IP</code> property is renamed to <code class="highlighter-rouge">endpoints.subsets[*].addresses.ip</code>.</li>
+  <li>The <code class="highlighter-rouge">pod.status.containerStatuses[*].state.termination</code> and <code class="highlighter-rouge">pod.status.containerStatuses[*].lastState.termination</code> properties are renamed to <code class="highlighter-rouge">pod.status.containerStatuses[*].state.terminated</code> and <code class="highlighter-rouge">pod.status.containerStatuses[*].lastState.terminated</code> respectively.</li>
+  <li>The <code class="highlighter-rouge">pod.status.Condition</code> property is renamed to <code class="highlighter-rouge">pod.status.conditions</code>.</li>
+  <li>The <code class="highlighter-rouge">status.details.id</code> property is renamed to <code class="highlighter-rouge">status.details.name</code>.</li>
+</ul>
+
+<h3 id="v1beta3-conversion-tips-from-v1beta12">v1beta3 conversion tips (from v1beta1/2)</h3>
+
+<p>Some important differences between v1beta1/2 and v1beta3:</p>
+
+<ul>
+  <li>The resource <code class="highlighter-rouge">id</code> is now called <code class="highlighter-rouge">name</code>.</li>
+  <li><code class="highlighter-rouge">name</code>, <code class="highlighter-rouge">labels</code>, <code class="highlighter-rouge">annotations</code>, and other metadata are now nested in a map called <code class="highlighter-rouge">metadata</code></li>
+  <li><code class="highlighter-rouge">desiredState</code> is now called <code class="highlighter-rouge">spec</code>, and <code class="highlighter-rouge">currentState</code> is now called <code class="highlighter-rouge">status</code></li>
+  <li><code class="highlighter-rouge">/minions</code> has been moved to <code class="highlighter-rouge">/nodes</code>, and the resource has kind <code class="highlighter-rouge">Node</code></li>
+  <li>The namespace is required (for all namespaced resources) and has moved from a URL parameter to the path: <code class="highlighter-rouge">/api/v1beta3/namespaces/{namespace}/{resource_collection}/{resource_name}</code>. If you were not using a namespace before, use <code class="highlighter-rouge">default</code> here.</li>
+  <li>The names of all resource collections are now lower cased - instead of <code class="highlighter-rouge">replicationControllers</code>, use <code class="highlighter-rouge">replicationcontrollers</code>.</li>
+  <li>To watch for changes to a resource, open an HTTP or Websocket connection to the collection query and provide the <code class="highlighter-rouge">?watch=true</code> query parameter along with the desired <code class="highlighter-rouge">resourceVersion</code> parameter to watch from.</li>
+  <li>The <code class="highlighter-rouge">labels</code> query parameter has been renamed to <code class="highlighter-rouge">labelSelector</code>.</li>
+  <li>The <code class="highlighter-rouge">fields</code> query parameter has been renamed to <code class="highlighter-rouge">fieldSelector</code>.</li>
+  <li>The container <code class="highlighter-rouge">entrypoint</code> has been renamed to <code class="highlighter-rouge">command</code>, and <code class="highlighter-rouge">command</code> has been renamed to <code class="highlighter-rouge">args</code>.</li>
+  <li>Container, volume, and node resources are expressed as nested maps (e.g., <code class="highlighter-rouge">resources{cpu:1}</code>) rather than as individual fields, and resource values support <a href="/docs/user-guide/compute-resources/#specifying-resource-quantities">scaling suffixes</a> rather than fixed scales (e.g., milli-cores).</li>
+  <li>Restart policy is represented simply as a string (e.g., <code class="highlighter-rouge">"Always"</code>) rather than as a nested map (<code class="highlighter-rouge">always{}</code>).</li>
+  <li>Pull policies changed from <code class="highlighter-rouge">PullAlways</code>, <code class="highlighter-rouge">PullNever</code>, and <code class="highlighter-rouge">PullIfNotPresent</code> to <code class="highlighter-rouge">Always</code>, <code class="highlighter-rouge">Never</code>, and <code class="highlighter-rouge">IfNotPresent</code>.</li>
+  <li>The volume <code class="highlighter-rouge">source</code> is inlined into <code class="highlighter-rouge">volume</code> rather than nested.</li>
+  <li>Host volumes have been changed from <code class="highlighter-rouge">hostDir</code> to <code class="highlighter-rouge">hostPath</code> to better reflect that they can be files or directories.</li>
+</ul>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/api.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/api/",
+        "title" : "Kubernetes API Overview",
+        "permalink" : "http://kubernetes.github.io/docs/api/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

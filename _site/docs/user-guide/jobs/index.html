@@ -1,0 +1,495 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Jobs</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/jobs.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Jobs</h1>
+		<ul id="markdown-toc">
+  <li><a href="#what-is-a-job" id="markdown-toc-what-is-a-job">What is a <em>job</em>?</a></li>
+  <li><a href="#running-an-example-job" id="markdown-toc-running-an-example-job">Running an example Job</a></li>
+  <li><a href="#writing-a-job-spec" id="markdown-toc-writing-a-job-spec">Writing a Job Spec</a>    <ul>
+      <li><a href="#pod-template" id="markdown-toc-pod-template">Pod Template</a></li>
+      <li><a href="#pod-selector" id="markdown-toc-pod-selector">Pod Selector</a></li>
+      <li><a href="#multiple-completions" id="markdown-toc-multiple-completions">Multiple Completions</a></li>
+      <li><a href="#parallelism" id="markdown-toc-parallelism">Parallelism</a></li>
+    </ul>
+  </li>
+  <li><a href="#handling-pod-and-container-failures" id="markdown-toc-handling-pod-and-container-failures">Handling Pod and Container Failures</a></li>
+  <li><a href="#alternatives-to-job" id="markdown-toc-alternatives-to-job">Alternatives to Job</a>    <ul>
+      <li><a href="#bare-pods" id="markdown-toc-bare-pods">Bare Pods</a></li>
+      <li><a href="#replication-controller" id="markdown-toc-replication-controller">Replication Controller</a></li>
+    </ul>
+  </li>
+  <li><a href="#caveats" id="markdown-toc-caveats">Caveats</a></li>
+  <li><a href="#future-work" id="markdown-toc-future-work">Future work</a></li>
+</ul>
+
+<h2 id="what-is-a-job">What is a <em>job</em>?</h2>
+
+<p>A <em>job</em> creates one or more pods and ensures that a specified number of them successfully terminate.
+As pods successfully complete, the <em>job</em> tracks the successful completions.  When a specified number
+of successful completions is reached, the job itself is complete.  Deleting a Job will cleanup the
+pods it created.</p>
+
+<p>A simple case is to create 1 Job object in order to reliably run one Pod to completion.
+A Job can also be used to run multiple pods in parallel.</p>
+
+<h2 id="running-an-example-job">Running an example Job</h2>
+
+<p>Here is an example Job config.  It computes π to 2000 places and prints it out.
+It takes around 10s to complete.</p>
+
+<p> </p>
+<table class="includecode"><thead><tr><th><a href="https://github.com/kubernetes/kubernetes.github.io/blob/master/docs/user-guide/job.yaml"><code>job.yaml</code></a></th></tr></thead>
+<tr><td>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">extensions/v1beta1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Job</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">pi</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">selector</span><span class="pi">:</span>
+    <span class="s">matchLabels</span><span class="pi">:</span>
+      <span class="s">app</span><span class="pi">:</span> <span class="s">pi</span>
+  <span class="s">template</span><span class="pi">:</span>
+    <span class="s">metadata</span><span class="pi">:</span>
+      <span class="s">name</span><span class="pi">:</span> <span class="s">pi</span>
+      <span class="s">labels</span><span class="pi">:</span>
+        <span class="s">app</span><span class="pi">:</span> <span class="s">pi</span>
+    <span class="s">spec</span><span class="pi">:</span>
+      <span class="s">containers</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">pi</span>
+        <span class="s">image</span><span class="pi">:</span> <span class="s">perl</span>
+        <span class="s">command</span><span class="pi">:</span> <span class="pi">[</span><span class="s2">"</span><span class="s">perl"</span><span class="pi">,</span>  <span class="s2">"</span><span class="s">-Mbignum=bpi"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">-wle"</span><span class="pi">,</span> <span class="s2">"</span><span class="s">print</span><span class="nv"> </span><span class="s">bpi(2000)"</span><span class="pi">]</span>
+      <span class="s">restartPolicy</span><span class="pi">:</span> <span class="s">Never</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<p>Run the example job by downloading the example file and then running this command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f ./job.yaml
+<span class="nb">jobs</span>/pi
+</code></pre>
+</div>
+
+<p>Check on the status of the job using this command:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl describe <span class="nb">jobs</span>/pi
+Name:		pi
+Namespace:	default
+Image<span class="o">(</span>s<span class="o">)</span>:	perl
+Selector:	<span class="nv">app</span><span class="o">=</span>pi
+Parallelism:	2
+Completions:	1
+Labels:		&lt;none&gt;
+Pods Statuses:	1 Running / 0 Succeeded / 0 Failed
+Events:
+  FirstSeen	LastSeen	Count	From	SubobjectPath	Reason			Message
+  1m		1m		1	<span class="o">{</span>job <span class="o">}</span>			SuccessfulCreate	Created pod: pi-z548a
+</code></pre>
+</div>
+
+<p>To view completed pods of a job, use <code class="highlighter-rouge">kubectl get pods --show-all</code>.  The <code class="highlighter-rouge">--show-all</code> will show completed pods too.</p>
+
+<p>To list all the pods that belong to job in a machine readable form, you can use a command like this:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span><span class="nv">pods</span><span class="o">=</span><span class="k">$(</span>kubectl get pods --selector<span class="o">=</span><span class="nv">app</span><span class="o">=</span>pi --output<span class="o">=</span><span class="nv">jsonpath</span><span class="o">={</span>.items..metadata.name<span class="o">}</span><span class="k">)</span>
+<span class="nb">echo</span> <span class="nv">$pods</span>
+pi-aiw0a
+</code></pre>
+</div>
+
+<p>Here, the selector is the same as the selector for the job.  The <code class="highlighter-rouge">--output=jsonpath</code> option specifies an expression
+that just gets the name from each pod in the returned list.</p>
+
+<p>View the standard output of one of the pods:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl logs pi-aiw0a
+3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679821480865132823066470938446095505822317253594081284811174502841027019385211055596446229489549303819644288109756659334461284756482337867831652712019091456485669234603486104543266482133936072602491412737245870066063155881748815209209628292540917153643678925903600113305305488204665213841469519415116094330572703657595919530921861173819326117931051185480744623799627495673518857527248912279381830119491298336733624406566430860213949463952247371907021798609437027705392171762931767523846748184676694051320005681271452635608277857713427577896091736371787214684409012249534301465495853710507922796892589235420199561121290219608640344181598136297747713099605187072113499999983729780499510597317328160963185950244594553469083026425223082533446850352619311881710100031378387528865875332083814206171776691473035982534904287554687311595628638823537875937519577818577805321712268066130019278766111959092164201989380952572010654858632788659361533818279682303019520353018529689957736225994138912497217752834791315155748572424541506959508295331168617278558890750983817546374649393192550604009277016711390098488240128583616035637076601047101819429555961989467678374494482553797747268471040475346462080466842590694912933136770289891521047521620569660240580381501935112533824300355876402474964732639141992726042699227967823547816360093417216412199245863150302861829745557067498385054945885869269956909272107975093029553211653449872027559602364806654991198818347977535663698074265425278625518184175746728909777727938000816470600161452491921732172147723501414419735685481613611573525521334757418494684385233239073941433345477624168625189835694855620992192221842725502542568876717904946016534668049886272327917860857843838279679766814541009538837863609506800642251252051173929848960841284886269456042419652850222106611863067442786220391949450471237137869609563643719172874677646575739624138908658326459958133904780275901
+</code></pre>
+</div>
+
+<h2 id="writing-a-job-spec">Writing a Job Spec</h2>
+
+<p>As with all other Kubernetes config, a Job needs <code class="highlighter-rouge">apiVersion</code>, <code class="highlighter-rouge">kind</code>, and <code class="highlighter-rouge">metadata</code> fields.  For
+general information about working with config files, see <a href="/docs/user-guide/simple-yaml">here</a>,
+<a href="/docs/user-guide/configuring-containers">here</a>, and <a href="working-with-resources">here</a>.</p>
+
+<p>A Job also needs a <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api-conventions.md#spec-and-status"><code class="highlighter-rouge">.spec</code> section</a>.</p>
+
+<h3 id="pod-template">Pod Template</h3>
+
+<p>The <code class="highlighter-rouge">.spec.template</code> is the only required field of the <code class="highlighter-rouge">.spec</code>.</p>
+
+<p>The <code class="highlighter-rouge">.spec.template</code> is a <a href="/docs/user-guide/replication-controller/#pod-template">pod template</a>.  It has exactly
+the same schema as a <a href="/docs/user-guide/pods">pod</a>, except it is nested and does not have an <code class="highlighter-rouge">apiVersion</code> or
+<code class="highlighter-rouge">kind</code>.</p>
+
+<p>In addition to required fields for a Pod, a pod template in a job must specify appropriate
+lables (see <a href="#pod-selector">pod selector</a> and an appropriate restart policy.</p>
+
+<p>Only a <a href="/docs/user-guide/pod-states"><code class="highlighter-rouge">RestartPolicy</code></a> equal to <code class="highlighter-rouge">Never</code> or <code class="highlighter-rouge">OnFailure</code> are allowed.</p>
+
+<h3 id="pod-selector">Pod Selector</h3>
+
+<p>The <code class="highlighter-rouge">.spec.selector</code> field is a label query over a set of pods.</p>
+
+<p>The <code class="highlighter-rouge">spec.selector</code> is an object consisting of two fields:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">matchLabels</code> - works the same as the <code class="highlighter-rouge">.spec.selector</code> of a <a href="/docs/user-guide/replication-controller">ReplicationController</a></li>
+  <li><code class="highlighter-rouge">matchExpressions</code> - allows to build more sophisticated selectors by specyfing key,
+list of values and an operator that relates the key and values.</li>
+</ul>
+
+<p>When the two are specified the result is ANDed.</p>
+
+<p>If <code class="highlighter-rouge">.spec.selector</code> is unspecified, <code class="highlighter-rouge">.spec.selector.matchLabels</code> will be defaulted to
+<code class="highlighter-rouge">.spec.template.metadata.labels</code>.</p>
+
+<p>Also you should not normally create any pods whose labels match this selector, either directly,
+via another Job, or via another controller such as ReplicationController.  Otherwise, the Job will
+think that those pods were created by it.  Kubernetes will not stop you from doing this.</p>
+
+<h3 id="multiple-completions">Multiple Completions</h3>
+
+<p>By default, a Job is complete when one Pod runs to successful completion.  You can also specify that
+this needs to happen multiple times by specifying <code class="highlighter-rouge">.spec.completions</code> with a value greater than 1.
+When multiple completions are requested, each Pod created by the Job controller has an identical
+<a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/docs/devel/api-conventions.md#spec-and-status"><code class="highlighter-rouge">spec</code></a>.  In particular, all pods will have
+the same command line and the same image, the same volumes, and mostly the same environment
+variables.  It is up to the user to arrange for the pods to do work on different things.  For
+example, the pods might all access a shared work queue service to acquire work units.</p>
+
+<p>To create multiple pods which are similar, but have slightly different arguments, environment
+variables or images, use multiple Jobs.</p>
+
+<h3 id="parallelism">Parallelism</h3>
+
+<p>You can suggest how many pods should run concurrently by setting <code class="highlighter-rouge">.spec.parallelism</code> to the number
+of pods you would like to have running concurrently.  This number is a suggestion. The number
+running concurrently may be lower or higher for a variety of reasons.  For example, it may be lower
+if the number of remaining completions is less, or as the controller is ramping up, or if it is
+throttling the job due to excessive failures.  It may be higher for example if a pod is gracefully
+shutdown, and the replacement starts early.</p>
+
+<p>If you do not specify <code class="highlighter-rouge">.spec.parallelism</code>, then it defaults to <code class="highlighter-rouge">.spec.completions</code>.</p>
+
+<h2 id="handling-pod-and-container-failures">Handling Pod and Container Failures</h2>
+
+<p>A Container in a Pod may fail for a number of reasons, such as because the process in it exited with
+a non-zero exit code, or the Container was killed for exceeding a memory limit, etc.  If this
+happens, and the <code class="highlighter-rouge">.spec.template.containers[].restartPolicy = "OnFailure"</code>, then the Pod stays
+on the node, but the Container is re-run.  Therefore, your program needs to handle the the case when it is
+restarted locally, or else specify <code class="highlighter-rouge">.spec.template.containers[].restartPolicy = "Never"</code>.
+See <a href="/docs/user-guide/pod-states">pods-states</a> for more information on <code class="highlighter-rouge">restartPolicy</code>.</p>
+
+<p>An entire Pod can also fail, for a number of reasons, such as when the pod is kicked off the node
+(node is upgraded, rebooted, delelted, etc.), or if a container of the Pod fails and the
+<code class="highlighter-rouge">.spec.template.containers[].restartPolicy = "Never"</code>.  When a Pod fails, then the Job controller
+starts a new Pod.  Therefore, your program needs to handle the case when it is restarted in a new
+pod.  In particular, it needs to handle temporary files, locks, incomplete output and the like
+caused by previous runs.</p>
+
+<p>Note that even if you specify <code class="highlighter-rouge">.spec.parallelism = 1</code> and <code class="highlighter-rouge">.spec.completions = 1</code> and
+<code class="highlighter-rouge">.spec.template.containers[].restartPolicy = "Never"</code>, the same program may
+sometimes be started twice.</p>
+
+<p>If you do specify <code class="highlighter-rouge">.spec.parallelism</code> and <code class="highlighter-rouge">.spec.completions</code> both greater than 1, then there may be
+multiple pods running at once.  Therefore, your pods must also be tolerant of concurrency.</p>
+
+<h2 id="alternatives-to-job">Alternatives to Job</h2>
+
+<h3 id="bare-pods">Bare Pods</h3>
+
+<p>When the node that a pod is running on reboots or fails, the pod is terminated
+and will not be restarted.  However, a Job will create new pods to replace terminated ones.
+For this reason, we recommend that you use a job rather than a bare pod, even if your application
+requires only a single pod.</p>
+
+<h3 id="replication-controller">Replication Controller</h3>
+
+<p>Jobs are complementary to <a href="/docs/user-guide/replication-controller">Replication Controllers</a>.
+A Replication Controller manages pods which are not expected to terminate (e.g. web servers), and a Job
+manages pods that are expected to terminate (e.g. batch jobs).</p>
+
+<p>As discussed in <a href="/docs/user-guide/pod-states">life of a pod</a>, <code class="highlighter-rouge">Job</code> is <em>only</em> appropriate for pods with
+<code class="highlighter-rouge">RestartPolicy</code> equal to <code class="highlighter-rouge">OnFailure</code> or <code class="highlighter-rouge">Never</code>.  (Note: If <code class="highlighter-rouge">RestartPolicy</code> is not set, the default
+value is <code class="highlighter-rouge">Always</code>.)</p>
+
+<h2 id="caveats">Caveats</h2>
+
+<p>Job objects are in the <a href="/docs/api/#api-groups"><code class="highlighter-rouge">extensions</code> API Group</a>.</p>
+
+<p>Job objects have <a href="/docs/api/">API version <code class="highlighter-rouge">v1beta1</code></a>#api-versioning).  Beta objects may
+undergo changes to their schema and/or semantics in future software releases, but
+similar functionality will be supported.</p>
+
+<h2 id="future-work">Future work</h2>
+
+<p>Support for creating Jobs at specified times/dates (i.e. cron) is expected in the next minor
+release.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/jobs.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/jobs/",
+        "title" : "Jobs",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/jobs/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

@@ -1,0 +1,833 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Services</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Reference Documentation</h1>
+	<h5>Design docs, concept definitions, and references for APIs and CLIs.</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Reference Documentation" href="/docs/reference/"></a>
+<div class="item" data-title="Kubernetes API">
+  <div class="container">
+    <a class="item" data-title="Kubernetes API Overview" href="/docs/api/"></a>
+<div class="item" data-title="Accessing the API">
+  <div class="container">
+    <a class="item" data-title="Overview" href="/docs/admin/accessing-the-api/"></a>
+    <a class="item" data-title="Authenticating" href="/docs/admin/authentication/"></a>
+    <a class="item" data-title="Using Authorization Plugins" href="/docs/admin/authorization/"></a>
+    <a class="item" data-title="Using Admission Controllers" href="/docs/admin/admission-controllers/"></a>
+    <a class="item" data-title="Managing Service Accounts" href="/docs/admin/service-accounts-admin/"></a>
+  </div>
+</div>
+    <a class="item" data-title="Kubernetes API Operations" href="/docs/api-reference/v1/operations/"></a>
+    <a class="item" data-title="Kubernetes API Definitions" href="/docs/api-reference/v1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="Extensions API">
+  <div class="container">
+    <a class="item" data-title="Extensions API Operations" href="/docs/api-reference/extensions/v1beta1/operations/"></a>
+    <a class="item" data-title="Extensions API Definitions" href="/docs/api-reference/extensions/v1beta1/definitions/"></a>
+  </div>
+</div>
+<div class="item" data-title="kubectl CLI">
+  <div class="container">
+    <a class="item" data-title="kubectl Overview" href="/docs/user-guide/kubectl-overview/"></a>
+    <a class="item" data-title="kubectl for Docker Users" href="/docs/user-guide/docker-cli-to-kubectl/"></a>
+    <a class="item" data-title="JSONpath Support" href="/docs/user-guide/jsonpath/"></a>
+<div class="item" data-title="kubectl Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl" href="/docs/user-guide/kubectl/kubectl/"></a>
+    <a class="item" data-title="kubectl annotate" href="/docs/user-guide/kubectl/kubectl_annotate/"></a>
+    <a class="item" data-title="kubectl api-versions" href="/docs/user-guide/kubectl/kubectl_api-versions/"></a>
+    <a class="item" data-title="kubectl apply" href="/docs/user-guide/kubectl/kubectl_apply/"></a>
+    <a class="item" data-title="kubectl attach" href="/docs/user-guide/kubectl/kubectl_attach/"></a>
+    <a class="item" data-title="kubectl autoscale" href="/docs/user-guide/kubectl/kubectl_autoscale/"></a>
+    <a class="item" data-title="kubectl cluster-info" href="/docs/user-guide/kubectl/kubectl_cluster-info/"></a>
+    <a class="item" data-title="kubectl config" href="/docs/user-guide/kubectl/kubectl_config/"></a>
+    <a class="item" data-title="kubectl config set-cluster" href="/docs/user-guide/kubectl/kubectl_config_set-cluster/"></a>
+    <a class="item" data-title="kubectl config set-context" href="/docs/user-guide/kubectl/kubectl_config_set-context/"></a>
+    <a class="item" data-title="kubectl set-credentials" href="/docs/user-guide/kubectl/kubectl_config_set-credentials/"></a>
+    <a class="item" data-title="kubectl config set" href="/docs/user-guide/kubectl/kubectl_config_set/"></a>
+    <a class="item" data-title="kubectl config unset" href="/docs/user-guide/kubectl/kubectl_config_unset/"></a>
+    <a class="item" data-title="kubectl config use-context" href="/docs/user-guide/kubectl/kubectl_config_use-context/"></a>
+    <a class="item" data-title="kubectl config view" href="/docs/user-guide/kubectl/kubectl_config_view/"></a>
+    <a class="item" data-title="kubectl create" href="/docs/user-guide/kubectl/kubectl_create/"></a>
+    <a class="item" data-title="kubectl delete" href="/docs/user-guide/kubectl/kubectl_delete/"></a>
+    <a class="item" data-title="kubectl describe" href="/docs/user-guide/kubectl/kubectl_describe/"></a>
+    <a class="item" data-title="kubectl edit" href="/docs/user-guide/kubectl/kubectl_edit/"></a>
+    <a class="item" data-title="kubectl exec" href="/docs/user-guide/kubectl/kubectl_exec/"></a>
+    <a class="item" data-title="kubectl expose" href="/docs/user-guide/kubectl/kubectl_expose/"></a>
+    <a class="item" data-title="kubectl get" href="/docs/user-guide/kubectl/kubectl_get/"></a>
+    <a class="item" data-title="kubectl label" href="/docs/user-guide/kubectl/kubectl_label/"></a>
+    <a class="item" data-title="kubectl logs" href="/docs/user-guide/kubectl/kubectl_logs/"></a>
+    <a class="item" data-title="kubectl patch" href="/docs/user-guide/kubectl/kubectl_patch/"></a>
+    <a class="item" data-title="kubectl port-forward" href="/docs/user-guide/kubectl/kubectl_port-forward/"></a>
+    <a class="item" data-title="kubectl proxy" href="/docs/user-guide/kubectl/kubectl_proxy/"></a>
+    <a class="item" data-title="kubectl replace" href="/docs/user-guide/kubectl/kubectl_replace/"></a>
+    <a class="item" data-title="kubectl rolling-update" href="/docs/user-guide/kubectl/kubectl_rolling-update/"></a>
+    <a class="item" data-title="kubectl run" href="/docs/user-guide/kubectl/kubectl_run/"></a>
+    <a class="item" data-title="kubectl scale" href="/docs/user-guide/kubectl/kubectl_scale/"></a>
+    <a class="item" data-title="kubectl version" href="/docs/user-guide/kubectl/kubectl_version/"></a>
+<div class="item" data-title="Superseded and Deprecated Commands">
+  <div class="container">
+    <a class="item" data-title="kubectl namespace" href="/docs/user-guide/kubectl/kubectl_namespace/"></a>
+    <a class="item" data-title="kubectl stop" href="/docs/user-guide/kubectl/kubectl_stop/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+    <a class="item" data-title="kube-apiserver CLI" href="/docs/admin/kube-ap"></a>
+    <a class="item" data-title="kube-proxy CLI" href="/docs/admin/kube-proxy/"></a>
+    <a class="item" data-title="kub-scheduler CLI" href="/docs/admin/kube-scheduler/"></a>
+    <a class="item" data-title="kubelet CLI" href="/docs/admin/kubelet/"></a>
+    <a class="item" data-title="kube-controller-manager CLI" href="/docs/admin/kube-controller-manager/"></a>
+<div class="item" data-title="Glossary">
+  <div class="container">
+    <a class="item" data-title="Images" href="/docs/user-guide/images/"></a>
+    <a class="item" data-title="Pods" href="/docs/user-guide/pods/"></a>
+    <a class="item" data-title="Labels and Selectors" href="/docs/user-guide/labels/"></a>
+    <a class="item" data-title="Replication Controller" href="/docs/user-guide/replication-controller/"></a>
+    <a class="item" data-title="Services" href="/docs/user-guide/services/"></a>
+    <a class="item" data-title="Volumes" href="/docs/user-guide/volumes/"></a>
+    <a class="item" data-title="Persistent Volumes" href="/docs/user-guide/persistent-volumes/"></a>
+    <a class="item" data-title="Secrets" href="/docs/user-guide/secrets/"></a>
+    <a class="item" data-title="Names" href="/docs/user-guide/identifiers/"></a>
+    <a class="item" data-title="Namespaces" href="/docs/user-guide/namespaces/"></a>
+    <a class="item" data-title="Nodes" href="/docs/admin/node/"></a>
+    <a class="item" data-title="Security Context" href="/docs/user-guide/security-context/"></a>
+    <a class="item" data-title="Service Accounts" href="/docs/user-guide/service-accounts/"></a>
+    <a class="item" data-title="Annotations" href="/docs/user-guide/annotations/"></a>
+    <a class="item" data-title="Daemon Sets" href="/docs/admin/daemons/"></a>
+    <a class="item" data-title="Deployments" href="/docs/user-guide/deployments/"></a>
+    <a class="item" data-title="Ingress Resources" href="/docs/user-guide/ingress/"></a>
+    <a class="item" data-title="Horizontal Pod Autoscaling" href="/docs/user-guide/horizontal-pod-autoscaler/"></a>
+    <a class="item" data-title="Jobs" href="/docs/user-guide/jobs/"></a>
+    <a class="item" data-title="Resource Quotas" href="/docs/admin/resource-quota/"></a>
+  </div>
+</div>
+<div class="item" data-title="Kubernetes Design Docs">
+  <div class="container">
+    <a class="item" data-title="Kubernetes Architecture" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/architecture.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Design Overview" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/" target='_blank'></a>
+    <a class="item" data-title="Security in Kubernetes" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes Identity and Access Management" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/access.md" target='_blank'></a>
+    <a class="item" data-title="Security Contexts" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/docs/design/security_context.md" target='_blank'></a>
+    <a class="item" data-title="Kubernetes OpenVSwitch GRE/VxLAN networking" href="/docs/admin/ovs-networking/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/user-guide/services.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Services</h1>
+		<p>Kubernetes <a href="/docs/user-guide/pods"><code class="highlighter-rouge">Pods</code></a> are mortal. They are born and they die, and they
+are not resurrected.  <a href="/docs/user-guide/replication-controller"><code class="highlighter-rouge">ReplicationControllers</code></a> in
+particular create and destroy <code class="highlighter-rouge">Pods</code> dynamically (e.g. when scaling up or down
+or when doing <a href="/docs/user-guide/kubectl/kubectl_rolling-update">rolling updates</a>).  While each <code class="highlighter-rouge">Pod</code> gets its own IP address, even
+those IP addresses cannot be relied upon to be stable over time. This leads to
+a problem: if some set of <code class="highlighter-rouge">Pods</code> (let’s call them backends) provides
+functionality to other <code class="highlighter-rouge">Pods</code> (let’s call them frontends) inside the Kubernetes
+cluster, how do those frontends find out and keep track of which backends are
+in that set?</p>
+
+<p>Enter <code class="highlighter-rouge">Services</code>.</p>
+
+<p>A Kubernetes <code class="highlighter-rouge">Service</code> is an abstraction which defines a logical set of <code class="highlighter-rouge">Pods</code>
+and a policy by which to access them - sometimes called a micro-service.  The
+set of <code class="highlighter-rouge">Pods</code> targeted by a <code class="highlighter-rouge">Service</code> is (usually) determined by a <a href="/docs/user-guide/labels/#label-selectors"><code class="highlighter-rouge">Label
+Selector</code></a> (see below for why you might want a
+<code class="highlighter-rouge">Service</code> without a selector).</p>
+
+<p>As an example, consider an image-processing backend which is running with 3
+replicas.  Those replicas are fungible - frontends do not care which backend
+they use.  While the actual <code class="highlighter-rouge">Pods</code> that compose the backend set may change, the
+frontend clients should not need to be aware of that or keep track of the list
+of backends themselves.  The <code class="highlighter-rouge">Service</code> abstraction enables this decoupling.</p>
+
+<p>For Kubernetes-native applications, Kubernetes offers a simple <code class="highlighter-rouge">Endpoints</code> API
+that is updated whenever the set of <code class="highlighter-rouge">Pods</code> in a <code class="highlighter-rouge">Service</code> changes.  For
+non-native applications, Kubernetes offers a virtual-IP-based bridge to Services
+which redirects to the backend <code class="highlighter-rouge">Pods</code>.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#defining-a-service" id="markdown-toc-defining-a-service">Defining a service</a>    <ul>
+      <li><a href="#services-without-selectors" id="markdown-toc-services-without-selectors">Services without selectors</a></li>
+    </ul>
+  </li>
+  <li><a href="#virtual-ips-and-service-proxies" id="markdown-toc-virtual-ips-and-service-proxies">Virtual IPs and service proxies</a></li>
+  <li><a href="#multi-port-services" id="markdown-toc-multi-port-services">Multi-Port Services</a></li>
+  <li><a href="#choosing-your-own-ip-address" id="markdown-toc-choosing-your-own-ip-address">Choosing your own IP address</a>    <ul>
+      <li><a href="#why-not-use-round-robin-dns" id="markdown-toc-why-not-use-round-robin-dns">Why not use round-robin DNS?</a></li>
+    </ul>
+  </li>
+  <li><a href="#discovering-services" id="markdown-toc-discovering-services">Discovering services</a>    <ul>
+      <li><a href="#environment-variables" id="markdown-toc-environment-variables">Environment variables</a></li>
+      <li><a href="#dns" id="markdown-toc-dns">DNS</a></li>
+    </ul>
+  </li>
+  <li><a href="#headless-services" id="markdown-toc-headless-services">Headless services</a></li>
+  <li><a href="#publishing-services---service-types" id="markdown-toc-publishing-services---service-types">Publishing services - service types</a>    <ul>
+      <li><a href="#type-nodeport" id="markdown-toc-type-nodeport">Type NodePort</a></li>
+      <li><a href="#type-loadbalancer" id="markdown-toc-type-loadbalancer">Type LoadBalancer</a></li>
+      <li><a href="#external-ips" id="markdown-toc-external-ips">External IPs</a></li>
+    </ul>
+  </li>
+  <li><a href="#shortcomings" id="markdown-toc-shortcomings">Shortcomings</a></li>
+  <li><a href="#future-work" id="markdown-toc-future-work">Future work</a></li>
+  <li><a href="#the-gory-details-of-virtual-ips" id="markdown-toc-the-gory-details-of-virtual-ips">The gory details of virtual IPs</a>    <ul>
+      <li><a href="#avoiding-collisions" id="markdown-toc-avoiding-collisions">Avoiding collisions</a></li>
+      <li><a href="#ips-and-vips" id="markdown-toc-ips-and-vips">IPs and VIPs</a></li>
+    </ul>
+  </li>
+  <li><a href="#api-object" id="markdown-toc-api-object">API Object</a></li>
+</ul>
+
+<h2 id="defining-a-service">Defining a service</h2>
+
+<p>A <code class="highlighter-rouge">Service</code> in Kubernetes is a REST object, similar to a <code class="highlighter-rouge">Pod</code>.  Like all of the
+REST objects, a <code class="highlighter-rouge">Service</code> definition can be POSTed to the apiserver to create a
+new instance.  For example, suppose you have a set of <code class="highlighter-rouge">Pods</code> that each expose
+port 9376 and carry a label <code class="highlighter-rouge">"app=MyApp"</code>.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyApp"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9376</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>This specification will create a new <code class="highlighter-rouge">Service</code> object named “my-service” which
+targets TCP port 9376 on any <code class="highlighter-rouge">Pod</code> with the <code class="highlighter-rouge">"app=MyApp"</code> label.  This <code class="highlighter-rouge">Service</code>
+will also be assigned an IP address (sometimes called the “cluster IP”), which
+is used by the service proxies (see below).  The <code class="highlighter-rouge">Service</code>’s selector will be
+evaluated continuously and the results will be POSTed to an <code class="highlighter-rouge">Endpoints</code> object
+also named “my-service”.</p>
+
+<p>Note that a <code class="highlighter-rouge">Service</code> can map an incoming port to any <code class="highlighter-rouge">targetPort</code>.  By default
+the <code class="highlighter-rouge">targetPort</code> will be set to the same value as the <code class="highlighter-rouge">port</code> field.  Perhaps
+more interesting is that <code class="highlighter-rouge">targetPort</code> can be a string, referring to the name of
+a port in the backend <code class="highlighter-rouge">Pods</code>.  The actual port number assigned to that name can
+be different in each backend <code class="highlighter-rouge">Pod</code>. This offers a lot of flexibility for
+deploying and evolving your <code class="highlighter-rouge">Services</code>.  For example, you can change the port
+number that pods expose in the next version of your backend software, without
+breaking clients.</p>
+
+<p>Kubernetes <code class="highlighter-rouge">Services</code> support <code class="highlighter-rouge">TCP</code> and <code class="highlighter-rouge">UDP</code> for protocols.  The default
+is <code class="highlighter-rouge">TCP</code>.</p>
+
+<h3 id="services-without-selectors">Services without selectors</h3>
+
+<p>Services generally abstract access to Kubernetes <code class="highlighter-rouge">Pods</code>, but they can also
+abstract other kinds of backends.  For example:</p>
+
+<ul>
+  <li>You want to have an external database cluster in production, but in test
+you use your own databases.</li>
+  <li>You want to point your service to a service in another
+<a href="/docs/user-guide/namespaces"><code class="highlighter-rouge">Namespace</code></a> or on another cluster.</li>
+  <li>You are migrating your workload to Kubernetes and some of your backends run
+outside of Kubernetes.</li>
+</ul>
+
+<p>In any of these scenarios you can define a service without a selector:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9376</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Because this has no selector, the corresponding <code class="highlighter-rouge">Endpoints</code> object will not be
+created. You can manually map the service to your own specific endpoints:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Endpoints"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"subsets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addresses"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="nt">"IP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1.2.3.4"</span><span class="w"> </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w"> </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="w"> </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>NOTE: Endpoint IPs may not be loopback (127.0.0.0/8), link-local
+(169.254.0.0/16), or link-local multicast ((224.0.0.0/24).</p>
+
+<p>Accessing a <code class="highlighter-rouge">Service</code> without a selector works the same as if it had selector.
+The traffic will be routed to endpoints defined by the user (<code class="highlighter-rouge">1.2.3.4:80</code> in
+this example).</p>
+
+<h2 id="virtual-ips-and-service-proxies">Virtual IPs and service proxies</h2>
+
+<p>Every node in a Kubernetes cluster runs a <code class="highlighter-rouge">kube-proxy</code>.  This application
+watches the Kubernetes master for the addition and removal of <code class="highlighter-rouge">Service</code>
+and <code class="highlighter-rouge">Endpoints</code> objects. For each <code class="highlighter-rouge">Service</code> it opens a port (randomly chosen)
+on the local node.  Any connections made to that port will be proxied to one of
+the corresponding backend <code class="highlighter-rouge">Pods</code>.  Which backend to use is decided based on the
+<code class="highlighter-rouge">SessionAffinity</code> of the <code class="highlighter-rouge">Service</code>.  Lastly, it installs iptables rules which
+capture traffic to the <code class="highlighter-rouge">Service</code>’s cluster IP (which is virtual) and <code class="highlighter-rouge">Port</code> and
+redirects that traffic to the previously described port.</p>
+
+<p>The net result is that any traffic bound for the <code class="highlighter-rouge">Service</code> is proxied to an
+appropriate backend without the clients knowing anything about Kubernetes or
+<code class="highlighter-rouge">Services</code> or <code class="highlighter-rouge">Pods</code>.</p>
+
+<p><img src="/images/docs/services-overview.svg" alt="Services overview diagram" /></p>
+
+<p>By default, the choice of backend is round robin.  Client-IP based session affinity
+can be selected by setting <code class="highlighter-rouge">service.spec.sessionAffinity</code> to <code class="highlighter-rouge">"ClientIP"</code> (the
+default is <code class="highlighter-rouge">"None"</code>).</p>
+
+<p>As of Kubernetes 1.0, <code class="highlighter-rouge">Services</code> are a “layer 3” (TCP/UDP over IP) construct.  We do not
+yet have a concept of “layer 7” (HTTP) services.</p>
+
+<h2 id="multi-port-services">Multi-Port Services</h2>
+
+<p>Many <code class="highlighter-rouge">Services</code> need to expose more than one port.  For this case, Kubernetes
+supports multiple port definitions on a <code class="highlighter-rouge">Service</code> object.  When using multiple
+ports you must give all of your ports names, so that endpoints can be
+disambiguated.  For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyApp"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9376</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">443</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9377</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h2 id="choosing-your-own-ip-address">Choosing your own IP address</h2>
+
+<p>You can specify your own cluster IP address as part of a <code class="highlighter-rouge">Service</code> creation
+request.  To do this, set the <code class="highlighter-rouge">spec.clusterIP</code> field. For example, if you
+already have an existing DNS entry that you wish to replace, or legacy systems
+that are configured for a specific IP address and difficult to re-configure.
+The IP address that a user chooses must be a valid IP address and within the
+<code class="highlighter-rouge">service-cluster-ip-range</code> CIDR range that is specified by flag to the API
+server.  If the IP address value is invalid, the apiserver returns a 422 HTTP
+status code to indicate that the value is invalid.</p>
+
+<h3 id="why-not-use-round-robin-dns">Why not use round-robin DNS?</h3>
+
+<p>A question that pops up every now and then is why we do all this stuff with
+virtual IPs rather than just use standard round-robin DNS.  There are a few
+reasons:</p>
+
+<ul>
+  <li>There is a long history of DNS libraries not respecting DNS TTLs and
+caching the results of name lookups.</li>
+  <li>Many apps do DNS lookups once and cache the results.</li>
+  <li>Even if apps and libraries did proper re-resolution, the load of every
+client re-resolving DNS over and over would be difficult to manage.</li>
+</ul>
+
+<p>We try to discourage users from doing things that hurt themselves.  That said,
+if enough people ask for this, we may implement it as an alternative.</p>
+
+<h2 id="discovering-services">Discovering services</h2>
+
+<p>Kubernetes supports 2 primary modes of finding a <code class="highlighter-rouge">Service</code> - environment
+variables and DNS.</p>
+
+<h3 id="environment-variables">Environment variables</h3>
+
+<p>When a <code class="highlighter-rouge">Pod</code> is run on a <code class="highlighter-rouge">Node</code>, the kubelet adds a set of environment variables
+for each active <code class="highlighter-rouge">Service</code>.  It supports both <a href="https://docs.docker.com/userguide/dockerlinks/">Docker links
+compatible</a> variables (see
+<a href="http://releases.k8s.io/release-1.1/pkg/kubelet/envvars/envvars.go#L49">makeLinkVariables</a>)
+and simpler <code class="highlighter-rouge"><span class="p">{</span><span class="err">SVCNAME</span><span class="p">}</span><span class="err">_SERVICE_HOST</span></code> and <code class="highlighter-rouge"><span class="p">{</span><span class="err">SVCNAME</span><span class="p">}</span><span class="err">_SERVICE_PORT</span></code> variables,
+where the Service name is upper-cased and dashes are converted to underscores.</p>
+
+<p>For example, the Service <code class="highlighter-rouge">"redis-master"</code> which exposes TCP port 6379 and has been
+allocated cluster IP address 10.0.0.11 produces the following environment
+variables:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="nv">REDIS_MASTER_SERVICE_HOST</span><span class="o">=</span>10.0.0.11
+<span class="nv">REDIS_MASTER_SERVICE_PORT</span><span class="o">=</span>6379
+<span class="nv">REDIS_MASTER_PORT</span><span class="o">=</span>tcp://10.0.0.11:6379
+<span class="nv">REDIS_MASTER_PORT_6379_TCP</span><span class="o">=</span>tcp://10.0.0.11:6379
+<span class="nv">REDIS_MASTER_PORT_6379_TCP_PROTO</span><span class="o">=</span>tcp
+<span class="nv">REDIS_MASTER_PORT_6379_TCP_PORT</span><span class="o">=</span>6379
+<span class="nv">REDIS_MASTER_PORT_6379_TCP_ADDR</span><span class="o">=</span>10.0.0.11
+</code></pre>
+</div>
+
+<p><em>This does imply an ordering requirement</em> - any <code class="highlighter-rouge">Service</code> that a <code class="highlighter-rouge">Pod</code> wants to
+access must be created before the <code class="highlighter-rouge">Pod</code> itself, or else the environment
+variables will not be populated.  DNS does not have this restriction.</p>
+
+<h3 id="dns">DNS</h3>
+
+<p>An optional (though strongly recommended) <a href="http://releases.k8s.io/release-1.1/cluster/addons/README.md">cluster
+add-on</a> is a DNS server.  The
+DNS server watches the Kubernetes API for new <code class="highlighter-rouge">Services</code> and creates a set of
+DNS records for each.  If DNS has been enabled throughout the cluster then all
+<code class="highlighter-rouge">Pods</code> should be able to do name resolution of <code class="highlighter-rouge">Services</code> automatically.</p>
+
+<p>For example, if you have a <code class="highlighter-rouge">Service</code> called <code class="highlighter-rouge">"my-service"</code> in Kubernetes
+<code class="highlighter-rouge">Namespace</code> <code class="highlighter-rouge">"my-ns"</code> a DNS record for <code class="highlighter-rouge">"my-service.my-ns"</code> is created.  <code class="highlighter-rouge">Pods</code>
+which exist in the <code class="highlighter-rouge">"my-ns"</code> <code class="highlighter-rouge">Namespace</code> should be able to find it by simply doing
+a name lookup for <code class="highlighter-rouge">"my-service"</code>.  <code class="highlighter-rouge">Pods</code> which exist in other <code class="highlighter-rouge">Namespaces</code> must
+qualify the name as <code class="highlighter-rouge">"my-service.my-ns"</code>.  The result of these name lookups is the
+cluster IP.</p>
+
+<p>Kubernetes also supports DNS SRV (service) records for named ports.  If the
+<code class="highlighter-rouge">"my-service.my-ns"</code> <code class="highlighter-rouge">Service</code> has a port named <code class="highlighter-rouge">"http"</code> with protocol <code class="highlighter-rouge">TCP</code>, you
+can do a DNS SRV query for <code class="highlighter-rouge">"_http._tcp.my-service.my-ns"</code> to discover the port
+number for <code class="highlighter-rouge">"http"</code>.</p>
+
+<h2 id="headless-services">Headless services</h2>
+
+<p>Sometimes you don’t need or want load-balancing and a single service IP.  In
+this case, you can create “headless” services by specifying <code class="highlighter-rouge">"None"</code> for the
+cluster IP (<code class="highlighter-rouge">spec.clusterIP</code>).</p>
+
+<p>For such <code class="highlighter-rouge">Services</code>, a cluster IP is not allocated. DNS is configured to return
+multiple A records (addresses) for the <code class="highlighter-rouge">Service</code> name, which point directly to
+the <code class="highlighter-rouge">Pods</code> backing the <code class="highlighter-rouge">Service</code>.  Additionally, the kube proxy does not handle
+these services and there is no load balancing or proxying done by the platform
+for them.  The endpoints controller will still create <code class="highlighter-rouge">Endpoints</code> records in
+the API.</p>
+
+<p>This option allows developers to reduce coupling to the Kubernetes system, if
+they desire, but leaves them freedom to do discovery in their own way.
+Applications can still use a self-registration pattern and adapters for other
+discovery systems could easily be built upon this API.</p>
+
+<h2 id="publishing-services---service-types">Publishing services - service types</h2>
+
+<p>For some parts of your application (e.g. frontends) you may want to expose a
+Service onto an external (outside of your cluster, maybe public internet) IP
+address, other services should be visible only from inside of the cluster.</p>
+
+<p>Kubernetes <code class="highlighter-rouge">ServiceTypes</code> allow you to specify what kind of service you want.
+The default and base type is <code class="highlighter-rouge">ClusterIP</code>, which exposes a service to connection
+from inside the cluster. <code class="highlighter-rouge">NodePort</code> and <code class="highlighter-rouge">LoadBalancer</code> are two types that expose
+services to external traffic.</p>
+
+<p>Valid values for the <code class="highlighter-rouge">ServiceType</code> field are:</p>
+
+<ul>
+  <li><code class="highlighter-rouge">ClusterIP</code>: use a cluster-internal IP only - this is the default and is
+discussed above. Choosing this value means that you want this service to be
+reachable only from inside of the cluster.</li>
+  <li><code class="highlighter-rouge">NodePort</code>: on top of having a cluster-internal IP, expose the service on a
+port on each node of the cluster (the same port on each node). You’ll be able
+to contact the service on any <code class="highlighter-rouge">&lt;NodeIP&gt;:NodePort</code> address.</li>
+  <li><code class="highlighter-rouge">LoadBalancer</code>: on top of having a cluster-internal IP and exposing service
+on a NodePort also, ask the cloud provider for a load balancer
+which forwards to the <code class="highlighter-rouge">Service</code> exposed as a <code class="highlighter-rouge">&lt;NodeIP&gt;:NodePort</code>
+for each Node.</li>
+</ul>
+
+<p>Note that while <code class="highlighter-rouge">NodePort</code>s can be TCP or UDP, <code class="highlighter-rouge">LoadBalancer</code>s only support TCP
+as of Kubernetes 1.0.</p>
+
+<h3 id="type-nodeport">Type NodePort</h3>
+
+<p>If you set the <code class="highlighter-rouge">type</code> field to <code class="highlighter-rouge">"NodePort"</code>, the Kubernetes master will
+allocate a port from a flag-configured range (default: 30000-32767), and each
+Node will proxy that port (the same port number on every Node) into your <code class="highlighter-rouge">Service</code>.
+That port will be reported in your <code class="highlighter-rouge">Service</code>’s <code class="highlighter-rouge">spec.ports[*].nodePort</code> field.</p>
+
+<p>If you want a specific port number, you can specify a value in the <code class="highlighter-rouge">nodePort</code>
+field, and the system will allocate you that port or else the API transaction
+will fail (i.e. you need to take care about possible port collisions yourself).
+The value you specify must be in the configured range for node ports.</p>
+
+<p>This gives developers the freedom to set up their own load balancers, to
+configure cloud environments that are not fully supported by Kubernetes, or
+even to just expose one or more nodes’ IPs directly.</p>
+
+<p>Note that this Service will be visible as both <code class="highlighter-rouge">&lt;NodeIP&gt;:spec.ports[*].nodePort</code>
+and <code class="highlighter-rouge">spec.clusterIp:spec.ports[*].port</code>.</p>
+
+<h3 id="type-loadbalancer">Type LoadBalancer</h3>
+
+<p>On cloud providers which support external load balancers, setting the <code class="highlighter-rouge">type</code>
+field to <code class="highlighter-rouge">"LoadBalancer"</code> will provision a load balancer for your <code class="highlighter-rouge">Service</code>.
+The actual creation of the load balancer happens asynchronously, and
+information about the provisioned balancer will be published in the <code class="highlighter-rouge">Service</code>’s
+<code class="highlighter-rouge">status.loadBalancer</code> field.  For example:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyApp"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9376</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"nodePort"</span><span class="p">:</span><span class="w"> </span><span class="mi">30061</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"clusterIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.0.171.239"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"loadBalancerIP"</span><span class="p">:</span><span class="w"> </span><span class="s2">"78.11.24.19"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LoadBalancer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"loadBalancer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"ingress"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"146.148.47.155"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<p>Traffic from the external load balancer will be directed at the backend <code class="highlighter-rouge">Pods</code>,
+though exactly how that works depends on the cloud provider. Some cloud providers allow
+the <code class="highlighter-rouge">loadBalancerIP</code> to be specified. In those cases, the load-balancer will be created
+with the user-specified <code class="highlighter-rouge">loadBalancerIP</code>. If the <code class="highlighter-rouge">loadBalancerIP</code> field is not specified,
+an ephemeral IP will be assigned to the loadBalancer. If the <code class="highlighter-rouge">loadBalancerIP</code> is specified, but the
+cloud provider does not support the feature, the field will be ignored.</p>
+
+<h3 id="external-ips">External IPs</h3>
+
+<p>If there are external IPs that route to one or more cluster nodes, Kubernetes services can be exposed on those
+<code class="highlighter-rouge">externalIPs</code>. Traffic that ingresses into the cluster with the external IP (as destination IP), on the service port,
+will be routed to one of the service endpoints. <code class="highlighter-rouge">externalIPs</code> are not managed by Kubernetes and are the responsibility
+of the cluster administrator.</p>
+
+<p>In the ServiceSpec, <code class="highlighter-rouge">externalIPs</code> can be specified along with any of the <code class="highlighter-rouge">ServiceTypes</code>.
+In the example below, my-service can be accessed by clients on 80.11.12.10:80 (externalIP:port)</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"kind"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"apiVersion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"v1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"my-service"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"spec"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"selector"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"app"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MyApp"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"ports"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"protocol"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TCP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"port"</span><span class="p">:</span><span class="w"> </span><span class="mi">80</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"targetPort"</span><span class="p">:</span><span class="w"> </span><span class="mi">9376</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"externalIPs"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"80.11.12.10"</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+</div>
+
+<h2 id="shortcomings">Shortcomings</h2>
+
+<p>We expect that using iptables and userspace proxies for VIPs will work at
+small to medium scale, but may not scale to very large clusters with thousands
+of Services.  See <a href="http://issue.k8s.io/1107">the original design proposal for
+portals</a> for more
+details.</p>
+
+<p>Using the kube-proxy obscures the source-IP of a packet accessing a <code class="highlighter-rouge">Service</code>.
+This makes some kinds of firewalling impossible.</p>
+
+<p>LoadBalancers only support TCP, not UDP.</p>
+
+<p>The <code class="highlighter-rouge">Type</code> field is designed as nested functionality - each level adds to the
+previous.  This is not strictly required on all cloud providers (e.g. Google Compute Engine does
+not need to allocate a <code class="highlighter-rouge">NodePort</code> to make <code class="highlighter-rouge">LoadBalancer</code> work, but AWS does)
+but the current API requires it.</p>
+
+<h2 id="future-work">Future work</h2>
+
+<p>In the future we envision that the proxy policy can become more nuanced than
+simple round robin balancing, for example master-elected or sharded.  We also
+envision that some <code class="highlighter-rouge">Services</code> will have “real” load balancers, in which case the
+VIP will simply transport the packets there.</p>
+
+<p>There’s a
+<a href="http://issue.k8s.io/3760">proposal</a> to
+eliminate userspace proxying in favor of doing it all in iptables.  This should
+perform better and fix the source-IP obfuscation, though is less flexible than
+arbitrary userspace code.</p>
+
+<p>We intend to have first-class support for L7 (HTTP) <code class="highlighter-rouge">Services</code>.</p>
+
+<p>We intend to have more flexible ingress modes for <code class="highlighter-rouge">Services</code> which encompass
+the current <code class="highlighter-rouge">ClusterIP</code>, <code class="highlighter-rouge">NodePort</code>, and <code class="highlighter-rouge">LoadBalancer</code> modes and more.</p>
+
+<h2 id="the-gory-details-of-virtual-ips">The gory details of virtual IPs</h2>
+
+<p>The previous information should be sufficient for many people who just want to
+use <code class="highlighter-rouge">Services</code>.  However, there is a lot going on behind the scenes that may be
+worth understanding.</p>
+
+<h3 id="avoiding-collisions">Avoiding collisions</h3>
+
+<p>One of the primary philosophies of Kubernetes is that users should not be
+exposed to situations that could cause their actions to fail through no fault
+of their own.  In this situation, we are looking at network ports - users
+should not have to choose a port number if that choice might collide with
+another user.  That is an isolation failure.</p>
+
+<p>In order to allow users to choose a port number for their <code class="highlighter-rouge">Services</code>, we must
+ensure that no two <code class="highlighter-rouge">Services</code> can collide.  We do that by allocating each
+<code class="highlighter-rouge">Service</code> its own IP address.</p>
+
+<p>To ensure each service receives a unique IP, an internal allocator atomically
+updates a global allocation map in etcd prior to each service. The map object
+must exist in the registry for services to get IPs, otherwise creations will
+fail with a message indicating an IP could not be allocated. A background
+controller is responsible for creating that map (to migrate from older versions
+of Kubernetes that used in memory locking) as well as checking for invalid
+assignments due to administrator intervention and cleaning up any IPs
+that were allocated but which no service currently uses.</p>
+
+<h3 id="ips-and-vips">IPs and VIPs</h3>
+
+<p>Unlike <code class="highlighter-rouge">Pod</code> IP addresses, which actually route to a fixed destination,
+<code class="highlighter-rouge">Service</code> IPs are not actually answered by a single host.  Instead, we use
+<code class="highlighter-rouge">iptables</code> (packet processing logic in Linux) to define virtual IP addresses
+which are transparently redirected as needed.  When clients connect to the
+VIP, their traffic is automatically transported to an appropriate endpoint.
+The environment variables and DNS for <code class="highlighter-rouge">Services</code> are actually populated in
+terms of the <code class="highlighter-rouge">Service</code>’s VIP and port.</p>
+
+<p>As an example, consider the image processing application described above.
+When the backend <code class="highlighter-rouge">Service</code> is created, the Kubernetes master assigns a virtual
+IP address, for example 10.0.0.1.  Assuming the <code class="highlighter-rouge">Service</code> port is 1234, the
+<code class="highlighter-rouge">Service</code> is observed by all of the <code class="highlighter-rouge">kube-proxy</code> instances in the cluster.
+When a proxy sees a new <code class="highlighter-rouge">Service</code>, it opens a new random port, establishes an
+iptables redirect from the VIP to this new port, and starts accepting
+connections on it.</p>
+
+<p>When a client connects to the VIP the iptables rule kicks in, and redirects
+the packets to the <code class="highlighter-rouge">Service proxy</code>’s own port.  The <code class="highlighter-rouge">Service proxy</code> chooses a
+backend, and starts proxying traffic from the client to the backend.</p>
+
+<p>This means that <code class="highlighter-rouge">Service</code> owners can choose any port they want without risk of
+collision.  Clients can simply connect to an IP and port, without being aware
+of which <code class="highlighter-rouge">Pods</code> they are actually accessing.</p>
+
+<p><img src="/images/docs/services-detail.svg" alt="Services detailed diagram" /></p>
+
+<h2 id="api-object">API Object</h2>
+
+<p>Service is a top-level resource in the kubernetes REST API. More details about the
+API object can be found at: <a href="/docs/api-reference/v1/definitions/#_v1_service">Service API
+object</a>.</p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/services.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/user-guide/services/",
+        "title" : "Services",
+        "permalink" : "http://kubernetes.github.io/docs/user-guide/services/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>

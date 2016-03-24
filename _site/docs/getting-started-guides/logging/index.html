@@ -1,0 +1,522 @@
+
+
+<!Doctype html>
+<html id="docs">
+
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="shortcut icon" type="image/png" href="/images/favicon.png">
+	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Roboto+Mono' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" href="/css/styles.css"/>
+	<script src="/js/jquery-2.2.0.min.js"></script>
+	<script src="/js/script.js"></script>
+	<title>Kubernetes - Logging</title>
+</head>
+<body>
+<div id="cellophane" onclick="kub.toggleMenu()"></div>
+<header>
+	<a href="/" class="logo"></a>
+	<div class="nav-buttons" data-auto-burger="primary">
+		<a href="/docs/" class="button" id="viewDocs">View Documentation</a>
+		<a href="/docs/hellonode/" class="button" id="tryKubernetes">Try Kubernetes</a>
+		<button id="hamburger" onclick="kub.toggleMenu()" data-auto-burger-exclude><div></div></button>
+	</div>
+
+	<nav id="mainNav">
+		<main data-auto-burger="primary">
+			<div class="nav-box">
+				<h3><a href="/docs/hellonode/">Get Started</a></h3>
+				<p>Built for a multi-cloud world, public, private or hybrid. Seamlessly roll out new features.</p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/docs/">Documentation</a></h3>
+				<p>Pellentesque in ipsum id orci porta dapibus. Nulla porttitor accumsan tincidunt. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="/community/">Community</a></h3>
+				<p>Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. </p>
+			</div>
+			<div class="nav-box">
+				<h3><a href="http://blog.kubernetes.io">Blog</a></h3>
+				<p>Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Quisque velit nisi, pretium ut lacinia in. </p>
+			</div>
+		</main>
+		<main data-auto-burger="primary">
+			<div class="left">
+				<h5 class="github-invite">Interested in hacking on the core Kubernetes code base?</h5>
+				<a href="" class="button">View On Github</a>
+			</div>
+
+			<div class="right">
+				<h5 class="github-invite">Explore the community</h5>
+				<div class="social">
+					<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+					<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+					<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+					<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+					<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+					<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+				</div>
+			</div>
+			<div class="clear" style="clear: both"></div>
+		</main>
+	</nav>
+</header>
+
+
+<!--  HERO  -->
+<section id="hero" class="light-text">
+	<h1>Guides</h1>
+	<h5>How to get started, and acheive tasks, using Kubernetes</h5>
+	<div id="vendorStrip" class="light-text">
+		<ul>
+			<li><a href="/docs/">GUIDES</a></li>
+			<li><a href="/docs/reference">REFERENCE</a></li>
+			<li><a href="/docs/samples">SAMPLES</a></li>
+			<li><a href="/docs/troubleshooting/">SUPPORT</a></li>
+		</ul><!--
+		<div class="dropdown">
+			<div class="readout"></div>
+			<a href="/v1.1/">Version 1.1</a>
+            <a href="/v1.2/">Version 1.2</a>
+		</div>-->
+		<input type="text" id="search" placeholder="Search" onkeydown="if (event.keyCode==13) window.location.replace('/docs/search/?q=' + this.value)">
+	</div>
+</section>
+
+<section id="encyclopedia">
+	<div id="docsToc">
+        <div class="pi-accordion">
+        
+    <a class="item" data-title="Guides" href="/docs/"></a>
+<div class="item" data-title="Getting Started">
+  <div class="container">
+    <a class="item" data-title="What is Kubernetes?" href="/docs/whatisk8s/"></a>
+    <a class="item" data-title="Downloading Kubernetes" href="/docs/getting-started-guides/binary_release/"></a>
+    <a class="item" data-title="Hello World Walkthrough" href="/docs/hellonode/"></a>
+    <a class="item" data-title="Kubernetes 101" href="/docs/user-guide/walkthrough/"></a>
+    <a class="item" data-title="Kubernetes 201" href="/docs/user-guide/walkthrough/k8s201/"></a>
+  </div>
+</div>
+    <a class="item" data-title="User Guide" href="/docs/user-guide/"></a>
+    <a class="item" data-title="Admin Guide" href="/docs/admin/"></a>
+<div class="item" data-title="Running Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Picking the Right Solution" href="/docs/getting-started-guides/"></a>
+<div class="item" data-title="Running Kubernetes on Your Local Machine">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes Locally via Docker" href="/docs/getting-started-guides/docker/"></a>
+    <a class="item" data-title="Running Kubernetes Locally via Vagrant" href="/docs/getting-started-guides/vagrant/"></a>
+    <a class="item" data-title="Running Kubernetes Locally with No VM" href="/docs/getting-started-guides/locally/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Turn-key Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="Running Kubernetes on Google Container Engine" href="https://cloud.google.com/container-engine/docs/before-you-begin/" target='_blank'></a>
+    <a class="item" data-title="Running Kubernetes on Google Compute Engine" href="/docs/getting-started-guides/gce/"></a>
+    <a class="item" data-title="Running Kubernetes on AWS EC2" href="/docs/getting-started-guides/aws/"></a>
+    <a class="item" data-title="Running Kubernetes on Azure" href="/docs/getting-started-guides/coreos/azure/"></a>
+  </div>
+</div>
+<div class="item" data-title="Running Kubernetes on Custom Solutions">
+  <div class="container">
+    <a class="item" data-title="Getting Started From Scratch" href="/docs/getting-started-guides/scratch/"></a>
+<div class="item" data-title="Custom Cloud Solutions">
+  <div class="container">
+    <a class="item" data-title="AWS or GCE on CoreOS" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="AWS or Joyent on Ubuntu" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="Rackspace on CoreOS" href="/docs/getting-started-guides/rackspace/"></a>
+  </div>
+</div>
+<div class="item" data-title="On-Premise VMs">
+  <div class="container">
+    <a class="item" data-title="Vagrant or VMware" href="/docs/getting-started-guides/coreos/"></a>
+    <a class="item" data-title="Cloudstack" href="/docs/getting-started-guides/cloudstack/"></a>
+    <a class="item" data-title="VMWare" href="/docs/getting-started-guides/vsphere/"></a>
+    <a class="item" data-title="Juju" href="/docs/getting-started-guides/juju/"></a>
+    <a class="item" data-title="DCOS" href="/docs/getting-started-guides/dcos/"></a>
+    <a class="item" data-title="libvirt on CoreOS" href="/docs/getting-started-guides/libvirt-coreos/"></a>
+    <a class="item" data-title="oVirt" href="/docs/getting-started-guides/ovirt/"></a>
+    <a class="item" data-title="libvirt or KVM" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Multinode Cluster on CoreOS" href="/docs/getting-started-guides/coreos/coreos_multinode_cluster/"></a>
+    <a class="item" data-title="Fedora With Calico Networking" href="/docs/getting-started-guides/fedora/fedora-calico/"></a>
+    <a class="item" data-title="rkt" href="/docs/getting-started-guides/rkt/"></a>
+    <a class="item" data-title="Kubernetes on Mesos" href="/docs/getting-started-guides/mesos/"></a>
+    <a class="item" data-title="Kubernetes on Mesos on Docker" href="/docs/getting-started-guides/mesos-docker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Bare Metal">
+  <div class="container">
+    <a class="item" data-title="Offline" href="/docs/getting-started-guides/coreos/bare_metal_offline/"></a>
+    <a class="item" data-title="Fedora via Ansible" href="/docs/getting-started-guides/fedora/fedora_ansible_config/"></a>
+    <a class="item" data-title="Fedora (Single Node)" href="/docs/getting-started-guides/fedora/fedora_manual_config/"></a>
+    <a class="item" data-title="Fedora (Multi Node)" href="/docs/getting-started-guides/fedora/flannel_multi_node_cluster/"></a>
+    <a class="item" data-title="Centos" href="/docs/getting-started-guides/centos/centos_manual_config/"></a>
+    <a class="item" data-title="Ubuntu" href="/docs/getting-started-guides/ubuntu/"></a>
+    <a class="item" data-title="Docker (Multi-Node)" href="/docs/getting-started-guides/docker-multinode/"></a>
+    <a class="item" data-title="CoreOS with Calico" href="/docs/getting-started-guides/coreos/bare_metal_calico/"></a>
+    <a class="item" data-title="Ubuntu Nodes with Calico" href="/docs/getting-started-guides/ubuntu-calico/"></a>
+  </div>
+</div>
+  </div>
+</div>
+  </div>
+</div>
+<div class="item" data-title="Administering Clusters">
+  <div class="container">
+    <a class="item" data-title="Cluster Management Guide" href="/docs/admin/cluster-management/"></a>
+    <a class="item" data-title="Anatomy of a Cluster" href="/docs/admin/cluster-components/"></a>
+    <a class="item" data-title="Using Multiple Clusters" href="/docs/admin/multi-cluster/"></a>
+    <a class="item" data-title="Using Large Clusters" href="/docs/admin/cluster-large/"></a>
+    <a class="item" data-title="Building High-Availability Clusters" href="/docs/admin/high-availability/"></a>
+    <a class="item" data-title="Accessing Clusters" href="/docs/user-guide/accessing-the-cluster/"></a>
+    <a class="item" data-title="Sharing a Cluster" href="/docs/admin/namespaces/"></a>
+    <a class="item" data-title="Changing Cluster Size" href="https://github.com/kubernetes/kubernetes/wiki/User-FAQ#how-do-i-change-the-size-of-my-cluster/" target='_blank'></a>
+    <a class="item" data-title="Creating a Custom Cluster from Scratch" href="/docs/getting-started-guides/scratch/"></a>
+    <a class="item" data-title="Authenticating Across Clusters with kubeconfig" href="/docs/user-guide/kubeconfig-file/"></a>
+  </div>
+</div>
+<div class="item" data-title="Using Nodes, Pods, and Containers">
+  <div class="container">
+    <a class="item" data-title="The Container Environment" href="/docs/user-guide/container-environment/"></a>
+    <a class="item" data-title="Running Your First Containers" href="/docs/user-guide/simple-nginx/"></a>
+    <a class="item" data-title="Working with Containers" href="/docs/user-guide/production-pods/"></a>
+    <a class="item" data-title="Overriding Default Container Behavior" href="/docs/user-guide/containers/"></a>
+    <a class="item" data-title="Running Commands in a Container with kubectl exec" href="/docs/user-guide/getting-into-containers/"></a>
+    <a class="item" data-title="The Lifecycle of a Pod" href="/docs/user-guide/pod-states/"></a>
+    <a class="item" data-title="Assigning Pods to Nodes" href="/docs/user-guide/node-selection/"></a>
+    <a class="item" data-title="Creating Pods with the Downward API" href="/docs/user-guide/downward-api/"></a>
+    <a class="item" data-title="Updating Live Pods" href="/docs/user-guide/update-demo/"></a>
+    <a class="item" data-title="Installing a Kubernetes Master Node via Docker" href="/docs/getting-started-guides/docker-multinode/master/"></a>
+    <a class="item" data-title="Adding a Kubernetes Worker Node via Docker" href="/docs/getting-started-guides/docker-multinode/worker/"></a>
+  </div>
+</div>
+<div class="item" data-title="Networking">
+  <div class="container">
+    <a class="item" data-title="Networking in Kubernetes" href="/docs/admin/networking/"></a>
+    <a class="item" data-title="Using DNS Pods and Services" href="/docs/admin/dns/"></a>
+    <a class="item" data-title="Setting Up and Configuring DNS" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/cluster-dns" target='_blank'></a>
+    <a class="item" data-title="Deploying DNS" href="/docs/getting-started-guides/docker-multinode/deployDNS/"></a>
+    <a class="item" data-title="Connecting Applications" href="/docs/user-guide/connecting-applications/"></a>
+    <a class="item" data-title="Creating Servers with External IPs" href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/simple-nginx.md" target='_blank'></a>
+    <a class="item" data-title="Connect with Proxies" href="/docs/user-guide/connecting-to-applications-proxy/"></a>
+    <a class="item" data-title="Connect with Port Forwarding" href="/docs/user-guide/connecting-to-applications-port-forward/"></a>
+    <a class="item" data-title="Configuring Your Cloud Provider's Firewalls" href="/docs/user-guide/services-firewalls/"></a>
+  </div>
+</div>
+<div class="item" data-title="Configuring Kubernetes">
+  <div class="container">
+    <a class="item" data-title="Using Configuration Files" href="/docs/user-guide/simple-yaml/"></a>
+    <a class="item" data-title="Best Practices for Configuration" href="/docs/user-guide/config-best-practices/"></a>
+    <a class="item" data-title="Configuring Containers" href="/docs/user-guide/configuring-containers/"></a>
+    <a class="item" data-title="Sharing Cluster Access with kubeconfig" href="/docs/user-guide/sharing-clusters/"></a>
+    <a class="item" data-title="Using Environment Variables" href="/docs/user-guide/environment-guide/"></a>
+    <a class="item" data-title="Managing Compute Resources" href="/docs/user-guide/compute-resources/"></a>
+    <a class="item" data-title="Using kubectl to Manage Resources" href="/docs/user-guide/working-with-resources/"></a>
+    <a class="item" data-title="Applying Resource Quotas and Limits" href="/docs/admin/resourcequota/"></a>
+    <a class="item" data-title="Setting Pod CPU and Memory Limits" href="/docs/admin/limitrange/"></a>
+    <a class="item" data-title="Configuring Garbage Collection" href="/docs/admin/garbage-collection/"></a>
+    <a class="item" data-title="Configuring Kubernetes with Salt" href="/docs/admin/salt/"></a>
+    <a class="item" data-title="Configuring Kubernetes Use of etcd" href="/docs/admin/etcd/"></a>
+  </div>
+</div>
+<div class="item" data-title="Application Management and Deployment">
+  <div class="container">
+    <a class="item" data-title="Managing Applications: Prerequisites" href="/docs/user-guide/prereqs/"></a>
+    <a class="item" data-title="Managing Deployments" href="/docs/user-guide/managing-deployments/"></a>
+    <a class="item" data-title="Deploying Applications" href="/docs/user-guide/deploying-applications/"></a>
+    <a class="item" data-title="Launching, Exposing, and Killing Applications" href="/docs/user-guide/quick-start/"></a>
+  </div>
+</div>
+<div class="item" data-title="Testing and Monitoring">
+  <div class="container">
+    <a class="item" data-title="Testing a Kubernetes Cluster" href="/docs/getting-started-guides/docker-multinode/testing/"></a>
+    <a class="item" data-title="Simulating Large Test Loads" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/k8petstore" target='_blank'></a>
+    <a class="item" data-title="Checking Pod Health" href="/docs/user-guide/liveness/"></a>
+    <a class="item" data-title="Using Explorer to Examine the Runtime Environment" href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/explorer" target='_blank'></a>
+    <a class="item" data-title="Resource Usage Monitoring" href="/docs/user-guide/monitoring/"></a>
+    <a class="item" data-title="Logging" href="/docs/getting-started-guides/logging/"></a>
+    <a class="item" data-title="Logging with Elasticsearch and Kibana" href="/docs/getting-started-guides/logging-elasticsearch/"></a>
+  </div>
+</div>
+        </div> <!-- /pi-accordion -->
+	</div> <!-- /docsToc -->
+	<div id="docsContent">
+        <p><a href="/docs/editdocs#docs/getting-started-guides/logging.md" id="editPageButton">Edit This Page</a></p>
+    	<h1>Logging</h1>
+		<p>A Kubernetes cluster will typically be humming along running many system and application pods. How does the system administrator collect, manage and query the logs of the system pods? How does a user query the logs of their application which is composed of many pods which may be restarted or automatically generated by the Kubernetes system? These questions are addressed by the Kubernetes <strong>cluster level logging</strong> services.</p>
+
+<p>Cluster level logging for Kubernetes allows us to collect logs which persist beyond the lifetime of the pod’s container images or the lifetime of the pod or even cluster. In this article we assume that a Kubernetes cluster has been created with cluster level logging support for sending logs to Google Cloud Logging. After a cluster has been created you will have a collection of system pods running in the <code class="highlighter-rouge">kube-system</code> namespace that support monitoring,
+logging and DNS resolution for names of Kubernetes services:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods --namespace<span class="o">=</span>kube-system
+NAME                                           READY     REASON    RESTARTS   AGE
+fluentd-cloud-logging-kubernetes-minion-0f64   1/1       Running   0          32m
+fluentd-cloud-logging-kubernetes-minion-27gf   1/1       Running   0          32m
+fluentd-cloud-logging-kubernetes-minion-pk22   1/1       Running   0          31m
+fluentd-cloud-logging-kubernetes-minion-20ej   1/1       Running   0          31m
+kube-dns-v3-pk22                               3/3       Running   0          32m
+monitoring-heapster-v1-20ej                    0/1       Running   9          32m
+</code></pre>
+</div>
+
+<p>Here is the same information in a picture which shows how the pods might be placed on specific nodes.</p>
+
+<p><img src="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/blog-logging/diagrams/cloud-logging.png" alt="Cluster" /></p>
+
+<p>This diagram shows four nodes created on a Google Compute Engine cluster with the name of each VM node on a purple background. The internal and public IPs of each node are shown on gray boxes and the pods running in each node are shown in green boxes. Each pod box shows the name of the pod and the namespace it runs in, the IP address of the pod and the images which are run as part of the pod’s execution. Here we see that every node is running a fluentd-cloud-logging pod which is collecting the log output of the containers running on the same node and sending them to Google Cloud Logging. A pod which provides the
+<a href="/docs/admin/dns">cluster DNS service</a> runs on one of the nodes and a pod which provides monitoring support runs on another node.</p>
+
+<p>To help explain how cluster level logging works let’s start off with a synthetic log generator pod specification <a href="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/blog-logging/counter-pod.yaml">counter-pod.yaml</a>:</p>
+
+<p> </p>
+<table class="includecode"><thead><tr><th><a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/examples/blog-logging/counter-pod.yaml"><code>counter-pod.yaml</code></a></th></tr></thead>
+<tr><td>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">counter</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">count</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s">ubuntu:14.04</span>
+    <span class="s">args</span><span class="pi">:</span> <span class="pi">[</span><span class="nv">bash</span><span class="pi">,</span> <span class="nv">-c</span><span class="pi">,</span> 
+           <span class="s1">'</span><span class="s">for</span><span class="nv"> </span><span class="s">((i</span><span class="nv"> </span><span class="s">=</span><span class="nv"> </span><span class="s">0;</span><span class="nv"> </span><span class="s">;</span><span class="nv"> </span><span class="s">i++));</span><span class="nv"> </span><span class="s">do</span><span class="nv"> </span><span class="s">echo</span><span class="nv"> </span><span class="s">"$i:</span><span class="nv"> </span><span class="s">$(date)";</span><span class="nv"> </span><span class="s">sleep</span><span class="nv"> </span><span class="s">1;</span><span class="nv"> </span><span class="s">done'</span><span class="pi">]</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<p>This pod specification has one container which runs a bash script when the container is born. This script simply writes out the value of a counter and the date once per second and runs indefinitely. Let’s create the pod in the default
+namespace.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f examples/blog-logging/counter-pod.yaml
+ pods/counter
+</code></pre>
+</div>
+
+<p>We can observe the running pod:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl get pods
+NAME                                           READY     STATUS    RESTARTS   AGE
+counter                                        1/1       Running   0          5m
+</code></pre>
+</div>
+
+<p>This step may take a few minutes to download the ubuntu:14.04 image during which the pod status will be shown as <code class="highlighter-rouge">Pending</code>.</p>
+
+<p>One of the nodes is now running the counter pod:</p>
+
+<p><img src="https://github.com/kubernetes/kubernetes/tree/release-1.1/examples/blog-logging/diagrams/27gf-counter.png" alt="Counter Pod" /></p>
+
+<p>When the pod status changes to <code class="highlighter-rouge">Running</code> we can use the kubectl logs command to view the output of this counter pod.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl logs counter
+0: Tue Jun  2 21:37:31 UTC 2015
+1: Tue Jun  2 21:37:32 UTC 2015
+2: Tue Jun  2 21:37:33 UTC 2015
+3: Tue Jun  2 21:37:34 UTC 2015
+4: Tue Jun  2 21:37:35 UTC 2015
+5: Tue Jun  2 21:37:36 UTC 2015
+...
+</code></pre>
+</div>
+
+<p>This command fetches the log text from the Docker log file for the image that is running in this container. We can connect to the running container and observe the running counter bash script.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl <span class="nb">exec</span> -i counter bash
+ps aux
+USER       PID %CPU %MEM    VSZ   RSS TTY      STAT START   TIME COMMAND
+root         1  0.0  0.0  17976  2888 ?        Ss   00:02   0:00 bash -c <span class="k">for</span> <span class="o">((</span>i <span class="o">=</span> 0; ; i++<span class="o">))</span>; <span class="k">do </span><span class="nb">echo</span> <span class="s2">"</span><span class="nv">$i</span><span class="s2">: </span><span class="k">$(</span>date<span class="k">)</span><span class="s2">"</span>; sleep 1; <span class="k">done
+</span>root       468  0.0  0.0  17968  2904 ?        Ss   00:05   0:00 bash
+root       479  0.0  0.0   4348   812 ?        S    00:05   0:00 sleep 1
+root       480  0.0  0.0  15572  2212 ?        R    00:05   0:00 ps aux
+</code></pre>
+</div>
+
+<p>What happens if for any reason the image in this pod is killed off and then restarted by Kubernetes? Will we still see the log lines from the previous invocation of the container followed by the log lines for the started container? Or will we lose the log lines from the original container’s execution and only see the log lines for the new container? Let’s find out. First let’s stop the currently running counter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl stop pod counter
+pods/counter
+</code></pre>
+</div>
+
+<p>Now let’s restart the counter.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl create -f examples/blog-logging/counter-pod.yaml
+pods/counter
+</code></pre>
+</div>
+
+<p>Let’s wait for the container to restart and get the log lines again.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>kubectl logs counter
+0: Tue Jun  2 21:51:40 UTC 2015
+1: Tue Jun  2 21:51:41 UTC 2015
+2: Tue Jun  2 21:51:42 UTC 2015
+3: Tue Jun  2 21:51:43 UTC 2015
+4: Tue Jun  2 21:51:44 UTC 2015
+5: Tue Jun  2 21:51:45 UTC 2015
+6: Tue Jun  2 21:51:46 UTC 2015
+7: Tue Jun  2 21:51:47 UTC 2015
+8: Tue Jun  2 21:51:48 UTC 2015
+</code></pre>
+</div>
+
+<p>We’ve lost the log lines from the first invocation of the container in this pod! Ideally, we want to preserve all the log lines from each invocation of each container in the pod. Furthermore, even if the pod is restarted we would still like to preserve all the log lines that were ever emitted by the containers in the pod. But don’t fear, this is the functionality provided by cluster level logging in Kubernetes. When a cluster is created, the standard output and standard error output of each container can be ingested using a <a href="http://www.fluentd.org/">Fluentd</a> agent running on each node into either <a href="https://cloud.google.com/logging/docs/">Google Cloud Logging</a> or into Elasticsearch and viewed with Kibana.</p>
+
+<p>When a Kubernetes cluster is created with logging to Google Cloud Logging enabled, the system creates a pod called <code class="highlighter-rouge">fluentd-cloud-logging</code> on each node of the cluster to collect Docker container logs. These pods were shown at the start of this blog article in the response to the first get pods command.</p>
+
+<p>This log collection pod has a specification which looks something like this:</p>
+
+<p> </p>
+<table class="includecode"><thead><tr><th><a href="https://github.com/kubernetes/kubernetes/blob/release-1.1/cluster/saltbase/salt/fluentd-gcp/fluentd-gcp.yaml"><code>fluentd-gcp.yaml</code></a></th></tr></thead>
+<tr><td>
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="s">apiVersion</span><span class="pi">:</span> <span class="s">v1</span>
+<span class="s">kind</span><span class="pi">:</span> <span class="s">Pod</span>
+<span class="s">metadata</span><span class="pi">:</span>
+  <span class="s">name</span><span class="pi">:</span> <span class="s">fluentd-cloud-logging</span>
+  <span class="s">namespace</span><span class="pi">:</span> <span class="s">kube-system</span>
+<span class="s">spec</span><span class="pi">:</span>
+  <span class="s">containers</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">fluentd-cloud-logging</span>
+    <span class="s">image</span><span class="pi">:</span> <span class="s">gcr.io/google_containers/fluentd-gcp:1.15</span>
+    <span class="s">resources</span><span class="pi">:</span>
+      <span class="s">limits</span><span class="pi">:</span>
+        <span class="s">cpu</span><span class="pi">:</span> <span class="s">100m</span>
+        <span class="s">memory</span><span class="pi">:</span> <span class="s">200Mi</span>
+    <span class="s">env</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">FLUENTD_ARGS</span>
+      <span class="s">value</span><span class="pi">:</span> <span class="s">-q</span>
+    <span class="s">volumeMounts</span><span class="pi">:</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">varlog</span>
+      <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/var/log</span>
+    <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">varlibdockercontainers</span>
+      <span class="s">mountPath</span><span class="pi">:</span> <span class="s">/var/lib/docker/containers</span>
+      <span class="s">readOnly</span><span class="pi">:</span> <span class="s">true</span>
+  <span class="s">terminationGracePeriodSeconds</span><span class="pi">:</span> <span class="s">30</span>
+  <span class="s">volumes</span><span class="pi">:</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">varlog</span>
+    <span class="s">hostPath</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s">/var/log</span>
+  <span class="pi">-</span> <span class="s">name</span><span class="pi">:</span> <span class="s">varlibdockercontainers</span>
+    <span class="s">hostPath</span><span class="pi">:</span>
+      <span class="s">path</span><span class="pi">:</span> <span class="s">/var/lib/docker/containers</span>
+</code></pre>
+</div>
+</td></tr></table>
+
+<p>This pod specification maps the directory on the host containing the Docker log files, <code class="highlighter-rouge">/var/lib/docker/containers</code>, to a directory inside the container which has the same path. The pod runs one image, <code class="highlighter-rouge">gcr.io/google_containers/fluentd-gcp:1.6</code>, which is configured to collect the Docker log files from the logs directory and ingest them into Google Cloud Logging. One instance of this pod runs on each node of the cluster. Kubernetes will notice if this pod fails and automatically restart it.</p>
+
+<p>We can click on the Logs item under the Monitoring section of the Google Developer Console and select the logs for the counter container, which will be called kubernetes.counter_default_count.  This identifies the name of the pod (counter), the namespace (default) and the name of the container (count) for which the log collection occurred. Using this name we can select just the logs for our counter container from the drop down menu:</p>
+
+<p><img src="/images/docs/cloud-logging-console.png" alt="Cloud Logging Console" /></p>
+
+<p>When we view the logs in the Developer Console we observe the logs for both invocations of the container.</p>
+
+<p><img src="/images/docs/all-lines.png" alt="Both Logs" /></p>
+
+<p>Note the first container counted to 108 and then it was terminated. When the next container image restarted the counting process resumed from 0. Similarly if we deleted the pod and restarted it we would capture the logs for all instances of the containers in the pod whenever the pod was running.</p>
+
+<p>Logs ingested into Google Cloud Logging may be exported to various other destinations including <a href="https://cloud.google.com/storage/">Google Cloud Storage</a> buckets and <a href="https://cloud.google.com/bigquery/">BigQuery</a>. Use the Exports tab in the Cloud Logging console to specify where logs should be streamed to. You can also follow this link to the
+ <a href="https://pantheon.corp.google.com/project/_/logs/settings">settings tab</a>.</p>
+
+<p>We could query the ingested logs from BigQuery using the SQL query which reports the counter log lines showing the newest lines first:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>SELECT metadata.timestamp, structPayload.log
+ FROM <span class="o">[</span>mylogs.kubernetes_counter_default_count_20150611] 
+ ORDER BY metadata.timestamp DESC
+</code></pre>
+</div>
+
+<p>Here is some sample output:</p>
+
+<p><img src="/images/docs/bigquery-logging.png" alt="BigQuery" /></p>
+
+<p>We could also fetch the logs from Google Cloud Storage buckets to our desktop or laptop and then search them locally. The following command fetches logs for the counter pod running in a cluster which is itself in a Compute Engine project called <code class="highlighter-rouge">myproject</code>. Only logs for the date 2015-06-11 are fetched.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gsutil -m cp -r gs://myproject/kubernetes.counter_default_count/2015/06/11 .
+</code></pre>
+</div>
+
+<p>Now we can run queries over the ingested logs. The example below uses the <a href="http://stedolan.github.io/jq/">jq</a> program to extract just the log lines.</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>cat 21<span class="se">\:</span>00<span class="se">\:</span>00_21<span class="se">\:</span>59<span class="se">\:</span>59_S0.json | jq <span class="s1">'.structPayload.log'</span>
+<span class="s2">"0: Thu Jun 11 21:39:38 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"1: Thu Jun 11 21:39:39 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"2: Thu Jun 11 21:39:40 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"3: Thu Jun 11 21:39:41 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"4: Thu Jun 11 21:39:42 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"5: Thu Jun 11 21:39:43 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"6: Thu Jun 11 21:39:44 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+<span class="s2">"7: Thu Jun 11 21:39:45 UTC 2015</span><span class="se">\n</span><span class="s2">"</span>
+...
+</code></pre>
+</div>
+
+<p>This page has touched briefly on the underlying mechanisms that support gathering cluster level logs on a Kubernetes deployment. The approach here only works for gathering the standard output and standard error output of the processes running in the pod’s containers. To gather other logs that are stored in files one can use a sidecar container to gather the required files as described at the page <a href="http://releases.k8s.io/release-1.1/contrib/logging/fluentd-sidecar-gcp/README.md">Collecting log files within containers with Fluentd</a> and sending them to the Google Cloud Logging service.</p>
+
+<p>Some of the material in this section also appears in the blog article <a href="http://blog.kubernetes.io/2015/06/cluster-level-logging-with-kubernetes">Cluster Level Logging with Kubernetes</a></p>
+
+        <p><a href=""><img src="https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/getting-started-guides/logging.md?pixel" alt="Analytics" /></a>
+        <div id="pd_rating_holder_8345992"></div>
+		<script type="text/javascript">
+        PDRTJS_settings_8345992 = {
+        "id" : "8345992",
+        "unique_id" : "/docs/getting-started-guides/logging/",
+        "title" : "Logging",
+        "permalink" : "http://kubernetes.github.io/docs/getting-started-guides/logging/"
+        };
+        (function(d,c,j){if(!document.getElementById(j)){var pd=d.createElement(c),s;pd.id=j;pd.src=('https:'==document.location.protocol)?'https://polldaddy.com/js/rating/rating.js':'http://i0.poll.fm/js/rating/rating.js';s=document.getElementsByTagName(c)[0];s.parentNode.insertBefore(pd,s);}}(document,'script','pd-rating-js'));
+        </script>
+	</div>
+</section>
+
+<footer>
+	<main class="light-text">
+		<nav>
+			<a href="/docs/hellonode/">Get Started</a>
+			<a href="/docs/">Documentation</a>
+			<a href="http://blog.kubernetes.io/">Blog</a>
+			<a href="/community/">Community</a>
+		</nav>
+		<div class="social">
+			<a href="https://twitter.com/kubernetesio" class="twitter"><span>twitter</span></a>
+			<a href="https://github.com/kubernetes/kubernetes" class="github"><span>Github</span></a>
+			<a href="http://slack.k8s.io/" class="slack"><span>Slack</span></a>
+			<a href="http://stackoverflow.com/questions/tagged/kubernetes" class="stack-overflow"><span>stackoverflow</span></a>
+			<a href="https://groups.google.com/forum/#!forum/google-containers" class="mailing-list"><span>Mailing List</span></a>
+			<a href="https://calendar.google.com/calendar/embed?src=nt2tcnbtbied3l6gi2h29slvc0%40group.calendar.google.com" class="calendar"><span>Events Calendar</span></a>
+			<label for="wishField">I wish this page <input type="text" id="wishField" name="wishField" placeholder="enter your wish"></label>
+		</div>
+		<div class="center">&copy; 2016 Kubernetes</div>
+	</main>
+</footer>
+
+
+
+<style>
+	.cse .gsc-control-cse, .gsc-control-cse {
+		padding: 0;
+	}
+
+	.gsc-above-wrapper-area {
+		border-bottom: 0;
+	}
+</style>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-36037335-10', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Commenting out AnswerDash for now; we need to work on our list of questions/answers/design first
+<!-- Start of AnswerDash script <script>var AnswerDash;!function(e,t,n,s,a){if(!t.getElementById(s)){var i,r=t.createElement(n),c=t.getElementsByTagName(n)[0];e[a]||(i=e[a]=function(){i.__oninit.push(arguments)},i.__oninit=[]),r.type="text/javascript",r.async=!0,r.src="https://p1.answerdash.com/answerdash.min.js?siteid=756",r.setAttribute("id",s),c.parentNode.insertBefore(r,c)}}(window,document,"script","answerdash-script","AnswerDash");</script> <!-- End of AnswerDash script -->
+-->
+</body>
+</html>
