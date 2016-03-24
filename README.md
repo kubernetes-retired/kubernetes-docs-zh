@@ -1,3 +1,61 @@
+# Contributing to Kubernetes Chinese Documentation
+
+Thanks everyone for contributing your time on translating Kubernetes documentation into Chinese.
+
+If you're not familiar with processes working with git, please follow the steps below:
+
+ 1. Have git installed in your machine.
+ 2. OPTIONAL: Clone already translated file to your local machine.
+
+        git clone https://git.gitbook.com/linfan1/kubernetes-chinese-docs 
+
+ 3. Use the `Fork` button in the upper-right side of the screen to fork this repo to your own github account.
+ 4. Clone your repo to your local machine.
+ 5. git clone https://github.com/YOURACCOUNT/kubernetes-docs-cn.git
+ 6. Enter the cloned folder and set your emailaddress and username of your github account, so when you commit a change, git will know who you are.
+
+        git config set user.email YOUREMAILADDRESS
+        git config set user.name YOURGITHUBACCOUNT
+
+ 7. Set this repo as an upstream.
+
+        git add remote upstream https://github.com/kubernetes/kubernetes-docs-cn.git
+
+ 8. Check out to branch `release-1.1-cn`.
+
+        git checkout release-1.1-cn
+
+ 9. Snychronize your repo with upstream.
+
+        git fetch upstream
+        git merge upstream/release-1.1-cn
+
+ 10. Create a new working branch.
+
+        git checkout -b NEWWORKINGBRANCH
+
+ 11. Do you translation work, the documents are located in `/docs` folder. If you have done step 2, find your translated file and overwrite the coresponding file. If you're working on an untranslated file, just edit it.
+ 12. Commit your changes. Input your commit title and message as the prompt says. Then press `Ctrl+X` and then `Shift+Y`.
+
+        git add .
+        git commit
+
+ 13. Push your commit to your own repo and create a branch coresponding to your working branch.
+
+        git push origin NEWWORKINGBRANCH:NEWWORKINGBRANCH
+
+ 14. Now go to your repo page `https://github.com/YOURACCOUNT/kubernetes-docs-cn`, use the `New Pull Request` button to create a new PR. **DO** choose `release-1.1-cn` branch in the left and `NEWWORKINGBRANCH` in the right. 
+ 15. Want to send another PR? Repeat step 8 to 14.
+
+# NOTES
+- The steps above are just very basic practices of using git. There're more problems you may meet. So if you're new to git, learn it ASAP.
+- **Start an issue before you create a PR**, so other people would know which file you're working on. Issue can be named as `Translating docs/admin/accessing-the-api.md`.
+- Bound the issue and PR together using `#ISSUEID` in your PR.
+- Comment under your PR use `@SOMEONE` to notify someone to review your PR.
+- Send only one translated file in one single PR. So reviewers can make a quick review and merge the PR early.
+- The PR I created to modify the README file can be considered as an example.
+- For more information, continue reading this file.
+
 # Contributing to the Kubernetes Documentation and Website
 
 Welcome! We are very pleased you want to contribute to Kubernetes.
