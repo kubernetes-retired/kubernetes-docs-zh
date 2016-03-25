@@ -8,7 +8,7 @@
 
 ##用配置文件生成复制品集合
 
-Kubernetes用`Replication Controllers`创建并管理复制的容器集合（实际上是复制的Pods）。`Replication Controller`简单地确保在任一时间里都有特定数量的pod副本在运行。如果运行的太多，它会杀掉一些；如果运行的太少，它会启动一些。这和Google Computing Engine的Instance Group Manager以及AWS的弹性策略类似。在[快速开始](http://kubernetes.io/v1.0/docs/user-guide/quick-start.html)章节里用`kubctl run`创建的用来运行Nginx的`Replication Controller`可以用下面的YAML描述：
+Kubernetes用`Replication Controllers`创建并管理复制的容器集合（实际上是复制的Pods）。`Replication Controller`简单地确保在任一时间里都有特定数量的pod副本在运行。如果运行的太多，它会杀掉一些；如果运行的太少，它会启动一些。这和Google Computing Engine的Instance Group Manager以及AWS的弹性策略类似。在[快速开始](http://kubernetes.io/docs/hellonode/)章节里用`kubctl run`创建的用来运行Nginx的`Replication Controller`可以用下面的YAML描述：
 
 ```yaml
 apiVersion: v1
@@ -29,7 +29,7 @@ spec:
         - containerPort: 80
 ```
 
-和指定一个单独的Pod相比，不同的是设置了这里的kind字段为ReplicationController，设定了需要的副本（replicas）数量以及把Pod的定义放到了template域下面。pods的名字不需要显示指定，因为它们是根据`replication controller`的名字生成的。要查看支持的域列表，可以查看[replication controller API object](https://htmlpreview.github.io/?https://github.com/GoogleCloudPlatform/kubernetes/v1.0.1/docs/api-reference/definitions.html#_v1_replicationcontroller)。
+和指定一个单独的Pod相比，不同的是设置了这里的kind字段为ReplicationController，设定了需要的副本（replicas）数量以及把Pod的定义放到了template域下面。pods的名字不需要显示指定，因为它们是根据`replication controller`的名字生成的。要查看支持的域列表，可以查看[replication controller API object](http://kubernetes.io/docs/api-reference/v1/operations/)。
 和创建pods一样，也可以用`create`命令来创建这个replication controller：
 
 ```shell
@@ -72,7 +72,7 @@ replicationcontrollers/my-nginx
 
 ##Labels
 
-Kubernetes使用自定义的键值对（称为[Labels](http://kubernetes.io/v1.0/docs/user-guide/labels.html)）分类资源集合，例如pods和replication controller。在前面的例子里，pod的模板里只设定了一个单独的label，键是`app`，值为`nginx`。所有被创建的pod都带有这个label，可以用带-L参数的命令查看：
+Kubernetes使用自定义的键值对（称为[Labels](http://kubernetes.io/docs/user-guide/labels/)）分类资源集合，例如pods和replication controller。在前面的例子里，pod的模板里只设定了一个单独的label，键是`app`，值为`nginx`。所有被创建的pod都带有这个label，可以用带-L参数的命令查看：
 
 ```shell
 $ kubectl get pods -L app
@@ -90,7 +90,7 @@ CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR    REPLICAS   APP
 my-nginx     nginx          nginx      app=nginx   2          nginx
 ```
 
-更重要的是，pod模板的label会被用来创建`selector`，这个`selector`会匹配所有带这些label的pods。用`kubectl get`的[go语言模板输出格式](http://kubernetes.io/v1.0/docs/user-guide/kubectl/kubectl_get.html)就可以看到这个字段：
+更重要的是，pod模板的label会被用来创建`selector`，这个`selector`会匹配所有带这些label的pods。用`kubectl get`的[go语言模板输出格式](http://kubernetes.io/docs/user-guide/kubectl/kubectl_get/)就可以看到这个字段：
 
 ```shell
 $ kubectl get rc my-nginx -o template --template="{{.spec.selector}}"
@@ -100,4 +100,4 @@ map[app:nginx]
 如果你想要在pod模板里指定labels，但是又不想要被选中，可以显示指定`selector`来解决，不过需要确保`selector`能够匹配由pod模板创建出来的pod的label，并且不能匹配由其他replication controller创建的pods。对于后者，最直接最保险的方法是给replication controller分配一个独特的label，并且在pod模板和selector里都进行指定。
 ##后续
 
-[向用户和客户端暴露应用](http://kubernetes.io/v1.0/docs/user-guide/connecting-applications.html)。
+[向用户和客户端暴露应用](http://kubernetes.io/docs/user-guide/quick-start/)。
