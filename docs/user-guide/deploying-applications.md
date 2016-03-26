@@ -1,18 +1,18 @@
 ---
 ---
 
-在前面的章节里，我们了解了如何用[`kubectl run`](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/quick-start.md)快速部署一个简单的多副本应用以及如何用Pod配置并生成单次运行的容器（[configuring-containers.md](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/configuring-containers.md)）。本文，我们将使用基于配置的方法来部署一个持续运行的多副本应用。
+在前面的章节里，我们了解了如何用[`kubectl run`](/docs/user-guide/quick-start)快速部署一个简单的多副本应用以及如何用Pod配置并生成单次运行的容器（[configuring-containers.md](/docs/user-guide/configuring-containers)）。本文，我们将使用基于配置的方法来部署一个持续运行的多副本应用。
 
 * TOC
 {:toc}
 
-## 用配置文件生成副本集合
+## 用配置文件生成一组容器副本
 
-Kubernetes用[`Replication Controller`](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/replication-controller.md)创建并管理多副本的容器集合（实际上是多副本的[Pod](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/pods.md)）。
+Kubernetes用[`Replication Controller`](/docs/user-guide/replication-controller)创建并管理多副本的容器集合（实际上是多副本的[Pod](/docs/user-guide/pods)）。
 
 `Replication Controller`简单地确保在任一时间里都有特定数量的pod副本在运行。如果运行的太多，它会杀掉一些；如果运行的太少，它会启动一些。这和Google Compute Engine的[Instance Group Manager](https://cloud.google.com/compute/docs/instance-groups/manager/)以及AWS的[Auto-scaling Group](http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroup)（不包含弹性策略）类似。
 
-在[快速开始](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/quick-start)章节里用`kubctl run`创建的用来运行Nginx的`Replication Controller`可以用下面的YAML描述：
+在[快速开始](/docs/user-guide/quick-start)章节里用`kubctl run`创建的用来运行Nginx的`Replication Controller`可以用下面的YAML描述：
 
 ```yaml
 apiVersion: v1
@@ -33,7 +33,7 @@ spec:
         - containerPort: 80
 ```
 
-和指定一个单独的Pod相比，不同的是设置了这里的`kind`字段为`ReplicationController`，设定了需要的副本数量以及把Pod的定义放到了template字段下面。Pod的名字不需要显示指定，因为它们是根据`Replication Controller`的名字生成的。要查看支持的字段列表，可以查看[Replication Controller API object](http://kubernetes.io/v1.1/docs/api-reference/v1/definitions/#_v1_replicationcontroller.md)。
+和指定一个单独的Pod相比，不同的是设置了这里的`kind`字段为`ReplicationController`，设定了需要的副本数量以及把Pod的定义放到了template字段下面。Pod的名字不需要显示指定，因为它们是根据`Replication Controller`的名字生成的。要查看支持的字段列表，可以查看[Replication Controller API object](http://kubernetes.io/v1.1/docs/api-reference/v1/definitions/#_v1_replicationcontroller)。
 
 和创建pods一样，也可以用`create`命令来创建这个replication controller：
 
@@ -67,7 +67,7 @@ my-nginx-buaiq   1/1       Running   0          51s
 
 ## 删除replication controllers
 
-如果想要结束你的应用并且删除Repication Controller。和在[快速开始](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/quick-start.md)里一样，用下面的命令：
+如果想要结束你的应用并且删除Repication Controller。和在[快速开始](/docs/user-guide/quick-start)里一样，用下面的命令：
 
 ```shell
 $ kubectl delete rc my-nginx
@@ -80,7 +80,7 @@ replicationcontrollers/my-nginx
 
 ## Labels
 
-Kubernetes使用自定义的键值对（称为[Label](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/labels.md)）分类资源集合，例如Pod和Replication Controller。在前面的例子里，Pod的模板里只设定了一个单独的Label，键是`app`，值为`nginx`。所有被创建的Pod都带有这个Label，可以用带`-L`参数的命令查看：
+Kubernetes使用自定义的键值对（称为[*Label*](/docs/user-guide/labels)）分类资源集合，例如Pod和Replication Controller。在前面的例子里，Pod的模板里只设定了一个单独的Label，键是`app`，值为`nginx`。所有被创建的Pod都带有这个Label，可以用带`-L`参数的命令查看：
 
 ```shell
 $ kubectl get pods -L app
@@ -99,14 +99,14 @@ CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR    REPLICAS   APP
 my-nginx     nginx          nginx      app=nginx   2          nginx
 ```
 
-更重要的是，Pod模板的Label会被用来创建[`Selector`](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/labels/#label-selectors.md)，这个`Selector`会匹配所有带这些Label的Pod。用`kubectl get`的[go语言模板输出格式](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/kubectl/kubectl_get.md)就可以看到这个字段：
+更重要的是，Pod模板的Label会被用来创建[`Selector`](/docs/user-guide/labels/#label-selectors)，这个`Selector`会匹配所有带这些Label的Pod。用`kubectl get`的[go语言模板输出格式](/docs/user-guide/kubectl/kubectl_get)就可以看到这个字段：
 
 ```shell
 $ kubectl get rc my-nginx -o template --template="{{.spec.selector}}"
 map[app:nginx]
 ```
 
-如果你想要在Pod模板里指定Label，但是又不想要被选中，可以显示指定`Selector`来解决，不过需要确保`Selector`能够匹配由Pod模板创建出来的Pod的Label，并且不能匹配由其他Replication Controller创建的Pod。对于后者，最直接最保险的方法是给Replication Controller分配一个独特的Label，并且在Pod模板和Selector里都进行指定。
+如果你想要在Pod模板里指定Label，但是又不想使用这些Label进行筛选，可以显示指定`Selector`来解决，不过需要确保`Selector`能够匹配由Pod模板创建出来的Pod的Label，并且不能匹配由其他Replication Controller创建的Pod。对于后者，最直接最保险的方法是给Replication Controller分配一个独特的Label，并且在Pod模板和Selector里都进行指定。
 ## 下一节
 
-[向用户和客户端暴露应用，以及如何把应用串联起来](https://github.com/kubernetes/kubernetes-docs-cn/blob/release-1.1-cn/docs/user-guide/connecting-applications.md)。
+[向用户和客户端暴露应用，以及如何把应用串联起来](/docs/user-guide/connecting-applications)。
