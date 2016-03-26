@@ -19,7 +19,7 @@ If you're not familiar with processes working with git, please follow the steps 
 
  7. Set this repo as an upstream.
 
-        git add remote upstream https://github.com/kubernetes/kubernetes-docs-cn.git
+        git remote add upstream https://github.com/kubernetes/kubernetes-docs-cn.git
 
  8. Check out to branch `release-1.1-cn`.
 
