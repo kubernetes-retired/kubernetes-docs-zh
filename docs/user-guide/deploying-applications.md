@@ -1,18 +1,18 @@
 ---
 ---
 
-You previously read about how to quickly deploy a simple replicated application using [`kubectl run`](/docs/user-guide/quick-start) and how to configure and launch single-run containers using pods ([Configuring containers](/docs/user-guide/configuring-containers)). Here you'll use the configuration-based approach to deploy a continuously running, replicated application.
+在前面的章节里，我们了解了如何用[`kubectl run`](/docs/user-guide/quick-start)快速部署一个简单的多副本应用以及如何用Pod配置并生成单次运行的容器（[configuring-containers.md](/docs/user-guide/configuring-containers)）。本文，我们将使用基于配置的方法来部署一个持续运行的多副本应用。
 
 * TOC
 {:toc}
 
-## Launching a set of replicas using a configuration file
+## 用配置文件生成一组容器副本
 
-Kubernetes creates and manages sets of replicated containers (actually, replicated [Pods](/docs/user-guide/pods)) using [*Replication Controllers*](/docs/user-guide/replication-controller).
+Kubernetes用[`Replication Controller`](/docs/user-guide/replication-controller)创建并管理多副本的容器集合（实际上是多副本的[Pod](/docs/user-guide/pods)）。
 
-A replication controller simply ensures that a specified number of pod "replicas" are running at any one time. If there are too many, it will kill some. If there are too few, it will start more. It's analogous to Google Compute Engine's [Instance Group Manager](https://cloud.google.com/compute/docs/instance-groups/manager/) or AWS's [Auto-scaling Group](http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroup) (with no scaling policies).
+`Replication Controller`简单地确保在任一时间里都有特定数量的pod副本在运行。如果运行的太多，它会杀掉一些；如果运行的太少，它会启动一些。这和Google Compute Engine的[Instance Group Manager](https://cloud.google.com/compute/docs/instance-groups/manager/)以及AWS的[Auto-scaling Group](http://docs.aws.amazon.com/AutoScaling/latest/DeveloperGuide/AutoScalingGroup)（不包含弹性策略）类似。
 
-The replication controller created to run nginx by `kubectl run` in the [Quick start](/docs/user-guide/quick-start) could be specified using YAML as follows:
+在[快速开始](/docs/user-guide/quick-start)章节里用`kubctl run`创建的用来运行Nginx的`Replication Controller`可以用下面的YAML描述：
 
 ```yaml
 apiVersion: v1
@@ -33,23 +33,20 @@ spec:
         - containerPort: 80
 ```
 
-Some differences compared to specifying just a pod are that the `kind` is `ReplicationController`, the number of `replicas` desired is specified, and the pod specification is under the `template` field. The names of the pods don't need to be specified explicitly because they are generated from the name of the replication controller.
-View the [replication controller API
-object](http://kubernetes.io/v1.1/docs/api-reference/v1/definitions/#_v1_replicationcontroller)
-to view the list of supported fields.
+和指定一个单独的Pod相比，不同的是设置了这里的`kind`字段为`ReplicationController`，设定了需要的副本数量以及把Pod的定义放到了template字段下面。Pod的名字不需要显示指定，因为它们是根据`Replication Controller`的名字生成的。要查看支持的字段列表，可以查看[Replication Controller API object](http://kubernetes.io/v1.1/docs/api-reference/v1/definitions/#_v1_replicationcontroller)。
 
-This replication controller can be created using `create`, just as with pods:
+和创建pods一样，也可以用`create`命令来创建这个replication controller：
 
 ```shell
 $ kubectl create -f ./nginx-rc.yaml
 replicationcontrollers/my-nginx
 ```
 
-Unlike in the case where you directly create pods, a replication controller replaces pods that are deleted or terminated for any reason, such as in the case of node failure. For this reason, we recommend that you use a replication controller for a continuously running application even if your application requires only a single pod, in which case you can omit `replicas` and it will default to a single replica.
+Replication Controller会重建删除的或者因不明原因终止的（比如节点失败）Pod，这和直接创建的Pod的情况是不一样。基于这样的考量，对于一个需要持续运行的应用，即便你的应用只需要一个单独的pod，我们也推荐使用Replication Controller。对于单独的Pod，在配置文件里可以省略`replicas`这个字段，因为不设置的时候默认就只有一个副本。
 
-## Viewing replication controller status
+## 查看Replication Controller的状态
 
-You can view the replication controller you created using `get`:
+可以用`get`命令查看你创建的Replication Controller：
 
 ```shell
 $ kubectl get rc
@@ -57,9 +54,9 @@ CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR    REPLICAS
 my-nginx     nginx          nginx      app=nginx   2
 ```
 
-This tells you that your controller will ensure that you have two nginx replicas.
+这说明你的Controller会确保有两个nginx的副本。
 
-You can see those replicas using `get`, just as with pods you created directly:
+和直接创建的Pod一样，也可以用`get`命令查看这些副本：
 
 ```shell
 $ kubectl get pods
@@ -68,22 +65,22 @@ my-nginx-065jq   1/1       Running   0          51s
 my-nginx-buaiq   1/1       Running   0          51s
 ```
 
-## Deleting replication controllers
+## 删除replication controllers
 
-When you want to kill your application, delete your replication controller, as in the [Quick start](/docs/user-guide/quick-start):
+如果想要结束你的应用并且删除Repication Controller。和在[快速开始](/docs/user-guide/quick-start)里一样，用下面的命令：
 
 ```shell
 $ kubectl delete rc my-nginx
 replicationcontrollers/my-nginx
 ```
 
-By default, this will also cause the pods managed by the replication controller to be deleted. If there were a large number of pods, this may take a while to complete. If you want to leave the pods running, specify `--cascade=false`.
+这个操作默认会把由Replication Controller管理的Pod一起删除。如果Pod的数量比较多，这个操作要花一些时间才能完成。如果想要Pod继续运行，不被删掉，可以在delete的时候指定参数`--cascade=false`。
 
-If you try to delete the pods before deleting the replication controller, it will just replace them, as it is supposed to do.
+如果在删除Replication Controller之前想要删除Pod，Pod只是被重建了，因为Replication Controller会再启动新的Pod，确保Pod的数量。
 
 ## Labels
 
-Kubernetes uses user-defined key-value attributes called [*labels*](/docs/user-guide/labels) to categorize and identify sets of resources, such as pods and replication controllers. The example above specified a single label in the pod template, with key `app` and value `nginx`. All pods created carry that label, which can be viewed using `-L`:
+Kubernetes使用自定义的键值对（称为[*Label*](/docs/user-guide/labels)）分类资源集合，例如Pod和Replication Controller。在前面的例子里，Pod的模板里只设定了一个单独的Label，键是`app`，值为`nginx`。所有被创建的Pod都带有这个Label，可以用带`-L`参数的命令查看：
 
 ```shell
 $ kubectl get pods -L app
@@ -92,7 +89,9 @@ my-nginx-afv12   0/1       Running   0          3s        nginx
 my-nginx-lg99z   0/1       Running   0          3s        nginx
 ```
 
-The labels from the pod template are copied to the replication controller's labels by default, as well -- all resources in Kubernetes support labels:
+Pod模板中的Label默认也会被拷贝到Replication Controller的Label字段中。
+
+Kubernetes中所有的资源都支持Label：
 
 ```shell
 $ kubectl get rc my-nginx -L app
@@ -100,15 +99,14 @@ CONTROLLER   CONTAINER(S)   IMAGE(S)   SELECTOR    REPLICAS   APP
 my-nginx     nginx          nginx      app=nginx   2          nginx
 ```
 
-More importantly, the pod template's labels are used to create a [`selector`](/docs/user-guide/labels/#label-selectors) that will match pods carrying those labels. You can see this field by requesting it using the [Go template output format of `kubectl get`](/docs/user-guide/kubectl/kubectl_get):
+更重要的是，Pod模板的Label会被用来创建[`Selector`](/docs/user-guide/labels/#label-selectors)，这个`Selector`会匹配所有带这些Label的Pod。用`kubectl get`的[go语言模板输出格式](/docs/user-guide/kubectl/kubectl_get)就可以看到这个字段：
 
 ```shell
 $ kubectl get rc my-nginx -o template --template="{{.spec.selector}}"
 map[app:nginx]
 ```
 
-You could also specify the `selector` explicitly, such as if you wanted to specify labels in the pod template that you didn't want to select on, but you should ensure that the selector will match the labels of the pods created from the pod template, and that it won't match pods created by other replication controllers. The most straightforward way to ensure the latter is to create a unique label value for the replication controller, and to specify it in both the pod template's labels and in the selector.
+如果你想要在Pod模板里指定Label，但是又不想使用这些Label进行筛选，可以显示指定`Selector`来解决，不过需要确保`Selector`能够匹配由Pod模板创建出来的Pod的Label，并且不能匹配由其他Replication Controller创建的Pod。对于后者，最直接最保险的方法是给Replication Controller分配一个独特的Label，并且在Pod模板和Selector里都进行指定。
+## 下一节
 
-## What's next?
-
-[Learn about exposing applications to users and clients, and connecting tiers of your application together.](/docs/user-guide/connecting-applications)
+[向用户和客户端暴露应用，以及如何把应用串联起来](/docs/user-guide/connecting-applications)。
