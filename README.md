@@ -19,7 +19,7 @@ If you're not familiar with processes working with git, please follow the steps 
 
  7. Set this repo as an upstream.
 
-        git add remote upstream https://github.com/kubernetes/kubernetes-docs-cn.git
+        git remote add upstream https://github.com/kubernetes/kubernetes-docs-cn.git
 
  8. Check out to branch `release-1.1-cn`.
 
@@ -44,7 +44,7 @@ If you're not familiar with processes working with git, please follow the steps 
 
         git push origin NEWWORKINGBRANCH:NEWWORKINGBRANCH
 
- 14. Now go to your repo page `https://github.com/YOURACCOUNT/kubernetes-docs-cn`, use the `New Pull Request` button to create a new PR. **DO** choose `release-1.1-cn` branch in the left and `NEWWORKINGBRANCH` in the right. 
+ 14. Now go to your repo page `https://github.com/YOURACCOUNT/kubernetes-docs-cn`, use the `New Pull Request` button to create a new PR. **DO** choose `release-1.1-cn` branch in the left and `NEWWORKINGBRANCH` in the right.
  15. Want to send another PR? Repeat step 8 to 14.
 
 # NOTES
@@ -69,7 +69,7 @@ change the name of the fork to be:
 
 Then, visit: [http://YOUR_GITHUB_USERNAME.github.io](http://YOUR_GITHUB_USERNAME.github.io)
 
-You should see a special-to-you version of the site. 
+You should see a special-to-you version of the site.
 
 ## Editing/staging the site locally
 
@@ -89,12 +89,12 @@ Then install Ruby 2.2 or higher
 
 	rvm install ruby-2.2.4
 	rvm use ruby-2.2.4 --default
-	
+
 Verify that this new version is running (optional)
 
 	which ruby
 	ruby -v
-	
+
 Install the GitHub Pages package, which includes Jekyll
 
 	gem install github-pages
@@ -116,13 +116,13 @@ If you're a bit rusty with git/GitHub, you might wanna read
 
 The above instructions work on Mac and Linux.
 [These instructions ](https://martinbuberl.com/blog/setup-jekyll-on-windows-and-host-it-on-github-pages/)
-might help for Windows users. 
+might help for Windows users.
 
 ## Common Tasks
 
 ### Edit Page Titles or Change the Left Navigation
 
-Edit the yaml files in `/_data/` for the Guides, Reference, Samples, or Support areas. 
+Edit the yaml files in `/_data/` for the Guides, Reference, Samples, or Support areas.
 
 You may have to exit and `jekyll clean` before restarting the `jekyll serve` to
 get changes to files in `/_data/` to show up.
@@ -167,7 +167,7 @@ Example file: [Pods: Multi-Container](/docs/user-guide/pods/multi-container/).
 
 ## Use a global variable
 
-The `/_config.yml` file defines some useful variables you can use when editing docs. 
+The `/_config.yml` file defines some useful variables you can use when editing docs.
 
 * `page.githubbranch`: The name of the GitHub branch on the Kubernetes repo that is associated with this branch of the docs. e.g. `release-1.2`
 * `page.version` The version of Kubernetes associated with this branch of the docs. e.g. `v1.2`
