@@ -1,7 +1,11 @@
 ---
 ---
 
+<<<<<<< HEAD
 好的，如果你已经开始了任何一个入门指南，并且启动了一个Kubernetes集群。那么接下来呢？ 这篇入门指南会帮助你在Kubernetes集群上运行第一个容器。
+=======
+好的，如果你已经开始了任何一个入门指南，并且启动了一个Kubernetes集群。那么接下来呢？ 这个片指南会帮助你正对KUbernetes,在其集群上运行第一个容器。
+>>>>>>> 733b8c2bfc51ddaa802e7eaf5ef88e8099f73876
 
 ### 运行一个容器 (简单版)
 
@@ -25,7 +29,11 @@ kubectl get pods
 kubectl get rc
 ```
 To stop the two replicated containers, stop the replication controller:
+<<<<<<< HEAD
 如果要停止这两个被复制的容器，你可以通过停止replication controller:
+=======
+如果要停止这两个被复制的容器，你可以通过停止replication： controller
+>>>>>>> 733b8c2bfc51ddaa802e7eaf5ef88e8099f73876
 
 ```shell
 kubectl stop rc my-nginx
@@ -33,13 +41,21 @@ kubectl stop rc my-nginx
 
 ### 将你的pod暴露给外网.
 
+<<<<<<< HEAD
 在一些平台上（例如Google Compute Engine），kubectl命令能够集成云端提供的API来给pod分配公有IP地址[公有IP地址](/docs/user-guide/services/#external-services)，可以通过以下命令来实现：
+=======
+在一些平台上（例如Google Compute Engine），kubectl命令能够集成云端提供的API来给pod条件公有IP地址[公有IP地址](/docs/user-guide/services/#external-services)，可以通过以下命令来实现：
+>>>>>>> 733b8c2bfc51ddaa802e7eaf5ef88e8099f73876
 
 ```shell
 kubectl expose rc my-nginx --port=80 --type=LoadBalancer
 ```
 
+<<<<<<< HEAD
 这个命令会打印出被创建的service,以及映射到这些service外部IP地址. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，可以通在运行时检索。
+=======
+这个命令会打印出被创建了的service,以及一个外部IP地址映射到service. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，还可以通在运行时检索。
+>>>>>>> 733b8c2bfc51ddaa802e7eaf5ef88e8099f73876
 
 ```shell
 kubectl get services
