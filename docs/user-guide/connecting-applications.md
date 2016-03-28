@@ -8,9 +8,9 @@
 
 既然已经有了一个可持续运行的多副本应用，现在就可以在网络中将它暴露出来了。在讨论Kubernetes的网络连接方式之前，很值得和Docker的常规网络连接方式做个对比。
 
-Dokcer默认使用主机私有网络连接方式，所以只有在同一台物理机器上的容器之前才可以通信。为了让Docker容器可以跨节点通信，必须要给机器的IP地址分配端口号，这个端口之后会被用来转发或者路由给容器。很明显，这意味着容器要么很小心地协调使用端口，要么有动态分配地端口。
+Dokcer默认使用主机私有网络连接方式，所以只有在同一台物理机器上的容器之间才可以通信。为了让Docker容器可以跨节点通信，必须要给机器的IP地址分配端口号，这个端口之后会被用来转发或者路由给容器。很明显，这意味着容器要么要很小心地协调端口的使用，要么能动态地分配端口。
 
-在一定的规模下，为多个开发者协调端口号非常困难。这也会把集群级别的问题暴露给用户，这是在用户的控制之外的。Kubernetes假定Pod之间是可以通信的，不管它们落到哪个主机上。我们给每个Pod指定集群私有的IP地址（cluster-private-IP address），所以不需要显示地创建Pod之间的链接，也不需要映射容器的端口到主机的端口。这意味着Pod里的容器可以在本机（localhost）上访问各自的端口，而且在没有NAT的情况下，集群中所有的Pod也可以互相可见的。本文剩下的内容将会详细阐述如何在这样的网络模型中运行可靠的服务。
+大规模地为多个开发者协调端口号不仅非常困难，而且会把无法把控的集群级别的问题暴露在用户面前。Kubernetes假定Pod之间是可以通信的，不管它们运行在哪个主机上。我们给每个Pod指定集群私有的IP地址（cluster-private-IP address），所以不需要显示地创建Pod之间的链接，也不需要映射容器的端口到主机的端口。这意味着Pod里的容器可以用localhost访问各自的端口，而且在没有NAT的情况下，集群中所有的Pod也互相可见。本文剩下的内容将会详细阐述如何在这样的网络模型中运行可靠的服务。
 
 这个指南中用了一个简单的nginx服务来演示这个POC。同样的原理也在一个更完整的[Jenkins CI 应用](http://blog.kubernetes.io/2015/07/strong-simple-ssl-for-kubernetes.html)中体现了。
 
@@ -148,7 +148,7 @@ NGINXSVC_SERVICE_PORT=80
 
 ### DNS
 
-Kubernetes offers a DNS cluster addon Service that uses skydns to automatically assign dns names to other Services. You can check if it's running on your cluster:
+Kubernetes提供了一个带DNS插件的Service，它可以自动的用skydns给其他Service分配DNS域名。你可以查看一下它是否已在你的cluster中运行：
 
 ```shell
 $ kubectl get services kube-dns --namespace=kube-system
@@ -156,7 +156,7 @@ NAME       CLUSTER_IP      EXTERNAL_IP   PORT(S)         SELECTOR           AGE
 kube-dns   10.179.240.10   <none>        53/UDP,53/TCP   k8s-app=kube-dns   8d
 ```
 
-If it isn't running, you can [enable it](http://releases.k8s.io/{{page.githubbranch}}/cluster/addons/dns/README.md#how-do-i-configure-it). The rest of this section will assume you have a Service with a long lived IP (nginxsvc), and a dns server that has assigned a name to that IP (the kube-dns cluster addon), so you can talk to the Service from any pod in your cluster using standard methods (e.g. gethostbyname). Let's create another pod to test this:
+如果它不在运行，你可以[启动它](http://releases.k8s.io/{{page.githubbranch}}/cluster/addons/dns/README.md#how-do-i-configure-it)。本文剩余部分假定你已经有了一个已分配固定IP的Service（nginxsvc），一个DNS服务器，并且已经给Service的IP分配了DNS域名。这样，你用标准方法（比如gethostbyname）就可以从集群中的任何Pod访问到这个Service了。让我们再创建一个Pod测试一下：
 
 ```yaml
 $ cat curlpod.yaml
@@ -175,7 +175,7 @@ spec:
   restartPolicy: Always
 ```
 
-And perform a lookup of the nginx Service
+再查看一下nginx的Service：
 
 ```shell
 $ kubectl create -f ./curlpod.yaml
@@ -191,15 +191,15 @@ Name:      nginxsvc
 Address 1: 10.0.116.146
 ```
 
-## Securing the Service
+## 让Service更加安全
 
-Till now we have only accessed the nginx server from within the cluster. Before exposing the Service to the internet, you want to make sure the communication channel is secure. For this, you will need:
+到目前为止，我们还只是在集群内部访问nginx服务。在把这个Service暴露到Internet之前，你一定想要确认通信渠道是安全的。为了达到这个目的，你需要：
 
-* Self signed certificates for https (unless you already have an identity certificate)
-* An nginx server configured to use the certificates
-* A [secret](/docs/user-guide/secrets) that makes the certificates accessible to pods
+* 自签名的https证书（除非你有认证的证书）
+* 配置好用这个证书的nginx服务
+* 让Pod能访问证书的[Secret](/docs/user-guide/secrets)
 
-You can acquire all these from the [nginx https example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/https-nginx/), in short:
+可以从[nginx https示例](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/https-nginx/)获取所有的信息，一个简单的例子：
 
 ```shell
 $ make keys secret KEY=/tmp/nginx.key CERT=/tmp/nginx.crt SECRET=/tmp/secret.json
@@ -211,7 +211,7 @@ default-token-il9rc   kubernetes.io/service-account-token   1
 nginxsecret           Opaque                                2
 ```
 
-Now modify your nginx replicas to start a https server using the certificate in the secret, and the Service, to expose both ports (80 and 443):
+现在修改nginx副本，让它用Secret里面的证书启动一个HTTPS服务。它的Service要同时暴露80和443两个端口：
 
 ```yaml
 $ cat nginx-app.yaml
@@ -260,11 +260,11 @@ spec:
           name: secret-volume
 ```
 
-Noteworthy points about the nginx-app manifest:
+nginx-app中值得关注的点是：
 
-- It contains both rc and service specification in the same file
-- The [nginx server](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/https-nginx/default.conf) serves http traffic on port 80 and https traffic on 443, and nginx Service exposes both ports.
-- Each container has access to the keys through a volume mounted at /etc/nginx/ssl. This is setup *before* the nginx server is started.
+- 在一个文件中同时包含了Replication Controller和Service的定义
+- [nginx 服务器](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/https-nginx/default.conf)在80端口提供HTTP服务，在443端口提供HTTPS服务，nginx的Service暴露了这两个端口。
+- 每个容器都可以通过挂载在/etc/nginx/ssl上的Volume访问这些Key。这是在nginx服务器启动之前就设定好的。
 
 ```shell
 $ kubectl delete rc,svc -l app=nginx; kubectl create -f ./nginx-app.yaml
@@ -274,7 +274,7 @@ services/nginxsvc
 replicationcontrollers/my-nginx
 ```
 
-At this point you can reach the nginx server from any node.
+现在你就可以从任何节点访问nginx服务器了。
 
 ```shell
 $ kubectl get pods -o json | grep -i podip
@@ -284,9 +284,7 @@ node $ curl -k https://10.1.0.80
 <h1>Welcome to nginx!</h1>
 ```
 
-Note how we supplied the `-k` parameter to curl in the last step, this is because we don't know anything about the pods running nginx at certificate generation time,
-so we have to tell curl to ignore the CName mismatch. By creating a Service we linked the CName used in the certificate with the actual DNS name used by pods during Service lookup.
-Lets test this from a pod (the same secret is being reused for simplicity, the pod only needs nginx.crt to access the Service):
+也许你注意到了在上一步的curl命令里带了`-k`参数，这是因为在证书生成的时候我们对要运行nginx服务的Pod一无所知，因此需要让curl忽略CNAME不匹配导致的错误。通过创建一个Service，我们在Service查询期间把证书里使用的CNAME和Pod实际使用的DNS域名链接在一起。让我们用一个Pod测试一下（为了简单起见，我们重用了同一个Secret，这个Pod只需要nginx.crt就能访问Service）：
 
 ```shell
 $ cat curlpod.yaml
@@ -328,9 +326,9 @@ $ kubectl exec curlpod -- curl https://nginxsvc --cacert /etc/nginx/ssl/nginx.cr
 ...
 ```
 
-## Exposing the Service
+## 暴露Service
 
-For some parts of your applications you may want to expose a Service onto an external IP address. Kubernetes supports two ways of doing this: NodePorts and LoadBalancers. The Service created in the last section already used `NodePort`, so your nginx https replica is ready to serve traffic on the internet if your node has a public IP.
+因为你的应用的一些部分，也许你想要把Service暴露到一个外部的IP地址。Kubernetes支持两种方式：NodePort以及LoadBalancer。在前面小节里创建的Service已经使用了`NodePort`，因此如果节点有公网IP，你的nginx HTTPS副本已经准备好接收来自Internet的流量了。
 
 ```shell
 $ kubectl get svc nginxsvc -o json | grep -i nodeport -C 5
@@ -365,7 +363,7 @@ $ curl https://104.197.63.17:30645 -k
 <h1>Welcome to nginx!</h1>
 ```
 
-Lets now recreate the Service to use a cloud load balancer, just change the `Type` of Service in the nginx-app.yaml from `NodePort` to `LoadBalancer`:
+让我们用云平台的负载均衡器重建Service，只要把nginx-app.yaml里面Service的`Type`字段从`NodePort`修改为`LoadBalancer`就可以：
 
 ```shell
 $ kubectl delete rc, svc -l app=nginx
@@ -379,9 +377,8 @@ $ curl https://162.22.184.144 -k
 <title>Welcome to nginx!</title>
 ```
 
-The IP address in the `EXTERNAL_IP` column is the one that is available on the public internet.  The `CLUSTER_IP` is only available inside your
-cluster/private cloud network.
+`EXTERNAL_IP`栏位的IP地址就可以在Internet上被访问了。`CLUSTER_IP`只能在集群或者私有云网络内部访问。
 
-## What's next?
+## 下一节
 
-[Learn about more Kubernetes features that will help you run containers reliably in production.](/docs/user-guide/production-pods)
+[在生产环境帮你更可靠地运行容器的Kubernetes功能](/docs/user-guide/production-pods)
