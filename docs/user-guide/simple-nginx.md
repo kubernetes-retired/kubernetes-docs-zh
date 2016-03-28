@@ -24,7 +24,7 @@ kubectl get pods
 ```shell
 kubectl get rc
 ```
-To stop the two replicated containers, stop the replication controller:
+
 如果要停止这两个被复制的容器，你可以通过停止replication controller:
 
 ```shell
