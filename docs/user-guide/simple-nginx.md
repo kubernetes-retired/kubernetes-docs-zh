@@ -39,7 +39,7 @@ kubectl stop rc my-nginx
 kubectl expose rc my-nginx --port=80 --type=LoadBalancer
 ```
 
-这个命令会打印出被创建的service,以及映射到这些service外部IP地址. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，可以通在运行时检索。
+这个命令会打印出被创建的service,以及映射到这些service的外部IP地址. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，可以通在运行时检索。
 
 ```shell
 kubectl get services
