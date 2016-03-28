@@ -1,56 +1,53 @@
 ---
 ---
 
-Ok, you've run one of the [getting started guides](/docs/getting-started-guides/) and you have
-successfully turned up a Kubernetes cluster.  Now what?  This guide will help you get oriented
-to Kubernetes and running your first containers on the cluster.
+好的，如果你已经开始了任何一个入门指南，并且启动了一个Kubernetes集群。那么接下来呢？ 这篇入门指南会帮助你在Kubernetes集群上运行第一个容器。
 
-### Running a container (simple version)
+### 运行一个容器 (简单版)
 
-From this point onwards, it is assumed that `kubectl` is on your path from one of the getting started guides.
+从这时开始，我假设你已经根据其它入门指南安装了kubectl。
 
-The [`kubectl run`](/docs/user-guide/kubectl/kubectl_run) line below will create two [nginx](https://registry.hub.docker.com/_/nginx/) [pods](/docs/user-guide/pods) listening on port 80. It will also create a [replication controller](/docs/user-guide/replication-controller) named `my-nginx` to ensure that there are always two pods running.
+下面这行[`kubectl run`](/docs/user-guide/kubectl/kubectl_run) 命令会创建两个监听80端口的[nginx](https://registry.hub.docker.com/_/nginx/) [pods](/docs/user-guide/pods). 还会创建一名为`my-nginx`个[replication controller](/docs/user-guide/replication-controller),用来保证始终会有两个pod在运行。
 
 ```shell
 kubectl run my-nginx --image=nginx --replicas=2 --port=80
 ```
 
-Once the pods are created, you can list them to see what is up and running:
+一旦这些pod被创建好了， 你可以列出他们并查看他们的启动和运行。
 
 ```shell
 kubectl get pods
 ```
 
-You can also see the replication controller that was created:
+你也能够看见replication controller被创建了：
 
 ```shell
 kubectl get rc
 ```
-
 To stop the two replicated containers, stop the replication controller:
+如果要停止这两个被复制的容器，你可以通过停止replication controller:
 
 ```shell
 kubectl stop rc my-nginx
 ```
 
-### Exposing your pods to the internet.
+### 将你的pod暴露给外网.
 
-On some platforms (for example Google Compute Engine) the kubectl command can integrate with your cloud provider to add a [public IP address](/docs/user-guide/services/#external-services) for the pods,
-to do this run:
+在一些平台上（例如Google Compute Engine），kubectl命令能够集成云端提供的API来给pod分配公有IP地址[公有IP地址](/docs/user-guide/services/#external-services)，可以通过以下命令来实现：
 
 ```shell
 kubectl expose rc my-nginx --port=80 --type=LoadBalancer
 ```
 
-This should print the service that has been created, and map an external IP address to the service. Where to find this external IP address will depend on the environment you run in.  For instance, for Google Compute Engine the external IP address is listed as part of the newly created service and can be retrieved by running
+这个命令会打印出被创建的service,以及映射到这些service外部IP地址. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，可以通在运行时检索。
 
 ```shell
 kubectl get services
 ```
 
-In order to access your nginx landing page, you also have to make sure that traffic from external IPs is allowed. Do this by opening a firewall to allow traffic on port 80.
+为了访问你的nginx初始页面,你还不得不保证通过外部IP的通信是被允许的。那么就要通过让防火墙允许80端口通信才可以做到
 
-### Next: Configuration files
+### 接下来: 配置文件
 
-Most people will eventually want to use declarative configuration files for creating/modifying their applications.  A [simplified introduction](/docs/user-guide/simple-yaml)
-is given in a different document.
+
+大多数人最终都会响使用声明式的配置文件来创建或修改他们的应用程序。另外一个文档给出了一个[简单介绍](/docs/user-guide/simple-yaml)。
