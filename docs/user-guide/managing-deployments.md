@@ -1,14 +1,14 @@
 ---
 ---
 
-You've deployed your application and exposed it via a service. Now what? Kubernetes provides a number of tools to help you manage your application deployment, including scaling and updating. Among the features we'll discuss in more depth are [configuration files](/docs/user-guide/configuring-containers/#configuration-in-kubernetes) and [labels](/docs/user-guide/deploying-applications/#labels).
+你已经把应用部署完毕并且以Service的方式暴露出来了，那么接下来该做什么？Kubernetes提供了若干工具来帮助你管理部署工作，包括应用的水平扩容以及更新等。在所有这些功能里面，我们将要深入探讨的是[配置文件](/docs/user-guide/configuring-containers/#configuration-in-kubernetes)以及[Label](/docs/user-guide/deploying-applications/#labels)。
 
 * TOC
 {:toc}
 
-## Organizing resource configurations
+## 编排资源的配置文件
 
-Many applications require multiple resources to be created, such as a Replication Controller and a Service. Management of multiple resources can be simplified by grouping them together in the same file (separated by `---` in YAML). For example:
+许多应用都需要创建多种资源，比如一个Replication Controller以及一个Service。最简化的管理多种资源的方法就是把它们归集在同一个配置文件里（在YAML文件里用`---`分隔）。例如：
 
 ```yaml
 apiVersion: v1
@@ -42,7 +42,7 @@ spec:
         - containerPort: 80
 ```
 
-Multiple resources can be created the same way as a single resource:
+多种资源的创建方法和创建单一资源一样：
 
 ```shell
 $ kubectl create -f ./nginx-app.yaml
@@ -50,32 +50,32 @@ services/my-nginx-svc
 replicationcontrollers/my-nginx
 ```
 
-The resources will be created in the order they appear in the file. Therefore, it's best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the replication controller(s).
+资源会按照在文件中出现的顺序被创建。因此，最好把Service放在前面，因为这样会确保当Replication Controller创建Pod的时候，调度器可以把Pod和Service关联起来，并扩散到不同的机器中。
 
-`kubectl create` also accepts multiple `-f` arguments:
+`kubectl create` 同样支持多个 `-f` 参数:
 
 ```shell
 $ kubectl create -f ./nginx-svc.yaml -f ./nginx-rc.yaml
 ```
 
-And a directory can be specified rather than or in addition to individual files:
+除了指定多个文件之外，也可以指定一个目录：
 
 ```shell
 $ kubectl create -f ./nginx/
 ```
 
-`kubectl` will read any files with suffixes `.yaml`, `.yml`, or `.json`.
+`kubectl` 会读取所有后缀为`.yaml`，`.yml`和`.json`的文件。
 
-It is a recommended practice to put resources related to the same microservice or application tier into the same file, and to group all of the files associated with your application in the same directory. If the tiers of your application bind to each other using DNS, then you can then simply deploy all of the components of your stack en masse.
+比较推荐的做法是把同一个微服务或者子应用相关的资源放在同一个配置文件里，然后把同一个应用相关的所有配置文件归集到同一个目录中。如果你的应用的各个子系统通过DNS互相绑定，你就可以一次性把这些组件全部部署起来。
 
-A URL can also be specified as a configuration source, which is handy for deploying directly from configuration files checked into github:
+除了文件，URL也可以成为配置源。这对于部署GitHub上面的配置文件非常方便：
 
 ```shell
 $ kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/docs/user-guide/replication.yaml
 replicationcontrollers/nginx
 ```
 
-## Bulk operations in kubectl
+## kubectl批量操作
 
 Resource creation isn't the only operation that `kubectl` can perform in bulk. It can also extract resource names from configuration files in order to perform other operations, in particular to delete the same resources you created:
 
