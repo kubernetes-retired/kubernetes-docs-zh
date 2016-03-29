@@ -33,13 +33,13 @@ kubectl stop rc my-nginx
 
 ### 将你的pod暴露给外网.
 
-在一些平台上（例如Google Compute Engine），kubectl命令能够集成云端提供的API来给pod分配公有IP地址[公有IP地址](/docs/user-guide/services/#external-services)，可以通过以下命令来实现：
+在特定的云平台上（例如Google Compute Engine），kubectl命令能够集成云端提供的API来给pod分配[公有IP地址](/docs/user-guide/services/#external-services)，可以通过以下命令来实现：
 
 ```shell
 kubectl expose rc my-nginx --port=80 --type=LoadBalancer
 ```
 
-这个命令会打印出被创建的service,以及映射到这些service的外部IP地址. 对外的IP地址根你实际运行环境有关。例如，对于Google Compute Engine的外部IP地址会被列为新创建的服务的一部分，可以通在运行时检索。
+这个命令会打印出被创建的service,以及映射到这些service的外部IP地址. 对外的IP地址根你实际运行环境有关。以Google Compute Engine为例，这些外部IP地址作为创建的service的一部分，可以使用如下指令查看到。
 
 ```shell
 kubectl get services
@@ -49,5 +49,4 @@ kubectl get services
 
 ### 接下来: 配置文件
 
-
-大多数人最终都会响使用声明式的配置文件来创建或修改他们的应用程序。另外一个文档给出了一个[简单介绍](/docs/user-guide/simple-yaml)。
+鉴于大多数人愿意使用声明式的配置文件来创建或修改他们的应用程序，这里有另外一个文档给出了[简单介绍](/docs/user-guide/simple-yaml)。
