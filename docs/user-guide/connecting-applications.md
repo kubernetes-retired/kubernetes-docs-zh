@@ -10,7 +10,7 @@
 
 Dokcer默认使用主机私有网络连接方式，所以只有在同一台物理机器上的容器之间才可以通信。为了让Docker容器可以跨节点通信，必须要给机器的IP地址分配端口号，这个端口之后会被用来转发或者路由给容器。很明显，这意味着容器要么要很小心地协调端口的使用，要么能动态地分配端口。
 
-大规模地为多个开发者协调端口号不仅非常困难，而且会把无法把控的集群级别的问题暴露在用户面前。Kubernetes假定Pod之间是可以通信的，不管它们运行在哪个主机上。我们给每个Pod指定集群私有的IP地址（cluster-private-IP address），所以不需要显示地创建Pod之间的链接，也不需要映射容器的端口到主机的端口。这意味着Pod里的容器可以用localhost访问各自的端口，而且在没有NAT的情况下，集群中所有的Pod也互相可见。本文剩下的内容将会详细阐述如何在这样的网络模型中运行可靠的服务。
+大规模地为多个开发者协调端口号不仅非常困难，而且会把无法把控的集群级别的问题暴露在用户面前。与Docker不同，Kubernetes默认假设Pod之间是可以直接通信的，而不管这些Pod分散在哪个主机上。而对于任意一个Pod来说，Kubernetes以Pod为单位分配一个集群私有的IP地址（cluster-private-IP address），所以我们不需要显示地创建容器之间的链接，也不需要映射容器的端口到主机的端口。这意味着Pod里的容器可以用localhost访问各自的端口，而且在没有NAT的情况下，集群中所有的Pod也互相可见。本文剩下的内容将会详细阐述如何在这样的网络模型中运行可靠的服务。
 
 这个指南中用了一个简单的nginx服务来演示这个POC。同样的原理也在一个更完整的[Jenkins CI 应用](http://blog.kubernetes.io/2015/07/strong-simple-ssl-for-kubernetes.html)中体现了。
 
@@ -55,9 +55,9 @@ $ kubectl get pods -l app=nginx -o json | grep podIP
                 "podIP": "10.245.0.14",
 ```
 
-你应该可以ssh到集群里的任何一个节点，而且用curl也能够访问这两个IP。要注意的是容器并*没有*用节点的80端口，也没用任何特殊的会把流量路由到Pod的NAT规则。这意味着你可以在同一个节点上用同样的`containerPort`配置运行多个nginx pod，而且通过IP就可以在其他Pod或者集群里的其他节点访问它们。和Docker类似，端口也可以在节点的网络中发布出来，但是在Kubernetes的这种网络模型下，这样的需求从根本上减少了。
+在Kubernetes认可的网络模型下，你应该可以ssh到集群里的任何一个节点，而且用curl也能够访问这两个IP。要注意的是容器并*没有*用节点的80端口，也没用任何特殊的会把流量路由到Pod的NAT规则。这意味着你可以在同一个节点上用同样的`containerPort`配置运行多个nginx pod，而且通过IP就可以在其他Pod或者集群里的其他节点访问它们。和Docker类似，端口也可以在节点的网络中发布出来，但是在Kubernetes的这种网络模型下，这样的需求从根本上减少了。
 
-如果你很好奇，可以在[我们如何做到的](/docs/admin/networking/#how-to-achieve-this)里读到更多细节。
+如果你很好奇这个网络模型应该如何实现的话，可以在[我们如何做到的](/docs/admin/networking/#how-to-achieve-this)里读到具体细节。
 
 ## 创建Service
 
@@ -114,7 +114,7 @@ NAME         ENDPOINTS
 nginxsvc     10.245.0.14:80,10.245.0.15:80
 ```
 
-现在你应该可以从集群里的任一节点上用curl命令访问**10.0.116.146:80**上的nginx Service了。要注意的是Service的IP完全是虚拟的，跟物理网络没有关系，如果你对它的工作原理有兴趣，可以去看看[service proxy](/docs/user-guide/services/#virtual-ips-and-service-proxies)。
+现在你应该可以从集群里的任一节点上用curl命令访问**10.0.116.146:80**上的nginx Service了。要注意的是Service的IP完全是虚拟的，跟物理网络没有关系，它是不能够ping通的。如果你对它的工作原理有兴趣，可以去看看[service proxy](/docs/user-guide/services/#virtual-ips-and-service-proxies)。
 
 ## 访问Service
 
@@ -130,7 +130,7 @@ KUBERNETES_SERVICE_HOST=10.0.0.1
 KUBERNETES_SERVICE_PORT=443
 ```
 
-注意这里并没有提到Service，这是因为这些副本是在Service之前创建的。这样做的另一个缺点是，调度器也许会把两个Pod放到相同的机器上，如果机器出问题，整个Service就不工作了。正确的方式是把这两个Pod杀掉，然后等Replication Controller重建它们。现在Service是在Pod副本之前存在了，这给予了Pod调度器级别的Service扩散能力（只要所有的节点的容量是一样的），而且环境变量也是正确的：
+注意这里并没有出现你自己创建的Service，这是因为这些副本是在Service之前创建的。这样做的另一个缺点是，调度器也许会把两个Pod放到相同的机器上，如果机器出问题，整个Service就不工作了。正确的方式是把这两个Pod杀掉，然后等Replication Controller重建它们。由于此时的Service是在Pod副本之前就已经存在了，Kubernetes就会将同属于这个Service的Pod副本分布在不同的机器上，这给予了Pod调度器级别的Service扩散能力（只要所有的节点的容量是一样的），而且环境变量也是正确的：
 
 ```shell
 $ kubectl scale rc my-nginx --replicas=0; kubectl scale rc my-nginx --replicas=2;
@@ -363,7 +363,7 @@ $ curl https://104.197.63.17:30645 -k
 <h1>Welcome to nginx!</h1>
 ```
 
-让我们用云平台的负载均衡器重建Service，只要把nginx-app.yaml里面Service的`Type`字段从`NodePort`修改为`LoadBalancer`就可以：
+接下来，让我们试试用云平台内置的负载均衡器重新创建Service，只要把nginx-app.yaml里面Service的`Type`字段从`NodePort`修改为`LoadBalancer`就可以：
 
 ```shell
 $ kubectl delete rc, svc -l app=nginx
