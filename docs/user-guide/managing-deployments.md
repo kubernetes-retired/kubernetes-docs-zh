@@ -77,7 +77,7 @@ replicationcontrollers/nginx
 
 ## kubectl批量操作
 
-Resource creation isn't the only operation that `kubectl` can perform in bulk. It can also extract resource names from configuration files in order to perform other operations, in particular to delete the same resources you created:
+`kubectl`可以批量操作的不仅仅是创建资源，`kubectl`还可以从配置文件中提取资源名称来进行其他操作，特别是用来删除从配置文件中创建出来的资源：
 
 ```shell
 $ kubectl delete -f ./nginx/
@@ -85,13 +85,13 @@ replicationcontrollers/my-nginx
 services/my-nginx-svc
 ```
 
-In the case of just two resources, it's also easy to specify both on the command line using the resource/name syntax:
+在只有两个资源的例子里，在命令行上同时指定它们的名字来删除也很简单，用资源/名字这种格式：
 
 ```shell
 $ kubectl delete replicationcontrollers/my-nginx services/my-nginx-svc
 ```
 
-For larger numbers of resources, one can use labels to filter resources. The selector is specified using `-l`:
+对于大量的资源，可以使用Label来筛选资源。通过`-l`参数来指定Selector：
 
 ```shell
 $ kubectl delete all -lapp=nginx
@@ -99,7 +99,7 @@ replicationcontrollers/my-nginx
 services/my-nginx-svc
 ```
 
-Because `kubectl` outputs resource names in the same syntax it accepts, it's easy to chain operations using `$()` or `xargs`:
+因为`kubectl`输出的资源名和它接受的语法是一样的，所以用`$()`或者`xargs`就可以很简单地把一些操作串联起来：
 
 ```shell
 $ kubectl get $(kubectl create -f ./nginx/ | grep my-nginx)
@@ -109,11 +109,11 @@ NAME           LABELS      SELECTOR    IP(S)          PORT(S)
 my-nginx-svc   app=nginx   app=nginx   10.0.152.174   80/TCP
 ```
 
-## Using labels effectively
+## 高效地使用Label
 
-The examples we've used so far apply at most a single label to any resource. There are many scenarios where multiple labels should be used to distinguish sets from one another.
+到目前为止的例子里，我们在多种资源里最多就使用了一个Label。但是在很多场景下我们需要使用多个Label来把不同的资源集合区分开。
 
-For instance, different applications would use different values for the `app` label, but a multi-tier application, such as the [guestbook example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/), would additionally need to distinguish each tier. The frontend could carry the following labels:
+例如，不同的应用会给`app`这个Label不同的值，但是对于有多个子系统的应用，比如[guest example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/)，还需要把各个子系统区分开。应用的前端也许会有这样的Label：
 
 ```yaml
 labels:
@@ -121,7 +121,7 @@ labels:
         tier: frontend
 ```
 
-while the Redis master and slave would have different `tier` labels, and perhaps even an additional `role` label:
+然后Redis的Master和Slave的`tier` Label是和前端不同的，也许Redis还会有一个`role` Label：
 
 ```yaml
 labels:
@@ -130,7 +130,7 @@ labels:
         role: master
 ```
 
-and
+以及
 
 ```yaml
 labels:
@@ -139,7 +139,7 @@ labels:
         role: slave
 ```
 
-The labels allow us to slice and dice our resources along any dimension specified by a label:
+通过指定Label，我们可以从不同的维度把资源切片：
 
 ```shell
 $ kubectl create -f ./guestbook-fe.yaml -f ./redis-master.yaml -f ./redis-slave.yaml
@@ -162,6 +162,7 @@ guestbook-redis-slave-2q2yf   1/1       Running   0          3m
 guestbook-redis-slave-qgazl   1/1       Running   0          3m
 ```
 
+## 啥 ？  
 ## Canary deployments
 
 Another scenario where multiple labels are needed is to distinguish deployments of different releases or configurations of the same component. For example, it is common practice to deploy a *canary* of a new application release (specified via image tag) side by side with the previous release so that the new release can receive live production traffic before fully rolling it out. For instance, a new release of the guestbook frontend might carry the following labels:
