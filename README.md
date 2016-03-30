@@ -75,7 +75,7 @@ Following content will be shown:
 	#
 	
 The first three lines represent the most recent three commits, mark the commit you want to keep as *pick* or *p*, and mark the following as *squash* or *fixup*, refer to the instruction for the distinction between the marks.
-After your modification, the result will be like:
+After your modification is done, the result will be like:
 
 	pick fb554f5 This is commit 1
 	squash 2bd1903 This is commit 2
@@ -83,7 +83,7 @@ After your modification, the result will be like:
 
 Press `Ctrl+X` to exit, and then `Shift+Y` to confirm.
 
->What if I want to squash commits more than three.
+>**What if I want to squash commits more than three?**
 
 	git rebase -i HEAD~N
 
@@ -101,8 +101,6 @@ N is the number of commits you want to squash.
 - Send only one translated file in one single PR. So reviewers can make a quick review and merge the PR early.
 - The PR I created to modify the README file can be considered as an example.
 - For more information, continue reading this file.
-- 
-
 
 # Contributing to the Kubernetes Documentation and Website
 
