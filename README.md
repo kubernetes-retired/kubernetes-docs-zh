@@ -47,6 +47,52 @@ If you're not familiar with processes working with git, please follow the steps 
  14. Now go to your repo page `https://github.com/YOURACCOUNT/kubernetes-docs-cn`, use the `New Pull Request` button to create a new PR. **DO** choose `release-1.1-cn` branch in the left and `NEWWORKINGBRANCH` in the right. 
  15. Want to send another PR? Repeat step 8 to 14.
 
+# How to squash your commits
+
+1. Make sure your code is up-to-date: git pull
+2. Use `rebase` command to squash recent commits:
+
+	git rebase -i master
+
+Following content will be shown:
+
+	pick fb554f5 This is commit 1
+	pick 2bd1903 This is commit 2
+	pick d987ebf This is commit 3
+
+	# Rebase 9cbc329..d987ebf onto 9cbc329
+	#
+	# Commands:
+	#  p, pick = use commit
+	#  r, reword = use commit, but edit the commit message
+	#  e, edit = use commit, but stop for amending
+	#  s, squash = use commit, but meld into previous commit
+	#  f, fixup = like "squash", but discard this commit's log message
+	#  x, exec = run command (the rest of the line) using shell
+	#
+	# If you remove a line here THAT COMMIT WILL BE LOST.
+	# However, if you remove everything, the rebase will be aborted.
+	#
+	
+The first three lines represent the most recent three commits, mark the commit you want to keep as *pick* or *p*, and mark the following as *squash* or *fixup*, refer to the instruction for the distinction between the marks.
+After your modification, the result will be like:
+
+	pick fb554f5 This is commit 1
+	squash 2bd1903 This is commit 2
+	squash d987ebf This is commit 3
+
+Press `Ctrl+X` to exit, and then `Shift+Y` to confirm.
+
+>What if I want to squash commits more than three.
+
+	git rebase -i HEAD~N
+
+N is the number of commits you want to squash.
+
+3. After squashing done, don't forget to push it to the remote repo:
+
+	git push -f
+
 # NOTES
 - The steps above are just very basic practices of using git. There're more problems you may meet. So if you're new to git, learn it ASAP.
 - **Start an issue before you create a PR**, so other people would know which file you're working on. Issue can be named as `Translating docs/admin/accessing-the-api.md`.
@@ -55,6 +101,8 @@ If you're not familiar with processes working with git, please follow the steps 
 - Send only one translated file in one single PR. So reviewers can make a quick review and merge the PR early.
 - The PR I created to modify the README file can be considered as an example.
 - For more information, continue reading this file.
+- 
+
 
 # Contributing to the Kubernetes Documentation and Website
 
