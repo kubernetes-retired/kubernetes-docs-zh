@@ -52,7 +52,7 @@ If you're not familiar with processes working with git, please follow the steps 
 1. Make sure your code is up-to-date: git pull
 2. Use `rebase` command to squash recent commits:
 
-        git rebase -i master
+        git rebase -i release-1.1-cn
 
     Following content will be shown:
 
