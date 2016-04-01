@@ -17,7 +17,7 @@ kubectl api-versions
 {% endraw %}
 ```
 
-### 选项
+### 继承自父命令的选项
 
 ```
 {% raw %}
