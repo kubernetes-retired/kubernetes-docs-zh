@@ -37,7 +37,7 @@ $ cat pod.json | kubectl apply -f -
 {% raw %}
   -f, --filename=[]: 包含配置信息的文件名，目录名或者URL。
   -o, --output="": 输出格式，使用“-o name”来输出简短格式（资源类型/资源名）。
-      --schema-cache-dir="/tmp/kubectl.schema": 如果不为空，将API schema缓存为指定文件，默认缓存到“/tmp/kubectl.schema”。
+      --schema-cache-dir="/tmp/kubectl.schema": 如果不为空，在指定的文件夹缓存/读取API schema，默认为“/tmp/kubectl.schema”。
       --validate[=true]: 如果为true，在发送到服务端前先使用schema来验证输入。
 {% endraw %}
 ```
