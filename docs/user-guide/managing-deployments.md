@@ -8,7 +8,7 @@
 
 ## 编排资源的配置文件
 
-许多应用都需要创建多种资源，比如一个Replication Controller以及一个Service。最简化的管理多种资源的方法就是把它们归集在同一个配置文件里（在YAML文件里用`---`分隔）。例如：
+许多应用都需要创建多个资源，比如一个Replication Controller以及一个Service。最简化的管理多个资源的方法就是把它们归集在同一个配置文件里（在YAML文件里用`---`分隔）。例如：
 
 ```yaml
 apiVersion: v1
@@ -42,7 +42,7 @@ spec:
         - containerPort: 80
 ```
 
-多种资源的创建方法和创建单一资源一样：
+多个资源的创建方法和创建单一资源一样：
 
 ```shell
 $ kubectl create -f ./nginx-app.yaml
@@ -85,7 +85,7 @@ replicationcontrollers/my-nginx
 services/my-nginx-svc
 ```
 
-在只有两个资源的例子里，在命令行上同时指定它们的名字来删除也很简单，用资源/名字这种格式：
+在只有两个资源的例子里，在命令行上同时指定它们的名字来删除也很简单，用『资源/名字』这种格式：
 
 ```shell
 $ kubectl delete replicationcontrollers/my-nginx services/my-nginx-svc
@@ -111,7 +111,7 @@ my-nginx-svc   app=nginx   app=nginx   10.0.152.174   80/TCP
 
 ## 高效地使用Label
 
-到目前为止的例子里，我们在多种资源里最多就使用了一个Label。但是在很多场景下我们需要使用多个Label来把不同的资源集合区分开。
+到目前为止的例子里，我们在多个资源里最多就使用了一个Label。但是在很多场景下我们需要使用多个Label来把不同的资源集合区分开。
 
 例如，不同的应用会给`app`这个Label不同的值，但是对于有多个子系统的应用，比如[guest example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/)，还需要把各个子系统区分开。应用的前端也许会有这样的Label：
 
@@ -139,7 +139,7 @@ labels:
         role: slave
 ```
 
-通过指定Label，我们可以从不同的维度把资源切片：
+通过指定Label，我们可以从不同的维度区分资源：
 
 ```shell
 $ kubectl create -f ./guestbook-fe.yaml -f ./redis-master.yaml -f ./redis-slave.yaml
@@ -164,7 +164,7 @@ guestbook-redis-slave-qgazl   1/1       Running   0          3m
 
 ## 灰度发布
 
-需要用多个Label的另外一种场景是用来区分应用的不同版本或者同一个组件的不同配置的部署。比如，在生产环境发布应用的新版本时会先部署小部分的新版本应用，这样新版本和老版本会并存一段时间，而且新版本可以收到真实的流量，以便进行应用的线上认证。当确认新版本没有问题后，就会把老版本完全替换掉。请看下面的例子，guestbook frontend的新版本也许会有这些Label：
+需要用多个Label的另外一种场景是用来区分应用的不同版本或者同一个组件的不同配置的部署。比如，在生产环境发布应用的新版本时会先部署小部分的新版本应用，这样新版本和老版本会并存一段时间，而且新版本可以收到真实的流量，以便进行应用的线上认证。当确认新版本没有问题后，就会把老版本完全替换掉。请看下面的例子，guestbook Frontend的新版本也许会有这些Label：
 
 ```yaml
 labels:
@@ -173,7 +173,7 @@ labels:
         track: canary
 ```
 
-而主要的frontend稳定版本的`track` Label的值是不一样的，因此这两组Pod分别被不同的Replication Controller管理，不会出现互相覆盖的情况：
+而主要的Frontend稳定版本的`track` Label的值是不一样的，因此这两组Pod分别被不同的Replication Controller管理，不会出现互相覆盖的情况：
 
 ```yaml
 labels:
@@ -182,7 +182,7 @@ labels:
         track: stable
 ```
 
-frontend Service只选择它们Label之间的公共部分，忽略`track` Label，这样Service就可以同时覆盖到两个副本集：
+Frontend Service只选择它们Label之间的公共部分，忽略`track` Label，这样Service就可以同时覆盖到两个副本集：
 
 ```yaml
 selector:
@@ -229,7 +229,7 @@ my-nginx-divi2   1/1       Running   0          1h
 my-nginx-o0ef1   1/1       Running   0          1h
 ```
 
-## 在线更新应用Updating your application without a service outage
+## 热部署的方式更新在线应用
 
 在某些时间点上，你最终会需要更新已部署的应用，通常会是指定一个新的镜像或者更新到镜像新的tag，就像上面的灰度发布场景一样。`kubectl`支持好几种更新操作，分别适用于不同的场景。
 
@@ -309,7 +309,7 @@ Update succeeded. Deleting my-nginx-ccba8fbd8cc8160970f63f9a2696fc46
 my-nginx
 ```
 
-这个一个展示容器在不变性上巨大优势的例子。
+这是一个展示容器在不变性上巨大优势的例子。
 
 如果你想要更新的不仅仅是镜像（例如命令的参数，环境变量等），你可以创建一个新的Replication Controller，起一个新的名字和有区别的Label值，比如：
 
@@ -365,7 +365,7 @@ my-nginx-v4
 
 ## 原地更新资源
 
-有些时候很有必要对已创建的资源进行精细的无干扰的更新。比如你可能会想要添加一个[Annotation](/docs/user-guide/annotations)描述一下这个资源。最简单的办法就是运行`kubectl patch`：
+有些时候很有必要对已创建的资源进行局部的无干扰的更新。比如你可能会想要添加一个[Annotation](/docs/user-guide/annotations)描述一下这个资源。最简单的办法就是运行`kubectl patch`：
 
 ```shell
 $ kubectl patch rc my-nginx-v4 -p '{"metadata": {"annotations": {"description": "my frontend running nginx"}}}' 
@@ -379,9 +379,9 @@ metadata:
 ...
 ```
 
-这个补丁使用JSON描述的。
+这个补丁是使用JSON描述的。
 
-对于更重要的改变，你可以用`get`命令获取资源描述，然后编辑它，再用`replace`命令把它替换成更新后的版本：
+对于内容变化很多的情况，你可以用`get`命令获取资源描述，然后编辑它，再用`replace`命令把它替换成更新后的版本：
 
 ```shell
 $ kubectl get rc my-nginx-v4 -o yaml > /tmp/nginx.yaml
@@ -391,13 +391,11 @@ replicationcontrollers/my-nginx-v4
 $ rm $TMP
 ```
 
-只要确认`resourceVersion`字段和编辑过的版本是一样的，系统会确保资源不会受到其他用户或者组件的改变的影响。如果你只想要更新，也不在意其他的变化，可以在编辑资源描述文件的时候删掉`resourceVersion`字段。但是，如果你要这样做，不要用你的原始配置文件作为源，因为在运行状态下会设置一些额外的字段。
-The system ensures that you don't clobber changes made by other users or components by confirming that the `resourceVersion` doesn't differ from the version you edited. If you want to update regardless of other changes, remove the `resourceVersion` field when you edit the resource. However, if you do this, don't use your original configuration file as the source since additional fields most likely were set in the live state.
+（通过get命令导出的内容中包含一个resourceVersion的字段），系统通过检测resourceVersion字段与当前部署版本是否一致来确保你的更改不会意外覆盖掉其他人已经执行的更改。如果你无论如何都要使用自己的更改，而不在意其他人已经更改的内容，可以（在执行replace命令前）去除掉resourceVersion这个字段。然而，如果你决定这样做，请不要用原始那份配置文件作为源（而要用get命令返回的那份），因为它在运行状态下会设置一些额外的字段。
 
-## 破坏性更新Disruptive updates
+## 破坏性更新
 
-在一些案例中，你会需要更新资源的一些字段，但是这些字段是在初始化之后就无法更新的。又或许你想要立即进行一些嵌套更新，比如修复Replication Controller创建失败的Pod。要想改变这些字段，用`replace --force`命令，可以删掉然后重新创建这些资源。这种情况下，修改你的原始配置文件，然后：
-In some cases, you may need to update resource fields that cannot be updated once initialized, or you may just want to make a recursive change immediately, such as to fix broken pods created by a replication controller. To change such fields, use `replace --force`, which deletes and re-creates the resource. In this case, you can simply modify your original configuration file:
+在有些情况下，你会需要更新资源的一些字段，但是这些字段是在初始化之后就无法更新的。又或许你想要立即进行一些嵌套更新，比如修复Replication Controller创建失败的Pod。要想改变这些字段，用`replace --force`命令，这个操作会删掉然后重新创建这些资源。这种情况下，你可以在原始的配置文件上直接修改（而不必用get命令取回来的那个），然后：
 
 ```shell
 $ kubectl replace -f ./nginx-rc.yaml --force
