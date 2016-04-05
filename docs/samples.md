@@ -1,18 +1,15 @@
 ---
 ---
-We have a wide variety of samples to choose from:
+我们有很多不同类型的参考案例可供选择：
 
-* "Clustered Application Samples" and "Persistent Volume Samples" provide some
-examples that show how to implement some popular software packages such as OpenShift, Ceph, Cassandra, and WordPress. These guides 
-try to serve as canonical walkthroughs that help you use familiar packages with Kubernetes.
+* 『集群应用示例』和『持久化数据卷示例』展示了如何部署当下流行的软件包，例如OpenShift、Ceph、Cassandra和WordPress。这些案例尝试告诉你如何在Kubernetes上使用那些你已经熟悉的软件包。
 
-* "Mulit-tier Application Samples" are generally of a more contrived and instructional nature, highlighting key concepts that
-you'll encounter when developing with Kubernetes, and teaching some principles of building Kubernetes applications.
+* 『多层级的应用软件示例』则是一个出于教学目而构造的例子，突出强调使用Kubernetes部署应用需要了解的关键概念，以及构建适合于Kubernetes的应用的基本原则。
 
-## Recently updated samples
 
-The Kubernetes team is highlighting these samples as being the most up-to-date. Active upkeep is being done or has recently been done
-on these samples to ensure they are high quality and work on Kubernetes {{page.version}}. 
+## 最近更新的应用
+
+Kubetentes小组将这些应用示例标记为最近更新的。它们在不久前刚刚被检查过，因此可以确保其内容质量良好且能够在Kubernetes {{page.version}}版本中正常使用。
 
 <p>&nbsp;</p>
 
