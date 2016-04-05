@@ -2,24 +2,20 @@
 layout: docwithnav
 title: "kubectl config"
 ---
-<!-- BEGIN MUNGE: UNVERSIONED_WARNING -->
-
-
-<!-- END MUNGE: UNVERSIONED_WARNING -->
 
 ## kubectl config
 
-config modifies kubeconfig files
+修改kubeconfig配置文件。
 
-### Synopsis
+### 摘要
 
+使用config的子命令修改kubeconfig配置文件，如“kubectl config set current-context my-context”。
 
-config modifies kubeconfig files using subcommands like "kubectl config set current-context my-context"
+配置文件的读取顺序遵循如下规则：
 
-The loading order follows these rules:
-    1. If the --kubeconfig flag is set, then only that file is loaded.  The flag may only be set once and no merging takes place.
-    2. If $KUBECONFIG environment variable is set, then it is used a list of paths (normal path delimitting rules for your system).  These paths are merged together.  When a value is modified, it is modified in the file that defines the stanza.  When a value is created, it is created in the first file that exists.  If no files in the chain exist, then it creates the last file in the list.
-    3. Otherwise, ${HOME}/.kube/config is used and no merging takes place.
+    1. 如果指定了--kubeconfig选项，那么只有指定的文件被加载。此选项只能被设置一次，并且不会合并其他文件。
+    2. 如果设置了$KUBECONFIG环境变量，将同时使用此环境变量指定的所有文件列表（使用操作系统默认的文件分隔规则），所有文件将被合并。当修改一个值时，将修改设置了该值的文件。当创建一个值时，将在列表的首个文件创建该值。若列表中所有的文件都不存在，将创建列表中的最后一个文件。
+    3. 如果前两项都没有设置,将使用 ${HOME}/.kube/config，并且不会合并其他文件。
 
 
 ```
@@ -28,64 +24,51 @@ kubectl config SUBCOMMAND
 {% endraw %}
 ```
 
-### Options
+### 选项
 
 ```
 {% raw %}
-      --kubeconfig="": use a particular kubeconfig file
+      --kubeconfig="": 使用指定的kubeconfig配置文件。
 {% endraw %}
 ```
 
-### Options inherited from parent commands
+### 继承自父命令的选项
 
 ```
 {% raw %}
-      --alsologtostderr[=false]: log to standard error as well as files
-      --api-version="": The API version to use when talking to the server
-      --certificate-authority="": Path to a cert. file for the certificate authority.
-      --client-certificate="": Path to a client key file for TLS.
-      --client-key="": Path to a client key file for TLS.
-      --cluster="": The name of the kubeconfig cluster to use
-      --context="": The name of the kubeconfig context to use
-      --insecure-skip-tls-verify[=false]: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure.
-      --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
-      --log-dir="": If non-empty, write log files in this directory
-      --log-flush-frequency=5s: Maximum number of seconds between log flushes
-      --logtostderr[=true]: log to standard error instead of files
-      --match-server-version[=false]: Require server version to match client version
-      --namespace="": If present, the namespace scope for this CLI request.
-      --password="": Password for basic authentication to the API server.
-  -s, --server="": The address and port of the Kubernetes API server
-      --stderrthreshold=2: logs at or above this threshold go to stderr
-      --token="": Bearer token for authentication to the API server.
-      --user="": The name of the kubeconfig user to use
-      --username="": Username for basic authentication to the API server.
-      --v=0: log level for V logs
-      --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
+      --alsologtostderr[=false]: 同时输出日志到标准错误控制台和文件。
+      --api-version="": 和服务端交互使用的API版本。
+      --certificate-authority="": 用以进行证书权威性认证的.cert文件路径。
+      --client-certificate="": TLS使用的客户端证书路径。
+      --client-key="": TLS使用的客户端密钥路径。
+      --cluster="": 指定使用的kubeconfig配置文件中的集群名。
+      --context="": 指定使用的kubeconfig配置文件中的环境名。
+      --insecure-skip-tls-verify[=false]: 如果为true，将不会检查服务器凭证的有效性，这会导致你的HTTPS链接变得不安全。
+      --kubeconfig="": 命令行请求使用的配置文件路径。
+      --log-backtrace-at=:0: 当日志长度超过定义的行数时，忽略堆栈信息。
+      --log-dir="": 如果不为空，将日志文件写入此目录。
+      --log-flush-frequency=5s: 刷新日志的最大时间间隔。
+      --logtostderr[=true]: 输出日志到标准错误控制台，不输出到文件。
+      --match-server-version[=false]: 要求服务端和客户端版本匹配。
+      --namespace="": 如果不为空，命令将使用此namespace。
+      --password="": API Server进行简单认证使用的密码。
+  -s, --server="": Kubernetes API Server的地址和端口号。
+      --stderrthreshold=2: 高于此级别的日志将被输出到错误控制台。
+      --token="": 认证到API Server使用的令牌。
+      --user="": 指定使用的kubeconfig配置文件中的用户名。
+      --username="": API Server进行简单认证使用的用户名。
+      --v=0: 指定输出日志的级别。
+      --vmodule=: 指定输出日志的模块，格式如下：pattern=N，使用逗号分隔。
 {% endraw %}
 ```
 
-### SEE ALSO
+### 参见
 
-* [kubectl](kubectl.html)	 - kubectl controls the Kubernetes cluster manager
-* [kubectl config set](kubectl_config_set.html)	 - Sets an individual value in a kubeconfig file
-* [kubectl config set-cluster](kubectl_config_set-cluster.html)	 - Sets a cluster entry in kubeconfig
-* [kubectl config set-context](kubectl_config_set-context.html)	 - Sets a context entry in kubeconfig
-* [kubectl config set-credentials](kubectl_config_set-credentials.html)	 - Sets a user entry in kubeconfig
-* [kubectl config unset](kubectl_config_unset.html)	 - Unsets an individual value in a kubeconfig file
-* [kubectl config use-context](kubectl_config_use-context.html)	 - Sets the current-context in a kubeconfig file
-* [kubectl config view](kubectl_config_view.html)	 - Displays merged kubeconfig settings or a specified kubeconfig file.
-
-###### Auto generated by spf13/cobra at 2015-09-23 08:09:58.253683538 +0000 UTC
-
-
-
-<!-- BEGIN MUNGE: IS_VERSIONED -->
-<!-- TAG IS_VERSIONED -->
-<!-- END MUNGE: IS_VERSIONED -->
-
-
-<!-- BEGIN MUNGE: GENERATED_ANALYTICS -->
-[![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/kubectl/kubectl_config.md?pixel)]()
-<!-- END MUNGE: GENERATED_ANALYTICS -->
-
+* [kubectl](kubectl.html)	 - 使用kubectl来管理Kubernetes集群。
+* [kubectl config set](kubectl_config_set.html)	 - 在kubeconfig配置文件中设置一个单独的值。
+* [kubectl config set-cluster](kubectl_config_set-cluster.html)	 - 在kubeconfig配置文件中设置一个集群项。
+* [kubectl config set-context](kubectl_config_set-context.html)	 - 在kubeconfig配置文件中设置一个环境项。
+* [kubectl config set-credentials](kubectl_config_set-credentials.html)	 - 在kubeconfig配置文件中设置一个用户项。
+* [kubectl config unset](kubectl_config_unset.html)	 - 在kubeconfig配置文件中清除一个单独的值。
+* [kubectl config use-context](kubectl_config_use-context.html)	 - 使用kubeconfig中的一个环境项作为当前配置。
+* [kubectl config view](kubectl_config_view.html)	 - 显示合并后的kubeconfig设置，或者一个指定的kubeconfig配置文件。
