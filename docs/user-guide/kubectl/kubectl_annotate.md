@@ -2,29 +2,23 @@
 layout: docwithnav
 title: "kubectl annotate"
 ---
-<!-- BEGIN MUNGE: UNVERSIONED_WARNING -->
-
-
-<!-- END MUNGE: UNVERSIONED_WARNING -->
 
 ## kubectl annotate
 
-Update the annotations on a resource
+更新某个资源的Annotation
 
-### Synopsis
+### 摘要
 
+更新一个或多个资源的Annotation。
+Annotation是一个键值对，它可以包含比label更多的信息，并且可能是机读数据。
+Annotation用来存储那些辅助的，非区分性的信息，特别是那些为外部工具或系统扩展插件使用的数据。
+如果--overwrite设为true，将会覆盖现有的Annotation，否则试图修改一个Annotation的值将会抛出错误。
+如果设置了--resource-version，那么将会使用指定的这个版本，否则将使用当前版本。
 
-Update the annotations on one or more resources.
-
-An annotation is a key/value pair that can hold larger (compared to a label), and possibly not human-readable, data.
-It is intended to store non-identifying auxiliary data, especially data manipulated by tools and system extensions.
-If --overwrite is true, then existing annotations can be overwritten, otherwise attempting to overwrite an annotation will result in an error.
-If --resource-version is specified, then updates will use this resource version, otherwise the existing resource-version will be used.
-
-Possible resources include (case insensitive): pods (po), services (svc),
-replicationcontrollers (rc), nodes (no), events (ev), componentstatuses (cs),
-limitranges (limits), persistentvolumes (pv), persistentvolumeclaims (pvc),
-horizontalpodautoscalers (hpa), resourcequotas (quota) or secrets.
+支持的资源包括但不限于（大小写不限）：pods (po)、services (svc)、
+replicationcontrollers (rc)、nodes (no)、events (ev)、componentstatuses (cs)、
+limitranges (limits)、persistentvolumes (pv)、persistentvolumeclaims (pvc)、
+horizontalpodautoscalers (hpa)、resourcequotas (quota)和secrets。
 
 ```
 {% raw %}
@@ -32,87 +26,75 @@ kubectl annotate [--overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 ... KEY_N=V
 {% endraw %}
 ```
 
-### Examples
+### 示例
 
 ```
 {% raw %}
-# Update pod 'foo' with the annotation 'description' and the value 'my frontend'.
-# If the same annotation is set multiple times, only the last value will be applied
+# 更新pod “foo”，设置其Annotation description的值为my frontend。
+# 如果同一个Annotation被赋值了多次，只保存最后一次设置的值。
 $ kubectl annotate pods foo description='my frontend'
 
-# Update a pod identified by type and name in "pod.json"
+# 更新“pod.json”文件中type和name字段指定的pod的Annotation。
 $ kubectl annotate -f pod.json description='my frontend'
 
-# Update pod 'foo' with the annotation 'description' and the value 'my frontend running nginx', overwriting any existing value.
+# 更新pod “foo”，设置其Annotation description的值为my frontend running nginx，已有的值将被覆盖。
 $ kubectl annotate --overwrite pods foo description='my frontend running nginx'
 
-# Update all pods in the namespace
+# 更新同一namespace下所有的pod。
 $ kubectl annotate pods --all description='my frontend running nginx'
 
-# Update pod 'foo' only if the resource is unchanged from version 1.
+# 仅当pod “foo”当前版本为1时，更新其Annotation
 $ kubectl annotate pods foo description='my frontend running nginx' --resource-version=1
 
-# Update pod 'foo' by removing an annotation named 'description' if it exists.
-# Does not require the --overwrite flag.
+# 更新pod “foo”，删除其Annotation description。
+# 不需要--override选项。
 $ kubectl annotate pods foo description-
 {% endraw %}
 ```
 
-### Options
+### 选项
 
 ```
 {% raw %}
-      --all[=false]: select all resources in the namespace of the specified resource types
-  -f, --filename=[]: Filename, directory, or URL to a file identifying the resource to update the annotation
-      --overwrite[=false]: If true, allow annotations to be overwritten, otherwise reject annotation updates that overwrite existing annotations.
-      --resource-version="": If non-empty, the annotation update will only succeed if this is the current resource-version for the object. Only valid when specifying a single resource.
+      --all[=false]: 选择namespace中所有指定类型的资源。
+  -f, --filename=[]: 用来指定待升级资源的文件名，目录名或者URL。
+      --overwrite[=false]: 如果设置为true，允许覆盖更新Annotation，否则拒绝更新已存在的Annotation。
+      --resource-version="": 如果不为空，仅当资源当前版本和指定版本相同时才能更新Annotation。仅当更新单个资源时有效。
 {% endraw %}
 ```
 
-### Options inherited from parent commands
+### 继承自父命令的选项
 
 ```
 {% raw %}
-      --alsologtostderr[=false]: log to standard error as well as files
-      --api-version="": The API version to use when talking to the server
-      --certificate-authority="": Path to a cert. file for the certificate authority.
-      --client-certificate="": Path to a client key file for TLS.
-      --client-key="": Path to a client key file for TLS.
-      --cluster="": The name of the kubeconfig cluster to use
-      --context="": The name of the kubeconfig context to use
-      --insecure-skip-tls-verify[=false]: If true, the server's certificate will not be checked for validity. This will make your HTTPS connections insecure.
-      --kubeconfig="": Path to the kubeconfig file to use for CLI requests.
-      --log-backtrace-at=:0: when logging hits line file:N, emit a stack trace
-      --log-dir="": If non-empty, write log files in this directory
-      --log-flush-frequency=5s: Maximum number of seconds between log flushes
-      --logtostderr[=true]: log to standard error instead of files
-      --match-server-version[=false]: Require server version to match client version
-      --namespace="": If present, the namespace scope for this CLI request.
-      --password="": Password for basic authentication to the API server.
-  -s, --server="": The address and port of the Kubernetes API server
-      --stderrthreshold=2: logs at or above this threshold go to stderr
-      --token="": Bearer token for authentication to the API server.
-      --user="": The name of the kubeconfig user to use
-      --username="": Username for basic authentication to the API server.
-      --v=0: log level for V logs
-      --vmodule=: comma-separated list of pattern=N settings for file-filtered logging
+      --alsologtostderr[=false]: 同时输出日志到标准错误控制台和文件。
+      --api-version="": 和服务端交互使用的API版本。
+      --certificate-authority="": 用以进行证书权威性认证的.cert文件路径。
+      --client-certificate="": TLS使用的客户端证书路径。
+      --client-key="": TLS使用的客户端密钥路径。
+      --cluster="": 指定使用的kubeconfig配置文件中的集群名。
+      --context="": 指定使用的kubeconfig配置文件中的环境名。
+      --insecure-skip-tls-verify[=false]: 如果为true，将不会检查服务器凭证的有效性，这会导致你的HTTPS链接变得不安全。
+      --kubeconfig="": 命令行请求使用的配置文件路径。
+      --log-backtrace-at=:0: 当日志长度超过定义的行数时，忽略堆栈信息。
+      --log-dir="": 如果不为空，将日志文件写入此目录。
+      --log-flush-frequency=5s: 刷新日志的最大时间间隔。
+      --logtostderr[=true]: 输出日志到标准错误控制台，不输出到文件。
+      --match-server-version[=false]: 要求服务端和客户端版本匹配。
+      --namespace="": 如果不为空，命令将使用此namespace。
+      --password="": API Server进行简单认证使用的密码。
+  -s, --server="": Kubernetes API Server的地址和端口号。
+      --stderrthreshold=2: 高于此级别的日志将被输出到错误控制台。
+      --token="": 认证到API Server使用的令牌。
+      --user="": 指定使用的kubeconfig配置文件中的用户名。
+      --username="": API Server进行简单认证使用的用户名。
+      --v=0: 指定输出日志的级别。
+      --vmodule=: 指定输出日志的模块，格式如下：pattern=N，使用逗号分隔。
 {% endraw %}
 ```
 
-### SEE ALSO
+### 参见
 
-* [kubectl](kubectl.html)	 - kubectl controls the Kubernetes cluster manager
+* [kubectl](kubectl.html)	 - 使用kubectl来管理Kubernetes集群。
 
-###### Auto generated by spf13/cobra at 2015-11-27 14:20:04.945134857 +0000 UTC
-
-
-
-<!-- BEGIN MUNGE: IS_VERSIONED -->
-<!-- TAG IS_VERSIONED -->
-<!-- END MUNGE: IS_VERSIONED -->
-
-
-<!-- BEGIN MUNGE: GENERATED_ANALYTICS -->
-[![Analytics](https://kubernetes-site.appspot.com/UA-36037335-10/GitHub/docs/user-guide/kubectl/kubectl_annotate.md?pixel)]()
-<!-- END MUNGE: GENERATED_ANALYTICS -->
 
