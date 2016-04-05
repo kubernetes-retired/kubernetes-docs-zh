@@ -1,14 +1,14 @@
 ---
 ---
 
-You've deployed your application and exposed it via a service. Now what? Kubernetes provides a number of tools to help you manage your application deployment, including scaling and updating. Among the features we'll discuss in more depth are [configuration files](/docs/user-guide/configuring-containers/#configuration-in-kubernetes) and [labels](/docs/user-guide/deploying-applications/#labels).
+你已经把应用部署完毕并且以Service的方式暴露出来了，那么接下来该做什么？Kubernetes提供了若干工具来帮助你管理部署工作，包括应用的水平扩容以及更新等。在所有这些功能里面，我们将要深入探讨的是[配置文件](/docs/user-guide/configuring-containers/#configuration-in-kubernetes)以及[Label](/docs/user-guide/deploying-applications/#labels)。
 
 * TOC
 {:toc}
 
-## Organizing resource configurations
+## 编排资源的配置文件
 
-Many applications require multiple resources to be created, such as a Replication Controller and a Service. Management of multiple resources can be simplified by grouping them together in the same file (separated by `---` in YAML). For example:
+许多应用都需要创建多个资源，比如一个Replication Controller以及一个Service。最简化的管理多个资源的方法就是把它们归集在同一个配置文件里（在YAML文件里用`---`分隔）。例如：
 
 ```yaml
 apiVersion: v1
@@ -42,7 +42,7 @@ spec:
         - containerPort: 80
 ```
 
-Multiple resources can be created the same way as a single resource:
+多个资源的创建方法和创建单一资源一样：
 
 ```shell
 $ kubectl create -f ./nginx-app.yaml
@@ -50,34 +50,34 @@ services/my-nginx-svc
 replicationcontrollers/my-nginx
 ```
 
-The resources will be created in the order they appear in the file. Therefore, it's best to specify the service first, since that will ensure the scheduler can spread the pods associated with the service as they are created by the replication controller(s).
+资源会按照在文件中出现的顺序被创建。因此，最好把Service放在前面，因为这样会确保当Replication Controller创建Pod的时候，调度器可以把Pod和Service关联起来，并扩散到不同的机器中。
 
-`kubectl create` also accepts multiple `-f` arguments:
+`kubectl create` 同样支持多个 `-f` 参数:
 
 ```shell
 $ kubectl create -f ./nginx-svc.yaml -f ./nginx-rc.yaml
 ```
 
-And a directory can be specified rather than or in addition to individual files:
+除了指定多个文件之外，也可以指定一个目录：
 
 ```shell
 $ kubectl create -f ./nginx/
 ```
 
-`kubectl` will read any files with suffixes `.yaml`, `.yml`, or `.json`.
+`kubectl` 会读取所有后缀为`.yaml`，`.yml`和`.json`的文件。
 
-It is a recommended practice to put resources related to the same microservice or application tier into the same file, and to group all of the files associated with your application in the same directory. If the tiers of your application bind to each other using DNS, then you can then simply deploy all of the components of your stack en masse.
+比较推荐的做法是把同一个微服务或者子应用相关的资源放在同一个配置文件里，然后把同一个应用相关的所有配置文件归集到同一个目录中。如果你的应用的各个子系统通过DNS互相绑定，你就可以一次性把这些组件全部部署起来。
 
-A URL can also be specified as a configuration source, which is handy for deploying directly from configuration files checked into github:
+除了文件，URL也可以成为配置源。这对于部署GitHub上面的配置文件非常方便：
 
 ```shell
 $ kubectl create -f https://raw.githubusercontent.com/GoogleCloudPlatform/kubernetes/master/docs/user-guide/replication.yaml
 replicationcontrollers/nginx
 ```
 
-## Bulk operations in kubectl
+## kubectl批量操作
 
-Resource creation isn't the only operation that `kubectl` can perform in bulk. It can also extract resource names from configuration files in order to perform other operations, in particular to delete the same resources you created:
+`kubectl`可以批量操作的不仅仅是创建资源，`kubectl`还可以从配置文件中提取资源名称来进行其他操作，特别是用来删除从配置文件中创建出来的资源：
 
 ```shell
 $ kubectl delete -f ./nginx/
@@ -85,13 +85,13 @@ replicationcontrollers/my-nginx
 services/my-nginx-svc
 ```
 
-In the case of just two resources, it's also easy to specify both on the command line using the resource/name syntax:
+在只有两个资源的例子里，在命令行上同时指定它们的名字来删除也很简单，用『资源/名字』这种格式：
 
 ```shell
 $ kubectl delete replicationcontrollers/my-nginx services/my-nginx-svc
 ```
 
-For larger numbers of resources, one can use labels to filter resources. The selector is specified using `-l`:
+对于大量的资源，可以使用Label来筛选资源。通过`-l`参数来指定Selector：
 
 ```shell
 $ kubectl delete all -lapp=nginx
@@ -99,7 +99,7 @@ replicationcontrollers/my-nginx
 services/my-nginx-svc
 ```
 
-Because `kubectl` outputs resource names in the same syntax it accepts, it's easy to chain operations using `$()` or `xargs`:
+因为`kubectl`输出的资源名和它接受的语法是一样的，所以用`$()`或者`xargs`就可以很简单地把一些操作串联起来：
 
 ```shell
 $ kubectl get $(kubectl create -f ./nginx/ | grep my-nginx)
@@ -109,11 +109,11 @@ NAME           LABELS      SELECTOR    IP(S)          PORT(S)
 my-nginx-svc   app=nginx   app=nginx   10.0.152.174   80/TCP
 ```
 
-## Using labels effectively
+## 高效地使用Label
 
-The examples we've used so far apply at most a single label to any resource. There are many scenarios where multiple labels should be used to distinguish sets from one another.
+到目前为止的例子里，我们在多个资源里最多就使用了一个Label。但是在很多场景下我们需要使用多个Label来把不同的资源集合区分开。
 
-For instance, different applications would use different values for the `app` label, but a multi-tier application, such as the [guestbook example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/), would additionally need to distinguish each tier. The frontend could carry the following labels:
+例如，不同的应用会给`app`这个Label不同的值，但是对于有多个子系统的应用，比如[guest example](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/)，还需要把各个子系统区分开。应用的前端也许会有这样的Label：
 
 ```yaml
 labels:
@@ -121,7 +121,7 @@ labels:
         tier: frontend
 ```
 
-while the Redis master and slave would have different `tier` labels, and perhaps even an additional `role` label:
+然后Redis的Master和Slave的`tier` Label是和前端不同的，也许Redis还会有一个`role` Label：
 
 ```yaml
 labels:
@@ -130,7 +130,7 @@ labels:
         role: master
 ```
 
-and
+以及
 
 ```yaml
 labels:
@@ -139,7 +139,7 @@ labels:
         role: slave
 ```
 
-The labels allow us to slice and dice our resources along any dimension specified by a label:
+通过指定Label，我们可以从不同的维度区分资源：
 
 ```shell
 $ kubectl create -f ./guestbook-fe.yaml -f ./redis-master.yaml -f ./redis-slave.yaml
@@ -162,9 +162,9 @@ guestbook-redis-slave-2q2yf   1/1       Running   0          3m
 guestbook-redis-slave-qgazl   1/1       Running   0          3m
 ```
 
-## Canary deployments
+## 灰度发布
 
-Another scenario where multiple labels are needed is to distinguish deployments of different releases or configurations of the same component. For example, it is common practice to deploy a *canary* of a new application release (specified via image tag) side by side with the previous release so that the new release can receive live production traffic before fully rolling it out. For instance, a new release of the guestbook frontend might carry the following labels:
+需要用多个Label的另外一种场景是用来区分应用的不同版本或者同一个组件的不同配置的部署。比如，在生产环境发布应用的新版本时会先部署小部分的新版本应用，这样新版本和老版本会并存一段时间，而且新版本可以收到真实的流量，以便进行应用的线上认证。当确认新版本没有问题后，就会把老版本完全替换掉。请看下面的例子，guestbook Frontend的新版本也许会有这些Label：
 
 ```yaml
 labels:
@@ -173,7 +173,7 @@ labels:
         track: canary
 ```
 
-and the primary, stable release would have a different value of the `track` label, so that the sets of pods controlled by the two replication controllers would not overlap:
+而主要的Frontend稳定版本的`track` Label的值是不一样的，因此这两组Pod分别被不同的Replication Controller管理，不会出现互相覆盖的情况：
 
 ```yaml
 labels:
@@ -182,7 +182,7 @@ labels:
         track: stable
 ```
 
-The frontend service would span both sets of replicas by selecting the common subset of their labels, omitting the `track` label:
+Frontend Service只选择它们Label之间的公共部分，忽略`track` Label，这样Service就可以同时覆盖到两个副本集：
 
 ```yaml
 selector:
@@ -190,9 +190,9 @@ selector:
      tier: frontend
 ```
 
-## Updating labels
+## 更新Label
 
-Sometimes existing pods and other resources need to be relabeled before creating new resources. This can be done with `kubectl label`. For example:
+在创建新的资源之前，一些已经创建的Pod以及其他资源或许需要重新标记Label。这可以用`kubectl label`命令解决，比如：
 
 ```shell
 $ kubectl label pods -lapp=nginx tier=fe
@@ -215,9 +215,9 @@ my-nginx-v4-sh6m8   1/1       Running   0          19m       fe
 my-nginx-v4-wfof4   1/1       Running   0          16m       fe
 ```
 
-## Scaling your application
+## 应用弹性扩容
 
-When load on your application grows or shrinks, it's easy to scale with `kubectl`. For instance, to increase the number of nginx replicas from 2 to 3, do:
+当你的应用的负载增加或者减轻时，用`kubectl`可以很简单地进行弹性扩容。比如，把nginx的副本数从2增加到3：
 
 ```shell
 $ kubectl scale rc my-nginx --replicas=3
@@ -229,13 +229,13 @@ my-nginx-divi2   1/1       Running   0          1h
 my-nginx-o0ef1   1/1       Running   0          1h
 ```
 
-## Updating your application without a service outage
+## 热部署的方式更新在线应用
 
-At some point, you'll eventually need to update your deployed application, typically by specifying a new image or image tag, as in the canary deployment scenario above. `kubectl` supports several update operations, each of which is applicable to different scenarios.
+在某些时间点上，你最终会需要更新已部署的应用，通常会是指定一个新的镜像或者更新到镜像新的tag，就像上面的灰度发布场景一样。`kubectl`支持好几种更新操作，分别适用于不同的场景。
 
-To update a service without an outage, `kubectl` supports what is called ['rolling update'?](/docs/user-guide/kubectl/kubectl_rolling-update), which updates one pod at a time, rather than taking down the entire service at the same time. See the [rolling update design document](https://github.com/kubernetes/kubernetes/blob/{{page.githubbranch}}/docs/design/simple-rolling-update.md) and the [example of rolling update](/docs/user-guide/update-demo/) for more information.
+在服务不中断的情况下更新，`kubectl`支持所谓的['rolling update'](/docs/user-guide/kubectl/kubectl_rolling-update)？，一次只更新一个Pod，而不是同时把整个服务都停掉。查看[rolling update设计文档](https://github.com/kubernetes/kubernetes/blob/{{page.githubbranch}}/docs/design/simple-rolling-update.md)以及[rolling update例子](/docs/user-guide/update-demo/)获取更多信息。
 
-Let's say you were running version 1.7.9 of nginx:
+假设你现在在运行的是nginx的1.7.9版本：
 
 ```yaml
 apiVersion: v1
@@ -256,14 +256,14 @@ spec:
         - containerPort: 80
 ```
 
-To update to version 1.9.1, you can use [`kubectl rolling-update --image`](https://github.com/kubernetes/kubernetes/blob/{{page.githubbranch}}/docs/design/simple-rolling-update.md):
+要想更新到1.9.1版本，你可以用[`kubectl rolling-update --image`](https://github.com/kubernetes/kubernetes/blob/{{page.githubbranch}}/docs/design/simple-rolling-update.md)：
 
 ```shell
 $ kubectl rolling-update my-nginx --image=nginx:1.9.1
 Creating my-nginx-ccba8fbd8cc8160970f63f9a2696fc46
 ```
 
-In another window, you can see that `kubectl` added a `deployment` label to the pods, whose value is a hash of the configuration, to distinguish the new pods from the old:
+在另一个窗口，你可以看到`kubectl`给要更新的Pod增加了`deployment` Label。为了把新的Pod和老的区分开，这个`deployment` Label的值是配置文件的哈希值：
 
 ```shell
 $ kubectl get pods -lapp=nginx -Ldeployment
@@ -276,7 +276,7 @@ my-nginx-o0ef1                                    1/1       Running   0         
 my-nginx-q6all                                    1/1       Running   0          8m        2d1d7a8f682934a254002b56404b813e
 ```
 
-`kubectl rolling-update` reports progress as it progresses:
+`kubectl rolling-update`会汇报更新的进度：
 
 ```shell
 Updating my-nginx replicas: 4, my-nginx-ccba8fbd8cc8160970f63f9a2696fc46 replicas: 1
@@ -298,7 +298,7 @@ Renaming my-nginx-ccba8fbd8cc8160970f63f9a2696fc46 to my-nginx
 my-nginx
 ```
 
-If you encounter a problem, you can stop the rolling update midway and revert to the previous version using `--rollback`:
+如果更新遇到问题，你可以在中途停掉更新，并用`--rollback`回滚到之前的版本：
 
 ```shell
 $ kubectl kubectl rolling-update my-nginx  --image=nginx:1.9.1 --rollback
@@ -309,9 +309,9 @@ Update succeeded. Deleting my-nginx-ccba8fbd8cc8160970f63f9a2696fc46
 my-nginx
 ```
 
-This is one example where the immutability of containers is a huge asset.
+这是一个展示容器在不变性上巨大优势的例子。
 
-If you need to update more than just the image (e.g., command arguments, environment variables), you can create a new replication controller, with a new name and distinguishing label value, such as:
+如果你想要更新的不仅仅是镜像（例如命令的参数，环境变量等），你可以创建一个新的Replication Controller，起一个新的名字和有区别的Label值，比如：
 
 ```yaml
 apiVersion: v1
@@ -337,7 +337,7 @@ spec:
         - containerPort: 80
 ```
 
-and roll it out:
+然后开始更新：
 
 ```shell
 $ kubectl rolling-update my-nginx -f ./nginx-rc.yaml
@@ -361,11 +361,11 @@ Update succeeded. Deleting my-nginx
 my-nginx-v4
 ```
 
-You can also run the [update demo](/docs/user-guide/update-demo/) to see a visual representation of the rolling update process.
+你也可以运行[更新演示](/docs/user-guide/update-demo/)来看rolling update过程的可视化展示。
 
-## In-place updates of resources
+## 原地更新资源
 
-Sometimes it's necessary to make narrow, non-disruptive updates to resources you've created. For instance, you might want to add an [annotation](/docs/user-guide/annotations) with a description of your object. That's easiest to do with `kubectl patch`:
+有些时候很有必要对已创建的资源进行局部的无干扰的更新。比如你可能会想要添加一个[Annotation](/docs/user-guide/annotations)描述一下这个资源。最简单的办法就是运行`kubectl patch`：
 
 ```shell
 $ kubectl patch rc my-nginx-v4 -p '{"metadata": {"annotations": {"description": "my frontend running nginx"}}}' 
@@ -379,9 +379,9 @@ metadata:
 ...
 ```
 
-The patch is specified using json.
+这个补丁是使用JSON描述的。
 
-For more significant changes, you can `get` the resource, edit it, and then `replace` the resource with the updated version:
+对于内容变化很多的情况，你可以用`get`命令获取资源描述，然后编辑它，再用`replace`命令把它替换成更新后的版本：
 
 ```shell
 $ kubectl get rc my-nginx-v4 -o yaml > /tmp/nginx.yaml
@@ -391,11 +391,11 @@ replicationcontrollers/my-nginx-v4
 $ rm $TMP
 ```
 
-The system ensures that you don't clobber changes made by other users or components by confirming that the `resourceVersion` doesn't differ from the version you edited. If you want to update regardless of other changes, remove the `resourceVersion` field when you edit the resource. However, if you do this, don't use your original configuration file as the source since additional fields most likely were set in the live state.
+（通过get命令导出的内容中包含一个resourceVersion的字段），系统通过检测resourceVersion字段与当前部署版本是否一致来确保你的更改不会意外覆盖掉其他人已经执行的更改。如果你无论如何都要使用自己的更改，而不在意其他人已经更改的内容，可以（在执行replace命令前）去除掉resourceVersion这个字段。然而，如果你决定这样做，请不要用原始那份配置文件作为源（而要用get命令返回的那份），因为它在运行状态下会设置一些额外的字段。
 
-## Disruptive updates
+## 破坏性更新
 
-In some cases, you may need to update resource fields that cannot be updated once initialized, or you may just want to make a recursive change immediately, such as to fix broken pods created by a replication controller. To change such fields, use `replace --force`, which deletes and re-creates the resource. In this case, you can simply modify your original configuration file:
+在有些情况下，你会需要更新资源的一些字段，但是这些字段是在初始化之后就无法更新的。又或许你想要立即进行一些嵌套更新，比如修复Replication Controller创建失败的Pod。要想改变这些字段，用`replace --force`命令，这个操作会删掉然后重新创建这些资源。这种情况下，你可以在原始的配置文件上直接修改（而不必用get命令取回来的那个），然后：
 
 ```shell
 $ kubectl replace -f ./nginx-rc.yaml --force
@@ -403,7 +403,7 @@ replicationcontrollers/my-nginx-v4
 replicationcontrollers/my-nginx-v4
 ```
 
-## What's next?
+## 下一节
 
-- [Learn about how to use `kubectl` for application introspection and debugging.](/docs/user-guide/introspection-and-debugging)
-- [Tips and tricks when working with config](/docs/user-guide/config-best-practices
+- [用`kubectl`回顾以及调试应用](/docs/user-guide/introspection-and-debugging)
+- [使用配置的提示与技巧](/docs/user-guide/config-best-practices)
