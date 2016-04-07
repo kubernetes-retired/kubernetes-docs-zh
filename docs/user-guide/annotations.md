@@ -1,11 +1,12 @@
 ---
 ---
 
-We have [labels](/docs/user-guide/labels) for identifying metadata.
 
-It is also useful to be able to attach arbitrary non-identifying metadata, for retrieval by API clients such as tools, libraries, etc. This information may be large, may be structured or unstructured, may include characters not permitted by labels, etc. Such information would not be used for object selection and therefore doesn't belong in labels.
+对于辨识性的metadata（元数据），我们有[Label](/docs/user-guide/labels)。
 
-Like labels, annotations are key-value maps.
+但是另一方面，我们也希望Kubernetes能够支持一种非辨识性的metadata，这些信息可以被一些API客户端包括工具包，依赖库等获取到。这种信息可能会很大，可能是结构化的或者非结构化的，可能包含一些Label不允许的字符等等。这些信息不会用来选择对象，因此不属于Label的范畴。
+
+如Label一样，Annotation是键值对的map。
 
 ```json
 "annotations": {
@@ -14,14 +15,14 @@ Like labels, annotations are key-value maps.
 }
 ```
 
-Possible information that could be recorded in annotations:
+可能被记录进Annotation的信息有：
 
-* fields managed by a declarative configuration layer, to distinguish them from client- and/or server-set default values and other auto-generated fields, fields set by auto-sizing/auto-scaling systems, etc., in order to facilitate merging
-* build/release/image information (timestamps, release ids, git branch, PR numbers, image hashes, registry address, etc.)
-* pointers to logging/monitoring/analytics/audit repos
-* client library/tool information (e.g. for debugging purposes -- name, version, build info)
-* other user and/or tool/system provenance info, such as URLs of related objects from other ecosystem components
-* lightweight rollout tool metadata (config and/or checkpoints)
-* phone/pager number(s) of person(s) responsible, or directory entry where that info could be found, such as a team website
+* 由一个声明式的配置层管理的字段，以和客户端或者服务端设置的默认值和其他自动生成的字段区分，也可能是其他的自动扩容/自动伸缩系统等等设置的值，这有利于合并
+* 构建/发布/镜像信息(时间戳，发布ID，git分支，Pull Request编号，镜像hash值，registry地址，等等)
+* 日志/监控/分析/审计的仓库引用
+* 客户端库/工具信息(例如为了调试目的 - 名称，版本，版本信息)
+* 其他的用户和/或者工具/系统的来源信息，如从其他生态系统来的组件的相关对象的URL
+* 轻量的rollout工具的元数据(配置或者检查点)
+* 相关负责人的电话/传呼号码，或者该信息能获取到的目录条目，如一个团队网站
 
-Yes, this information could be stored in an external database or directory, but that would make it much harder to produce shared client libraries and tools for deployment, management, introspection, etc.
+总的来说，annotations的原理和用法跟Labels基本一致，只不过它负责代表的信息往往是用来被“程序”、“依赖库”，而不是用户获取和操作的。是的，这种信息也可以保存在外部的数据库或者目录里，但是这让创建用于部署，管理，视察（introspection）的共享客户端依赖库或者工具变得困难。
