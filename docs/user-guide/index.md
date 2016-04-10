@@ -4,7 +4,7 @@
 * TOC
 {:toc}
 
-用户指南是为所有想在已经运行着的Kubernetes集群上运行程序或者服务准备的。Kubernetes集群的设置和管理可以参见[Cluster Admin Guide](/docs/admin/)。The [Developer Guide](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/docs/devel/) 是为所有想要用Kubernetes API来编写代码的工程师或者想直接为Kubernetes贡献代码的人准备的。
+用户指南是为所有想在已经运行着的Kubernetes集群上运行程序或者服务准备的。Kubernetes集群的设置和管理可以参见[Cluster Admin Guide](/docs/admin/)。而[Developer Guide](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/docs/devel/) 是为所有想要用Kubernetes API来编写代码的工程师或者想直接为Kubernetes贡献代码的人准备的。
 
 请确保你已经阅读完毕[运行用户指南中的示例的必读事项](/docs/user-guide/prereqs).
 
