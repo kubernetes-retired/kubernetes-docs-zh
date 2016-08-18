@@ -66,9 +66,9 @@ of a serialized object.
 
 Currently there are two API groups in use:
 
-1. the "core" group, which is at REST path `/api/v1` and is not specified as part of the `apiVersion` field, e.g.
+1. The "core" group, which is at REST path `/api/v1` and is not specified as part of the `apiVersion` field, e.g.
    `apiVersion: v1`.
-1. the "extensions" group, which is at REST path `/apis/extensions/$VERSION`, and which uses
+1. The "extensions" group, which is at REST path `/apis/extensions/$VERSION`, and which uses
   `apiVersion: extensions/$VERSION` (e.g. currently `apiVersion: extensions/v1beta1`).
 
 In the future we expect that there will be more API groups, all at REST path `/apis/$API_GROUP` and

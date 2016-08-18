@@ -2,7 +2,7 @@
 ---
 
 Garbage collection is managed by kubelet automatically, mainly including unreferenced
-images and dead containers. kubelet applies container garbage collection every minute
+images and dead containers. Kubelet applies container garbage collection every minute
 and image garbage collection every 5 minutes.
 Note that we don't recommend external garbage collection tool generally, since it could
 break the behavior of kubelet potentially if it attempts to remove all of the containers
