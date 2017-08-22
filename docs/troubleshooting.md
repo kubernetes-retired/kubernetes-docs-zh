@@ -5,10 +5,10 @@
 
 在使用Kubernetes时，用户常常会遇到一些错误和迷惑，这个小节的内容将针对常见的问题进行解答。我们将这些问题分为以下两个部分：
 
-   * [应用程序相关的故障排查](/docs/user-guide/application-troubleshooting) - 当遇到将代码部署到Kubernetes时发生的各类错误时，请参考这部分内容。
-   * [集群相关的故障排查](/docs/admin/cluster-troubleshooting) - 当集群系统的管理者发现Kubernetes的集群工作不正常时，请参考这部分内容。
+   * [应用程序相关的故障排查](/docs/user-guide/application-troubleshooting.md) - 当遇到将代码部署到Kubernetes时发生的各类错误时，请参考这部分内容。
+   * [集群相关的故障排查](/docs/admin/cluster-troubleshooting.md) - 当集群系统的管理者发现Kubernetes的集群工作不正常时，请参考这部分内容。
 
-你还可以通过查看Kubernetes的[已知问题](/docs/user-guide/known-issues)页面查看所用版本存在的已知问题。
+你还可以通过查看Kubernetes的[已知问题](/docs/user-guide/known-issues.md)页面查看所用版本存在的已知问题。
 
 # 寻求帮助
 
