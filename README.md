@@ -12,7 +12,7 @@ If you're not familiar with processes working with git, please follow the steps 
  3. Use the `Fork` button in the upper-right side of the screen to fork this repo to your own github account.
  4. Clone your repo to your local machine.
  5. git clone https://github.com/YOURACCOUNT/kubernetes-docs-cn.git
- 6. Enter the cloned folder and set your emailaddress and username of your github account, so when you commit a change, git will know who you are.
+ 6. Enter the cloned folder and set your email address and username of your github account, so when you commit a change, git will know who you are.
 
         git config set user.email YOUREMAILADDRESS
         git config set user.name YOURGITHUBACCOUNT
@@ -25,7 +25,7 @@ If you're not familiar with processes working with git, please follow the steps 
 
         git checkout release-1.1-cn
 
- 9. Snychronize your repo with upstream.
+ 9. Synchronize your repo with upstream.
 
         git fetch upstream
         git merge upstream/release-1.1-cn
@@ -34,13 +34,13 @@ If you're not familiar with processes working with git, please follow the steps 
 
         git checkout -b NEWWORKINGBRANCH
 
- 11. Do you translation work, the documents are located in `/docs` folder. If you have done step 2, find your translated file and overwrite the coresponding file. If you're working on an untranslated file, just edit it.
+ 11. Do your translation work, the documents are located in `/docs` folder. If you have done step 2, find your translated file and overwrite the corresponding file. If you're working on an untranslated file, just edit it.
  12. Commit your changes. Input your commit title and message as the prompt says. Then press `Ctrl+X` and then `Shift+Y`.
 
         git add .
         git commit
 
- 13. Push your commit to your own repo and create a branch coresponding to your working branch.
+ 13. Push your commit to your own repo and create a branch corresponding to your working branch.
 
         git push origin NEWWORKINGBRANCH:NEWWORKINGBRANCH
 
