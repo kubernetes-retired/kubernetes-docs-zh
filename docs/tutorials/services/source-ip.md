@@ -1,9 +1,10 @@
 ---
+title: 使用 Source IP
+---
+
 <!--
 title: Using Source IP
 -->
-title: 使用 Source IP
----
 
 {% capture overview %}
 
@@ -235,7 +236,7 @@ packet that make it through to the endpoint.
 <!--
 Set the `service.spec.externalTrafficPolicy` field as follows:
 -->
-设置 `service.spec.externalTrafficPolicy` 字段如下： 
+设置 `service.spec.externalTrafficPolicy` 字段如下：
 
 ```console
 $ kubectl patch svc nodeport -p '{"spec":{"externalTrafficPolicy":"Local"}}'

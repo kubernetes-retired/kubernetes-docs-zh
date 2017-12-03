@@ -1,0 +1,316 @@
+---
+layout: page
+title: K8SMettup DashBoard
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>K8SMettup DashBoard</title>
+    <script src="/js/echarts.min.js"></script>
+    <script src="/js/jquery-2.2.0.min.js"></script>
+</head>
+<body>
+<div style="width:1000px;margin:auto;">
+	<div id="main" style="width: 497px;height:400px;display: inline-flex;"></div>
+	<div id="pie" style="width: 497px;height:400px;display: inline-flex;"></div>
+</div>
+<div id="bar" style="width: 1000px;height:400px;margin:auto;"></div>
+<div id="week" style="width: 1000px;height:400px;margin:auto; margin-top: 30px;"></div>
+
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var Chart = echarts.init(document.getElementById('main'));
+    var pieChart = echarts.init(document.getElementById('pie'));
+    var barChart = echarts.init(document.getElementById('bar'));
+    var weekChart = echarts.init(document.getElementById('week'));
+
+	// pie post
+	option = {
+	    title : {
+	        text: 'Kubernetes 文章任务汇总',
+            subtext: 'K8SMeetup 译者招募',
+            sublink: 'http://www.k8smeetup.com/recruit',
+	        x:'center'
+	    },
+	    tooltip : {
+	        trigger: 'item',
+	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+	    },
+	    legend: {
+	        orient: 'vertical',
+	        left: 'left',
+	        data: []
+	    },
+	    series : [
+	        {
+	            name: '翻译文章汇总',
+	            type: 'pie',
+	            radius : '55%',
+	            center: ['50%', '50%'],
+	            data:[],
+	            itemStyle: {
+	                emphasis: {
+	                    shadowBlur: 10,
+	                    shadowOffsetX: 0,
+	                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+	                }
+	            }
+	        }
+	    ]
+	};
+    // 指定图表的配置项和数据
+    var pie_option = {
+        title : {
+            text: '翻译中文统计',
+            subtext: '微信译者招募',
+			sublink: 'https://mp.weixin.qq.com/s/1-YYrzEBK8JabxvU93Wf6Q',
+            x:'center'
+        },
+        tooltip : {
+            trigger: 'item',
+            formatter: "{a} <br/>{b} : {c} ({d}%)"
+        },
+        legend: {
+            type: 'scroll',
+            orient: 'vertical',
+            right: 10,
+            top: 20,
+            bottom: 20,
+            data: []
+        },
+        series : [
+            {
+                name: '姓名',
+                type: 'pie',
+                radius : '55%',
+                center: ['40%', '50%'],
+                data: [],
+                itemStyle: {
+                    emphasis: {
+                        shadowBlur: 10,
+                        shadowOffsetX: 0,
+                        shadowColor: 'rgba(0, 0, 0, 0.5)'
+                    }
+                }
+            }
+        ]
+    };
+
+    bar_option = {
+        title: {
+            text: 'Kubernetes 中文翻译汇总（单位:字）',
+            subtext: 'Kubernetes 中文站',
+            sublink: 'http://k8smeetup.github.io'
+        },
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (params) {
+                var tar = params[1];
+                return tar.name + '<br/>' + tar.seriesName + ' : ' + tar.value;
+            }
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis: {
+            type : 'category',
+            splitLine: {show:false},
+            data : []
+        },
+        yAxis: {
+            type : 'value'
+        },
+        dataZoom: [
+            {
+                type: 'slider',
+                show: true,
+                start: 0,
+                end: 100,
+                handleSize: 8
+            },
+            {
+                type: 'inside',
+                start: 94,
+                end: 100
+            },
+            {
+                type: 'slider',
+                show: true,
+                yAxisIndex: 0,
+                filterMode: 'empty',
+                width: 12,
+                height: '70%',
+                handleSize: 8,
+                showDataShadow: false,
+                left: '93%'
+            }
+        ],
+        series: []
+    };
+    // 每周翻译动态更新
+    var formatter = function (params) {
+        var content='', count =0;
+        for(var key in params){
+            if (params[key].value != 0){
+                content += params[key].seriesName+": "+params[key].value+" 字<br/>";
+                count+=params[key].value;
+            }
+        }
+        return content+"<b>本周总译字数: "+count+" 字</b>";
+    }
+
+    var radom_color = function () {
+        var color = [];
+        for(var i = 0; i < 31; i++){
+//            color.push("#"+Math.floor(Math.random()*(256*256*256-1)).toString(16));
+            color.push('#'+Math.floor(Math.random()*16777215).toString(16));
+        }
+        console.log(color);
+        return color;
+    }
+    // 指定图表的配置项和数据
+    week_option = {
+        tooltip : {
+            trigger: 'axis',
+            axisPointer : {            // 坐标轴指示器，坐标轴触发有效
+                type : 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+            },
+            formatter: function (params, ticket, callback) {
+
+                return params[0].name+"<br/>"+formatter(params);
+            }
+        },
+        color: radom_color(),
+        legend: {
+            data:[]
+        },
+        grid: {
+            left: '3%',
+            right: '4%',
+            bottom: '3%',
+            containLabel: true
+        },
+        xAxis : [
+            {
+                type : 'category',
+                data : []
+            }
+        ],
+        yAxis : [
+            {
+                type : 'value'
+            }
+        ],
+        dataZoom: [
+            {
+                type: 'slider',
+                show: true,
+                start: 0,
+                end: 100,
+                handleSize: 8
+            },
+            {
+                type: 'inside',
+                start: 94,
+                end: 100
+            },
+            {
+                type: 'slider',
+                show: true,
+                yAxisIndex: 0,
+                filterMode: 'empty',
+                width: 12,
+                height: '70%',
+                handleSize: 8,
+                showDataShadow: false,
+                left: '93%'
+            }
+        ],
+        series : []
+    };
+
+    // 异步加载数据
+    $.get('/data.json').done(function (data) {
+
+        Chart.setOption({
+            legend: {
+                data: data[0].legendData
+            },
+            series: [{
+                data: data[0].seriesData
+            }]
+        });
+
+        // 填入数据
+        pieChart.setOption({
+            legend: {
+                data: data[1].legendData
+            },
+            series: [{
+                data: data[1].seriesData
+            }]
+        });
+
+        barChart.setOption({
+            xAxis: {
+                data: data[2].author
+            },
+            series: [
+                {
+                    name: '辅助',
+                    type: 'bar',
+                    stack:  '总量',
+                    itemStyle: {
+                        normal: {
+                            barBorderColor: 'rgba(0,0,0,0)',
+                            color: 'rgba(0,0,0,0)'
+                        },
+                        emphasis: {
+                            barBorderColor: 'rgba(0,0,0,0)',
+                            color: 'rgba(0,0,0,0)'
+                        }
+                    },
+                    data: data[2].series_title
+                },
+                {
+                    name: '翻译字数',
+                    type: 'bar',
+                    stack: '总量',
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'inside'
+                        }
+                    },
+                    data: data[2].series_data
+                }
+            ]
+        });
+
+        weekChart.setOption({
+            legend: {
+                data: data[3].legend
+            },
+            xAxis: {
+                data: data[3].category
+            },
+            series: data[3].series
+        });
+
+    });
+    // 使用刚指定的配置项和数据显示图表。
+	Chart.setOption(option);
+    pieChart.setOption(pie_option);
+    barChart.setOption(bar_option);
+    weekChart.setOption(week_option);
+</script>
+</body>
+</html>

@@ -1,9 +1,10 @@
 ---
+title: 改变默认 StorageClass
+---
+
 <!--
 title: Change the default StorageClass
 -->
-title: 改变默认 StorageClass
----
 
 {% capture overview %}
 <!--
@@ -93,7 +94,7 @@ for details about addon manager and how to disable individual addons.
 <!--
    To mark a StorageClass as non-default, you need to change its value to `false`:
 -->
-   要标记一个 StorageClass 为非默认的，您需要改变它的值为 `false`： 
+   要标记一个 StorageClass 为非默认的，您需要改变它的值为 `false`：
 
         kubectl patch storageclass <your-class-name> -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"false"}}}'
 

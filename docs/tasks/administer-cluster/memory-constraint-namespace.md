@@ -2,11 +2,11 @@
 cn-approvers:
 - xiaosuiba
 cn-reviewers:
+title: 为 Namespace 设置最小和最大内存限制
+---
 <!--
 title: Configure Minimum and Maximum Memory Constraints for a Namespace
 -->
-title: 为 Namespace 设置最小和最大内存限制
----
 
 
 {% capture overview %}
@@ -423,5 +423,3 @@ kubectl delete namespace constraints-mem-example
 
 
 {% include templates/task.md %}
-
-

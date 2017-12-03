@@ -1,5 +1,5 @@
 ---
-approvers:
+assignees:
 - ericchiang
 - mikedanese
 - jcbsmpsn

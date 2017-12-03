@@ -2,9 +2,6 @@
 assignees:
 - derekwaynecarr
 - janetkuo
-<!--
-title: Apply Resource Quotas and Limits
--->
 title: 应用资源配额和限额
 redirect_from:
 - "/docs/admin/resourcequota/walkthrough/"
@@ -12,6 +9,10 @@ redirect_from:
 - "/docs/tasks/configure-pod-container/apply-resource-quota-limit/"
 - "/docs/tasks/configure-pod-container/apply-resource-quota-limit.html"
 ---
+
+<!--
+title: Apply Resource Quotas and Limits
+-->
 
 {% capture overview %}
 
@@ -443,7 +444,7 @@ all 8 pods.  This is because it is tracked by the `best-effort` quota, and the `
 quota will just ignore it.  The `not-best-effort` quota will track the `not-best-effort-nginx`
 deployment since it creates pods with `Burstable` quality of service.
 -->
-虽然没有指定默认的 limits，`best-effort-nginx` deployment 还是会创建 8 个 pods。这是由于它被 `best-effort` 配额追踪，而 `not-best-effort` 配额将忽略它。`not-best-effort` 配额将追踪 `not-best-effort-nginx` deployment，因为它创建的 pods 具有 `Burstable` 服务质量。 
+虽然没有指定默认的 limits，`best-effort-nginx` deployment 还是会创建 8 个 pods。这是由于它被 `best-effort` 配额追踪，而 `not-best-effort` 配额将忽略它。`not-best-effort` 配额将追踪 `not-best-effort-nginx` deployment，因为它创建的 pods 具有 `Burstable` 服务质量。
 
 <!--
 Let's list the pods in the namespace:
@@ -504,12 +505,12 @@ As you can see, the `best-effort` quota has tracked the usage for the 8 pods we 
 the `best-effort-nginx` deployment, and the `not-best-effort` quota has tracked the usage for
 the 2 pods we created in the `not-best-effort-nginx` quota.
 -->
-如你看到的，`best-effort` 配额追踪了我们在 `best-effort-nginx` deployment 中创建的 8 个 pods 的资源用量，而 `not-best-effort` 配额追踪了我们在 `not-best-effort-nginx` deployment 中创的两个 pods 的用量。 
+如你看到的，`best-effort` 配额追踪了我们在 `best-effort-nginx` deployment 中创建的 8 个 pods 的资源用量，而 `not-best-effort` 配额追踪了我们在 `not-best-effort-nginx` deployment 中创的两个 pods 的用量。
 
 <!--
 Scopes provide a mechanism to subdivide the set of resources that are tracked by
 any quota document to allow greater flexibility in how operators deploy and track resource
-consumption. 
+consumption.
 -->
 Scopes 提供了一种来对任何配额文档追踪的资源集合进行细分的机制，给操作人员部署和追踪资源消耗带来更大的灵活性。
 

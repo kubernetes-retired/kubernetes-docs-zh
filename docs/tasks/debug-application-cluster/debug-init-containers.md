@@ -7,11 +7,12 @@ approvers:
 - janetkuo
 - kow3ns
 - smarterclayton
+title: 调试 Init 容器
+---
+
 <!--
 title: Debug Init Containers
 -->
-title: 调试 Init 容器
----
 
 {% capture overview %}
 
@@ -217,4 +218,3 @@ Status | Meaning
 {% endcapture %}
 
 {% include templates/task.md %}
-

@@ -2,9 +2,6 @@
 assignees:
 - mikedanese
 - thockin
-<!--
-title: Authenticate Across Clusters with kubeconfig
--->
 title: 使用 kubeconfig 进行跨集群认证
 redirect_from:
 - "/docs/user-guide/kubeconfig-file/"
@@ -16,6 +13,10 @@ cn-approvers:
 cn-reviewers:
 - shidrdn
 ---
+
+<!--
+title: Authenticate Across Clusters with kubeconfig
+-->
 
 <!--
 
@@ -57,7 +58,7 @@ Kubernetes 的认证方式对于不同的人来说可能有所不同。
 
 [http://issue.k8s.io/1755](http://issue.k8s.io/1755)
 
-<!-- 
+<!--
 
 ## Components of a kubeconfig file
 

@@ -3,11 +3,12 @@ approvers:
 - dchen1107
 - roberthbailey
 - liggitt
+title: Master 节点通信
+---
+
 <!--
 title: Master-Node communication
 -->
-title: Master 节点通信
----
 
 * TOC
 {:toc}
@@ -38,8 +39,8 @@ services). In a typical deployment, the apiserver is configured to listen for
 remote connections on a secure HTTPS port (443) with one or more forms of
 client [authentication](/docs/admin/authentication/) enabled. One or more forms
 of [authorization](/docs/admin/authorization/) should be enabled, especially
-if [anonymous requests](/docs/admin/authentication/#anonymous-requests) or 
-[service account tokens](/docs/admin/authentication/#service-account-tokens) 
+if [anonymous requests](/docs/admin/authentication/#anonymous-requests) or
+[service account tokens](/docs/admin/authentication/#service-account-tokens)
 are allowed.
 -->
 所有从集群到 master 的通信路径都终止于 apiserver（其它 master 组件没有被设计为可暴露远程服务）。在一个典型的部署中，apiserver 被配置为在一个安全的 HTTPS 端口（443）上监听远程连接并启用一种或多种形式的客户端[身份认证](/docs/admin/authentication/)机制。一种或多种客户端[身份认证](/docs/admin/authentication/)机制应该被启用，特别是在允许使用 [匿名请求](/docs/admin/authentication/#anonymous-requests) 或 [service account tokens](/docs/admin/authentication/#service-account-tokens) 的时候。
@@ -48,14 +49,14 @@ are allowed.
 Nodes should be provisioned with the public root certificate for the cluster
 such that they can connect securely to the apiserver along with valid client
 credentials. For example, on a default GCE deployment, the client credentials
-provided to the kubelet are in the form of a client certificate. See 
-[kubelet TLS bootstrapping](/docs/admin/kubelet-tls-bootstrapping/) for 
-automated provisioning of kubelet client certificates. 
+provided to the kubelet are in the form of a client certificate. See
+[kubelet TLS bootstrapping](/docs/admin/kubelet-tls-bootstrapping/) for
+automated provisioning of kubelet client certificates.
 -->
 应该使用集群的公共根证书开通节点，如此它们就能够基于有效的客户端凭据安全的连接 apiserver。例如：在一个默认的 GCE 部署中，客户端凭据以客户端证书的形式提供给 kubelet。请查看 [kubelet TLS bootstrapping](/docs/admin/kubelet-tls-bootstrapping/) 获取如何自动提供 kubelet 客户端证书。
 
 <!--
-Pods that wish to connect to the apiserver can do so securely by leveraging a 
+Pods that wish to connect to the apiserver can do so securely by leveraging a
 service account so that Kubernetes will automatically inject the public root
 certificate and a valid bearer token into the pod when it is instantiated.
 The `kubernetes` service (in all namespaces) is configured with a virtual IP
@@ -103,35 +104,35 @@ or service through the apiserver's proxy functionality.
 <!--
 The connections from the apiserver to the kubelet are used for fetching logs
 for pods, attaching (through kubectl) to running pods, and using the kubelet's
-port-forwarding functionality. These connections terminate at the kubelet's 
+port-forwarding functionality. These connections terminate at the kubelet's
 HTTPS endpoint.
 -->
 从 apiserver 到 kubelet 的连接用于获取 pods 日志、连接（通过 kubectl）运行中的 pods，以及使用 kubele 的端口转发功能。这些连接终止于 kubelet 的 HTTPS endpoint。
 
 <!--
 By default, the apiserver does not verify the kubelet's serving certificate,
-which makes the connection subject to man-in-the-middle attacks, and 
+which makes the connection subject to man-in-the-middle attacks, and
 **unsafe** to run over untrusted and/or public networks.
 -->
-默认的，apiserver 不会验证 kubelet 的服务证书，这会导致连接遭到中间人攻击，因而在不可信或公共网络上是不安全的。  
+默认的，apiserver 不会验证 kubelet 的服务证书，这会导致连接遭到中间人攻击，因而在不可信或公共网络上是不安全的。
 
 <!--
-To verify this connection, use the `--kubelet-certificate-authority` flag to 
-provide the apiserver with a root certificates bundle to use to verify the 
+To verify this connection, use the `--kubelet-certificate-authority` flag to
+provide the apiserver with a root certificates bundle to use to verify the
 kubelet's serving certificate.
 -->
 为了对这个连接进行认证，请使用 `--kubelet-certificate-authority` 标记给 apiserver 提供一个根证书捆绑，用于 kubelet 的服务证书。
 
 <!--
 If that is not possible, use [SSH tunneling](/docs/concepts/architecture/master-node-communication/#ssh-tunnels)
-between the apiserver and kubelet if required to avoid connecting over an 
+between the apiserver and kubelet if required to avoid connecting over an
 untrusted or public network.
 -->
 如果这样不可能，又要求避免在不可信的或公共的网络上进行连接，请在 apiserver 和 kubelet 之间使用 [SSH 隧道](/docs/concepts/architecture/master-node-communication/#ssh-tunnels)。
 
 <!--
 Finally, [Kubelet authentication and/or authorization](/docs/admin/kubelet-authentication-authorization/)
-should be enabled to secure the kubelet API. 
+should be enabled to secure the kubelet API.
 -->
 最后，应该启用[Kubelet 用户认证和/或权限认证](/docs/admin/kubelet-authentication-authorization/)来保护 kubelet API。
 

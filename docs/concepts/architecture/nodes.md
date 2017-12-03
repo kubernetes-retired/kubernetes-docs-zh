@@ -2,9 +2,6 @@
 assignees:
 - caesarxuchao
 - dchen1107
-<!--
-title: Nodes
--->
 title: Nodes
 redirect_from:
 - "/docs/admin/node/"
@@ -12,6 +9,10 @@ redirect_from:
 - "/docs/concepts/nodes/node/"
 - "/docs/concepts/nodes/node.html"
 ---
+
+<!--
+title: Nodes
+-->
 
 * TOC
 {:toc}
@@ -126,7 +127,7 @@ Node 条件使用一个 JSON 对象表示。例如，下面的响应描述了一
 ```
 
 <!--
-If the Status of the Ready condition is "Unknown" or "False" for longer than the `pod-eviction-timeout`, an argument passed to the [kube-controller-manager](/docs/admin/kube-controller-manager/), all of the Pods on the node are scheduled for deletion by the Node Controller. The default eviction timeout duration is **five minutes**. In some cases when the node is unreachable, the apiserver is unable to communicate with the kubelet on it. The decision to delete the pods cannot be communicated to the kubelet until it re-establishes communication with the apiserver. In the meantime, the pods which are scheduled for deletion may continue to run on the partitioned node. 
+If the Status of the Ready condition is "Unknown" or "False" for longer than the `pod-eviction-timeout`, an argument passed to the [kube-controller-manager](/docs/admin/kube-controller-manager/), all of the Pods on the node are scheduled for deletion by the Node Controller. The default eviction timeout duration is **five minutes**. In some cases when the node is unreachable, the apiserver is unable to communicate with the kubelet on it. The decision to delete the pods cannot be communicated to the kubelet until it re-establishes communication with the apiserver. In the meantime, the pods which are scheduled for deletion may continue to run on the partitioned node.
 -->
 如果 Ready 条件处于状态 "Unknown" 或者 "False" 的时间超过了 `pod-eviction-timeout`(一个传递给 [kube-controller-manager](/docs/admin/kube-controller-manager/) 的参数)，node 上的所有 Pods 都会被 Node 控制器计划删除。默认的删除超时时长为**5分钟**。某些情况下，当 node 不可访问时，apiserver 不能和其上的 kubelet 通信。删除 pods 的决定不能传达给 kubelet，直到它重新建立和 apiserver 的连接为止。与此同时，被计划删除的 pods 可能会继续在分区 node 上运行。
 

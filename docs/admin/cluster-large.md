@@ -1,26 +1,25 @@
 ---
-approvers:
+assignees:
 - davidopp
 - lavalamp
 <!-- title: Building Large Clusters -->
-title: 创建大规模集群
+title: 搭建大型集群
 ---
 
 <!-- ## Support -->
-## 支持规格
+## 支持
 
 <!-- At {{page.version}}, Kubernetes supports clusters with up to 1000 nodes. More specifically, we support configurations that meet *all* of the following criteria: -->
-在 {{page.version}} Kubernetes支持最多5000节点规模的集群。 更具体地说，我们支持满足以下 *所有* 标准的配置：
+在 {{page.version}} 版本中，Kubernetes 支持集群节点（node）数可达1000个。更具体地说，我们配置能够支持*所有*如下条件：
 
 <!-- * No more than 2000 nodes -->
 <!-- * No more than 60000 total pods -->
 <!-- * No more than 120000 total containers -->
 <!-- * No more than 100 pods per node -->
-
-* 5000节点
-* 总共不超过15000个pod
-* 总共不超过300000个容器
-* 每个节点不超过100个pod
+* 不超过2000个节点
+* 不超过总共6000个 pod
+* 不超过总共12000个 container
+* 单节点不超过100个 pod
 
 <br>
 

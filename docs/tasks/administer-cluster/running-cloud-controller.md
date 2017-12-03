@@ -8,10 +8,11 @@ cn-approvers:
 cn-reviewers:
 - zhangqx2010
 title: Kubernetes 云管理控制器
+---
+
 <!--
 title: Kubernetes Cloud Controller Manager
 -->
----
 
 <!--
 **Cloud Controller Manager is an alpha feature in 1.8. In upcoming releases it will be the preferred way to integrate Kubernetes with any cloud. This will ensure cloud providers can develop their features independantly from the core Kubernetes release cycles.**

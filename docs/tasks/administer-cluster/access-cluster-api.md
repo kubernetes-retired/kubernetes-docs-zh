@@ -1,9 +1,10 @@
 ---
+title:  通过 Kubernetes API 访问集群
+---
+
 <!--
 title: Access Clusters Using the Kubernetes API
 -->
-title:  通过 Kubernetes API 访问集群
----
 
 <!--
 {% capture overview %}
@@ -19,7 +20,7 @@ This page shows how to access clusters using the Kubernetes API.
 -->
 {% capture overview %}
 This page shows how to access clusters using the Kubernetes API.
-这一页显示如何通过 Kubernetes API 来访问集群。 
+这一页显示如何通过 Kubernetes API 来访问集群。
 {% endcapture %}
 
 {% capture prerequisites %}
@@ -73,19 +74,19 @@ $ kubectl config view
 Kubectl handles locating and authenticating to the apiserver. If you want to directly access the REST API with an http client like
 `curl` or `wget`, or a browser, there are multiple ways you can locate and authenticate against the apiserver:
 
- 1. Run kubectl in proxy mode (recommended).  This method is recommended, since it uses the stored apiserver location abd verifies the identity of the apiserver using a self-signed cert.  No Man-in-the-middle (MITM) attack is possible using this method . 
+ 1. Run kubectl in proxy mode (recommended).  This method is recommended, since it uses the stored apiserver location abd verifies the identity of the apiserver using a self-signed cert.  No Man-in-the-middle (MITM) attack is possible using this method .
  1. Alternatively, you can provide the location and credentials directly to the http client. This works with for client code that is confused by proxies.  To protect against man in the middle attacks, you'll need to import a root cert into your browser.
- 
- Using the Go or Python client libraries provides accessing kubectl in proxy mode. 
+
+ Using the Go or Python client libraries provides accessing kubectl in proxy mode.
 -->
 
 ### 直接访问 REST API
 Kubectl  会处理 apiserver 的定位和认证。 如果您要用一个 http 客户端， 比如 `curl` 或者 `wget`  或者 浏览器，  直接访问 REST API ， 有多种方法可以定位 apiserver 和 通过 apiserver 的认证：
 
 1. 运行 kubectl 的代理模式（推荐）。 比较推荐使用这种方法， 因为这种方式使用了已存储的的 apiserver 的位置信息， 并使用自行签发的证书来验证 apiserver 的身份。 使用这种方式不存在中间人攻击。
-2. 另外一种可选的方式，  您可以把 apiserver 的位置信息和凭证信息直接提供给http 客户端。 这种方式可以用于那些被代理拒绝的客户端代码。 为了确保不受到中间人攻击， 你需要往您的浏览器里导入根证书。 
+2. 另外一种可选的方式，  您可以把 apiserver 的位置信息和凭证信息直接提供给http 客户端。 这种方式可以用于那些被代理拒绝的客户端代码。 为了确保不受到中间人攻击， 你需要往您的浏览器里导入根证书。
 
-使用Go 或者 Python 的客户端库， 可以访问代理模式下 kubectl 。 
+使用Go 或者 Python 的客户端库， 可以访问代理模式下 kubectl 。
 
 <!--
 #### Using kubectl proxy
@@ -188,7 +189,7 @@ with future high-availability support.
 
 #### 不使用 kubectl 代理
 
-如果要避免使用 kubectl 代理的话，可以通过直接传递一个认证 token 给 apiserver， 比如: 
+如果要避免使用 kubectl 代理的话，可以通过直接传递一个认证 token 给 apiserver， 比如:
 
 ``` shell
 $ APISERVER=$(kubectl config view | grep server | cut -f 2- -d ":" | tr -d " ")
@@ -208,10 +209,10 @@ $ curl $APISERVER/api --header "Authorization: Bearer $TOKEN" --insecure
 }
 ```
 
-以上的例子中使用了参数 `--insecure` 。 这样的话会使集群很容易受到中间人攻击.  当 kubectl 访问集群时， 它会使用一个已经保存的根证书和客户端证书。 ( 这些证书会被安装在 `~/.kube` 目录下).  由于集群的证书一般是自行签发的，可能需要特殊的配置使你的 http 客户端可以使用到根证书。 
+以上的例子中使用了参数 `--insecure` 。 这样的话会使集群很容易受到中间人攻击.  当 kubectl 访问集群时， 它会使用一个已经保存的根证书和客户端证书。 ( 这些证书会被安装在 `~/.kube` 目录下).  由于集群的证书一般是自行签发的，可能需要特殊的配置使你的 http 客户端可以使用到根证书。
 
-在一些集群，  apiserver  不需要验证； 它是可能是在本机上提供服务的， 或者被防火墙隔离起来。 没有一个针对这方面的标准。[配置 API 的访问](/docs/admin/accessing-the-api) 这篇文档介绍了集群管理员如何进行这方面的配置。 
-这些方法可能会和将来的高可用支持互相冲突。  
+在一些集群，  apiserver  不需要验证； 它是可能是在本机上提供服务的， 或者被防火墙隔离起来。 没有一个针对这方面的标准。[配置 API 的访问](/docs/admin/accessing-the-api) 这篇文档介绍了集群管理员如何进行这方面的配置。
+这些方法可能会和将来的高可用支持互相冲突。
 
 <!--
 ### Programmatic access to the API
@@ -254,8 +255,8 @@ Kubernetes 官方支持的客户端库有 [Go](#go-client) 和  [Python](#python
 
 #### Go 客户端
 
-* 要获得客户端库， 可以运行如下命令 : `go get k8s.io/client-go/<version number>/kubernetes` 参考 [https://github.com/kubernetes/client-go](https://github.com/kubernetes/client-go) 来了解哪些版本是被支持的。 
-* 写一个基于 client-go 客户端库的应用。 注意到 client-go 定义了它自己的 API 对象， 因此在需要时需要导入 client-go 的 API 定义，而不是从仓库。 比如, `import "k8s.io/client-go/1.4/pkg/api/v1"` 是正确的做法。 
+* 要获得客户端库， 可以运行如下命令 : `go get k8s.io/client-go/<version number>/kubernetes` 参考 [https://github.com/kubernetes/client-go](https://github.com/kubernetes/client-go) 来了解哪些版本是被支持的。
+* 写一个基于 client-go 客户端库的应用。 注意到 client-go 定义了它自己的 API 对象， 因此在需要时需要导入 client-go 的 API 定义，而不是从仓库。 比如, `import "k8s.io/client-go/1.4/pkg/api/v1"` 是正确的做法。
 
 Go 的客户端可以使用和 kubectl 命令行工具相同的 [kubeconfig 配置文件](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/) 来定位和认证 apiserver。 参考这个 [例子](https://git.k8s.io/client-go/examples/out-of-cluster-client-configuration/main.go)：
 
@@ -308,7 +309,7 @@ There are [client libraries](/docs/reference/client-libraries/) for accessing th
 
 #### Python 客户端
 
-要使用  [Python 客户端](https://github.com/kubernetes-incubator/client-python), 运行如下命令: `pip install kubernetes` 参考 [Python 客户端库页面](https://github.com/kubernetes-incubator/client-python) 获取更多的安装说明。 
+要使用  [Python 客户端](https://github.com/kubernetes-incubator/client-python), 运行如下命令: `pip install kubernetes` 参考 [Python 客户端库页面](https://github.com/kubernetes-incubator/client-python) 获取更多的安装说明。
 
 The Python 客户端使用和 kubectl 命令行相同的 [kubeconfig 配置文件](/docs/user-guide/kubeconfig-file)
 来定位和认证 apiserver。 参考这个 [例子](https://github.com/kubernetes-incubator/client-python/tree/master/examples/example1.py):
@@ -373,13 +374,13 @@ In each case, the credentials of the pod are used to communicate securely with t
 
 当从 pod 里去访问集群的API时，对 apiserver 的定位和认证就有点不太一样了。
 
-在 pod 里定位 apiserver 推荐的方式， 是使用 `kubernetes` 的 DNS 名称，这个名称可以解析到一个可以路由到 apiserver 的服务IP. 
+在 pod 里定位 apiserver 推荐的方式， 是使用 `kubernetes` 的 DNS 名称，这个名称可以解析到一个可以路由到 apiserver 的服务IP.
 
 对 apiserver 的认证推荐的方式是使用一个[服务账号](/docs/user-guide/service-accounts) 凭证.  在 kube-system 命名空间下，  一个 pod关联的服务账号和与服务账号相关的凭证(token) 位于那个 pod 的每个容器的文件系统树之上 ， 具体路径是 `/var/run/secrets/kubernetes.io/serviceaccount/token`.
 
-如果有可用的证书， 那么这个证书会在每个容器的文件系统树下的这个路径 `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`,  这个证书可以用来验证服务端的 apiserver 证书。 
+如果有可用的证书， 那么这个证书会在每个容器的文件系统树下的这个路径 `/var/run/secrets/kubernetes.io/serviceaccount/ca.crt`,  这个证书可以用来验证服务端的 apiserver 证书。
 
-最后的， 可以用于命名空间 API 操作的默认命名空间, 位于一个文件里， 这个文件在每个容器的`/var/run/secrets/kubernetes.io/serviceaccount/namespace` 文件路径下。 
+最后的， 可以用于命名空间 API 操作的默认命名空间, 位于一个文件里， 这个文件在每个容器的`/var/run/secrets/kubernetes.io/serviceaccount/namespace` 文件路径下。
 
 在一个 pod 之内连接 API 的推荐方式有：
 

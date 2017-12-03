@@ -2,11 +2,12 @@
 approvers:
 - caesarxuchao
 - mikedanese
+title: 获取一个运行容器的 Shell
+---
+
 <!--
 title: Get a Shell to a Running Container
 -->
-title: 获取一个运行容器的 Shell
----
 
 {% capture overview %}
 
@@ -159,7 +160,7 @@ Hello shell demo
 When you are finished with your shell, enter `exit`.
 -->
 
-当完成工作后，可以通过输入 `exit` 退出 shell 。 
+当完成工作后，可以通过输入 `exit` 退出 shell 。
 
 <!--
 ## Running individual commands in a Container

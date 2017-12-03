@@ -1,9 +1,10 @@
 ---
+title: 安装扩展（Addons）
+---
+
 <!--
 title: Installing Addons
 -->
-title: 安装扩展（Addons）
----
 
 <!--
 ## Overview

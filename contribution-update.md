@@ -1,7 +1,7 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
-### 第 15 周：2017-10-30 ~~ 2017-11-05 - 有效合并 6 篇
+### 第 15 周：2017-10-30 ~ 2017-11-05 - 有效合并 6 篇
 
 [https://k8smeetup.github.io/docs/concepts/cluster-administration/device-plugins](https://k8smeetup.github.io/docs/concepts/cluster-administration/device-plugins) by [pigletfly](https://github.com/pigletfly)
 
@@ -16,7 +16,7 @@
 [https://k8smeetup.github.io/docs/user-guide/kubectl-cheatsheet](https://k8smeetup.github.io/docs/user-guide/kubectl-cheatsheet) by [rootsongjc](https://github.com/rootsongjc)
 
 
-### 第 13 周：2017-10-16 ~~ 2017-10-22 - 有效合并 4 篇
+### 第 13 周：2017-10-16 ~ 2017-10-22 - 有效合并 4 篇
 
 [https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-services](https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-services) by [xiaosuiba](https://github.com/xiaosuiba)
 
@@ -27,19 +27,19 @@
 [https://k8smeetup.github.io/docs/tasks/administer-cluster/out-of-resource](https://k8smeetup.github.io/docs/tasks/administer-cluster/out-of-resource) by [xiaosuiba](https://github.com/xiaosuiba)
 
 
-### 第 12 周：2017-10-09 ~~ 2017-10-15 - 有效合并 1 篇
+### 第 12 周：2017-10-09 ~ 2017-10-15 - 有效合并 1 篇
 
 [https://k8smeetup.github.io/docs/tasks/administer-cluster/quota-api-object](https://k8smeetup.github.io/docs/tasks/administer-cluster/quota-api-object) by [rootsongjc](https://github.com/rootsongjc)
 
 
-### 第 11 周：2017-10-02 ~~ 2017-10-08 - 有效合并 2 篇
+### 第 11 周：2017-10-02 ~ 2017-10-08 - 有效合并 2 篇
 
 [https://k8smeetup.github.io/docs/admin/bootstrap-tokens](https://k8smeetup.github.io/docs/admin/bootstrap-tokens) by [zhangqx2010](https://github.com/zhangqx2010)
 
 [https://k8smeetup.github.io/docs/tasks/access-application-cluster/communicate-containers-same-pod-shared-volume](https://k8smeetup.github.io/docs/tasks/access-application-cluster/communicate-containers-same-pod-shared-volume) by [zhangqx2010](https://github.com/zhangqx2010)
 
 
-### 第 10 周：2017-09-25 ~~ 2017-10-01 - 有效合并 27 篇
+### 第 10 周：2017-09-25 ~ 2017-10-01 - 有效合并 27 篇
 
 [https://k8smeetup.github.io/docs/tutorials/stateful-application/cassandra](https://k8smeetup.github.io/docs/tutorials/stateful-application/cassandra) by [xiaosuiba](https://github.com/xiaosuiba)
 
@@ -96,7 +96,7 @@
 [https://k8smeetup.github.io/docs/admin/service-accounts-admin](https://k8smeetup.github.io/docs/admin/service-accounts-admin) by [zhangqx2010](https://github.com/zhangqx2010)
 
 
-### 第 9 周：2017-09-18 ~~ 2017-09-24 - 有效合并 10 篇
+### 第 9 周：2017-09-18 ~ 2017-09-24 - 有效合并 10 篇
 
 [https://k8smeetup.github.io/docs/tasks/configure-pod-container/assign-cpu-resource](https://k8smeetup.github.io/docs/tasks/configure-pod-container/assign-cpu-resource) by [NickSu86](https://github.com/NickSu86)
 
@@ -119,7 +119,7 @@
 [https://k8smeetup.github.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume](https://k8smeetup.github.io/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume) by [xiaosuiba](https://github.com/xiaosuiba)
 
 
-### 第 8 周：2017-09-11 ~~ 2017-09-17 - 有效合并 6 篇
+### 第 8 周：2017-09-11 ~ 2017-09-17 - 有效合并 6 篇
 
 [https://k8smeetup.github.io/docs/admin/authorization/webhook](https://k8smeetup.github.io/docs/admin/authorization/webhook) by [zhangqx2010](https://github.com/zhangqx2010)
 
@@ -134,16 +134,16 @@
 [https://k8smeetup.github.io/docs/tasks/access-application-cluster/connecting-frontend-backend](https://k8smeetup.github.io/docs/tasks/access-application-cluster/connecting-frontend-backend) by [zhangqx2010](https://github.com/zhangqx2010)
 
 
-### 第 7 周：2017-09-04 ~~ 2017-09-10 - 有效合并 3 篇
+### 第 7 周：2017-09-04 ~ 2017-09-10 - 有效合并 3 篇
 
 [https://k8smeetup.github.io/docs/admin/extensible-admission-controllers](https://k8smeetup.github.io/docs/admin/extensible-admission-controllers) by [wanghaoran1988](https://github.com/wanghaoran1988)
 
-[https://k8smeetup.github.io/docs/admin/kubelet](https://k8smeetup.github.io/docs/admin/kubelet) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/admin/kubelet](https://k8smeetup.github.io/docs/admin/kubelet) by [niuhp](https://github.com/niuhp)
 
-[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [chentao1596](https://github.com/chentao1596)
 
 
-### 第 6 周：2017-08-28 ~~ 2017-09-03 - 有效合并 5 篇
+### 第 6 周：2017-08-28 ~ 2017-09-03 - 有效合并 5 篇
 
 [https://k8smeetup.github.io/docs/concepts/workloads/pods/init-containers](https://k8smeetup.github.io/docs/concepts/workloads/pods/init-containers) by [shirdrn](https://github.com/shirdrn)
 
@@ -156,26 +156,26 @@
 [https://k8smeetup.github.io/docs/tasks/tls/managing-tls-in-a-cluster](https://k8smeetup.github.io/docs/tasks/tls/managing-tls-in-a-cluster) by [rootsongjc](https://github.com/rootsongjc)
 
 
-### 第 5 周：2017-08-21 ~~ 2017-08-27 - 有效合并 8 篇
+### 第 5 周：2017-08-21 ~ 2017-08-27 - 有效合并 8 篇
 
 [https://k8smeetup.github.io/docs/getting-started-guides/azure](https://k8smeetup.github.io/docs/getting-started-guides/azure) by [yufengqi](https://github.com/yufengqi)
 
-[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [chentao1596](https://github.com/chentao1596)
 
-[https://k8smeetup.github.io/docs/tasks/manage-gpus/scheduling-gpus](https://k8smeetup.github.io/docs/tasks/manage-gpus/scheduling-gpus) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/tasks/manage-gpus/scheduling-gpus](https://k8smeetup.github.io/docs/tasks/manage-gpus/scheduling-gpus) by [chentao1596](https://github.com/chentao1596)
 
-[https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy) by [chentao1596](https://github.com/chentao1596)
 
-[https://k8smeetup.github.io/docs/tasks/administer-cluster/weave-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/weave-network-policy) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/weave-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/weave-network-policy) by [chentao1596](https://github.com/chentao1596)
 
 [https://k8smeetup.github.io/docs/concepts/cluster-administration/logging](https://k8smeetup.github.io/docs/concepts/cluster-administration/logging) by [bjdzliu](https://github.com/bjdzliu)
 
-[https://k8smeetup.github.io/docs/admin/bootstrap-tokens](https://k8smeetup.github.io/docs/admin/bootstrap-tokens) by [](https://github.com/)
+[https://k8smeetup.github.io/docs/admin/bootstrap-tokens](https://k8smeetup.github.io/docs/admin/bootstrap-tokens) by [zhangqx2010](https://github.com/zhangqx2010)
 
 [https://k8smeetup.github.io/docs/concepts/services-networking/connect-applications-service](https://k8smeetup.github.io/docs/concepts/services-networking/connect-applications-service) by [shirdrn](https://github.com/shirdrn)
 
 
-### 第 4 周：2017-08-14 ~~ 2017-08-20 - 有效合并 7 篇
+### 第 4 周：2017-08-14 ~ 2017-08-20 - 有效合并 7 篇
 
 [https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication](https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication) by [xiaosuiba](https://github.com/xiaosuiba)
 
@@ -192,7 +192,7 @@
 [https://k8smeetup.github.io/docs/getting-started-guides/kubespray](https://k8smeetup.github.io/docs/getting-started-guides/kubespray) by [yufengqi](https://github.com/yufengqi)
 
 
-### 第 2 周：2017-07-31 ~~ 2017-08-06 - 有效合并 3 篇
+### 第 2 周：2017-07-31 ~ 2017-08-06 - 有效合并 3 篇
 
 [https://k8smeetup.github.io/docs/concepts/services-networking/ingress](https://k8smeetup.github.io/docs/concepts/services-networking/ingress) by [rootsongjc](https://github.com/rootsongjc)
 
@@ -201,7 +201,7 @@
 [https://k8smeetup.github.io/docs/admin/kube-apiserver](https://k8smeetup.github.io/docs/admin/kube-apiserver) by [xiaosuiba](https://github.com/xiaosuiba)
 
 
-### 第 1 周：2017-07-24 ~~ 2017-07-30 - 有效合并 3 篇
+### 第 1 周：2017-07-24 ~ 2017-07-30 - 有效合并 3 篇
 
 [https://k8smeetup.github.io/docs/tasks/configure-pod-container/configmap](https://k8smeetup.github.io/docs/tasks/configure-pod-container/configmap) by [rootsongjc](https://github.com/rootsongjc)
 

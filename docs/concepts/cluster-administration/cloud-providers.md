@@ -1,20 +1,35 @@
 ---
+title: 云供应商
+---
+<!--
+---
 title: Cloud Providers
 ---
+-->
 
 {% capture overview %}
+<!--
 This page explains how to manage Kubernetes running on a specific
 cloud provider.
+-->
+本文介绍了如何管理运行在特定云供应商上的 Kubernetes 集群。
 {% endcapture %}
 
 {% capture body %}
 # AWS
+<!--
 This section describes all the possible configurations which can
 be used when running Kubernetes on Amazon Web Services.
 
+-->
+本节介绍在 Amazon Web Services 上运行 Kubernetes 时可以使用的所有配置。
+<!--
 ## Load Balancers
 You can setup [external load balancers](/docs/tasks/access-application-cluster/create-external-load-balancer/)
 to use specific features in AWS by configuring the annotations as shown below.
+-->
+## 负载均衡器
+用户可以通过配置注解（annotations）来设置 [外部负载均衡器](/docs/tasks/access-application-cluster/create-external-load-balancer/)，以在 AWS 中使用特定功能，如下所示：
 
 ```yaml
 apiVersion: v1
@@ -36,8 +51,11 @@ spec:
   selector:
     app: example
 ```
+<!--
 Different settings can be applied to a load balancer service in AWS using _annotations_. The following describes the annotations supported on AWS ELBs:
-
+-->
+可以使用 _注解_ 将不同的设置应用于 AWS 中的负载平衡器服务。 下面描述了 AWS ELB 所支持的注解：
+<!--
 * `service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval`: Used to specify access log emit interval.
 * `service.beta.kubernetes.io/aws-load-balancer-access-log-enabled`: Used on the service to enable or disable access logs.
 * `service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name`: Used to specify access log s3 bucket name.
@@ -49,173 +67,87 @@ Different settings can be applied to a load balancer service in AWS using _annot
 * `service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout`: Used on the service to specify a connection draining timeout.
 * `service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout`: Used on the service to specify the idle connection timeout.
 * `service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled`: Used on the service to enable or disable cross-zone load balancing.
-* `service.beta.kubernetes.io/aws-load-balancer-extra-security-groups`: Used on the service to specify additional security groups to be added to ELB created
+* `service.beta.kubernetes.io/aws-load-balancer-extra-security-groups`: Used one the service to specify additional security groups to be added to ELB created
 * `service.beta.kubernetes.io/aws-load-balancer-internal`: Used on the service to indicate that we want an internal ELB.
 * `service.beta.kubernetes.io/aws-load-balancer-proxy-protocol`: Used on the service to enable the proxy protocol on an ELB. Right now we only accept the value `*` which means enable the proxy protocol on all ELB backends. In the future we could adjust this to allow setting the proxy protocol only on certain backends.
 * `service.beta.kubernetes.io/aws-load-balancer-ssl-ports`: Used on the service to specify a comma-separated list of ports that will use SSL/HTTPS listeners. Defaults to `*` (all)
+-->
+* `service.beta.kubernetes.io/aws-load-balancer-access-log-emit-interval`：用于指定访问日志的间隔。
+* `service.beta.kubernetes.io/aws-load-balancer-access-log-enabled`：用于在服务中启用或禁用日志访问。
+* `service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-name`：用于指定访问日志的 S3 桶名称。
+* `service.beta.kubernetes.io/aws-load-balancer-access-log-s3-bucket-prefix`：用于指定访问日志的 S3 桶前缀。
+* `service.beta.kubernetes.io/aws-load-balancer-additional-resource-tags`：用于在服务中指定一个逗号分隔的键值对列表，它将作为附加标签被记录在 ELB 中。 例如： `"Key1=Val1,Key2=Val2,KeyNoVal1=,KeyNoVal2"`。
+* `service.beta.kubernetes.io/aws-load-balancer-backend-protocol`：用于在服务中指定监听器后端（pod）所使用的协议。 如果指定 `http` （默认） 或 `https`， 将创建一个终止连接和解析头的 HTTPS 监听器。 如果设置为 `ssl` 或 `tcp`， 将会使用 “原生的” SSL 监听器。 如果设置为 `http` 且不使用 `aws-load-balancer-ssl-cert`，将使用 HTTP 监听器。
+* `service.beta.kubernetes.io/aws-load-balancer-ssl-cert`：用于在服务中请求安全监听器，其值为合法的证书 ARN（Amazon Resource Name）。 更多内容，请参考 [ELB 监听器配置](http://docs.aws.amazon.com/ElasticLoadBalancing/latest/DeveloperGuide/elb-listener-config.html)。 证书 ARN 是 IAM（身份和访问管理） 或 CM（证书管理）类型的 ARN，例如 `arn:aws:acm:us-east-1:123456789012:certificate/12345678-1234-1234-1234-123456789012`。
+* `service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled`：用于在服务中启用或禁用连接耗尽（connection draining）。
+* `service.beta.kubernetes.io/aws-load-balancer-connection-draining-timeout`：用于在服务中指定连接耗尽超时时间。
+* `service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout`：用于在服务中指定空闲连接超时时间。
+* `service.beta.kubernetes.io/aws-load-balancer-cross-zone-load-balancing-enabled`：用于在服务中启用或禁用跨区域负载平衡。
+* `service.beta.kubernetes.io/aws-load-balancer-extra-security-groups`：用于在服务中指定要添加到创建的 ELB 中的其他安全组。
+* `service.beta.kubernetes.io/aws-load-balancer-internal`：用于在服务中表明需要内部 ELB。
+* `service.beta.kubernetes.io/aws-load-balancer-proxy-protocol`：用于在 ELB 上启用代理协议。 当前仅接受 `*` 值，也就是在所有 ELB 后端启用代理协议。 将来可能进行调整，只允许特定的后端设置代理协议。
+* `service.beta.kubernetes.io/aws-load-balancer-ssl-ports`：用于在服务中指定一个逗号分隔的端口列表，这些端口会使用 SSL/HTTPS 监听器。 默认为 `*`（全部）
 
+<!--
 The information for the annotations for AWS is taken from the comments on [aws.go](https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go)
+-->
+AWS 相关的注解信息取自 [aws.go](https://github.com/kubernetes/kubernetes/blob/master/pkg/cloudprovider/providers/aws/aws.go) 文件的注释。
 
 # OpenStack
+<!--
 This section describes all the possible configurations which can
-be used when using OpenStack with Kubernetes. The OpenStack cloud provider
-implementation for Kubernetes supports the use of these OpenStack services from
-the underlying cloud, where available:
-
-| Service                  | API Version(s) | Required |
-|--------------------------|----------------|----------|
-| Block Storage (Cinder)   | V1†, V2        | No       |
-| Compute (Nova)           | V2             | No       |
-| Identity (Keystone)      | V2‡,  V3       | Yes      |
-| Load Balancing (Neutron) | V1§, V2        | No       |
-
-† Block Storage V1 API support is deprecated, support for Block Storage V3 will
-  be added in the future.
-‡ Identity V2 API support is deprecated and will be removed from the provider in
-a future release. As of the "Queens" release OpenStack will no longer expose the
-Identity V2 API.
-§ Load Balancing V1 API support is deprecated and will be removed from the
-provider in a future release.
-
-Service discovery is achieved by listing the service catalog managed by
-OpenStack Identity (Keystone) using the `auth-url` provided in the provider
-configuration. The provider will gracefully degrade in functionality when
-OpenStack services other than Keystone are not available and simply disclaim
-support for impacted features. Certain features are also enabled or disabled
-based on the list of extensions published by Neutron in the underlying cloud.
+be used when using OpenStack with Kubernetes.
+-->
+本节介绍了使用 OpenStack 运行 Kubernetes 时所有可用的配置。
 
 ## cloud.conf
+<!--
 Kubernetes knows how to interact with OpenStack via the file cloud.conf. It is the file that will provide Kubernetes with credentials and location for the OpenStack auth endpoint.
 You can create a cloud.conf file by specifying the following details in it
 
-### Typical configuration
-This is an example of a typical configuration that touches the values that most
-often need to be set. It points the provider at the OpenStack cloud's Keystone
-endpoint, provides details for how to authenticate with it, and configures the
-load balancer:
+-->
+Kubernetes 知道如何通过文件 cloud.conf 与 OpenStack 进行交互。 该文件会为 Kubernetes 提供证书和 OpenStack 认证端点的区位信息。
+用户可以通过在其中指定以下信息来创建 cloud.conf 文件。
+<!--
+### Minimal configuration
+This is an example of a minimal configuration that touches the values that most often need to be set:
 
+-->
+### 最小配置
+这是一个最小配置的例子，它涉及最常用的值：
 ```yaml
 [Global]
-username=user
-password=pass
-auth-url=https://<keystone_ip>/identity/v3
-tenant-id=c869168a828847f39f7f06edd7305637
+username=user  
+password=pass  
+auth-url=https://<keystone_ip>/identity/v3  
+tenant-id=c869168a828847f39f7f06edd7305637  
 domain-id=2a73b8f597c04551a0fdc8e95544be8a
 
 [LoadBalancer]
-subnet-id=6937f8fa-858d-4bc9-a3a5-18d2c957166a
+subnet-id=6937f8fa-858d-4bc9-a3a5-18d2c957166a  
 ```
 
+<!--
 #### Global
-These configuration options for the OpenStack provider pertain to its global
-configuration and should appear in the `[Global]` section of the `cloud.conf`
-file:
-
-* `auth-url` (Required): The URL of the keystone API used to authenticate. On
-  OpenStack control panels, this can be found at Access and Security > API
-  Access > Credentials.
-* `username` (Required): Refers to the username of a valid user set in keystone.
-* `password` (Required): Refers to the password of a valid user set in keystone.
-* `tenant-id` (Required): Used to specify the id of the project where you want
-  to create your resources.
-* `tenant-name` (Optional): Used to specify the name of the project where you
-  want to create your resources.
-* `trust-id` (Optional): Used to specify the identifier of the trust to use for
-  authorization. A trust represents a user's (the trustor) authorization to
-  delegate roles to another user (the trustee), and optionally allow the trustee
-  to impersonate the trustor. Available trusts are found under the
-  `/v3/OS-TRUST/trusts` endpoint of the Keystone API.
-* `domain-id` (Optional): Used to specify the id of the domain your user belongs
-  to.
-* `domain-name` (Optional): Used to specify the name of the domain your user
-  belongs to.
-* `region` (Optional): Used to specify the identifier of the region to use when
-  running on a multi-region OpenStack cloud. A region is a general division of
-  an OpenStack deployment. Although a region does not have a strict geographical
-  connotation, a deployment can use a geographical name for a region identifier
-  such as `us-east`. Available regions are found under the `/v3/regions`
-  endpoint of the Keystone API.
-* `ca-file` (Optional): TODO
-
-When using Keystone V3 - which changes tenant to project the `tenant-id` value 
-is automatically mapped to the project construct in the API.
-
+* `username`: Refers to the username of a valid user set in keystone.
+* `password`:Refers to the password of a valid user set in keystone.
+* `auth-url`: The URL of the keystone API used to authenticate. On OpenStack control panels, this can be found at Access and Security > API Access > Credentials.
+* `tenant-id`: Used to specify the id of the project where you want to create your resources.
+* `domain-id`: Used to specify the id of the domain your user belongs to.
+* 
+-->
+#### 全局配置
+* `username`：指 keystone 中设置的一个合法用户的用户名。
+* `password`：指 keystone 中设置的一个合法用户的密码。
+* `auth-url`：用于认证的 keystone API 的 URL 。 在 OpenStack 控制面板上，可以在 “访问和安全（Access and Security）> api 访问（API Access）> 凭证（Credentials）” 路径下找到它。
+* `tenant-id`：用于指定要创建资源的项目 ID。
+* `domain-id`：用于指定用户所属的域（domain）ID。
+<!--
 ####  Load Balancer
-These configuration options for the OpenStack provider pertain to the load
-balancer and should appear in the `[LoadBalancer]` section of the `cloud.conf`
-file:
-
-* `lb-version` (Optional): Used to override automatic version detection. Valid
-  values are `v1` or `v2`. Where no value is provided automatic detection will
-  select the highest supported version exposed by the underlying OpenStack
-  cloud.
-* `subnet-id` (Optional): Used to specify the id of the subnet you want to
-  create your loadbalancer on. Can be found at Network > Networks. Click on the
-  respective network to get its subnets.
-* `floating-network-id` (Optional): If specified, will create a floating IP for
-  the load balancer.
-* `lb-method` (Optional): Used to specify algorithm by which load will be
-  distributed amongst members of the load balancer pool. The value can be
-  `ROUND_ROBIN`, `LEAST_CONNECTIONS`, or `SOURCE_IP`. The default behavior if
-  none is specified is `ROUND_ROBIN`.
-* `create-monitor` (Optional): Indicates whether or not to create a health
-  monitor for the Neutron load balancer. Valid values are `true` and `false`.
-  The default is `false`. When `true` is specified then `monitor-delay`,
-  `monitor-timeout`, and `monitor-max-retries` must also be set.
-* `monitor-delay` (Optional): The time, in seconds, between sending probes to
-  members of the load balancer.
-* `monitor-timeout` (Optional): Maximum number of seconds for a monitor to wait
-  for a ping reply before it times out. The value must be less than the delay
-  value.
-* `monitor-max-retries` (Optional): Number of permissible ping failures before
-  changing the load balancer member's status to INACTIVE. Must be a number
-  between 1 and 10.
-* `manage-security-groups` (Optional): Determines whether or not the load
-  balancer should automatically manage the security group rules. Valid values
-  are `true` and `false`. The default is `false`. When `true` is specified
-  `node-security-group` must also be supplied.
-* `node-security-group` (Optional): ID of the security group to manage.
-
-#### Block Storage
-These configuration options for the OpenStack provider pertain to block storage
-and should appear in the `[BlockStorage]` section of the `cloud.conf` file:
-
-* `bs-version` (Optional): Used to override automatic version detection. Valid
-  values are `v1`, `v2`, `v3` and `auto`. When `auto` is specified automatic
-  detection will select the highest supported version exposed by the underlying
-  OpenStack cloud. The default value if none is provided is `auto`.
-* `trust-device-path` (Optional): In most scenarios the block device names
-  provided by Cinder (e.g. /dev/vda) can not be trusted. This boolean toggles
-  this behavior. Setting it to `true` results in trusting the block device names
-  provided by Cinder. The default value of `false` results in the discovery of
-  the device path based on it's serial number and /dev/disk/by-id mapping and is
-  the recommended approach.
-
-If deploying Kubernetes versions <= 1.8 on an OpenStack deployment that uses
-paths rather than ports to differentiate between endpoints it may be necessary
-to explicitly set the `bs-version` parameter. A path based endpoint is of the
-form `http://foo.bar/volume` while a port based endpoint is of the form
-`http://foo.bar:xxx`.
-
-In environments that use path based endpoints and Kubernetes is using the older
-auto-detection logic a `BS API version autodetection failed.` error will be
-returned on attempting volume detachment. To workaround this issue it is
-possible to force the use of Cinder API version 2 by adding this to the cloud
-provider configuration:
-
-```yaml
-[BlockStorage]
-bs-version=v2
-```
-
-#### Router
-These configuration options for the OpenStack provider pertain to routing and
-should appear in the `[Router]` section of the `cloud.conf` file:
-
-* `router-id` (Optional): If the underlying cloud's Neutron deployment supports
-  the `extraroutes` extension then use `router-id` to specify a router to add
-  routes to.
-
+* `subnet-id`: Used to specify the id of the subnet you want to create your loadbalancer on. Can be found at Network > Networks. Click on the respective network to get its subnets.
+-->
+####  负载均衡器
+* `subnet-id`：用于指定要创建的负载均衡器所在的子网 ID。 可以在 “Network > Networks” 路径下找到它。 点击相应的网络获取其子网。
 {% endcapture %}
 
 {% include templates/concept.md %}

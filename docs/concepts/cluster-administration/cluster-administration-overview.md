@@ -2,11 +2,12 @@
 approvers:
 - davidopp
 - lavalamp
+title: 集群管理概述
+---
+
 <!--
 title: Cluster Administration Overview
 -->
-title: 集群管理概述
----
 
 {% capture overview %}
 <!--
