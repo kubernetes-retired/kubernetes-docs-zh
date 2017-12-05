@@ -18,7 +18,7 @@ title: Known Issues when Using rkt
 <!--
 The following features either are not supported or have large caveats when using the rkt container runtime. Increasing support for these items and others, including reasonable feature parity with the default container engine, is planned through future releases.
 -->
-当使用 rkt 作为容器运行时（runtime）时，以下的特性要么尚未支持，要么有巨大的缺陷。计划在未来的版本中增加对这些项目和其他项目的支持，包括与默认容器引擎合理的特性匹配。
+当使用 rkt 作为容器运行时（runtime）时，以下的特性要么尚未支持，要么存在巨大的缺陷。计划在未来的版本中增加对这些特性和其他特性的支持，包括与默认容器引擎合理的特性匹配。
 
 <!--
 ## Non-existent host volume paths
@@ -28,7 +28,7 @@ The following features either are not supported or have large caveats when using
 <!--
 When mounting a host volume path that does not exist, rkt will error out. Under the Docker runtime, an empty directory will be created at the referenced path.
 -->
-当挂载一个不存在的主机卷路径时，rkt 将会出错。但是在 Docker 运行时（runtime）中，将会在相关路径下创建一个空的目录。
+当挂载一个不存在的主机卷路径时，rkt 将会出错。但是在 Docker 运行时（runtime）中，将会在被引用路径下创建一个空的目录。
 
 <!--
 An example of a pod which will error out:
@@ -125,7 +125,7 @@ Under rktnetes, `kubectl get logs` currently cannot get logs from applications t
 <!--
 Exponential restart back-off for a failing container is currently not supported.
 -->
-当前不支持指数重启回退失败的容器。
+当前不支持在重启失败的容器时按指数退避。
 
 <!--
 ## Experimental NVIDIA GPU support
