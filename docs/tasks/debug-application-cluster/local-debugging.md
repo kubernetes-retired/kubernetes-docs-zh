@@ -33,7 +33,7 @@ This document describes using `telepresence` to develop and debug services runni
 * [Telepresence](https://www.telepresence.io/reference/install) is installed
 -->
 
-* Kubernetes 已经安装
+* Kubernetes 集群已经安装
 * `kubectl` 已经配置好可以与集群通信
 * [Telepresence](https://www.telepresence.io/reference/install)  已经安装
 
@@ -57,7 +57,7 @@ Enter `exit` to quit and close the shell.
 
 `telepresence` shell 可以以各种方式使用。比如，在你的笔记本电脑上写一个 shell 脚本，然后可以在 `telepresence` shell 中直接实时运行。你也可以在一个远程 shell 中这么操作，但是你可能不能使用你喜欢的代码编辑器，并且当容器终止的时候脚本会被删除。
 
-输入 `exit` 去退出和关闭 shell。
+输入 `exit` 退出和关闭 shell。
 
 <!--
 ## Developing or debugging an existing service
