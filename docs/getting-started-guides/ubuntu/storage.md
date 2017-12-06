@@ -21,7 +21,7 @@ title: 存储
 ---
 
 {% capture overview %}
-这个页面阐述了如何在 Kubernetes 集群上安装和配置持久化存储。
+本页面阐述了如何在 Kubernetes 集群上安装和配置持久化存储。
 {% endcapture %}
 {% capture prerequisite %}
 本文前提假设你已经通过 Juju 部署好了一个 Kubernetes 集群
@@ -64,7 +64,7 @@ List the storage pools available to Juju for your cloud:
 
 Output:
 -->
-使用 Juju 列出您云上的存储池：
+列出您云上对 Juju 可用的存储池：
 
     juju storage-pools
 
@@ -147,7 +147,7 @@ Persistent Volume Claim with them, and is outside the scope of this README. See 
 [Persistent Volumes](/docs/concepts/storage/persistent-volumes/)
 documentation for more information.
 -->
-要消耗这些持久卷，您的 pod 需要一个相关的持久卷声明，超出了本篇 README 的范围。有关更多信息，请参阅 [持久卷](/docs/concepts/storage/persistent-volumes/)文档。
+要使用这些持久卷，您的 pod 需要一个相关的持久卷声明，超出了本篇 README 的范围。有关更多信息，请参阅 [持久卷](/docs/concepts/storage/persistent-volumes/)文档。
 
 {% endcapture %}
 
