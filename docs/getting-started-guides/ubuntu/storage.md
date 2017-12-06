@@ -36,7 +36,7 @@ can add durable storage easily and across clouds.
 -->
 ## Ceph 持久卷
 
-Kubernetes 的正则分布，和您的持久化存储设备相关，例如 [Ceph](http://ceph.com)。配合 [Juju Storage](https://jujucharms.com/docs/2.0/charms-storage)功能可轻松跨越云端添加持久化存储。
+Canonical 的 Kubernetes 发行版允许你连接到持久化存储设备，例如 [Ceph](http://ceph.com)。配合 [Juju Storage](https://jujucharms.com/docs/2.0/charms-storage)功能可轻松跨越云端添加持久化存储。
 
 <!--
 Deploy a minimum of three ceph-mon and three ceph-osd units.
@@ -127,9 +127,9 @@ become enlisted and be marked as available:
 
 Output:
 -->
-这个事例中创建了50 MB 大小的 “test" Rados 块设备 (rbd)。
+这个示例中创建了50 MB 大小的 “test" Rados 块设备 (rbd)。
 
-在您 Kubernetes 集群上使用 watch 命令，如下所示，您应该看到 PV 已经标记为可用：
+在您的 Kubernetes 集群上使用 watch 命令，如下所示，您应该看到 PV 已经标记为可用：
 
     watch kubectl get pv
 
