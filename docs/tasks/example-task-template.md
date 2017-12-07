@@ -1,5 +1,5 @@
 ---
-title: Example Task Template
+title: 示例任务模板
 approvers:
 - chenopis
 cn-approvers:
@@ -11,7 +11,7 @@ title: Example Task Template
 approvers:
 - chenopis
 ---
- -->
+-->
 
 {% capture overview %}
 
@@ -67,7 +67,7 @@ This page shows how to ...
 <!--
 Here's an interesting thing to know about the steps you just did.
  -->
-这里是有意思的东西，关于你具体实现的步骤。
+这里是有意思的东西，要知道关于你具体实现的步骤。
 
 {% endcapture %}
 
