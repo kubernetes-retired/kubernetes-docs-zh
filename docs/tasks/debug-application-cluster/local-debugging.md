@@ -1,5 +1,5 @@
 ---
-title: 本地开发和调试 services
+title: 本地开发和调试 service
 cn-approvers:
 - pigletfly
 ---
@@ -12,7 +12,7 @@ title: Developing and debugging services locally
 <!--
 Kubernetes applications usually consist of multiple, separate services, each running in its own container. Developing and debugging these services on a remote Kubernetes cluster can be cumbersome, requiring you to [get a shell on a running container](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/) and running your tools inside the remote shell.
 -->
-Kubernetes 应用程序通常由多个独立的 services 组成， 每个 service 都运行在自己的容器里。在一个远程的 Kubernetes 集群中开发和调试这些 services 可能会比较麻烦，需要您[在一个运行的容器中获取 shell](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/)，然后在这个远程 shell 中运行您的工具。
+Kubernetes 应用程序通常由多个独立的 service 组成， 每个 service 都运行在自己的容器里。在一个远程的 Kubernetes 集群中开发和调试这些 service 可能会比较麻烦，需要您[在一个运行的容器中获取 shell](https://kubernetes.io/docs/tasks/debug-application-cluster/get-shell-running-container/)，然后在这个远程 shell 中运行您的工具。
 
 <!--
 `telepresence` is a tool to ease the process of developing and debugging services locally, while proxying the service to a remote Kubernetes cluster. Using `telepresence` allows you to use custom tools, such as a debugger and IDE, for a local service and provides the service full access to ConfigMap, secrets, and the services running on the remote cluster.
@@ -20,9 +20,9 @@ Kubernetes 应用程序通常由多个独立的 services 组成， 每个 servic
 This document describes using `telepresence` to develop and debug services running on a remote cluster locally.
 -->
 
-`telepresence` 是一个让本地开发和调试 services 更加容易的工具，同时将 service 代理到远程 Kubernetes 集群。`telepresence` 可以允许您对于一个本地 service 使用自定义工具，比如一个调试器和 IDE，并且赋予这个 service 对运行在远程集群上的 ConfigMap，secrets，和 services 的全部访问权限。
+`telepresence` 是一个让本地开发和调试 service 更加容易的工具，同时将 service 代理到远程 Kubernetes 集群。`telepresence` 可以允许您对于一个本地 service 使用自定义工具，比如一个调试器和 IDE，并且赋予这个 service 对运行在远程集群上的 ConfigMap、secrets　和 services 的全部访问权限。
 
-本文档描述了如何使用 telepresence 在本地对运行在远程集群中的 services进行开发和调试。
+本文档描述了如何使用 telepresence 在本地对运行在远程集群中的 service 进行开发和调试。
 
 {% endcapture %}
 
@@ -78,9 +78,9 @@ Running this command spawns a shell. In the shell, start your service. You can t
 
 ## 开发或调试现有的 service
 
-当在 Kubernetes 上开发一个应用程序的时候，一般您只会编写或者调试一个 service。这个 service 可能需要访问其他 services 用于测试和调试。一种选择是使用持续部署 pipeline，但是即使最快的部署 pipeline 也可能导致在编码或者调试周期中延期。
+当在 Kubernetes 上开发一个应用程序的时候，一般您只会编写或者调试一个 service。这个 service 可能需要访问其他 service 来进行测试和调试。一种选择是使用持续部署 pipeline，但是即使最快的部署 pipeline 也可能导致在编码或者调试周期中延期。
 
-使用 `--swap-deployment` 参数用于通过 Telepresence 代理交换一个已经存在的 deployment。交换允许您在本地运行一个 service，然后连接到远程的 Kubernetes 集群。现在在远程集群中的 services 可以访问本地运行的实例。
+使用 `--swap-deployment` 参数用于通过 Telepresence 代理交换一个已经存在的 deployment。交换允许您在本地运行一个 service，然后连接到远程的 Kubernetes 集群。现在在远程集群中的 service 可以访问本地运行的实例。
 
 在运行 telepresence 时加上 `--swap-deployment`，输入：
 
@@ -102,9 +102,9 @@ Telepresence has [numerous proxying options](https://www.telepresence.io/referen
 For further reading, visit the [Telepresence website](https://www.telepresence.io).
 -->
 
-如果您对动手教程感兴趣，查看 [这个教程] (https://cloud.google.com/community/tutorials/developing-services-with-k8s)，它将从头到尾教指导您在本地开发能在 Google Container Engine 上运行的 Guestbook 应用。
+如果您对动手教程感兴趣，查看 [这个教程] (https://cloud.google.com/community/tutorials/developing-services-with-k8s)，其中介绍了如何在本地开发 Google Container Engine 上的 Guestbook 应用。
 
-Telepresence 有 [许多代理选项](https://www.telepresence.io/reference/methods)，取决于您的情况。
+根据您的情况　Telepresence 有 [许多代理选项](https://www.telepresence.io/reference/methods)。
 
 想要获取更多资料，访问 [Telepresence website](https://www.telepresence.io)。
 
