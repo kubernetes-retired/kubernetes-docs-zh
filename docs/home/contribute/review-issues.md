@@ -14,7 +14,7 @@ title: Reviewing Documentation Issues
 <!--
 This page explains how documentation issues are reviewed and prioritized for the [kubernetes/website](https://github.com/kubernetes/website){: target="_blank"} repository. The purpose is to provide a way to organize issues and make it easier to contribute to Kubernetes documentation. The following should be used as the standard way of prioritizing, labeling, and interacting with issues.
 -->
-本页面解释如何给 [kubernetes/website](https://github.com/kubernetes/website){: target="_blank"} 存储库的文档 issue 进行检查和划分优先级。目的是为了能够提供一种方法去组织 issue 并且能够更容易地向 Kubernetes 文档发起贡献。以下是一些对 issue 进行优先级划分、打标签和交互的标准方式。
+本文阐述了如何对 [kubernetes/website](https://github.com/kubernetes/website){: target="_blank"} 存储库的文档 issue 进行检查和划分优先级。目的是为了能够提供一种方法去组织 issue 并且能够更容易地向 Kubernetes 文档发起贡献。以下是对 issue 进行优先级划分、打标签和交互的标准方式。
 {% endcapture %}
 
 {% capture body %}
@@ -24,7 +24,7 @@ This page explains how documentation issues are reviewed and prioritized for the
 Issues should be sorted into different buckets of work using the following labels and definitions. If an issue doesn't have enough information to identify a problem that can be researched, reviewed, or worked on (i.e. the issue doesn't fit into any of the categories below) you should close the issue with a comment explaining why it is being closed.
 -->
 ## issue 分类
-您需要使用以下的标签和定义来将 issue 进行分类。如果一个 issue 不能包含足够的信息来确认一个问题是否能够被研究、审查或者处理（即该 issue 不适合以下任何分类），那么您就应该关闭这个 issue 并且评论解释您关闭的原因。
+您需要使用以下的标签和定义来将 issue 进行分类。如果一个 issue 不能包含足够的信息来确认一个问题足以被研究、审查或者处理（即该 issue 不适合以下任何分类），那么您就应该关闭这个 issue 并且提交一个评论来解释您关闭的原因。
 
 ### Needs Clarification
 <!--
@@ -37,7 +37,7 @@ Issues should be sorted into different buckets of work using the following label
 * Issues that can be worked on with current information (or may need a comment to explain what needs to be done to make it more clear)
 * Allows contributors to have easy to find issues to work on
 -->
-* issue 基于目前的信息已经可以开始处理（或者可能需要增加评论来解释还需要做什么来让内容更明确）
+* issue 基于目前的信息已经可以开始处理（或者可能需要增加评论，以解释还需要做什么来让内容更明确）
 * 能够让贡献者方便的找到 issue 并开始处理
 
 ### Needs Tech Review
@@ -61,7 +61,7 @@ Issues should be sorted into different buckets of work using the following label
 * Issues that are suggestions for improving the user interface of the site.
 * Fixing broken site elements.
 -->
-* 提供建议以改善网站用户接口的 issue。
+* 提供建议以改善网站用户界面的 issue。
 * 修复网站损坏的各种元素。
 
 <!--
