@@ -1,6 +1,6 @@
 **NOTICE:** This repo is being repurposed and will host the Kubernetes.io CNCF Chinese Translation Workforce project. Consequently, the contents of [k8smeetup/k8smeetup.github.io](https://github.com/k8smeetup/k8smeetup.github.io) will be moved here, and the previous contents of the `master` branch will be located in the [kubernetes-docs-cn-master-archive.zip](/kubernetes-docs-cn-master-archive.zip) file.
 
-[中文贡献文档](README-CN.md)
+[翻译组工作流程（中文版）](README-CN.md)
 
 The `release-1.1-cn` branch is still currently; however, it will be deprecated once the open issue and pull request authors have been properly notified and those issues/PRs have been closed.
 
