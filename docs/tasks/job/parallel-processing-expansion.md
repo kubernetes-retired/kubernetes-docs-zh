@@ -1,3 +1,7 @@
+<!--
+title: Parallel Processing using Expansions
+---
+-->
 ---
 title: 使用扩展并行处理
 ---
@@ -8,15 +12,13 @@ title: 使用扩展并行处理
 
 # Example: Multiple Job Objects from Template Expansion
 
-In this example, we will run multiple Kubernetes Jobs created from
-a common template.  You may want to be familiar with the basic,
-non-parallel, use of [Jobs](/docs/concepts/jobs/run-to-completion-finite-workloads/) first.
+In this example, we will run multiple Kubernetes Jobs created from a common template.  You may want to be familiar with the basic, non-parallel, use of [Jobs](/docs/concepts/jobs/run-to-completion-finite-workloads/) first.
 
 -->
 
 # 示例：使用扩展模板创建多个 Job 对象
 
-在本示例中，我们将使用同一个模板创建多个 Kubernetes job。这可能需要您先熟悉下如何使用非并行的普通的 [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/)。
+在本示例中，我们将使用同一个模板创建多个 Kubernetes job。这可能需要您先熟悉下如何使用普通的非并行的 [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/)。
 
 <!--
 
@@ -38,7 +40,7 @@ Unlike a *pod template*, our *job template* is not a Kubernetes API type.  It is
 
 -->
 
-这与 *pod 的模板* 不同， job 的模板不是 Kubernetes API 类型。它只是对 Job 对象的 yaml 表示，这里面有很多占位符，必须填充后才能使用。`$ITEM` 语法对于 Kubernetes 来说没有意义。
+与 *pod 的模板* 不同， job 模板不是 Kubernetes API 类型。 Job 对象的 yaml 表示，这里面有很多占位符，必须填充后才能使用。`$ITEM` 语法对于 Kubernetes 来说没有意义。
 
 <!--
 
@@ -49,7 +51,7 @@ example, the frame number or the row range.
 
 -->
 
-在这个例子中，容器只做了一件事，就是 `echo` 一个字符串然后休眠一会。在实际使用场景下，容器通常是处理一些实质的计算，例如渲染电影的画面帧，或者是处理数据库中的一系列行。“$ITEM”参数将指定为，例如帧号或行范围。
+在这个例子中，容器只做了一件事，就是 `echo` 一个字符串然后休眠一会儿。在实际使用场景下，容器通常是处理一些实质的计算，例如渲染电影的画面帧，或者是处理数据库中的一系列行。“$ITEM” 参数将指定为，例如帧号或行范围。
 
 <!--
 
@@ -59,7 +61,7 @@ Next, expand the template into multiple files, one for each item to be processed
 
 -->
 
-该 Job 和其 Pod 的模板具有一个标签：`jobgroup-jobexample`。这个标签对于系统系统没有什么特别之处。使用标签可以很方便地一次性操作一组中的所有 Job。我们还在 pod 模板上放置了相同的标签，以便我们可以使用单个命令检查这些 Job 的所有 Pod。Job 创建好了之后，系统将添加更多的标签，将一个作业的 Pod 与另一个作业的 Pod 区分开来。请注意，`jobgroup` 标签的 key 对于 Kubernetes 来说并没有什么特别的意义。您可以选择自己的标签方案。
+该 Job 和其 Pod 的模板具有标签：`jobgroup-jobexample`。这个标签对于系统没有什么特别之处。使用标签可以很方便地一次性操作一组中的所有 Job。我们还在 pod 模板上放置了相同的标签，以便我们可以使用单个命令检查这些 Job 的所有 Pod。Job 创建好了之后，系统将添加更多的标签，将一个作业的 Pod 与另一个作业的 Pod 区分开来。请注意，`jobgroup` 标签的 key 对于 Kubernetes 来说并没有什么特别的意义。您可以选择自己的标签方案。
 
 ```shell
 # Expand files into a temporary directory
@@ -146,7 +148,7 @@ There is not a single command to check on the output of all jobs at once, but lo
 
 -->
 
-当前还没有办法使用直接使用一条命令一次性查看所有的 job 的输出，但是循环查看所有的 pod 的输出还是十分简单的：
+当前还没有办法直接使用一条命令一次性查看所有的 job 的输出，但是循环查看所有的 pod 的输出还是十分简单的：
 
 ```shell
 $ for p in $(kubectl get pods -l jobgroup=jobexample --show-all -o name)
@@ -171,6 +173,8 @@ We will use a one-line python script to convert the template to a file.
 First, copy and paste the following template of a Job object, into a file called `job.yaml.jinja2`:
 
 -->
+
+## 多参数模版
 
 在第一个例子中，每个模板的实例都有一个参数，那个参数也会作为标签来使用。但是 label 的 key 受 [可以包含的字符](/docs/user-guide/labels/#syntax-and-character-set) 限制。
 
@@ -224,7 +228,7 @@ Now, use this one-line python program to expand the template:
 
 上面的模版中为每个 job 对象都定义了一个参数，这个参数使用的是 python dicst（第1-4行）。
 然后使用一个 for 循环为每个参数集（接下来一行）产生一个 job yaml 对象。
-我们利用了多个 yaml 文档可以使用 `---` 分隔符连接的事实（倒数第二行）。我们可以其输出到 kubectl 来创建对象。
+我们利用了多个 yaml 文档可以使用 `---` 分隔符连接的特性（倒数第二行）。我们可以其管道输出到 kubectl 来创建对象。
 
 您需要使用 jinja2 包，如果没有话可以该命令安装：`pip install --user jinja2`。
 
@@ -279,7 +283,7 @@ In this case, you can consider one of the other [job patterns](/docs/concepts/jo
 
 - 即使使用标签，管理这么多的 Job 对象也是很麻烦的。
 - 如果一次性创建所有的 Job，超过了资源配额，但是又不想等待它们以增量的方式创建。
-- 您需要一种方法来轻松缩放同时运行的 pod 数量。一个原因是为了避免使用太多的计算资源。另一种方法是限制对作业中所有 pod 使用的共享资源（如数据库）的并发请求数。
+- 您需要一种方法来轻松缩放同时运行的 pod 数量。一个原因是为了避免使用太多的计算资源。另一个原因是为了限制对作业中所有 pod 使用的共享资源（如数据库）的并发请求数。
 - 一次性创建大量的 job 将造成 Kubernetes apiserver、controller 或 scheduler 过载。
 
 在这种情况下，您可以考虑其他 [job 模式](/docs/concepts/jobs/run-to-completion-finite-workloads/#job-patterns)。
