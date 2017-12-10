@@ -1,6 +1,6 @@
 ---
 title: 使用 HTTP 代理访问 Kubernetes API
-cn-approvers：
+cn-approvers:
 - zhangqx2010
 ---
 <!--

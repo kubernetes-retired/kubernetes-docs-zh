@@ -270,9 +270,9 @@ The `assign tab_contents` tag adds the contents of each tab pane, captured above
 
 <!--
 `{{ "{% include tabs.md " }}%}` pulls in the tabs template code, which uses the `tab_names` and `tab_contents` variables to render the tab set.
-{% endcapture %}
 -->
 在选项卡模板代码中引入 `{{ "{% include tabs.md " }}%}`，它会使用 `tab_names` 和 `tab_contents` 变量来渲染选项卡集/选项卡组。
+{% endcapture %}
 
 {% capture whatsnext %}
 <!--

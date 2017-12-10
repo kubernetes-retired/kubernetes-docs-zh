@@ -3,6 +3,47 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 20 周：2017-12-04 ~ 2017-12-10 - 有效合并 19 篇
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/load-balance-access-application-cluster](https://k8smeetup.github.io/docs/tasks/access-application-cluster/load-balance-access-application-cluster) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/list-all-running-container-images](https://k8smeetup.github.io/docs/tasks/access-application-cluster/list-all-running-container-images) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/petset](https://k8smeetup.github.io/docs/concepts/workloads/controllers/petset) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/configure-aggregation-layer](https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/configure-aggregation-layer) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/http-proxy-access-api](https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/http-proxy-access-api) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/rkt/notes](https://k8smeetup.github.io/docs/getting-started-guides/rkt/notes) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/extend-api-third-party-resource](https://k8smeetup.github.io/docs/tasks/access-kubernetes-api/extend-api-third-party-resource) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/tasks/example-task-template](https://k8smeetup.github.io/docs/tasks/example-task-template) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/tasks/service-catalog/install-service-catalog-using-helm](https://k8smeetup.github.io/docs/tasks/service-catalog/install-service-catalog-using-helm) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/kubectl/jsonpath](https://k8smeetup.github.io/docs/reference/kubectl/jsonpath) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/storage](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/storage) by [Tony-CCIE](https://github.com/Tony-CCIE)
+
+[https://k8smeetup.github.io/docs/tasks/run-application/upgrade-pet-set-to-stateful-set](https://k8smeetup.github.io/docs/tasks/run-application/upgrade-pet-set-to-stateful-set) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/reference/kubectl/docker-cli-to-kubectl](https://k8smeetup.github.io/docs/reference/kubectl/docker-cli-to-kubectl) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/admin/node-conformance](https://k8smeetup.github.io/docs/admin/node-conformance) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/admin/multiple-zones](https://k8smeetup.github.io/docs/admin/multiple-zones) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/alibaba-cloud](https://k8smeetup.github.io/docs/getting-started-guides/alibaba-cloud) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ovirt](https://k8smeetup.github.io/docs/getting-started-guides/ovirt) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/tasks/job/parallel-processing-expansion](https://k8smeetup.github.io/docs/tasks/job/parallel-processing-expansion) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/cluster](https://k8smeetup.github.io/docs/tasks/administer-federation/cluster) by [xiaosuiba](https://github.com/xiaosuiba)
+
+
 ### 第 19 周：2017-11-27 ~ 2017-12-03 - 有效合并 9 篇
 
 [https://k8smeetup.github.io/docs/admin/cloud-controller-manager](https://k8smeetup.github.io/docs/admin/cloud-controller-manager) by [xiaosuiba](https://github.com/xiaosuiba)

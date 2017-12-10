@@ -1,6 +1,13 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 20 周：2017-12-04 ~ 2017-12-10 - 有效合并 2 篇
+
+[https://k8smeetup.github.io/docs/home/contribute/includes](https://k8smeetup.github.io/docs/home/contribute/includes) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/taint-and-toleration](https://k8smeetup.github.io/docs/concepts/configuration/taint-and-toleration) by [linyouchong](https://github.com/linyouchong)
+
+
 ### 第 15 周：2017-10-30 ~ 2017-11-05 - 有效合并 6 篇
 
 [https://k8smeetup.github.io/docs/concepts/cluster-administration/device-plugins](https://k8smeetup.github.io/docs/concepts/cluster-administration/device-plugins) by [pigletfly](https://github.com/pigletfly)
