@@ -43,7 +43,7 @@ kubefed options
 ```
 
 <!--
-### Options inherited from parent command
+### Options inherited from parent commands
 -->
 ### 从父命令继承的选项
 
@@ -59,7 +59,7 @@ kubefed options
       <!--
       --as-group stringArray                    Group to impersonate for the operation, this flag can be repeated to specify multiple groups.
       -->
-      --as-group stringArray                    执行操作的用户的用户组，可以多次重复此参数以指定多个组。 
+      --as-group stringArray                    执行操作的用户的用户组，可以重复此参数以指定多个组。 
       <!--
       --certificate-authority string            Path to a cert file for the certificate authority
       -->
@@ -75,7 +75,7 @@ kubefed options
       <!--
       --cloud-provider-gce-lb-src-cidrs cidrs   CIDRS opened in GCE firewall for LB traffic proxy & health checks (default 209.85.152.0/22,209.85.204.0/22,130.211.0.0/22,35.191.0.0/16)
       -->
-      --cloud-provider-gce-lb-src-cidrs cidrs   在 GCE 防火墙中开放的，用于负载均衡流量代理和健康检查的 CIDR（默认为 209.85.152.0/22,209.85.204.0/22,130.211.0.0/22,35.191.0.0/16）
+      --cloud-provider-gce-lb-src-cidrs cidrs   在 GCE 防火墙中开放的，用于负载均衡流量代理和健康检查的 CIDR。（默认为 209.85.152.0/22,209.85.204.0/22,130.211.0.0/22,35.191.0.0/16）
       <!--
       --cluster string                          The name of the kubeconfig cluster to use
       -->
@@ -123,7 +123,7 @@ kubefed options
       <!--
       --request-timeout string                  The length of time to wait before giving up on a single server request. Non-zero values should contain a corresponding time unit (e.g. 1s, 2m, 3h). A value of zero means don't timeout requests. (default "0")
       -->
-      --request-timeout string                  放弃单次请求前需要等待的时长。非零值应该包含对应的时间单位（例如 1s, 2m, 3h）。0 表示不设置请求超时时间。 （默认为 "0"）
+      --request-timeout string                  请求超时时长。非零值应该包含对应的时间单位（例如 1s, 2m, 3h）。0 表示不设置请求超时时间。 （默认为 "0"）
       <!--
   -s, --server string                           The address and port of the Kubernetes API server
   -->
