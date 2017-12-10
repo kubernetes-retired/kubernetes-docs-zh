@@ -78,9 +78,9 @@ Running this command spawns a shell. In the shell, start your service. You can t
 
 ## 开发或调试现有的 service
 
-当在 Kubernetes 上开发一个应用程序的时候，一般您只会编写或者调试一个 service。这个 service 可能需要访问其他 service 来进行测试和调试。一种选择是使用持续部署 pipeline，但是即使最快的部署 pipeline 也可能导致在编码或者调试周期中延期。
+当在 Kubernetes 上开发一个应用程序的时候，一般您只会编写或者调试一个 service。这个 service 可能需要访问其他 service 来进行测试和调试。一种选择是使用持续部署 pipeline，但是即使最快的部署 pipeline 也可能延长编码或者调试的周期。
 
-使用 `--swap-deployment` 参数用于通过 Telepresence 代理交换一个已经存在的 deployment。交换允许您在本地运行一个 service，然后连接到远程的 Kubernetes 集群。现在在远程集群中的 service 可以访问本地运行的实例。
+`--swap-deployment` 参数可以用于通过 Telepresence 代理交换一个已经存在的 deployment。交换允许您在本地运行一个 service，然后连接到远程的 Kubernetes 集群。现在在远程集群中的 service 可以访问本地运行的实例。
 
 在运行 telepresence 时加上 `--swap-deployment`，输入：
 
@@ -88,7 +88,7 @@ Running this command spawns a shell. In the shell, start your service. You can t
 
 $DEPLOYMENT_NAME 是您的已经存在的 deployment 的名字。
 
-运行这个命令会产生一个 shell。 在这个 shell 里，启动您的 service。您可以在本地编辑源码，保存，然后查看立即生效的变化。您也可以在一个调试器或者任何其他的本地开发工具中运行您的 service 。
+运行这个命令会产生一个 shell。 在这个 shell 里，启动您的 service。您可以在本地编辑源码，保存，并看到更改立即生效。您也可以在一个调试器或者任何其他的本地开发工具中运行您的 service 。
 
 
 {% endcapture %}
@@ -106,7 +106,7 @@ For further reading, visit the [Telepresence website](https://www.telepresence.i
 
 根据您的情况　Telepresence 有 [许多代理选项](https://www.telepresence.io/reference/methods)。
 
-想要获取更多资料，访问 [Telepresence website](https://www.telepresence.io)。
+想要获取更多资料，访问 [Telepresence 网站](https://www.telepresence.io)。
 
 
 {% endcapture %}
