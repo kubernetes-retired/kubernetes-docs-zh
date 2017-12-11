@@ -12,7 +12,7 @@ This page provides an overview of PodPresets, which are objects for injecting ce
 
 -->
 
-本页是关于 PodPreset 的概述，该对象用来在 Pod 创建的时候向 Pod 中注入某些信息。该信息可以包括 secret、volume、volume mount 和环境变量。
+本页是关于 PodPreset 的概述，该对象用来在 Pod 创建的时候向 Pod 中注入某些特定信息。该信息可以包括 secret、volume、volume mount 和环境变量。
 
 {% endcapture %}
 
@@ -53,7 +53,7 @@ Kubernetes provides an admission controller (`PodPreset`) which, when enabled, a
 
 ## 如何工作
 
-Kubernetes提供了一个准入控制器（`PodPreset`），当其启用时，Pod Preset 将会应用到传入到该控制器上的创建请求。当有 Pod 创建请求发生时，系统将执行以下操作：
+Kubernetes 提供了一个准入控制器（`PodPreset`），当其启用时，Pod Preset 会将应用创建请求传入到该控制器上。当有 Pod 创建请求发生时，系统将执行以下操作：
 
 <!--
 
@@ -66,7 +66,7 @@ Kubernetes提供了一个准入控制器（`PodPreset`），当其启用时，Po
 -->
 
 1. 检索所有可用的 `PodPresets`。
-2. 检查是否有 PodPreset 的标签选择器上的标签与正在创建的 pod上的标签匹配。
+2. 检查是否有 PodPreset 的标签选择器上的标签与正在创建的 Pod 上的标签匹配。
 3. 尝试将由 `PodPreset` 定义的各种资源合并到正在创建的 Pod 中。
 4. 出现错误时，在该 Pod 上引发记录合并错误的事件，PodPreset *不会*注入任何资源到创建的 Pod 中。
 5. 注释刚生成的修改过的 Pod spec，以表明它已被 PodPreset 修改过。注释的格式为 `podpreset.admission.kubernetes.io/podpreset-<pod-preset name>": "<resource version>"`。
