@@ -53,7 +53,7 @@ Kubernetes provides an admission controller (`PodPreset`) which, when enabled, a
 
 ## 如何工作
 
-Kubernetes 提供了一个准入控制器（`PodPreset`），当其启用时，Pod Preset 会将应用创建请求传入到该控制器上。当有 Pod 创建请求发生时，系统将执行以下操作：
+Kubernetes 提供了一个准入控制器（`PodPreset`），当其启用时，控制器会将 Pod Preset 应用到 Pod 的创建请求中。当有 Pod 创建请求发生时，系统将执行以下操作：
 
 <!--
 
