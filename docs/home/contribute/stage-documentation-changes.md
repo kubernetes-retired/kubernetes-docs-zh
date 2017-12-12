@@ -135,7 +135,7 @@ web server:
 1. In the root of your cloned repository, enter this command to start a local
 web server:
 -->
-1. 在您克隆的存储库的根路径下，输入以下命令来启动一个本地的网络服务器：
+1. 在您克隆的存储库的根路径下，输入以下命令来启动一个本地的 web 服务器：
 
        jekyll serve
 
