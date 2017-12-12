@@ -65,12 +65,12 @@ interested, you can view the
 [Dockerfile](https://git.k8s.io/website/staging-container/Dockerfile){: target="_blank"}
 for this image.
 -->
-您可以通过使用 k8sdocs Docker 镜像来运行一个本地的展示服务器。如果您感兴趣的话，可以通过查看 [Dockerfile](https://git.k8s.io/website/staging-container/Dockerfile){: target="_blank"} 来获得这个镜像。
+您可以通过使用 k8sdocs Docker 镜像来运行一个本地的展示服务器。如果您感兴趣的话，可以查看这个镜像的 [Dockerfile](https://git.k8s.io/website/staging-container/Dockerfile){: target="_blank"}。
 
 <!--
 1. Install Docker if you don't already have it.
 -->
-1. 如果您还没有安装Docker，那么您需要进行安装。
+1. 如果您还没有安装Docker，请先安装它。
 
 <!--
 1. Clone your fork to your local development machine.
@@ -81,7 +81,7 @@ for this image.
 1. In the root of your cloned repository, enter this command to start a local
 web server:
 -->
-1. 在您克隆的存储库的根路径下，输入以下命令来启动一个本地的网络服务器：
+1. 在您克隆的存储库的根路径下，输入以下命令来启动一个本地的 web 服务器：
 
        make stage
 
@@ -147,7 +147,7 @@ web server:
 <!--
 **Note:** If you do not want Jekyll to interfere with your other globally installed gems, you can use `bundler`: <br /> <br /> ```gem install bundler``` <br /> ```bundle install``` <br /> ```bundler exec jekyll serve``` <br /> <br /> Regardless of whether you use `bundler` or not, your copy of the site will then be viewable at: http://localhost:4000
 -->
-**注意：** 如果您不希望 Jekyll 干涉到您安装的其它一些全局的 gem，您可以使用 `bundler`：<br /> <br /> ```gem install bundler``` <br /> ```bundle install``` <br /> ```bundler exec jekyll serve``` <br /> <br /> 无论是否使用 `bundler`，您都可以通过 http://localhost:4000 浏览您的网站副本。
+**注意：** 如果您不希望 Jekyll 干扰到您安装的其它一些全局的 gem，您可以使用 `bundler`：<br /> <br /> ```gem install bundler``` <br /> ```bundle install``` <br /> ```bundler exec jekyll serve``` <br /> <br /> 无论是否使用 `bundler`，您都可以通过 http://localhost:4000 浏览您的网站副本。
 {: .note}
 
 {% endcapture %}
