@@ -62,7 +62,7 @@ The standard kubectl get, update, delete commands will all work.
 在联邦控制平面中的 Event (在本指南中称为"联邦 event") 和传统的 Kubernetes Event 很相似，提供了一样的功能。联邦 Event 只存储在联邦控制平面中，不会传递到底层的 Kubernetes 集群中。
 
 当联邦控制器处理用户表面工作的 API 资源以及它们所处的状态时，会创建 event。
-您可以从联邦 apiserver 获取所有的 event，通过运行：
+您可以通过运行以下命令从联邦 apiserver 获取所有的 event：
 
 ```shell
 kubectl --context=federation-cluster get events
