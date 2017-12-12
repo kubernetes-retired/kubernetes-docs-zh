@@ -1,7 +1,7 @@
 ---
 cn-approvers:
 - tianshapjq
-title: kubeadm 的故障排查
+title: kubeadm 故障排查
 ---
 <!--
 ---
@@ -30,20 +30,20 @@ If your problem is not listed below, please follow the following steps:
 -->
 - 如果您认为您的问题是一个和 kubeadm 相关的错误：
   - 到 [github.com/kubernetes/kubeadm](https://github.com/kubernetes/kubeadm/issues) 查找目前已存在的 issue。
-  - 如果没有匹配的 issue，请 [创建一个](https://github.com/kubernetes/kubeadm/issues/new) 并遵照 issue 的模板进行编写。
+  - 如果没有相关的 issue，请 [创建一个](https://github.com/kubernetes/kubeadm/issues/new) 并遵照 issue 的模板进行填写。
 
 <!--
 - If you are unsure about how kubeadm or kubernetes works, and would like to receive 
   support about your question, please ask on Slack in #kubeadm, or open a question on StackOverflow. Please include 
   relevant tags like `#kubernetes` and `#kubeadm` so folks can help you.
 -->
-- 如果您不确定 kubeadm 或者 kubernetes 是如何工作的，并且希望能够得到关于您问题的帮助，请在 Slack 的 #kubeadm 频道上提问，或者在 StackOverflow 上创建一个提问。请在问题中包含类似 `#kubernetes` 或者 `#kubeadm` 的相关标签以便其他人能够给你提供帮助。
+- 如果您不确定 kubeadm 或者 kubernetes 是如何工作的，并且希望能够得到关于您问题的帮助，请在 Slack 的 #kubeadm 频道上提问，或者在 StackOverflow 上创建一个问题。请在问题中包含类似 `#kubernetes` 或者 `#kubeadm` 等相关标签以便其他人能够给你提供帮助。
 
 <!--
 If your cluster is in an error state, you may have trouble in the configuration if you see Pod statuses like `RunContainerError`,
 `CrashLoopBackOff` or `Error`. If this is the case, please read below.
 -->
-如果您的集群正处于错误状态，并且看到 Pod 的状态类似于 `RunContainerError`、`CrashLoopBackOff` 或者 `Error`，那么您很可能在配置上遇到了问题。如果是这种情况，请参阅下文。
+如果您的集群正处于错误状态，并且看到 Pod 的状态类似于 `RunContainerError`、`CrashLoopBackOff` 或者 `Error`，那么您很可能在配置上出现了问题。如果是这种情况，请参阅下文。
 
 {% endcapture %}
 
@@ -90,7 +90,7 @@ likely that the Pod Network solution that you installed is somehow broken. You
 might have to grant it more RBAC privileges or use a newer version. Please file
 an issue in the Pod Network providers' issue tracker and get the issue triaged there.
 -->
-`kubeadm init` 结束之后是不应该有这样状态的 Pod 的。如果在 `kubeadm init` _结束之后_ 出现这样的 Pod，那么请在 kubeadm 库上创建一个 issue 描述此问题。在您部署网络解决方案之前，`kube-dns` 应该处于 `Pending` 状态。但是，如果在部署网络解决方案后 Pod 仍然处于 `RunContainerError`、`CrashLoopBackOff` 或者 `Error` 状态，并且 `kube-dns` 状态没有任何变化，那么很可能是您安装的 Pod 网络解决方案出了问题。您可能需要赋予它更多的 RBAC 权限或者使用一个更新的版本。请您在 Pod Network providers 的跟踪 issue 中创建一个 issue 并对它进行分类。
+`kubeadm init` 结束之后是不应该有这样状态的 Pod 的。如果在 `kubeadm init` _结束之后_ 出现这样的 Pod，那么请在 kubeadm 库上创建一个 issue 描述此问题。在您部署网络解决方案之前，`kube-dns` 应该处于 `Pending` 状态。但是，如果在部署网络解决方案后 Pod 仍然处于 `RunContainerError`、`CrashLoopBackOff` 或者 `Error` 状态，并且 `kube-dns` 状态没有任何变化，那么很可能是您安装的 Pod 网络解决方案出了问题。您可能需要赋予它更多的 RBAC 权限或者使用一个更新的版本。请您在 Pod 网络提供商的 issue 跟踪处创建一个 issue 并对它进行归类。
 
 <!--
 #### `kube-dns` is stuck in the `Pending` state
