@@ -39,7 +39,7 @@ For more information about the background, see the [design proposal for PodPrese
 
 您可以使用 [label selector](/docs/concepts/overview/working-with-objects/labels/#label-selectors) 来指定为哪些 Pod 应用 Pod Preset。
 
-使用 Pod Preset 可以运行 pod 模板的作者可以不必为每个 Pod 明确提供所有信息。这样一来，pod 模板的作者就不需要知道关于该服务的所有细节。
+使用 Pod Preset 使得 pod 模板的作者可以不必为每个 Pod 明确提供所有信息。这样一来，pod 模板的作者就不需要知道关于该服务的所有细节。
 
 关于该背景的更多信息，请参阅 [PodPreset 的设计方案](https://git.k8s.io/community/contributors/design-proposals/service-catalog/pod-preset.md)。
 
@@ -66,7 +66,7 @@ Kubernetes 提供了一个准入控制器（`PodPreset`），当其启用时，P
 -->
 
 1. 检索所有可用的 `PodPresets`。
-2. 检查是否有 PodPreset 的标签选择器上的标签与正在创建的 Pod 上的标签匹配。
+2. 检查 PodPreset 标签选择器上的标签，看看其是否能够匹配正在创建的 Pod 上的标签。
 3. 尝试将由 `PodPreset` 定义的各种资源合并到正在创建的 Pod 中。
 4. 出现错误时，在该 Pod 上引发记录合并错误的事件，PodPreset *不会*注入任何资源到创建的 Pod 中。
 5. 注释刚生成的修改过的 Pod spec，以表明它已被 PodPreset 修改过。注释的格式为 `podpreset.admission.kubernetes.io/podpreset-<pod-preset name>": "<resource version>"`。
@@ -96,7 +96,7 @@ There may be instances where you wish for a Pod to not be altered by any Pod Pre
 
 ### 禁用特定 Pod 的 Pod Preset
 
-可能在某些情况下，您希望 Pod 不会被任何 Pod Preset 突变所改变。在这些情况下，您可以在 Pod 的 Pod Spec 中添加注释：`podpreset.admission.kubernetes.io/exclude："true"`。
+在某些情况下，您可能不希望 Pod 被任何 Pod Preset 所改变。这时，您可以在 Pod 的 Pod Spec 中添加注释：`podpreset.admission.kubernetes.io/exclude："true"`。
 
 <!--
 
