@@ -116,8 +116,8 @@ on the federated ReplicaSet.
 -->
 ### 底层集群中副本的分布
 
-默认情况下，副本在所有底层集群中是均匀分布的。例如：如果你有 3 个注册的集群并且用 `spec.replicas = 9` 参数创建了一个联邦 ReplicaSet，然后在这 3 个集群中每个 ReplicaSet 的副本数会是 `spec.replicas=3` 。
-如果要修改每个集群中的副本数，你可以在联邦 ReplicaSet 中使用 `federation.kubernetes.io/replica-set-preferences` 作为注解键值来修改 [FederatedReplicaSetPreference](https://github.com/kubernetes/federation/blob/{{page.githubbranch}}/apis/federation/types.go) 。
+默认情况下，副本在所有底层集群中是均匀分布的。例如：如果您有 3 个注册的集群并且用 `spec.replicas = 9` 参数创建了一个联邦 ReplicaSet，然后在这 3 个集群中每个 ReplicaSet 的副本数会是 `spec.replicas=3` 。
+如果要修改每个集群中的副本数，您可以在联邦 ReplicaSet 中使用 `federation.kubernetes.io/replica-set-preferences` 作为注解键值来修改 [FederatedReplicaSetPreference](https://github.com/kubernetes/federation/blob/{{page.githubbranch}}/apis/federation/types.go) 。
 
 <!--
 ## Updating a Federated ReplicaSet
@@ -138,7 +138,7 @@ federated ReplicaSet.
 
 您可以像更新 Kubernetes ReplicaSet 一样更新联邦 ReplicaSet。但是，对于联邦 ReplicaSet，您必须发送请求到联邦 apiserver 而不是某个特定的 Kubernetes 集群。联邦控制平面会确保任何时候联邦 ReplicaSet 更新后，它会将对应的 ReplicaSet 更新到所有的底层集群中来和它保持一致。
 
-如果你做了包含副本数量的更改，联邦控制平面将会更改底层集群中的副本数以确保它们的总数和联邦 ReplicaSet 期望的副本数保持一致。
+如果您做了包含副本数量的更改，联邦控制平面将会更改底层集群中的副本数以确保它们的总数和联邦 ReplicaSet 期望的副本数保持一致。
 
 <!--
 ## Deleting a Federated ReplicaSet
