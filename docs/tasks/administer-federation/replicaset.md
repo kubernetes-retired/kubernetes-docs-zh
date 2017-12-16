@@ -173,7 +173,7 @@ kubectl --context=federation-cluster delete rs myrs
 ```
 
 要注意的是这时删除联邦 ReplicaSet 并不会删除底层集群中对应的 ReplicaSet。您必须自己手动删除底层集群中的 ReplicaSet。
-我们打算未来修复这个问题。
+我们打算在将来修复这个问题。
 
 {% endcapture %}
 
