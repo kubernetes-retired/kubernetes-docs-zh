@@ -29,7 +29,7 @@ general and [jobs](/docs/concepts/workloads/controllers/jobs-run-to-completion/)
 
 {% capture steps %}
 -->
-本指南阐述了如果在联邦控制平面中使用 job 。
+本指南阐述了如何在联邦控制平面中使用 job 。
 
 在联邦控制平面中的 Job (在本指南中称为"联邦 job") 和传统的 [Kubernetes Job](/docs/concepts/workloads/controllers/job/)很相似，提供了一样的功能。在联邦控制平面中创建联邦 job 可以确保在所有注册的集群中 job 的并行和完成数量和预期的一致。
 
