@@ -3,7 +3,38 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
-### 第 20 周：2017-12-04 ~ 2017-12-10 - 有效合并 19 篇
+### 第 21 周：2017-12-11 ~ 2017-12-17 - 有效合并 14 篇
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard](https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/pods/podpreset](https://k8smeetup.github.io/docs/concepts/workloads/pods/podpreset) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/events](https://k8smeetup.github.io/docs/tasks/administer-federation/events) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/configmap](https://k8smeetup.github.io/docs/tasks/administer-federation/configmap) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/tasks/run-application/update-api-object-kubectl-patch](https://k8smeetup.github.io/docs/tasks/run-application/update-api-object-kubectl-patch) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/home/contribute/stage-documentation-changes](https://k8smeetup.github.io/docs/home/contribute/stage-documentation-changes) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/setup/independent/troubleshooting-kubeadm](https://k8smeetup.github.io/docs/setup/independent/troubleshooting-kubeadm) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/tasks/federation/set-up-coredns-provider-federation](https://k8smeetup.github.io/docs/tasks/federation/set-up-coredns-provider-federation) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/federation/set-up-placement-policies-federation](https://k8smeetup.github.io/docs/tasks/federation/set-up-placement-policies-federation) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/secret](https://k8smeetup.github.io/docs/tasks/administer-federation/secret) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/daemonset](https://k8smeetup.github.io/docs/tasks/administer-federation/daemonset) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/replicaset](https://k8smeetup.github.io/docs/tasks/administer-federation/replicaset) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/job](https://k8smeetup.github.io/docs/tasks/administer-federation/job) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/concepts/service-catalog/index](https://k8smeetup.github.io/docs/concepts/service-catalog/index) by [xiaosuiba](https://github.com/xiaosuiba)
+
+
+### 第 20 周：2017-12-04 ~ 2017-12-10 - 有效合并 25 篇
 
 [https://k8smeetup.github.io/docs/tasks/access-application-cluster/load-balance-access-application-cluster](https://k8smeetup.github.io/docs/tasks/access-application-cluster/load-balance-access-application-cluster) by [zhangqx2010](https://github.com/zhangqx2010)
 
@@ -42,6 +73,18 @@
 [https://k8smeetup.github.io/docs/tasks/job/parallel-processing-expansion](https://k8smeetup.github.io/docs/tasks/job/parallel-processing-expansion) by [rootsongjc](https://github.com/rootsongjc)
 
 [https://k8smeetup.github.io/docs/tasks/administer-federation/cluster](https://k8smeetup.github.io/docs/tasks/administer-federation/cluster) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/local-debugging](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/local-debugging) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/service-catalog/install-service-catalog-using-sc](https://k8smeetup.github.io/docs/tasks/service-catalog/install-service-catalog-using-sc) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/admin/kubefed_options](https://k8smeetup.github.io/docs/admin/kubefed_options) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/admin/kubefed_version](https://k8smeetup.github.io/docs/admin/kubefed_version) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/home/contribute/review-issues](https://k8smeetup.github.io/docs/home/contribute/review-issues) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/kubectl/conventions](https://k8smeetup.github.io/docs/reference/kubectl/conventions) by [lichuqiang](https://github.com/lichuqiang)
 
 
 ### 第 19 周：2017-11-27 ~ 2017-12-03 - 有效合并 9 篇
