@@ -32,7 +32,7 @@ functionality of Deployment is present, but some features
 (such as full rollout compatibility) are still in development.**
 -->
 **到 Kubernetes 1.5 版本为止，联邦 Deployment 还是一个 Alpha 特性。 Deployment 的核心功能已经提供，
-但一些特性（例如完整的部署兼容性）仍在开发中。**
+但一些特性（例如完整的 rollout 兼容性）仍在开发中。**
 {% endcapture %}
 
 {% capture prerequisites %}
@@ -43,7 +43,7 @@ functionality of Deployment is present, but some features
 [working knowledge of Kubernetes](/docs/setup/pick-right-solution/) in
 general and [Deployments](/docs/concepts/workloads/controllers/deployment/) in particular.
 -->
-* 通常您还应当拥有基本的 [ Kubernetes 应用知识](/docs/setup/pick-right-solution/)，特别是 [Deployment](/docs/concepts/workloads/controllers/deployment/) 相关的应用知识。
+* 通常您还应当拥有基本的 [Kubernetes 应用知识](/docs/setup/pick-right-solution/)，特别是 [Deployment](/docs/concepts/workloads/controllers/deployment/) 相关的应用知识。
 
 {% endcapture %}
 
