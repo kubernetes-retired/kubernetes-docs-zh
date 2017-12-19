@@ -26,7 +26,7 @@ Further information is available in the Kubernetes on Mesos [contrib directory][
 ## 关于 Kubernetes on Mesos 
 
 
-Mesos支持Kubernetes与其他一级框架如[HDFS][1], [Spark][2], and [Chronos][3]的动态资源共享。
+Mesos支持Kubernetes与其他一级框架如 [HDFS][1], [Spark][2], 和 [Chronos][3] 的动态资源共享。
 同时Mesos保证了集群中不同框架中应用间合理的资源分配与隔离。
 
 Mesos集群可以部署在几乎所有IaaS云供应商的基础设施上或你自己的物理数据中心中。Kubernetes on Mesos可以让你可以更容易地把Kubernetes的工作负载从其中一个环境迁移至其他环境中。
@@ -430,6 +430,7 @@ Future work will add instructions to this guide to enable support for Kubernetes
 以后会在本指南中加入Kubernetes DNS的激活方法.
 
 **注意:** 以下是一些 [当前 Kubernetes-Mesos 实践中的已知问题][7].
+
 [1]: https://docs.mesosphere.com/latest/usage/service-guides/hdfs/
 [2]: https://docs.mesosphere.com/latest/usage/service-guides/spark/
 [3]: https://mesos.github.io/chronos/docs/getting-started.html
