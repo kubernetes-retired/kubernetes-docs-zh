@@ -311,7 +311,7 @@ Kube-dns组件作为一个pod运行在集群中，这个pod包含了三个同时
 {% assign dns_server = "{{ pillar['dns_server'] }}" %}
 - `{{ dns_server }}` with `10.10.10.10`.
 
-自动脚本:
+以下是自动脚本:
 
 ```shell{% raw %}
 sed -e "s/{{ pillar\['dns_replicas'\] }}/1/g;"\
@@ -333,9 +333,9 @@ kubectl create -f ./kubedns-svc.yaml
 <!--Check with `kubectl get pods --namespace=kube-system` that 3/3 containers of the pods are eventually up and running. Note that the kube-dns pods run in the `kube-system` namespace, not in  `default`.
 
 To check that the new DNS service in the cluster works, we start a busybox pod and use that to do a DNS lookup. First create the `busybox.yaml` pod spec:-->
-Check with `kubectl get pods --namespace=kube-system` that 3/3 containers of the pods are eventually up and running. Note that the kube-dns pods run in the `kube-system` namespace, not in  `default`.
+运行 `kubectl get pods --namespace=kube-system` 确认 3/3 也就是这个pod的所有容器都是`running`状态. 需要注意，kube-dns 的pod运行在 `kube-system` namespace, 而不是 `default`下.
 
-To check that the new DNS service in the cluster works, we start a busybox pod and use that to do a DNS lookup. First create the `busybox.yaml` pod spec:
+为了确认新的 DNS 服务正在运行，我们在集群中启动一个busybox pod进行DNS检索. 首先创建一个 `busybox.yaml` pod 定义文件:
 
 ```shell
 cat <<EOF >busybox.yaml
@@ -359,19 +359,22 @@ spec:
 EOF
 ```
 
-Then start the pod:
+<!--Then start the pod:-->
+然后启动pod:
 
 ```shell
 kubectl create -f ./busybox.yaml
 ```
 
-When the pod is up and running, start a lookup for the Kubernetes master service, made available on 10.10.10.1 by default:
+<!--When the pod is up and running, start a lookup for the Kubernetes master service, made available on 10.10.10.1 by default:-->
+Pod启动之后，通过以下命令尝试解析Kubernetes master service，默认返回值应该为10.10.10.1.
 
 ```shell
 kubectl  exec busybox -- nslookup kubernetes
 ```
 
-If everything works fine, you will get this output:
+<!--If everything works fine, you will get this output:-->
+如果一切正常，你将会看到如下结果
 
 ```shell
 Server:    10.10.10.10
@@ -381,17 +384,19 @@ Name:      kubernetes
 Address 1: 10.10.10.1
 ```
 
+<!--## Support Level-->
 ## Support Level
-
+支持
 
 IaaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
 -------------------- | ------------ | ------ | ----------  | ---------------------------------------------     | ---------| ----------------------------
 Mesos/GCE            |              |        |             | [docs](/docs/getting-started-guides/mesos/)                                  |          | Community ([Kubernetes-Mesos Authors](https://github.com/mesosphere/kubernetes-mesos/blob/master/AUTHORS.md))
 
 
-For support level information on all solutions, see the [Table of solutions](/docs/getting-started-guides/#table-of-solutions/) chart.
+<!--For support level information on all solutions, see the [Table of solutions](/docs/getting-started-guides/#table-of-solutions/) chart.-->
+查看解决方法，请参阅 [解决方法](/docs/getting-started-guides/#table-of-solutions/) 
 
-## What next?
+<!--## What next?-->
 
 Try out some of the standard [Kubernetes examples][9].
 
@@ -400,8 +405,17 @@ Read about Kubernetes on Mesos' architecture in the [contrib directory][13].
 **NOTE:** Some examples require Kubernetes DNS to be installed on the cluster.
 Future work will add instructions to this guide to enable support for Kubernetes DNS.
 
-**NOTE:** Please be aware that there are [known issues with the current Kubernetes-Mesos implementation][7].
+**NOTE:** Please be aware that there are [known issues with the current Kubernetes-Mesos implementation][7].-->
+## 延伸阅读
 
+试试标准例子 [Kubernetes examples][9].
+
+看看 Kubernetes on Mesos' 架构 [contrib directory][13].
+
+**注意:** 有些例子需要在集群中预先安装 Kubernetes DNS .
+以后会在本指南中加入Kubernetes DNS的激活方法.
+
+**注意:** 以下是一些 [当前 Kubernetes-Mesos 实践中的已知问题][7].
 [1]: https://docs.mesosphere.com/latest/usage/service-guides/hdfs/
 [2]: https://docs.mesosphere.com/latest/usage/service-guides/spark/
 [3]: https://mesos.github.io/chronos/docs/getting-started.html
