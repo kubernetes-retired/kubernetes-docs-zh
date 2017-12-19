@@ -1,8 +1,5 @@
 ---
 title: 通过端口转发访问集群中的应用程序
-redirect_from:
-- "/docs/user-guide/connecting-to-applications-port-forward/"
-- "/docs/user-guide/connecting-to-applications-port-forward.html"
 cn-approvers:
 - rootsongjc
 cn-reviewers:
@@ -172,16 +169,6 @@ Connections made to local port 6379 are forwarded to port 6379 of the pod that
 is running the Redis server. With this connection in place you can use your
 local workstation to debug the database that is running in the pod.
 
-{% endcapture %}
-
-
-{% capture whatsnext %}
-Learn more about [kubectl port-forward](/docs/user-guide/kubectl/v1.6/#port-forward).
-{% endcapture %}
-
-
-{% include templates/task.md %}
-
 -->
 
 ## 讨论
@@ -191,6 +178,12 @@ Learn more about [kubectl port-forward](/docs/user-guide/kubectl/v1.6/#port-forw
 {% endcapture %}
 
 {% capture whatsnext %}
+<!--
+
+Learn more about [kubectl port-forward](/docs/user-guide/kubectl/v1.6/#port-forward).
+
+-->
+
 了解更多有关 [kubectl port-forward](/docs/user-guide/kubectl/v1.6/#port-forward) 的信息。
 {% endcapture %}
 
