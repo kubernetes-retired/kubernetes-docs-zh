@@ -24,8 +24,7 @@ Please [file an issue against the kubernetes-mesos project][8] if you have probl
 
 Further information is available in the Kubernetes on Mesos [contrib directory][13].
 
-### Prerequisites
-
+<!--### Prerequisites 
 - Understanding of [Apache Mesos][6]
 - A running [Mesos cluster on Google Compute Engine][5]
 - A [VPN connection][10] to the cluster
@@ -33,39 +32,58 @@ Further information is available in the Kubernetes on Mesos [contrib directory][
   - Go (see [here](https://git.k8s.io/community/contributors/devel/development.md) for required versions)
   - make (i.e. build-essential)
   - Docker
+  -->
+### 先决条件  
+  - 了解[Apache Mesos][6]
+- 运行的 [谷歌计算引擎GCE上面的Mesos集群][5]
+- [VPN连接][10] 到集群
+- 集群中的一台机器作为Kubernetes的 *master节点* 具有如下特性:
+  - 支持Go语言 (点击 [这里](https://git.k8s.io/community/contributors/devel/development.md) 查看版本要求)
+  - make (i.e. build-essential)
+  - Docker
 
-**Note**: You *can*, but you *don't have to* deploy Kubernetes-Mesos on the same machine the Mesos master is running on.
+<!-- **Note**: You *can*, but you *don't have to* deploy Kubernetes-Mesos on the same machine the Mesos master is running on.-->
 
-### Deploy Kubernetes-Mesos
+**注意**: 你 *可以*, 但是你*不一定要* 将 Kubernetes-Mesos 和Mesos的Master节点部署在同一台机器上.
+<!--### Deploy Kubernetes-Mesos-->
 
 Log into the future Kubernetes *master node* over SSH, replacing the placeholder below with the correct IP address.
-
+-->
+### 部署 Kubernetes-Mesos
+使用SSH登录到Kubernetes 的*master 节点* , 将以下占位符替换为相应的IP地址.
 ```shell
 ssh jclouds@${ip_address_of_master_node}
 ```
 
-Build Kubernetes-Mesos.
+<!--Build Kubernetes-Mesos.-->
+构建 Kubernetes-Mesos
 
 ```shell
 git clone https://github.com/kubernetes-incubator/kube-mesos-framework
 cd kube-mesos-framework
 make
 ```
-
+<!--
 Set some environment variables.
-The internal IP address of the master may be obtained via `hostname -i`.
+The internal IP address of the master may be obtained via `hostname -i`.-->
+设置环境变量。Set some environment variables.
+使用 `hostname -i` 命令来获取master的内部IP地址.
 
 ```shell
 export KUBERNETES_MASTER_IP=$(hostname -i)
 export KUBERNETES_MASTER=http://${KUBERNETES_MASTER_IP}:8888
 ```
-
-Note that KUBERNETES_MASTER is used as the api endpoint. If you have existing `~/.kube/config` and point to another endpoint, you need to add option `--server=${KUBERNETES_MASTER}` to kubectl in later steps.
-
+<!---->
+<!--Note that KUBERNETES_MASTER is used as the api endpoint. If you have existing `~/.kube/config` and point to another endpoint, you need to add option `--server=${KUBERNETES_MASTER}` to kubectl in later steps.-->
+请注意，KUBERNETES_MASTER被用来作为api endpoint. 如果你已经定义了这个文件 `~/.kube/config` 并且指向了其他终端，你需要在后面步骤中在kubectl命令后加上 `--server=${KUBERNETES_MASTER}` .
+<!--
 ### Deploy etcd
 
 Start etcd and verify that it is running:
+-->
+### 部署etcd
 
+启动etcd并验证运行状况:
 ```shell
 sudo docker run -d --hostname $(uname -n) --name etcd \
   -p 4001:4001 -p 7001:7001 quay.io/coreos/etcd:v2.2.1 \
@@ -79,30 +97,35 @@ CONTAINER ID   IMAGE                        COMMAND   CREATED   STATUS   PORTS  
 fd7bac9e2301   quay.io/coreos/etcd:v2.2.1   "/etcd"   5s ago    Up 3s    2379/tcp, 2380/...   etcd
 ```
 
-It's also a good idea to ensure your etcd instance is reachable by testing it
-
+<!--It's also a good idea to ensure your etcd instance is reachable by testing it-->
+同时最好用以下代码测试你的etcd实例，保证可达
 ```shell
 curl -L http://${KUBERNETES_MASTER_IP}:4001/v2/keys/
 ```
 
-If connectivity is OK, you will see an output of the available keys in etcd (if any).
+<!--If connectivity is OK, you will see an output of the available keys in etcd (if any).-->
+如果连接正常，你会看到数据库中的 键 列表（如果有的话）
 
-### Start Kubernetes-Mesos Services
+<!--### Start Kubernetes-Mesos Services-->
+启动Kubernetes-Mesos服务
 
-Update your PATH to more easily run the Kubernetes-Mesos binaries:
+<!--Update your PATH to more easily run the Kubernetes-Mesos binaries:-->
+将Kubernetes-Mesos添加到环境变量PATH里面
 
 ```shell
 export PATH="$(pwd)/_output/local/go/bin:$PATH"
 ```
 
-Identify your Mesos master: depending on your Mesos installation this is either a `host:port` like `mesos-master:5050` or a ZooKeeper URL like `zk://zookeeper:2181/mesos`.
-In order to let Kubernetes survive Mesos master changes, the ZooKeeper URL is recommended for production environments.
+<!--Identify your Mesos master: depending on your Mesos installation this is either a `host:port` like `mesos-master:5050` or a ZooKeeper URL like `zk://zookeeper:2181/mesos`.
+In order to let Kubernetes survive Mesos master changes, the ZooKeeper URL is recommended for production environments.-->
+确认你的Mesos master节点：取决于你的安装方式，可能是`host:port`形式，就像`mesos-master:5050`；或者是ZooKeeper URL的形式，就像 `zk://zookeeper:2181/mesos`。为了让Kubernetes在Mesos master节点的更改时运行良好，在生产环境中推荐使用ZooKeeper URL的形式。
 
 ```shell
 export MESOS_MASTER=<host:port or zk:// url>
 ```
 
-Create a cloud config file `mesos-cloud.conf` in the current directory with the following contents:
+<!--Create a cloud config file `mesos-cloud.conf` in the current directory with the following contents:-->
+使用下列语句在当前路径创建一个cloud配置文件 `mesos-cloud.conf`
 
 ```shell
 $ cat <<EOF >mesos-cloud.conf
@@ -111,7 +134,8 @@ $ cat <<EOF >mesos-cloud.conf
 EOF
 ```
 
-Now start the kubernetes-mesos API server, controller manager, and scheduler on the master node:
+<!--Now start the kubernetes-mesos API server, controller manager, and scheduler on the master node:-->
+现在，在master节点上启动下列组件 kubernetes-mesos API server, controller manager, 以及 scheduler：
 
 ```shell
 $ km apiserver \
@@ -141,15 +165,20 @@ $ km scheduler \
   --v=2 >scheduler.log 2>&1 &
 ```
 
-Disown your background jobs so that they'll stay running if you log out.
+<!--Disown your background jobs so that they'll stay running if you log out.-->
+运行disown命令，保证你的后台任务在你登出后保持运行.
 
 ```shell
 disown -a
 ```
 
-#### Validate KM Services
+<!--#### Validate KM Services
 
 Interact with the kubernetes-mesos framework via `kubectl`:
+-->
+#### 验证 KM 服务
+
+通过`kubectl`与kubernetes-mesos 框架进行交互:
 
 ```shell
 $ kubectl get pods
@@ -164,13 +193,21 @@ k8sm-scheduler   10.10.10.113     <none>          10251/TCP      1d
 kubernetes       10.10.10.1       <none>          443/TCP        1d
 ```
 
-Lastly, look for Kubernetes in the Mesos web GUI by pointing your browser to
+<!--Lastly, look for Kubernetes in the Mesos web GUI by pointing your browser to
 `http://<mesos-master-ip:port>`. Make sure you have an active VPN connection.
 Go to the Frameworks tab, and look for an active framework named "Kubernetes".
 
 ## Spin up a pod
 
 Write a JSON pod description to a local file:
+-->
+最后，使用你的浏览器访问Mesos web GUI所在地址`http://<mesos-master-ip:port>`. 确保你有 VPN 连接正在运行.
+在Frameworks 选项卡中找到运行中的框架 "Kubernetes".
+
+## 启动 pod
+
+在本地文件中创建一个JSON格式的pod描述文件:
+
 
 ```shell
 $ cat <<EOPOD >nginx.yaml
@@ -190,15 +227,17 @@ spec:
 EOPOD
 ```
 
-Send the pod description to Kubernetes using the `kubectl` CLI:
+<!--Send the pod description to Kubernetes using the `kubectl` CLI:-->
+使用 `kubectl` CLI向Kubernetes发送pod描述文件:
 
 ```shell
 $ kubectl create -f ./nginx.yaml
 pod "nginx" created
 ```
 
-Wait a minute or two while `dockerd` downloads the image layers from the internet.
-We can use the `kubectl` interface to monitor the status of our pod:
+<!--Wait a minute or two while `dockerd` downloads the image layers from the internet.
+We can use the `kubectl` interface to monitor the status of our pod:-->
+耐心等待一到两分钟，`dockerd`下载镜像。我们可以用`kubectl`查看pod运行状态
 
 ```shell
 $ kubectl get pods
@@ -206,10 +245,9 @@ NAME      READY     STATUS    RESTARTS   AGE
 nginx     1/1       Running   0          14s
 ```
 
-Verify that the pod task is running in the Mesos web GUI. Click on the
+<!--Verify that the pod task is running in the Mesos web GUI. Click on the
 Kubernetes framework. The next screen should show the running Mesos task that
 started the Kubernetes pod.
-
 ## Launching kube-dns
 
 Kube-dns is an addon for Kubernetes which adds DNS-based service discovery to the cluster. For a detailed explanation see [DNS in Kubernetes][4].
@@ -240,6 +278,40 @@ In addition the service template at [cluster/addons/dns/kubedns-controller.yaml.
 - `{{ dns_server }}` with `10.10.10.10`.
 
 To do this automatically:
+-->
+
+通过浏览器访问Mesos web GUI检查pod运行状态. 点击Kubernetes 框架. 接下来将会显示启动Kubernetes pod 的Mesos任务.
+
+## 启动 kube-dns 组件
+
+Kube-dns 是一个Kubernetes组件，给集群增加了基于DNS的服务发现. 详情请见 [DNS in Kubernetes][4].
+
+Kube-dns组件作为一个pod运行在集群中，这个pod包含了三个同时运行的容器:
+
+- 一个本地etcd实例
+-  [kube-dns][11] DNS服务器
+
+ kube-dns 的默认参数
+
+- service IP `10.10.10.10`
+- 和 `cluster.local` domain.
+
+请注意我们已经把以上两个参数传入了上述apiserver.
+
+我们提供了一个replication controller模板，用来启动上述pod ，可以通过这个链接进行下载 [cluster/addons/dns/kubedns-controller.yaml.in][12] i. 接下来我们来创建可用的 replication controller yaml 文件:
+
+{% assign dns_replicas = "{{ pillar['dns_replicas'] }}" %}
+{% assign dns_domain = "{{ pillar['dns_domain'] }}" %}
+- 将 `{{ dns_replicas }}`  替换为 `1`
+- 将 `{{ dns_domain }}` 替换为 `cluster.local.`
+- 向kube2sky container command添加 `--kube_master_url=${KUBERNETES_MASTER}` 参数.
+
+另外， service template at [cluster/addons/dns/kubedns-controller.yaml.in][12] 需要做如下替换:
+
+{% assign dns_server = "{{ pillar['dns_server'] }}" %}
+- `{{ dns_server }}` with `10.10.10.10`.
+
+自动脚本:
 
 ```shell{% raw %}
 sed -e "s/{{ pillar\['dns_replicas'\] }}/1/g;"\
@@ -250,13 +322,17 @@ sed -e "s/{{ pillar\['dns_server'\] }}/10.10.10.10/g" \
   cluster/addons/dns/kubedns-svc.yaml.in > kubedns-svc.yaml{% endraw %}
 ```
 
-Now the kube-dns pod and service are ready to be launched:
+<!--Now the kube-dns pod and service are ready to be launched:-->
+现在kube-dns的pod 和 service 已经准备完毕，下面是启动指令
 
 ```shell
 kubectl create -f ./kubedns-controller.yaml
 kubectl create -f ./kubedns-svc.yaml
 ```
 
+<!--Check with `kubectl get pods --namespace=kube-system` that 3/3 containers of the pods are eventually up and running. Note that the kube-dns pods run in the `kube-system` namespace, not in  `default`.
+
+To check that the new DNS service in the cluster works, we start a busybox pod and use that to do a DNS lookup. First create the `busybox.yaml` pod spec:-->
 Check with `kubectl get pods --namespace=kube-system` that 3/3 containers of the pods are eventually up and running. Note that the kube-dns pods run in the `kube-system` namespace, not in  `default`.
 
 To check that the new DNS service in the cluster works, we start a busybox pod and use that to do a DNS lookup. First create the `busybox.yaml` pod spec:
