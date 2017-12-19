@@ -7,11 +7,11 @@ title: Kubernetes on Mesos
 * TOC
 {:toc}
 <!--
-## About Kubernetes on Mesos 我要开始翻译了
+## About Kubernetes on Mesos 我要开始翻译了-->
 
 <!-- TODO: Update, clean up. -->
 
-Mesos allows dynamic sharing of cluster resources between Kubernetes and other first-class Mesos frameworks such as [HDFS][1], [Spark][2], and [Chronos][3].
+<!--Mesos allows dynamic sharing of cluster resources between Kubernetes and other first-class Mesos frameworks such as [HDFS][1], [Spark][2], and [Chronos][3].
 Mesos also ensures applications from different frameworks running on your cluster are isolated and that resources are allocated fairly among them.
 
 Mesos clusters can be deployed on nearly every IaaS cloud provider infrastructure or in your own physical datacenter. Kubernetes on Mesos runs on-top of that and therefore allows you to easily move Kubernetes workloads from one of these environments to the other.
