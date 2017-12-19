@@ -6,7 +6,7 @@ title: Kubernetes on Mesos
 
 * TOC
 {:toc}
-
+<!--
 ## About Kubernetes on Mesos 我要开始翻译了
 
 <!-- TODO: Update, clean up. -->
@@ -22,7 +22,21 @@ It provides a step by step walk through of adding Kubernetes to a Mesos cluster 
 **NOTE:** There are [known issues with the current implementation][7] and support for centralized logging and monitoring is not yet available.
 Please [file an issue against the kubernetes-mesos project][8] if you have problems completing the steps below.
 
-Further information is available in the Kubernetes on Mesos [contrib directory][13].
+Further information is available in the Kubernetes on Mesos [contrib directory][13]. -->
+## 关于 Kubernetes on Mesos 
+
+
+Mesos支持Kubernetes与其他一级框架如[HDFS][1], [Spark][2], and [Chronos][3]的动态资源共享。
+同时Mesos保证了集群中不同框架中应用间合理的资源分配与隔离。
+
+Mesos集群可以部署在几乎所有IaaS云供应商的基础设施上或你自己的物理数据中心中。Kubernetes on Mesos可以让你可以更容易地把Kubernetes的工作负载从其中一个环境迁移至其他环境中。
+
+本教程将带你安装Mesos集群上的Kubernetes。它提供了如何一步一步地添加Kubernetes到Mesos集群并启动你的第一个nginx web服务器pod。
+
+**注意:**  [当前步骤中的已知问题][7] 以及不支持集中日志和监控.
+如果你在以下步骤中遇到问题，请 [在kubernetes-mesos提出issue][8] .
+
+更多信息请参阅 Kubernetes on Mesos [贡献目录][13].
 
 <!--### Prerequisites 
 - Understanding of [Apache Mesos][6]
