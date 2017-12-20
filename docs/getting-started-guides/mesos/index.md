@@ -429,7 +429,7 @@ Future work will add instructions to this guide to enable support for Kubernetes
 
 试试标准例子 [Kubernetes examples][9].
 
-看看 Kubernetes on Mesos' 架构 [contrib directory][13].
+看看 Kubernetes on Mesos 架构 [contrib directory][13].
 
 **注意:** 有些例子需要在集群中预先安装 Kubernetes DNS .
 以后会在本指南中加入Kubernetes DNS的激活方法.
