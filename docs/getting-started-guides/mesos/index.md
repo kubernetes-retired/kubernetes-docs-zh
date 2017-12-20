@@ -312,7 +312,7 @@ Kube-dns组件作为一个pod运行在集群中，这个pod包含了三个同时
 
 请注意我们已经把以上两个参数传入了上述apiserver.
 
-我们提供了一个replication controller模板，用来启动上述pod ，可以通过这个链接进行下载 [cluster/addons/dns/kubedns-controller.yaml.in][12] i. 接下来我们来创建可用的 replication controller yaml 文件:
+我们提供了一个replication controller模板，用来启动上述pod ，可以通过这个链接进行下载 [cluster/addons/dns/kubedns-controller.yaml.in][12] . 接下来我们来创建可用的 replication controller yaml 文件:
 
 {% assign dns_replicas = "{{ pillar['dns_replicas'] }}" %}
 {% assign dns_domain = "{{ pillar['dns_domain'] }}" %}
@@ -320,12 +320,12 @@ Kube-dns组件作为一个pod运行在集群中，这个pod包含了三个同时
 - 将 `{{ dns_domain }}` 替换为 `cluster.local.`
 - 向kube2sky container command添加 `--kube_master_url=${KUBERNETES_MASTER}` 参数.
 
-另外， service template at [cluster/addons/dns/kubedns-controller.yaml.in][12] 需要做如下替换:
+另外， [cluster/addons/dns/kubedns-controller.yaml.in][12] 中的service模板需要做如下替换:
 
 {% assign dns_server = "{{ pillar['dns_server'] }}" %}
 - `{{ dns_server }}` with `10.10.10.10`.
 
-以下是自动脚本:
+以下是上述操作的自动脚本:
 
 ```shell{% raw %}
 sed -e "s/{{ pillar\['dns_replicas'\] }}/1/g;"\
@@ -399,18 +399,22 @@ Address 1: 10.10.10.1
 ```
 
 <!--## Support Level-->
-## Support Level
-支持
+## 支持
 
-IaaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
+<!--IaaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
 -------------------- | ------------ | ------ | ----------  | ---------------------------------------------     | ---------| ----------------------------
 Mesos/GCE            |              |        |             | [docs](/docs/getting-started-guides/mesos/)                                  |          | Community ([Kubernetes-Mesos Authors](https://github.com/mesosphere/kubernetes-mesos/blob/master/AUTHORS.md))
+-->
+
+IaaS层        | Config. Mgmt | OS     | Networking 网络  | Docs 文档                                        | Conforms | 支持
+------------- | ------------ | ------ | --------------  | -------------------------------------------------| ---------| --------
+Mesos/GCE     |              |        |                  | [docs](/docs/getting-started-guides/mesos/)     |          | Community ([Kubernetes-Mesos Authors](https://github.com/mesosphere/kubernetes-mesos/blob/master/AUTHORS.md))
 
 
 <!--For support level information on all solutions, see the [Table of solutions](/docs/getting-started-guides/#table-of-solutions/) chart.-->
 查看解决方法，请参阅 [解决方法](/docs/getting-started-guides/#table-of-solutions/) 
 
-<!--## What next?-->
+<!--## What next?
 
 Try out some of the standard [Kubernetes examples][9].
 
@@ -419,7 +423,7 @@ Read about Kubernetes on Mesos' architecture in the [contrib directory][13].
 **NOTE:** Some examples require Kubernetes DNS to be installed on the cluster.
 Future work will add instructions to this guide to enable support for Kubernetes DNS.
 
-**NOTE:** Please be aware that there are [known issues with the current Kubernetes-Mesos implementation][7].-->
+**NOTE:** Please be aware that there are [known issues with the current Kubernetes-Mesos implementation][7]. -->
 ## 延伸阅读
 
 试试标准例子 [Kubernetes examples][9].
