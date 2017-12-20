@@ -18,7 +18,7 @@ title: Kubernetes Documentation
 <!--
 Kubernetes documentation can help you set up Kubernetes, learn about the system, or get your applications and workloads running on Kubernetes. To learn the basics of what Kubernetes is and how it works, read "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)".
 -->
-Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么和它是如何运行的，请参阅 "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)"。
+Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么，和它是如何运行的，请参阅 "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)"。
 
 <!--
 ## Interactive Tutorial
@@ -43,7 +43,7 @@ The [Kubernetes Basics interactive tutorial](/docs/tutorials/kubernetes-basics/)
 <!--
 ## Concepts, Tasks, and Tutorials
 -->
-## 概念，任务和教程
+## 概念、任务和教程
 
 <!--
 The Kubernetes documentation contains a number of resources to help you understand and work with Kubernetes.
@@ -55,9 +55,9 @@ Kubernetes 文档包含了大量的资源，能够帮助您理解和使用 Kuber
 * [Tasks](/docs/tasks/) contain step-by-step instructions for common Kubernetes tasks.
 * [Tutorials](/docs/tutorials/) contain detailed walkthroughs of the Kubernetes workflow.
 -->
-* [Concepts](/docs/concepts/) 提供了对 Kubernetes 如何工作的深入理解。
-* [Tasks](/docs/tasks/) 包含对常见 Kubernetes 任务的分步说明。
-* [Tutorials](/docs/tutorials/) 包含 Kubernetes 工作流程的详细教程。
+* [概念](/docs/concepts/) 提供了对 Kubernetes 如何工作的深入理解。
+* [任务](/docs/tasks/) 包含对常见 Kubernetes 任务的分步说明。
+* [教程](/docs/tutorials/) 包含 Kubernetes 工作流程的详细教程。
 
 <!--
 ## API and Command References
@@ -77,7 +77,7 @@ The [Reference](/docs/reference/) documentation provides complete information on
 <!--
 The [Tools](/docs/tools/) page contains a list of native and third-party tools for Kubernetes.
 -->
-[工具](/docs/tools/) 页面包含 Kubernetes 的本地和第三方工具列表。
+[工具](/docs/tools/) 页面包含 Kubernetes 的原生和第三方工具列表。
 
 <!--
 ## Troubleshooting
@@ -115,7 +115,7 @@ Kubernetes 一次支持三个小版本，也就是包含当前的发布版本和
 <!--
 A certain amount of version skew is permissible between master components, node components, and the kubectl client. Nodes may lag master by up to two versions, but not exceed the master version. Clients may lag master by one version and may exceed master up to one version.
 -->
-master 组件、node 组件和 kubectl 客户端之间允许有一定的版本偏差。Node 可能落后 master 两个小版本，但是不能超过 master 小版本。客户端可能落后也可能超过 master 一个小版本。
+master 组件、node 组件和 kubectl 客户端之间允许有一定的版本偏差。Node 可能落后 master 两个小版本，但是不能超过 master 版本。客户端可能落后也可能超过 master 一个小版本。
 
 <!--
 For example, a v1.8 master is expected to be compatible with v1.6, v1.7, and v1.8 nodes, and compatible with v1.7, v1.8, and v1.9 clients. 
