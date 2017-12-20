@@ -18,7 +18,7 @@ title: Kubernetes Documentation
 <!--
 Kubernetes documentation can help you set up Kubernetes, learn about the system, or get your applications and workloads running on Kubernetes. To learn the basics of what Kubernetes is and how it works, read "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)".
 -->
-Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么，和它是如何运行的，请参阅 "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)"。
+Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么，和它是如何运行的，请参阅 "[Kubernetes 是什么](/docs/concepts/overview/what-is-kubernetes/)"。
 
 <!--
 ## Interactive Tutorial
@@ -28,7 +28,7 @@ Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您�
 <!--
 The [Kubernetes Basics interactive tutorial](/docs/tutorials/kubernetes-basics/) lets you try out Kubernetes right out of your web browser, using a virtual terminal. Learn about the Kubernetes system and deploy, expose, scale, and upgrade a containerized application in just a few minutes.
 -->
-[Kubernetes 基本概念的互动教程](/docs/tutorials/kubernetes-basics/) 通过一个虚拟的终端让您能够在网页浏览器中尝试 Kubernetes。您能够在几分钟内了解 Kubernetes 系统和如何部署、暴露、伸缩和升级一个容器化的应用。
+[Kubernetes 基本概念的互动教程](/docs/tutorials/kubernetes-basics/) 通过一个虚拟的终端让您能够在网页浏览器中尝试 Kubernetes。您能够在几分钟内了解 Kubernetes 系统以及如何部署、暴露、伸缩和升级一个容器化的应用。
 
 <!--
 ## Installing/Setting Up Kubernetes
