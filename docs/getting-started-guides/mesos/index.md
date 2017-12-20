@@ -60,7 +60,7 @@ Mesos集群可以部署在几乎所有IaaS云供应商的基础设施上或你�
 <!-- **Note**: You *can*, but you *don't have to* deploy Kubernetes-Mesos on the same machine the Mesos master is running on.-->
 
 **注意**: 你 *可以*, 但是你*不一定要* 将 Kubernetes-Mesos 和Mesos的Master节点部署在同一台机器上.
-<!--### Deploy Kubernetes-Mesos-->
+<!--### Deploy Kubernetes-Mesos
 
 Log into the future Kubernetes *master node* over SSH, replacing the placeholder below with the correct IP address.
 -->
