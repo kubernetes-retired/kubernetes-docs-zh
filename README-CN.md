@@ -1,6 +1,6 @@
 # K8SMeetup 翻译流程与翻译校稿规范
 
-time：2017-07-13 update：2017-12-04 author：xiaolong@caicloud.io
+time：2017-07-13 update：2017-12-21 author：xiaolong@caicloud.io
 
 K8SMeetup 维护两个仓库：
 
@@ -134,6 +134,7 @@ cn-reviewers:
 
 ### 翻译规范
 
+- 翻译之前，需参考[术语表](https://docs.google.com/spreadsheets/d/1JXSdoq93J4KnXA3JTQzWvrl2ZbGOMzrWKuyPjEVpUFg/edit#gid=0)以规范翻译一致性。
 - 译文中的英文与中文建议用空格分隔
 - Kubernetes 资源对象如：`Deployment`、`Service`、`ConfigMap` 等不需要翻译，尽可能用原始英文。
 - 翻译的中英文间隔不宜过长，尽可能一段英文注释，一段中文翻译，可以前后对应，方便其他译者协助 review。
