@@ -3,7 +3,7 @@ approvers:
 - jdef
 title: Kubernetes on Mesos
 +cn-approvers:
- +- 
+ +- okzhchy
  +- tianshapjq
 ---
 
