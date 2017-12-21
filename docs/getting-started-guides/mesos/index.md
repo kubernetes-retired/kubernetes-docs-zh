@@ -10,7 +10,8 @@ title: Kubernetes on Mesos
 * TOC
 {:toc}
 <!--
-## About Kubernetes on Mesos 我要开始翻译了-->
+## About Kubernetes on Mesos 
+-->
 
 <!-- TODO: Update, clean up. -->
 
