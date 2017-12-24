@@ -1,6 +1,11 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 22 周：2017-12-18 ~ 2017-12-24 - 有效合并 1 篇
+
+[https://k8smeetup.github.io/docs/admin/high-availability/index](https://k8smeetup.github.io/docs/admin/high-availability/index) by [rootsongjc](https://github.com/rootsongjc)
+
+
 ### 第 20 周：2017-12-04 ~ 2017-12-10 - 有效合并 2 篇
 
 [https://k8smeetup.github.io/docs/home/contribute/includes](https://k8smeetup.github.io/docs/home/contribute/includes) by [chentao1596](https://github.com/chentao1596)

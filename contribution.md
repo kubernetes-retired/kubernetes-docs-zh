@@ -3,6 +3,35 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 22 周：2017-12-18 ~ 2017-12-24 - 有效合并 13 篇
+
+[https://k8smeetup.github.io/docs/getting-started-guides/clc](https://k8smeetup.github.io/docs/getting-started-guides/clc) by [zhangqx2010](https://github.com/zhangqx2010)
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/core-metrics-pipeline](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/core-metrics-pipeline) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/reference/api-overview](https://k8smeetup.github.io/docs/reference/api-overview) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/deployment](https://k8smeetup.github.io/docs/tasks/administer-federation/deployment) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/client-libraries](https://k8smeetup.github.io/docs/reference/client-libraries) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/setup/index](https://k8smeetup.github.io/docs/setup/index) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/home/index](https://k8smeetup.github.io/docs/home/index) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_manual_config](https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_manual_config) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/mesos/index](https://k8smeetup.github.io/docs/getting-started-guides/mesos/index) by [jiaj12](https://github.com/jiaj12)
+
+[https://k8smeetup.github.io/docs/api-reference/labels-annotations-taints](https://k8smeetup.github.io/docs/api-reference/labels-annotations-taints) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/job/fine-parallel-processing-work-queue/index](https://k8smeetup.github.io/docs/tasks/job/fine-parallel-processing-work-queue/index) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/tasks/job/coarse-parallel-processing-work-queue/index](https://k8smeetup.github.io/docs/tasks/job/coarse-parallel-processing-work-queue/index) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/concepts/storage/storage-classes](https://k8smeetup.github.io/docs/concepts/storage/storage-classes) by [zhangqx2010](https://github.com/zhangqx2010)
+
+
 ### 第 21 周：2017-12-11 ~ 2017-12-17 - 有效合并 14 篇
 
 [https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard](https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard) by [zhangqx2010](https://github.com/zhangqx2010)
