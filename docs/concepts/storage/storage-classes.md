@@ -44,13 +44,13 @@ represent. This concept is sometimes called "profiles" in other storage
 systems.
  -->
 `StorageClass` 为管理员提供了描述他们提供的存储 "class（类）" 的方法。
-不同的 class 可能会映射到服务质量水平、备份策略，或由群集管理员确定的任意策略。
+不同的 class 可能会映射到服务质量等级或备份策略，或由群集管理员确定的任意策略。
 Kubernetes 本身不清楚各种 class 代表的什么。这个概念在其他存储系统中有时被称为“配置文件”。
 
 <!--
 ## The StorageClass Resource
  -->
-## StorageClass资源
+## StorageClass 资源
 
 <!--
 Each `StorageClass` contains the fields `provisioner`, `parameters`, and
