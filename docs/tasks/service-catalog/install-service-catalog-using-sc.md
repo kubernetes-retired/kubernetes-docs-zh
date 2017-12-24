@@ -1,4 +1,4 @@
-﻿---
+---
 title: 使用 SC 安装服务目录（Service Catalog）
 approvers:
 - chenopis
@@ -28,7 +28,7 @@ Use the [Service Catalog Installer](https://github.com/GoogleCloudPlatform/k8s-s
 <!--
 * Understand the key concepts of [Service Catalog](/docs/concepts/service-catalog/).
 * Install [Go 1.6+](https://golang.org/dl/) and set the `GOPATH`.
-* Install the [cfssl](https://github.com/cloudflare/cfssl) tool needed for generating SSL artifacts. 
+* Install the [cfssl](https://github.com/cloudflare/cfssl) tool needed for generating SSL artifacts.
 * Service Catalog requires Kubernetes version 1.7+.
 * [Install and setup kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl/) so that it is configured to connect to a Kubernetes v1.7+ cluster.
 * The kubectl user must be bound to the *cluster-admin* role for it to install Service Catalog. To ensure that this is true, run the following command:
@@ -78,13 +78,13 @@ sc check
 ```
 
 <!--
-If the check is successful, it should return: 
+If the check is successful, it should return:
 -->
 如检查成功，应返回：
 
 ```
 Dependency check passed. You are good to go.
-``` 
+```
 
 <!--
 Next, run the install command and specify the `storageclass` that you want to use for the backup:
