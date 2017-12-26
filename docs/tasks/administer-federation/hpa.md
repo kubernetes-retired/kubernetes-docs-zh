@@ -1,5 +1,5 @@
 ---
-title: 联邦水平 Pod 伸缩器（Horizontal Pod Autoscalers, HPA）
+title: 联邦横向 Pod 伸缩器（Horizontal Pod Autoscalers, HPA）
 ---
 <!--
 title: Pod  Horizontal Pod Autoscalers (HPA)
@@ -90,7 +90,7 @@ The `--context=federation-cluster` flag tells `kubectl` to submit the
 request to the federation API server instead of sending it to a Kubernetes
 cluster.
 -->
-`--context=federation-cluster` 参数告诉 `kubectl` 将请求提交到联邦 API server  而不是发送给某一个 Kubernetes 集群。
+`--context=federation-cluster` 参数告诉 `kubectl` 将请求提交到联邦 API server 而不是发送给某一个 Kubernetes 集群。
 
 <!--
 Once a federated HPA is created, the federation control plane partitions and
@@ -117,12 +117,12 @@ except in the number of min and max replicas. The federation control plane ensur
 max replicas on the federated HPA object, and the sum of minimum replicas will be greater
 than or equal to the minimum specified on the federated HPA object. 
 -->
-除了最小和最大副本的数量之外，基础集群中的 HPA 将与联邦 HPA 相匹配。联邦控制平面将保证每个集群中最大副本的总数匹配联邦 HPA 对象的最大副本数，并且最小副本的总数大于等于联邦 HPA 对象的最小副本数。
+除了最小和最大副本的数量之外，基础集群中的 HPA 将与联邦 HPA 相匹配。联邦控制平面将保证每个集群的最大副本数总和等于联邦 HPA 对象的最大副本数，并且最小副本总和大于等于联邦 HPA 对象的最小副本数。
 
 <!--
 **Note:** A particular cluster cannot have a minimum replica sum of 0.
 -->
-**注意：**集群的最小副本总数不能为 0。
+**注意：**集群的最小副本总和不能为 0。
 {: .note}
 
 <!--
@@ -166,7 +166,7 @@ The Federation control plane ensures that whenever the federated HPA is
 updated, it updates the corresponding HPA in all underlying clusters to
 match it.
 -->
-您可以像更新 Kubernetes HPA 一样更新联邦 HPA；但是，对于联邦 HPA 您必须将请求发送给联邦  API server 而不是发送到一个特定的 Kubernetes 集群。联邦控制平面将保证在联邦 HPA 被更新后，它会对所有基础集群中与之对应的 HPA 进行更新。
+您可以像更新 Kubernetes HPA 一样更新联邦 HPA；但是，对于联邦 HPA 您必须将请求发送给联邦 API server 而不是发送到一个特定的 Kubernetes 集群。联邦控制平面将保证在联邦 HPA 被更新后，它会对所有基础集群中与之对应的 HPA 进行更新。
 
 <!--
 If your update includes a change in the number of replicas, the federation
