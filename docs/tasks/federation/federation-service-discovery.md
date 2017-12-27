@@ -21,7 +21,7 @@ cn-approvers:
 - du2016
 ---
 
-本文介绍了如何使用 Kubernetes 联邦服务跨多个Kubernetes集群部署通用服务。
+本文介绍了如何使用 Kubernetes 联邦服务跨多个 Kubernetes 集群部署通用服务。
 这使您可以轻松地为 Kubernetes 应用程序实现跨集群服务发现和可用区容错。
 
 * TOC
@@ -38,8 +38,8 @@ this for you). Other tutorials, for example
 [this one](https://github.com/kelseyhightower/kubernetes-cluster-federation)
 by Kelsey Hightower, are also available to help you.-->
 本指南假定您有一个已安装运行的 Kubernetes 集群联邦，如果没有，请转到[集群联邦管理指南](/docs/admin/federation/)
-以了解如何启动一个集群联邦(或让你的集群管理员为你做这个)。其他教程，
-例如 Kelsey Hightower 的[这个教程](https://github.com/kelseyhightower/kubernetes-cluster-federation)也可以帮助你。
+以了解如何启动一个集群联邦(或让您的集群管理员安装一个)。其他教程，
+例如 Kelsey Hightower 的[这个教程](https://github.com/kelseyhightower/kubernetes-cluster-federation)也可以帮助您。
 
 <!--You are also expected to have a basic
 [working knowledge of Kubernetes](/docs/setup/) in
@@ -57,7 +57,7 @@ endpoint. The API for Federated Services is 100% compatible with the
 API for traditional Kubernetes Services.-->
 ## 概览
 
-集群联邦的创建方式和传统[Kubernetes Services](/docs/concepts/services-networking/service/)非常相似，
+联邦服务的创建方式和传统[Kubernetes Services](/docs/concepts/services-networking/service/)非常相似，
 只需进行一次 API 调用即可指定所需的服务属性。在联邦服务环境下，此API调用将定向到联邦API端点，
 而不是 Kubernetes 集群 API 端点，联邦服务的API与传统 Kubernetes Services 的API 100％兼容
 
@@ -70,8 +70,8 @@ of your federated service can seamlessly locate an appropriate healthy service e
 availability zone or regional outages.-->
 一旦创建，联邦服务自动:
 
-1. 在集群联邦中的每个集群中创建匹配的 Kubernetes 服务，
-2. 监视那些服务 “shards” (以及它们所在的簇)的健康状况，
+1. 在集群联邦底层的每个集群中创建对应的 Kubernetes 服务，
+2. 监视那些服务 “shards” (以及它们所在的集群)的健康状况，
 3. 在公共 DNS 提供商(例如 Google Cloud DNS 或 AWS Route 53 )中管理一组 DNS 记录，
 从而确保您的联邦服务的客户端可以随时无缝地找到合适的健康服务端点,即使在集群可用区或区域中断的情况下也是如此。
 
@@ -93,8 +93,8 @@ Federation API Server (See the
 [federation admin guide](/docs/admin/federation/) for details).-->
 ## 混合云功能
 
-Kubernetes 集群联邦可以包括运行在不同云提供商(例如 Google Cloud ，AWS )中的集群,以及本地私有云(例如在OpenStack上)。
-只需在适当的云提供商 和/或 地区创建您需要的所有集群，并且向联邦联邦 API Server 注册每个集群的API端点和凭证(参考[集群联邦管理指南](/docs/admin/federation/)了解详细信息)。
+Kubernetes 集群联邦可以包含运行在不同云提供商(例如 Google Cloud ，AWS )中的集群,以及本地私有云(例如在 OpenStack 上)。
+只需在适当的云提供商 和/或 地区创建您需要的所有集群，并且向联邦 API Server 注册每个集群的API端点和凭证(参考[集群联邦管理指南](/docs/admin/federation/)了解详细信息)。
 
 <!--Thereafter, your applications and services can span different clusters
 and cloud providers as described in more detail below.-->
@@ -118,7 +118,7 @@ credentials. If you have not yet configured such a context, visit the
 [federation admin guide](/docs/admin/federation/) or one of the
 [administration tutorials](https://github.com/kelseyhightower/kubernetes-cluster-federation)
 to find out how to do so.-->
-'--context=federation-cluster'参数告诉kubectl将请求提交给联邦API端点，具有恰当的证书。
+'--context=federation-cluster'参数告诉 kubectl 使用合适的凭证将请求提交给联邦 API 端点。
 如果你还没有配置这样的上下文，访问[集群联邦管理指南](/docs/admin/federation/)或[管理教程](https://github.com/kelseyhightower/kubernetes-cluster-federation)
 其中之一了解如何做到这一点。
 
@@ -185,7 +185,7 @@ need to have an externally visible IP address. [Service Type:
 Loadbalancer](/docs/concepts/services-networking/service/#type-loadbalancer)
 is typically used for this, although other options
 (e.g. [External IP's](/docs/concepts/services-networking/service/#external-ips)) exist.-->
-请注意，了联邦服务的'LoadBalancer Ingress'地址与所有基础 Kubernetes 服务的'LoadBalancer Ingress'地址相对应(
+请注意，联邦服务的'LoadBalancer Ingress'地址与所有基础 Kubernetes 服务的'LoadBalancer Ingress'地址相对应(
 一旦这些被分配 - 这可能需要几秒钟)。为了集群间和提供商间服务分片的网络正常工作,
 您的服务需要有一个外部可见的IP地址。[Service Type:Loadbalancer](/docs/concepts/services-networking/service/#type-loadbalancer)
 通常用于此, 尽管也有其他选项(例如 [External IP's](/docs/concepts/services-networking/service/#external-ips))存在。
@@ -197,7 +197,7 @@ be healthy service shards, and has accordingly not yet added their
 addresses to the DNS records for this Federated Service (more on this
 aspect later).-->
 还要注意，我们还没有配置任何后端 Pod 来接收指向这些地址的网络流量(即'Service Endpoints')，
-所以联邦服务还没有任务这些是健康的服务分片，因此还没有将这些服务添加到这个联邦服务的 DNS 记录中(后面更多关于这方面的内容)。
+所以联邦服务还没有认为这些服务是健康的服务分片，因此还没有将这些服务添加到这个联邦服务的 DNS 记录中(后面更多关于这方面的内容)。
 
 <!--## Adding backend pods-->
 ## 添加后端 pods
@@ -247,9 +247,9 @@ automatically configuring corresponding public DNS records. You can
 use your preferred interface to your configured DNS provider to verify
 this. For example, if your Federation is configured to use Google
 Cloud DNS, and a managed DNS domain 'example.com':-->
-## 验证公共DNS记录
+## 验证公共 DNS 记录
 
-一旦上面的 Pods 成功启动，并开始监听连接，Kubernetes 将报告Pods作为在该集群服务的健康端点(通过自动健康检查)。
+一旦上面的 Pods 成功启动，并开始监听连接，Kubernetes 将报告 Pods 作为在该集群服务的健康端点(通过自动健康检查)。
 集群联邦将依次考虑这些服务“分片”中的每一个都是健康的，并通过自动配置相应的公共 DNS 记录以将其放置在服务中。
 您可以使用您的首选接口到您配置的 DNS 提供商来验证这一点。例如，如果您的联邦配置为使用Google Cloud DNS，
 并且托管 DNS 域名为'example.com':
@@ -336,8 +336,8 @@ due to caching by intermediate DNS servers.-->
 2. 同样，还有区域'A'记录，包括该地区所有健康的分片。
 例如，'us-central1'。这些区域记录对于不具有特定区域首选项的客户端以及下述局部自动化和故障转移机制的构建块非常有用。
 3. 对于当前没有健康后端端点的区域，使用CNAME('Canonical Name')记录将这些查询别名(自动重定向)到下一个最接近的健康区域。
-在本例中，us-central1-f 中的服务分片当前没有健康的后端端点(即Pods)，
-因此已创建CNAME记录自动将查询重定向到该区域中的其他分片(本例中为us-central1)。
+在本例中，us-central1-f 中的服务分片当前没有健康的后端端点(即 Pods )，
+因此已创建CNAME记录自动将查询重定向到该区域中的其他分片(本例中为 us-central1 )。
 4. 同样，如果封闭区域内没有健康的碎片，
 搜索就会进一步扩展。在 europe-west1-d 可用性区域，没有健康的后端，
 所以查询被重定向到更广泛的 europe-west1 (其也没有健康的后端Pods)，
@@ -352,7 +352,7 @@ then select any one of the returned addresses to initiate a network
 connection (and fail over automatically to one of the other equivalent
 addresses if required).-->
 上述 DNS 记录集自动保持与联邦服务系统全局所有服务分片的当前健康状态同步。
- DNS 解析器库(由所有客户端调用)自动遍历'CNAME'和'A'记录的层次结构，
+ DNS 解析器库(由所有客户端调用)自动遍历 'CNAME' 和 'A' 记录的层次结构，
 以返回正确的健康 IP 地址集。然后，
 客户端可以选择任何一个返回的地址来启动网络连接(如果需要，可以自动切换到其他等效地址之一)。
 
@@ -360,7 +360,7 @@ addresses if required).-->
 ## 发现联邦服务
 
 <!--### From pods inside your federated clusters-->
-### 从联邦集群内部的pods
+### 从联邦集群内部的 pods
 
 <!--By default, Kubernetes clusters come pre-configured with a
 cluster-local DNS server ('KubeDNS'), as well as an intelligently
@@ -409,10 +409,10 @@ to this minor technical difference).-->
 因此，使用我们的NGINX演示上面的服务，以及刚刚描述的联邦服务DNS名称表单，我们来看一个例子：
 `us-central1-f`可用区中的集群中的Pod需要连接我们的 NGINX 服务。现在可以使用服务的联邦 DNS 名称
 ```"nginx.mynamespace.myfederation"```
-而不是使用服务在传统集群本地的DNS(```"nginx.mynamespace"```, 将自动扩展到
+而不是使用服务在传统集群本地的 DNS (```"nginx.mynamespace"```, 将自动扩展到
 ```"nginx.mynamespace.svc.cluster.local"```)名称，
-这将自动扩展，并解析到我的NGINX服务的最接近健康的分片，无论在世界任何地方。
-如果在本地集群中存在健康的分片，该服务的集群本地(通常 10.x.y.z)IP地址将被返回(由集群本地KubeDNS)，
+这将自动扩展，并解析到我的 NGINX 服务的最接近健康的分片，无论在世界任何地方。
+如果在本地集群中存在健康的分片，该服务的集群本地(通常 10.x.y.z)IP地址将被返回(由集群本地 KubeDNS )，
 这几乎完全等同于非联邦服务解决方案(接近因为 KubeDNS 实际上为本地联邦服务返回一个 CNAME 和一个 A 记录，
 但是应用程序会忽略这个小的技术差异)。
 
@@ -426,9 +426,9 @@ automatic traversal of the hierarchy of DNS records in the above
 example, and ends up at one of the external IP's of the Federated
 Service in the local us-central1 region (i.e. 104.197.247.191,
 104.197.244.180 or 104.197.245.170).-->
-但是如果这个服务在本地集群中不存在的话(者服务存在,但是没有健康的后端 pods )，那么DNS查询会自动扩展为
+但是如果这个服务在本地集群中不存在的话(或者服务存在,但是没有健康的后端 pods )，那么 DNS 查询会自动扩展为
 ```"nginx.mynamespace.myfederation.svc.us-central1-f.example.com”```
-(即逻辑上"找到离我的可用区域最近的其中一个分片的外部IP"),这个扩展是由 KubeDNS 自动执行的，它返回相关的 CNAME 记录。
+(即逻辑上"找到离我的可用区域最近的其中一个分片的外部 IP "),这个扩展是由 KubeDNS 自动执行的，它返回相关的 CNAME 记录。
 在上面的例子中，这导致了自动遍历 DNS 记录的层次结构，并且在本地 us-central1 区域的联邦服务的外部IP之一处结束
 (即 104.197.247.191,104.197.244.180 or 104.197.245.170)。 
 
@@ -444,7 +444,7 @@ This is useful for remote monitoring and other similar applications.-->
 当然，可以通过明确指定适当的DNS名称，而不是依靠DNS的自动扩展，
 明确地定位可用区域和Pod以外的区域中的服务分片，而不是依靠自动 DNS 扩展。例如，
 "nginx.mynamespace.myfederation.svc.europe-west1.example.com" 将解析欧洲所有目前健康的服务分片，
-即使发布查询的Pod位于美国，也不管在美国是否有健康的服务碎片。这对于远程监控和其他类似的应用是有用的。
+即使发布查询的 Pod 位于美国，也不管在美国是否有健康的服务碎片。这对于远程监控和其他类似的应用是有用的。
 
 <!--### From other clients outside your federated clusters-->
 ### 来自集群联邦之外的其他客户端
@@ -481,7 +481,7 @@ improve upon this even further.-->
 Kubernetes 集群联邦自动处理所有必需的故障转移。未来的版本将进一步改善。
 
 <!--## Handling failures of backend pods and whole clusters-->
-## 处理后端pods和整个集群的失败
+## 处理后端 pods 和整个集群的失败
 
 <!--Standard Kubernetes service cluster-IP's already ensure that
 non-responsive individual Pod endpoints are automatically taken out of
@@ -503,7 +503,7 @@ IP's in less time than that given appropriate configuration.-->
 标准 Kubernetes 服务 cluster-IP 已经确定无响应的单独Pod端点自动以低延迟(几秒钟)退出服务。
 此外，如上所述，Kubernetes 集群联邦系统会自动监控集群的健康状况，
 以及您的联邦服务的所有分片背后的端点，根据需要采取分片进入和退出服务(例如当服务后面的所有端点，
-或者整个集群或可用区域都停止运行时，或者相反，从停机状态恢复)。由于DNS缓存固有的延迟(
+或者整个集群或可用区域都停止运行时，或者相反，从停机状态恢复)。由于 DNS 缓存固有的延迟(
 默认情况下，联邦服务 DNS 记录的缓存超时或 TTL 配置为3分钟，但可以进行调整)。
 在灾难性失败的情况下，所有客户可能需要花费很长时间才能完全故障切换到另一个集群。
 但是，考虑到每个区域服务端点可以返回的离散IP地址的数量(例如上面 us-central1，有三个选择)
@@ -544,9 +544,9 @@ Check that:
 检查：
 
 1. 您的集群在集群联邦API(`kubectl describe clusters`)中正确注册。
-2. 你的集群都是'Active'的。这意味着集群联邦系统能够连接和验证集群端点。如果不是，请查阅 federation-controller-manager pod 的日志以确定可能发生的故障。
+2. 你的集群都是 'Active' 的。这意味着集群联邦系统能够连接和验证集群端点。如果不是，请查阅 federation-controller-manager pod 的日志以确定可能发生的故障。
 ```kubectl --namespace=federation logs $(kubectl get pods --namespace=federation -l module=federation-controller-manager -o name)```
-3. 该集群提供给集群联邦API的登录凭证具有正确的授权和配额，以在集群中的相关命名空间中创建服务。如果不是这种情况，您应该再次看到相关的错误消息提供了上述日志文件中的更多细节。
+3. 该集群提供给集群联邦 API 的登录凭证具有正确的授权和配额，以在集群中的相关命名空间中创建服务。如果不是这种情况，您应该再次看到相关的错误消息提供了上述日志文件中的更多细节。
 4. 是否有其他错误阻止了服务创建操作的成功(在`kubectl logs federation-controller-manager --namespace federation'的输出中查找'service-controller`错误)。
 
 <!--#### I can create a federated service successfully, but no matching DNS records are created in my DNS provider.
