@@ -519,11 +519,10 @@ Check that your
 ## 故障排查
 
 #### 我无法连接到我的集群联邦 API
+检查你的:
 
-检查你的
-
-1. 客户端(通常为 kubectl )配置正确(包括API端点和登录证书)。
-2. 集群联邦API服务器正在运行并且网络可达。
+1. 客户端(通常为 kubectl )配置正确(包括 API 端点和登录证书)。
+2. 集群联邦 API 服务器正在运行并且网络可达。
 
 <!--See the [federation admin guide](/docs/admin/federation/) to learn
 how to bring up a cluster federation correctly (or have your cluster administrator do this for you), and how to correctly configure your client.-->
@@ -540,10 +539,9 @@ Check that:
 4. Whether any other error is preventing the service creation operation from succeeding (look for `service-controller` errors in the output of `kubectl logs federation-controller-manager --namespace federation`).
 -->
 #### 我可以通过集群联邦 API 成功创建一个联邦服务，但在我的底层集群中没有创建对应的服务
-
 检查：
 
-1. 您的集群在集群联邦API(`kubectl describe clusters`)中正确注册。
+1. 您的集群在集群联邦 API (`kubectl describe clusters`)中正确注册。
 2. 你的集群都是 'Active' 的。这意味着集群联邦系统能够连接和验证集群端点。如果不是，请查阅 federation-controller-manager pod 的日志以确定可能发生的故障。
 ```kubectl --namespace=federation logs $(kubectl get pods --namespace=federation -l module=federation-controller-manager -o name)```
 3. 该集群提供给集群联邦 API 的登录凭证具有正确的授权和配额，以在集群中的相关命名空间中创建服务。如果不是这种情况，您应该再次看到相关的错误消息提供了上述日志文件中的更多细节。
@@ -557,7 +555,9 @@ how to configure your Cluster Federation system's DNS provider (or have your clu
 2. Confirm that the Cluster Federation's service-controller is successfully connecting to and authenticating against your selected DNS provider (look for `service-controller` errors or successes in the output of `kubectl logs federation-controller-manager --namespace federation`).
 3. Confirm that the Cluster Federation's service-controller is successfully creating DNS records in your DNS provider (or outputting errors in its logs explaining in more detail what's failing).
 -->
-#### 我可以成功创建联邦服务，但是在我的DNS提供程序中没有创建匹配的DNS记录。
+#### 我可以成功创建联邦服务，但是在我的 DNS 提供程序中没有创建匹配的DNS记录
+检查:
+
 1.您的联邦名称，DNS 提供程序，DNS 域名配置正确。请参阅[联邦集群管理指南](/docs/admin/federation/)或[教程](https://github.com/kelseyhightower/kubernetes-cluster-federation)以了解
 如何配置集群联邦身份验证系统的 DNS 提供程序(或让您的集群管理员为您执行此操作)。
 2.确认集群联邦的服务控制器已经成功连接到所选的 DNS 提供程序并进行身份验证(在`kubectl logs federation-controller-manager --namespace federation`的输出中查找`service-controller` errors 或 successes)。
@@ -571,11 +571,15 @@ Check that:
 
 1. Please use one of our  [support channels](/docs/tasks/debug-application-cluster/troubleshooting/) to seek assistance.
 -->
-#### 匹配到我在 DNS 提供商中创建的 DNS 记录，但客户端无法解析这些名称。
+#### 匹配到我在 DNS 提供商中创建的 DNS 记录，但客户端无法解析这些记录
+检查:
 
 1. 管理您的联邦 DNS 域的 DNS 注册管理器已正确配置到指向您配置的DNS提供商的域名服务器。
-例如，请参阅[Google Domains文档](https://support.google.com/domains/answer/3290309?hl=zh_CN&ref_topic=3251230)和[Google云端DNS文档](https://cloud.google.com/dns/update-name-servers)，或从您的域名注册商或DNS提供商获得同样的指导。
+例如，请参阅 [Google Domains文档](https://support.google.com/domains/answer/3290309?hl=zh_CN&ref_topic=3251230) 和 [Google云端DNS文档](https://cloud.google.com/dns/update-name-servers) ，或从您的域名注册商或 DNS 提供商获得同样的指导。
 
+#### 此故障排除指南并没有帮助我解决我的问题
+
+1. 请使用我们的[支持渠道](/docs/tasks/debug-application-cluster/troubleshooting/)寻求帮助。
 
 <!--## For more information
 
