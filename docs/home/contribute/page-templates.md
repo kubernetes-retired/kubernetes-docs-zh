@@ -15,7 +15,7 @@ title: Using Page Templates
 <!--
 <p>These page templates are available for writers who would like to contribute new topics to the Kubernetes docs:</p>
 -->
-<p>对于想要在下面这些 Kubernetes 文档中提交新主题的贡献者，页面模板非常有用：</p>
+<p>对于想要在下面这些 Kubernetes 文档中提交新主题的贡献者，可以使用下面几种页面模板：</p>
 
 <!--
 <ul>
@@ -52,7 +52,7 @@ to conceptual topics that provide related background and knowledge.</p>
 /docs/tasks directory. In your Markdown file, provide values for these
 variables:</p>
 -->
-<p>想要写一个新的任务页面，请在 /docs/tasks 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为这些变量提供相应的值：</p>
+<p>想要写一个新的任务页面，请在 /docs/tasks 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为如下变量提供相应的值：</p>
 
 <!--
 <ul>
@@ -192,7 +192,7 @@ for deep explanations.
 /docs/tutorials directory. In your Markdown file, provide values for these
 variables:</p>
 -->
-<p>想要写一个新的指南页面，请在 /docs/tutorials 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为这些变量提供相应的值：</p>
+<p>想要写一个新的指南页面，请在 /docs/tutorials 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为如下变量提供相应的值：</p>
 
 <!--
 <ul>
@@ -358,7 +358,7 @@ tutorials.
 /docs/concepts directory. In your Markdown file,  provide values for these
 variables:</p>
 -->
-<p>想要写一个新的概念页面，请在 /docs/concepts 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为这些变量提供相应的值：</p>
+<p>想要写一个新的概念页面，请在 /docs/concepts 的子目录下创建一个 Markdown 文件。在您的 Markdown 文件中，为如下变量提供相应的值：</p>
 
 <!--
 <ul>
