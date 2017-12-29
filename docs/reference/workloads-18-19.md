@@ -83,7 +83,7 @@ This section contains information to assist users in migrating core Workloads AP
 <!--
 This section provides information on migrating to the apps/v1beta2 group version. It covers general changes to the core Workloads API kinds. For changes that affect a specific kind (for example, default values), consult the reference documentation for the kind.
 -->
-本节提供有关迁移到 apps/v1beta2 组版本的信息。它涵盖了对核心工作负载 API 种类的通用修改。对于影响特定类型的更改（例如，默认值），请参考该类型的参考文档。
+本节提供有关迁移到 apps/v1beta2 组版本的信息。它涵盖了对核心工作负载 API 类型的通用修改。对于影响特定类型的更改（例如，默认值），请参考该类型的参考文档。
 
 <!--
 #### Default selectors are deprecated
@@ -317,7 +317,7 @@ In Kubernetes 1.9, our goal is to address any feedback on the apps/v1beta2 group
 <!--
 Because users will continue to depend on extensions/v1beta1, apps/v1beta1, and apps/v1beta2, we will not completely remove deprecated kinds in these group versions upon GA promotion. Instead, we will provide auto-conversion between the deprecated portions of the API surface and the GA version. The table below shows the bidirectional conversion that we will support.
 -->
-因为用户将继续依赖 extensions/v1beta1、apps/v1beta1 和 apps/v1beta2 版本，所以在升级到 GA 后，我们也不会完全删除这些组版本中已弃用的种类。相反，我们将提供 部分已弃用 API 层面和 GA 版本之间的自动转换。下表显示了我们将支持的双向转换。
+因为用户将继续依赖 extensions/v1beta1、apps/v1beta1 和 apps/v1beta2 版本，所以在升级到 GA 后，我们也不会完全删除这些组版本中已弃用的类型。相反，我们将提供部分已弃用 API 层面和 GA 版本之间的自动转换功能。下表显示了我们将支持的双向转换。
 
 <table style="width:100%">
  <tr>
