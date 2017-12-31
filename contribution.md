@@ -3,6 +3,29 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 23 周：2017-12-25 ~ 2017-12-31 - 有效合并 10 篇
+
+[https://k8smeetup.github.io/docs/tasks/extend-kubectl/kubectl-plugins](https://k8smeetup.github.io/docs/tasks/extend-kubectl/kubectl-plugins) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/administer-federation/hpa](https://k8smeetup.github.io/docs/tasks/administer-federation/hpa) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/fedora/flannel_multi_node_cluster](https://k8smeetup.github.io/docs/getting-started-guides/fedora/flannel_multi_node_cluster) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/federation/federation-service-discovery](https://k8smeetup.github.io/docs/tasks/federation/federation-service-discovery) by [du2016](https://github.com/du2016)
+
+[https://k8smeetup.github.io/docs/home/contribute/write-new-topic](https://k8smeetup.github.io/docs/home/contribute/write-new-topic) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/admin/salt](https://k8smeetup.github.io/docs/admin/salt) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/home/contribute/page-templates](https://k8smeetup.github.io/docs/home/contribute/page-templates) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/federation/index](https://k8smeetup.github.io/docs/reference/federation/index) by [jiaj12](https://github.com/jiaj12)
+
+[https://k8smeetup.github.io/docs/reference/generated/kubefed](https://k8smeetup.github.io/docs/reference/generated/kubefed) by [jiaj12](https://github.com/jiaj12)
+
+[https://k8smeetup.github.io/docs/reference/workloads-18-19](https://k8smeetup.github.io/docs/reference/workloads-18-19) by [tianshapjq](https://github.com/tianshapjq)
+
+
 ### 第 22 周：2017-12-18 ~ 2017-12-24 - 有效合并 13 篇
 
 [https://k8smeetup.github.io/docs/getting-started-guides/clc](https://k8smeetup.github.io/docs/getting-started-guides/clc) by [zhangqx2010](https://github.com/zhangqx2010)
