@@ -2,7 +2,11 @@
 approvers:
 - erictune
 - idvoretskyi
-title: 
+cn-approvers:
+- xiaosuiba
+cn-reviewers:
+- tianshapjq
+title: 基于 libvirt 使用 CoreOS
 ---
 <!--
 title: CoreOS on libvirt
@@ -57,8 +61,8 @@ Another difference is that no security is enforced on `libvirt-coreos` at all. F
 -->
 另一个不同之处在于，`libvirt-coreos` 完全没有应用任何安全特性。例如，
 
-* 通过明文连接（无 SSL）访问 Kube API 服务；
-* Kube API 服务不需要凭证；
+* 通过明文连接（无 SSL）访问 Kube API Server；
+* Kube API Server不需要凭证；
 * etcd 访问不受保护；
 * Kubernetes secret 没有像生产环境上那样进行保护；
 * 等等。
@@ -79,7 +83,7 @@ So, a k8s application developer should not validate its interaction with Kuberne
 <!--
 On the other hand, `libvirt-coreos` might be useful for people investigating low level implementation of Kubernetes because debugging techniques like sniffing the network traffic or introspecting the etcd content are easier on `libvirt-coreos` than on a production deployment.
 -->
-另一方面，`libvirt-coreos` 可能对研究 Kubernetes 底层实现的人有用，因为像网络流量嗅探或 etcd 内容探测等调试技术在 `libvirt-coreos` 上比在生产环境上更容易。
+另一方面，`libvirt-coreos` 可能对研究 Kubernetes 底层实现的人有用，因为像网络流量嗅探或 etcd 内容探测等调试技术在 `libvirt-coreos` 上比在生产环境上更容易实现。
 
 <!--
 ### Prerequisites
@@ -206,7 +210,7 @@ In order to fix that issue, you have several possibilities:
   * accessible by the qemu user.
 * Grant the qemu user access to the storage pool.
 -->
-* 在 `cluster/libvirt-coreos/config-default.sh` 中设置 `POOL_PATH` 为一个目录：
+* 在 `cluster/libvirt-coreos/config-default.sh` 中设置 `POOL_PATH` 为一个这样的目录：
   * 由具有大量可用磁盘空间的文件系统支持
   * 您的用户具有写入权限；
   * qemu 用户可以访问。
@@ -273,6 +277,7 @@ If you'd like to run this cluster with customized settings, follow the manual se
 - 1 个作为 Kubernetes master 节点的实例
 - 3 个作为 Kubernetes minion 节点的实例
 
+如果希望使用自定义配置运行集群，请按照手动安装说明进行操作。
 <!--
 #### Manual setup
 
@@ -306,8 +311,8 @@ The `KUBE_PUSH` environment variable may be set to specify which Kubernetes bina
 -->
 可以设置 `KUBE_PUSH` 环境变量来指定必须在集群上部署哪些 Kubernetes 二进制文件。其可能的值有：
 
-* `release` （如果没有设置 `KUBE_PUSH` 则为默认）将部署 `_output/release-tars/kubernetes-server-….tar.gz` 包中的二进制文件。这是用 `make release` 或 `make release-skip-tests` 构建。
-* `local` 将部署 `_output/local/go/bin` 包中的二进制文件。这些用 `make` 构建。
+* `release` （如果没有设置 `KUBE_PUSH`，则默认使用该值）将部署 `_output/release-tars/kubernetes-server-….tar.gz` 包中的二进制文件。这是用 `make release` 或 `make release-skip-tests` 构建。
+* `local` 将部署 `_output/local/go/bin` 包中的二进制文件。这些文件是用 `make` 构建的。
 
 <!--
 ### Management
