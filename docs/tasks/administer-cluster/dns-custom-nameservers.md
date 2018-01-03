@@ -1,9 +1,8 @@
 ---
 approvers:
-
 - bowei
 - zihongz
-  title: 配置 DNS 服务
+title: 配置 DNS 服务
 ---
 
 {% capture overview %}
