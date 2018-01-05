@@ -13,7 +13,7 @@ namespace, and resource values using the [downward API](/docs/tasks/inject-data-
 This example assumes you have a Kubernetes cluster installed and running, and that you have
 installed the `kubectl` command line tool somewhere in your path. Please see [pick the right solution](/docs/setup/pick-right-solution/) for installation instructions for your platform.
 -->
-该示例假定您已经拥有一个安装好且处于运行状态的 Kubernetes 集群，而且您已经在路径中的某个地方安装了 `kubectl‘ 命令行工具。对于不同平台下集群环境的安装说明，请参考 [选择正确的解决方案](/docs/setup/pick-right-solution/)。
+该示例假定您已经拥有一个安装好且处于运行状态的 Kubernetes 集群，而且您已经在路径中的某个地方安装了 `kubectl` 命令行工具。请参考 [选择正确的解决方案](/docs/setup/pick-right-solution/) 来选择您的平台环境对应的安装说明。
 
 <!--
 ## Step One: Create the pod
@@ -24,7 +24,7 @@ installed the `kubectl` command line tool somewhere in your path. Please see [pi
 Containers consume the downward API using environment variables.  The downward API allows
 containers to be injected with the name and namespace of the pod the container is in.
 -->
-容器通过环境变量访问 downward API。downward API 允许容器将它所属 pod 的名称和命名空间注入。
+容器通过环境变量访问 downward API。downward API 使得用户能够将容器所属 pod 的名称和命名空间注入容器中。
 
 <!--
 Use the [`dapi-pod.yaml`](dapi-pod.yaml) file to create a Pod with a container that consumes the
