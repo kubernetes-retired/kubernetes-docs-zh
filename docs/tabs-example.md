@@ -16,7 +16,7 @@ title: Tabs Example
 <!--
 In a markdown page (.md file) on this site, you can add a tab set to display multiple flavors of a given solution.
  -->
-在这个网站 Markdown 页面（.md file）中，您可以添加选项卡组用于显示解决方案的多种方法。
+您可以在这个网站 Markdown 页面（.md file）中添加选项卡组，用于显示解决方案的多种方法。
 
 <!--
 ## Demo
@@ -70,7 +70,7 @@ kubectl apply -f "https://git.io/weave-kube"
 <!--
 Below is the [Liquid](https://shopify.github.io/liquid/) template code for the tabs demo above to illustrate how to specify the contents of each tab. The [`/_includes/tabs.md`](https://git.k8s.io/kubernetes.github.io/_includes/tabs.md) file included at the end then uses those elements to render the actual tab set.
  -->
-以下是上述选项卡演示的 [Liquid](https://shopify.github.io/liquid/) 模板代码，以说明如何指定每个选项卡的内容。 将 [`/_includes/tabs.md`](https://git.k8s.io/kubernetes.github.io/_includes/tabs.md) 包含在文件最后，然后使用这些元素来呈现实际的选项卡集。
+以下是上述选项卡示例的 [Liquid](https://shopify.github.io/liquid/) 模板代码，以说明如何指定每个选项卡的内容。 将 [`/_includes/tabs.md`](https://git.k8s.io/kubernetes.github.io/_includes/tabs.md) 包含在文件最后，然后使用这些元素来呈现实际的选项卡集。
 
 <!--
 ### The code
@@ -128,7 +128,7 @@ kubectl apply -f "http://docs.projectcalico.org/v2.4/getting-started/kubernetes/
 <!--
 The `capture [variable_name]` tags store text or markdown content and assign them to the specified variable.
  -->
-`捕获 [variable_name]` 标记存储文本或 markdown 内容，并将它们分配给指定的变量。
+`capture [variable_name]` 标记存储文本或 markdown 内容，并将它们分配给指定的变量。
 
 <!--
 ### Assigning tab names
