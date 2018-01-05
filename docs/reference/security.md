@@ -1,6 +1,6 @@
 ---
 layout: docwithnav
-title: Kubernetes Security and Disclosure Information Kubernetes安全和公告信息
+title: Kubernetes安全和公告信息
 permalink: /security/
 approvers:
 - eparis
@@ -41,7 +41,7 @@ To make a report, please email the private [kubernetes-security@googlegroups.com
 <!--
 You may encrypt your email to this list using the GPG keys of the [Product Security Team members](https://git.k8s.io/community/contributors/devel/security-release-process.md#product-security-team-pst). Encryption using GPG is NOT required to make a disclosure.
 -->
-您可以在提交报告时通过这个链接提供的 GPG 密钥来加密你的邮件 [产品安全团队成员](https://git.k8s.io/community/contributors/devel/security-release-process.md#product-security-team-pst)。但加密不是强制的。
+您可以在提交报告时通过 [产品安全团队成员](https://git.k8s.io/community/contributors/devel/security-release-process.md#product-security-team-pst)提供的 GPG 密钥来加密你的邮件。但加密不是强制的。
 
 <!--
 ### When Should I Report a Vulnerability?
