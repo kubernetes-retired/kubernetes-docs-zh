@@ -22,7 +22,7 @@ The Concepts section helps you learn about the parts of the Kubernetes system an
 <!--
 To work with Kubernetes, you use *Kubernetes API objects* to describe your cluster's *desired state*: what applications or other workloads you want to run, what container images they use, the number of replicas, what network and disk resources you want to make available, and more. You set your desired state by creating objects using the Kubernetes API, typically via the command-line interface, `kubectl`. You can also use the Kubernetes API directly to interact with the cluster and set or modify your desired state.
 -->
-要使用 Kubernetes，您可以使用 *Kubernetes API 对象* 来描述您集群的 *所需状态*：您要运行的应用程序或其他工作负载、使用的容器映像、副本数量和要使用的网络和磁盘资源 ，等等。通过使用 Kubernetes API 创建对象（通常通过命令行界面 `kubectl` ）来设置所需的状态。您也可以直接使用 Kubernetes API 与集群进行交互，并设置或修改您所需的状态。
+要使用 Kubernetes，您可以使用 *Kubernetes API 对象* 来描述您集群的 *所需状态*：您要运行的应用程序或其他工作负载、使用的容器镜像、副本数量和要使用的网络和磁盘资源 等等。您可以通过使用 Kubernetes API 创建对象（通常通过命令行界面 `kubectl` ）来设置所需的状态，也可以直接使用 Kubernetes API 与集群进行交互，并设置或修改您所需的状态。
 
 <!--
 Once you've set your desired state, the *Kubernetes Control Plane* works to make the cluster's current state match the desired state. To do so, Kubernetes performs a variety of tasks automatically--such as starting or restarting containers, scaling the number of replicas of a given application, and more. The Kubernetes Control Plane consists of a collection of processes running on your cluster: 
@@ -35,7 +35,7 @@ Once you've set your desired state, the *Kubernetes Control Plane* works to make
   * **[kubelet](/docs/admin/kubelet/)**, which communicates with the Kubernetes Master.
   * **[kube-proxy](/docs/admin/kube-proxy/)**, a network proxy which reflects Kubernetes networking services on each node.
 -->
-* ** Kubernetes Master ** 是由您集群中单个节点上运行的三个进程组成的，它被指定为主节点。这些进程包括：[kube-apiserver](/docs/admin/kube-apiserver/)、[kube-controller-manager](/docs/admin/kube-controller-manager/) 和 [kube-scheduler](/docs/admin/kube-scheduler/)。
+* ** Kubernetes Master ** 是由您集群中单个节点上运行的三个进程组成的，该节点被指定为 master 节点。这些进程包括：[kube-apiserver](/docs/admin/kube-apiserver/)、[kube-controller-manager](/docs/admin/kube-controller-manager/) 和 [kube-scheduler](/docs/admin/kube-scheduler/)。
 * 每个集群的非 master 节点运行两个进程：
   * **[kubelet](/docs/admin/kubelet/)**，它和 Kubernetes Master 进行通信。
   * **[kube-proxy](/docs/admin/kube-proxy/)**，在每个节点上反映 Kubernetes 网络服务的网络代理。
@@ -63,7 +63,7 @@ Kubernetes 的基本对象包括：
 <!--
 In addition, Kubernetes contains a number of higher-level abstractions called Controllers. Controllers build upon the basic objects, and provide additional functionality and convenience features. They include:
 -->
-另外，Kubernetes 还包含一些称为控制器的更高层次的抽象概念。控制器基于基本对象，并提供附加功能和便利功能。包括：
+另外，Kubernetes 还包含一些称为控制器的更高层次的抽象概念。控制器基于基本对象，并提供附加特性和便利特性。包括：
 
 * [ReplicaSet](/docs/concepts/workloads/controllers/replicaset/)
 * [Deployment](/docs/concepts/workloads/controllers/deployment/)
