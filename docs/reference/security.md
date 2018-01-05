@@ -10,6 +10,7 @@ approvers:
 cn-approvers:
 - jiaj12
 cn-reviewers:
+- chentao1596
 ---
 
 <!--
