@@ -1,4 +1,15 @@
 ---
+cn-approvers:
+- tianshapjq
+approvers:
+- chenopis
+- abiogenesis-now
+title: 标准化词汇表
+noedit: true
+default_active_tag: fundamental
+---
+<!--
+---
 approvers:
 - chenopis
 - abiogenesis-now
@@ -6,13 +17,20 @@ title: Standardized Glossary
 noedit: true
 default_active_tag: fundamental
 ---
+-->
 <link href="/css/glossary.css" rel="stylesheet">
 <script src="/js/glossary.js"></script>
 
+<!--
 <p>This glossary is intended to be a comprehensive, standardized list of Kubernetes terminology. It includes technical terms that are specific to K8s, as well as more general terms that provide useful context.</p>
+-->
+本词汇表旨在成为 Kubernetes 术语全面的、标准化的列表。它包括专门针对 K8s 的技术术语，以及提供有用上下文的更通用的术语。
 
 <div id="tag-container">
+<!--
 <p>Filter terms according to their tags:</p>
+-->
+<p>根据标签过滤术语：</p>
 <div class="tag-description invisible" id="placeholder">.</div>
 {% for tag in site.data.canonical-tags %}
 {% assign tag_info = tag[1] %}
@@ -35,7 +53,10 @@ default_active_tag: fundamental
 <span class="tag-option"><a id="deselect-all-tags" href="javascript:void(0)">Deselect all</a></span>
 </div>
 
+<!--
 <p>Click on the <a href="javascript:void(0)" class="no-underline">[+]</a> indicators below to get a longer explanation for any particular term.</p>
+-->
+<p>点击下面的 <a href="javascript:void(0)" class="no-underline">[+]</a> 符号来获得特定术语的更详细解释。</p>
 
 {% assign glossary_terms = site.data.glossary | where_exp: "term", "term.id != '_example'" | sort: 'name' %}
 
@@ -53,7 +74,10 @@ default_active_tag: fundamental
 <div>
 <div class="term-name"><b>{{ term.name }}</b><a href="{{ term_identifier | prepend: '#' }}" class="permalink hide">LINK</a></div>
 {% if term.aka %}
+<!--
 Also known as: <i>{{ term.aka | join: ", " }}</i>
+-->
+也被称作：<i>{{ term.aka | join: ", " }}</i>
 <br>
 {% endif %}
 
