@@ -25,9 +25,8 @@ DNS resolution process and diagnosing DNS problems.
 - {% include task-tutorial-prereqs.md %}
 - Kubernetes version 1.6 and above.
 - The cluster must be configured to use the `kube-dns` addon.
-  {% endcapture %}
-
 -->
+{% endcapture %}
 
 - {% include task-tutorial-prereqs.md %}
 - Kubernetes 1.6 及其以上版本。
@@ -533,7 +532,7 @@ kube-dns      10.0.0.10      <none>        53/UDP,53/TCP        1h
 <!--
 
 If you have created the service or in the case it should be created by default
-but it does not appear, see 
+but it does not appear, see
 [debugging services](/docs/tasks/debug-application-cluster/debug-service/) for
 more information.
 
