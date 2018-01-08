@@ -357,7 +357,7 @@ resizing to take place. Also, file system resizing is only supported for followi
 - XFS
 - Ext3、Ext4
 
-**注意：**扩展 EBS 卷是一个耗时的操作。另外，每6个小时有一个修改卷的配额。
+**注意**：扩展 EBS 卷是一个耗时的操作。另外，每6个小时有一个修改卷的配额。
 
 {: .note}
 
@@ -484,7 +484,7 @@ Prior to v1.9, the default behavior for all volume plugins was to create a files
 
 在 v1.9 之前，所有卷插件的默认行为是在持久卷上创建一个文件系统。在 v1.9 中，用户可以指定一个 volumeMode，除了文件系统之外，它现在将支持原始块设备。 volumeMode 的有效值可以是“Filesystem”或“Block”。如果未指定，volumeMode 将默认为“Filesystem”。这是一个可选的 API 参数。
 
-**注意：**该功能在 V1.9 中是 alpha的，未来可能会更改。
+**注意**：该功能在 V1.9 中是 alpha的，未来可能会更改。
 
 {: .note}
 
@@ -530,7 +530,7 @@ In the CLI, the access modes are abbreviated to:
 - ROX - ReadOnlyMany
 - RWX - ReadWriteMany
 
-> **重要！**一个卷一次只能使用一种访问模式挂载，即使它支持很多访问模式。例如，GCEPersistentDisk 可以由单个节点作为 ReadWriteOnce 模式挂载，或由多个节点以 ReadOnlyMany 模式挂载，但不能同时挂载。
+> **重要**！一个卷一次只能使用一种访问模式挂载，即使它支持很多访问模式。例如，GCEPersistentDisk 可以由单个节点作为 ReadWriteOnce 模式挂载，或由多个节点以 ReadOnlyMany 模式挂载，但不能同时挂载。
 
 <!--
 
@@ -667,7 +667,7 @@ it will become fully deprecated in a future Kubernetes release.
 
 Kubernetes 管理员可以指定在节点上为挂载持久卷指定挂载选项。
 
-**注意：**不是所有的持久化卷类型都支持挂载选项。
+**注意**：不是所有的持久化卷类型都支持挂载选项。
 
 {: .note}
 
@@ -875,7 +875,7 @@ it won't be supported in a future Kubernetes release.
 
 当 PVC 指定了 `selector`，除了请求一个 `StorageClass` 之外，这些需求被“与”在一起：只有被请求的类的 PV 具有和被请求的标签才可以被绑定到 PVC。
 
-**注意：**目前，具有非空 `selector` 的 PVC 不能为其动态配置 PV。
+**注意**：目前，具有非空 `selector` 的 PVC 不能为其动态配置 PV。
 
 {: .note}
 
@@ -1016,7 +1016,7 @@ spec:
 
 -->
 
-**注意：**当为 Pod 增加原始块设备时，我们在容器中指定设备路径而不是挂载路径。
+**注意**：当为 Pod 增加原始块设备时，我们在容器中指定设备路径而不是挂载路径。
 
 {: .note}
 
@@ -1071,7 +1071,7 @@ Volume binding matrix for statically provisioned volumes:
 
 -->
 
-**注意：**alpha 版本只支持静态配置卷。使用原始块设备时，管理员应该注意考虑这些值。
+**注意**：alpha 版本只支持静态配置卷。使用原始块设备时，管理员应该注意考虑这些值。
 
 {: .note}
 
