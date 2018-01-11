@@ -30,7 +30,7 @@ You can execute `kubeadm config view` to view the ConfigMap. If you initialized 
 kubeadm v1.7.x or lower, you must use `kubeadm config upload` to create the ConfigMap before you
 may use `kubeadm upgrade`.
 -->
-您可以通过执行 `kubeadm config view` 来查看这个 ConfigMap。如果您使用 kubeadm v1.7.x 或者更低的版本来初始化您的集群，您必须在使用 `kubeadm upgrade` 之前使用 `kubeadm config upload` 来创建 ConfigMap。
+您可以通过执行 `kubeadm config view` 来查看这个 ConfigMap。如果您使用 kubeadm v1.7.x 或者更低的版本来初始化您的集群，那么在使用 `kubeadm upgrade` 之前，您必须使用 `kubeadm config upload` 来创建 ConfigMap。
 
 {% endcapture %}
 
