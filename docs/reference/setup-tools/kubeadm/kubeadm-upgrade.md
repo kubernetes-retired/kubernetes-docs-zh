@@ -5,7 +5,7 @@ approvers:
 - mikedanese
 - luxas
 - jbeda
-title: kubeadm 升级
+title: kubeadm update
 ---
 <!--
 ---
@@ -29,7 +29,7 @@ cluster if necessary.
 Every upgrade process might be a bit different, so we've documented each minor upgrade process individually.
 Please check these documents out for more detailed how-to-upgrade guidance:
 -->
-每个升级过程可能有点不同，所以我们已经单独记录了每个小升级过程。请查看这些文档以获取更详细的升级指导：
+每个升级过程可能有点不同，所以我们已经分别记录了每个小升级过程。请查看这些文档以获取更详细的升级指导：
 
 <!--
  * [1.6 to 1.7 upgrades](/docs/tasks/administer-cluster/kubeadm-upgrade-1-7/)
@@ -54,7 +54,10 @@ Please check these documents out for more detailed how-to-upgrade guidance:
 {% endcapture %}
 
 {% capture whatsnext %}
+<!--
 * [kubeadm config](kubeadm-config.md) if you initialized your cluster using kubeadm v1.7.x or lower, to configure your cluster for `kubeadm upgrade`
+-->
+* [kubeadm config](kubeadm-config.md) 如果您使用 kubeadm v1.7.x 或者更低的版本来初始化您的集群，在 `kubeadm upgrade` 之前请先执行该配置
 {% endcapture %}
 
 {% include templates/concept.md %}
