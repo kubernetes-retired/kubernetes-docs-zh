@@ -22,13 +22,13 @@ title: kubeadm token
 Bootstrap tokens are used for establishing bidirectional trust between a node joining 
 the cluster and a the master node, as described in [authenticating with bootstrap tokens](/docs/admin/bootstrap-tokens/).
 -->
-Bootstrap tokens 用于建立待加入集群的 node 和 master 之间的双向信任机制，如 [使用 bootstrap tokens 建立身份验证] 中所述。
+Bootstrap tokens 用于建立待加入集群的 node 和 master 之间的双向信任机制，如 [使用 bootstrap tokens 进行验证] 中所述。
 
 <!--
 `kubeadm init` creates an initial token with a 24-hour TTL. The following commands allow you to manage 
 such a token and also to create and manage new ones.
 -->
-`kubeadm init` 创建一个24小时 TTL 的初始令牌。以下命令允许您管理这样一个令牌，您也创建和管理新的令牌。
+`kubeadm init` 创建一个24小时 TTL 的初始 token。以下命令允许您管理这样一个 token，您也可以创建和管理新的 token。
 
 {% endcapture %}
 
