@@ -75,7 +75,7 @@ The [Operator](https://coreos.com/blog/introducing-operators.html) pattern is on
 combination. It allows developers to encode domain knowledge for specific applications into an
 extension of the Kubernetes API.
 -->
-定制化资源是用户可以在运行中的集群内部署和更新的一个控制器，它独立于集群本身的生命周期。  
+定制化控制器是用户可以在运行中的集群内部署和更新的一个控制器，它独立于集群本身的生命周期。
 定制化控制器可以和任何一种资源一起工作，当和定制化资源结合使用时尤其有效。
 
 <!--
