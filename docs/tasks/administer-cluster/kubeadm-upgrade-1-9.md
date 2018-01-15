@@ -84,7 +84,7 @@ $ chmod a+rx /usr/bin/kubeadm
 Even though `kubeadm` ships in the Kubernetes repositories, it's important to install `kubeadm` manually. The kubeadm 
 team is working on fixing this limitation. 
 -->
-**警示：** 在升级控制平面前，升级系统上的 `kubeadm` 包，将导致升级失败。即使 `kubeadm` 已经放入 Kubernetes 仓库中，您仍应该手动安装它。Kubeadm 团队正在修复这个限制。
+**警示：** 在升级控制平面前，升级系统上的 `kubeadm` 包将导致升级失败。即使 `kubeadm` 已经放入 Kubernetes 仓库中，您仍应该手动安装它。Kubeadm 团队正在修复这个限制。
 {: .caution}
 
 <!--
@@ -235,7 +235,7 @@ $ kubeadm upgrade apply v1.9.0
 - 强制启用版本偏移策略（version skew policy）。
 - 保证控制平面的镜像可用或可以拉取到机器上。
 - 升级控制平面组件，如果任何一个组件失败，则对升级操作进行回退。
-- 应用新的 `kube-dns` 和 `kube-proxy` 清单文件并强制启用所有创建的必要 RBAC 规则。
+- 应用新的 `kube-dns` 和 `kube-proxy` 清单文件并严格保证创建了所有必要的 RBAC 规则。
 
 <!--
 4. Manually upgrade your Software Defined Network (SDN).
