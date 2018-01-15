@@ -77,7 +77,7 @@ Flags and configuration files may not always be changeable in a hosted Kubernete
 <!--
 *Built-in Policy APIs*, such as [ResourceQuota](/docs/concepts/policy/resource-quotas/), [PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/), [NetworkPolicy](/docs/concepts/services-networking/network-policies/) and Role-based Access Control ([RBAC](/docs/admin/authorization/rbac/)), are built-in Kubernetes APIs. APIs are typically used with hosted Kubernetes services and with managed Kubernetes installations. They are declarative and use the same conventions as other Kubernetes resources like pods, so new cluster configuration can be repeatable and be managed the same way as applications. And, where they are stable, they enjoy a [defined support policy](/docs/reference/deprecation-policy/) like other Kubernetes APIs. For these reasons, they are preferred over *configuration files* and *flags* where suitable.
 -->
-*内置策略 API*，例如 [ResourceQuota](/docs/concepts/policy/resource-quotas/)、[PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/)、[NetworkPolicy](/docs/concepts/services-networking/network-policies/) 和 基于角色的权限控制 ([RBAC](/docs/admin/authorization/rbac/)), 是内置的 Kubernetes API。API 通常与托管的 Kubernetes 服务和受控的 Kubernetes 安装一起使用。 它们是声明性的，并使用与其他 Kubernetes 资源（如 Pod ）相同的约定，所以新的群集配置可以重复使用，并以与应用程序相同的方式进行管理。而且，当他们变稳定后，他们和其他Kubernetes API 一样享受[定义支持政策](/docs/reference/deprecation-policy/)。 出于这些原因，在合适的情况下它们优先于 *配置文件* 和 *标志* 被使用。
+*内置策略 API*，例如 [ResourceQuota](/docs/concepts/policy/resource-quotas/)、[PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/)、[NetworkPolicy](/docs/concepts/services-networking/network-policies/) 和 基于角色的权限控制 ([RBAC](/docs/admin/authorization/rbac/)), 是内置的 Kubernetes API。API 通常与托管的 Kubernetes 服务和受控的 Kubernetes 安装一起使用。 它们是声明性的，并使用与其他 Kubernetes 资源（如 Pod ）相同的约定，所以新的群集配置可以重复使用，并以与应用程序相同的方式进行管理。而且，当他们变稳定后，他们和其他Kubernetes API 一样享受 [定义支持政策](/docs/reference/deprecation-policy/)。 出于这些原因，在合适的情况下它们优先于 *配置文件* 和 *标志* 被使用。
 
 <!--
 ## Extensions
@@ -174,15 +174,15 @@ This diagram shows the extension points in a Kubernetes system.
 <!--
 2.   The apiserver handles all requests. Several types of extension points in the apiserver allow authenticating requests, or blocking them based on their content, editing content, and handling deletion. These are described in the [API Access Extensions](docs/concepts/overview/extending#api-access-extensions) section.
 -->
-2.   apiserver 处理所有请求。 apiserver 中的几种类型的扩展点允许对请求进行身份认证或根据其内容对其进行阻止、编辑内容以及处理删除操作。这些内容在 [API 访问扩展](docs/concepts/overview/extending#api-access-extensions) 小节中描述。
+2.   apiserver 处理所有请求。 apiserver 中的几种类型的扩展点允许对请求进行身份认证或根据其内容对其进行阻止、编辑内容以及处理删除操作。这些内容在 [API 访问扩展](docs/concepts/overview/extending#api-访问扩展) 小节中描述。
 <!--
 3.   The apiserver serves various kinds of *resources*. *Built-in resource kinds*, like `pods`, are defined by the Kubernetes project and can't be changed. You can also add resources that you define, or that other projects have defined, called *Custom Resources*, as explained in the [Custom Resources](docs/concepts/overview/extending#custom-resources) section. Custom Resources are often used with API Access Extensions.
 -->
-3.   apiserver 提供各种 *资源*。 *内置的资源种类*，如 `pods` ，由 Kubernetes 项目定义，不能更改。 您还可以添加您自己定义的资源或其他项目已定义的资源，称为 *自定义资源*，如 [自定义资源](docs/concepts/overview/extending#custom-resources) 部分所述。 自定义资源通常与 API 访问扩展一起使用。
+3.   apiserver 提供各种 *资源*。 *内置的资源种类*，如 `pods` ，由 Kubernetes 项目定义，不能更改。 您还可以添加您自己定义的资源或其他项目已定义的资源，称为 *自定义资源*，如 [自定义资源](docs/concepts/overview/extending#用户自定义类型) 部分所述。 自定义资源通常与 API 访问扩展一起使用。
 <!--
 4.   The Kubernetes scheduler decides which nodes to place pods on. There are several ways to extend scheduling. These are described in the [Scheduler Extensions](docs/concepts/overview/extending#shceduler-extensions) section.
 -->
-4.   Kubernetes 调度器决定将 pod 放置到哪个节点。 有几种方法可以扩展调度器。这些内容在 [Scheduler Extensions](docs/concepts/overview/extending#shceduler-extensions) 小节中描述。
+4.   Kubernetes 调度器决定将 pod 放置到哪个节点。 有几种方法可以扩展调度器。这些内容在 [Scheduler Extensions](docs/concepts/overview/extending#调度器扩展) 小节中描述。
 <!--
 5.   Much of the behavior of Kubernetes is implemented by programs called Controllers which are clients of the API-Server. Controllers are often used in conjunction with Custom Resources.
 -->
@@ -190,11 +190,11 @@ This diagram shows the extension points in a Kubernetes system.
 <!--
 6.   The kubelet runs on servers, and helps pods appear like virtual servers with their own IPs on the cluster network. [Network Plugins](docs/concepts/overview/extending#network-plugins) allow for different implementations of pod networking.
 -->
-6.   kubelet 在主机上运行，并帮助 pod 看起来就像在集群网络上拥有自己的 IP 的虚拟服务器。[网络插件](docs/concepts/overview/extending#network-plugins) 让您可以实现不同的 pod 网络。
+6.   kubelet 在主机上运行，并帮助 pod 看起来就像在集群网络上拥有自己的 IP 的虚拟服务器。[网络插件](docs/concepts/overview/extending#网络插件) 让您可以实现不同的 pod 网络。
 <!--
 7.  The kubelet also mounts and unmounts volumes for containers. New types of storage can be supported via [Storage Plugins](docs/concepts/overview/extending#storage-plugins).
 -->
-7.  kubelet 也挂载和卸载容器的卷。 新的存储类型可以通过 [存储插件](docs/concepts/overview/extending#storage-plugins) 支持。
+7.  kubelet 也挂载和卸载容器的卷。 新的存储类型可以通过 [存储插件](docs/concepts/overview/extending#存储插件) 支持。
 
 <!--
 If you are unsure where to start, this flowchart can help. Note that some solutions may involve several types of extensions.
