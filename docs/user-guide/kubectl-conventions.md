@@ -2,7 +2,7 @@
 approvers:
 - bgrant0607
 - janetkuo
-title: kubectl 使用公约
+title: kubectl 使用约定
 cn-approvers:
 - chentao1596
 ---
@@ -107,7 +107,7 @@ depending on your cluster version:
 | Job                    | `--restart=OnFailure`  | `--restart=OnFailure` | `--restart=OnFailure` OR `--restart=Never` | N/A                                        |
 | Cron Job               | `--schedule=<cron>`    | N/A                   | N/A                                        | N/A                                        |
 -->
-|   生成的资源           | 1.4 及以后版本集群     | 1.3 版本集群          | 1.2 版本集群                               | 1.1 及更早版本集群                       |
+|   生成的资源           | 1.4 及以后版本集群     | 1.3 版本集群          | 1.2 版本集群                               | 1.1 及更早版本集群                         |
 |:----------------------:|------------------------|-----------------------|--------------------------------------------|--------------------------------------------|
 | Pod                    | `--restart=Never`      | `--restart=Never`     | `--generator=run-pod/v1`                   | `--restart=OnFailure` OR `--restart=Never` |
 | Replication Controller | `--generator=run/v1`   | `--generator=run/v1`  | `--generator=run/v1`                       | `--restart=Always`                         |
