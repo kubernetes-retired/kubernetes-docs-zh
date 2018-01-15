@@ -127,7 +127,7 @@ Kubernetes 用户通常不需要担心前两种以外的其它类型。集群管
 <!--
 Proxies have replaced redirect capabilities.  Redirects have been deprecated.
 -->
-代理已经取代了重定向功能。重定向已被取消。
+代理已经取代了重定向功能。重定向已被弃用。
 
 {% endcapture %}
 
