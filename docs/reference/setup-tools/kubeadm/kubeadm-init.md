@@ -45,7 +45,7 @@ following steps:
    (`/etc/kubernetes/pki` by default) this step is skipped as described in the
    [Using custom certificates](#custom-certificates) document.
 -->
-1. 生成自签名的 CA，或使用现有的 CA（如果用户提供）为群集中的每个组件设置身份。如 [使用自定义证书](#custom-certificates) 中所述，如果用户在通过 `--cert-dir` 配置的目录中（默认为 `/etc/kubernetes/pki`）提供了自己的 CA 证书和（或）密钥，则跳过此步骤。
+1. 生成自签名的 CA，（或使用现有的 CA，如果用户提供）为群集中的每个组件设置身份。如 [使用自定义证书](#custom-certificates) 中所述，如果用户在通过 `--cert-dir` 配置的目录中（默认为 `/etc/kubernetes/pki`）提供了自己的 CA 证书和（或）密钥，则跳过此步骤。
 
 <!--
 1. Writes kubeconfig files in `/etc/kubernetes/`  for
@@ -53,7 +53,7 @@ following steps:
    API server, each with its own identity, as well as an additional
    kubeconfig file for administration named `admin.conf`.
 -->
-1. 在 `/etc/kubernetes/` 中为 kubelet、controller-manager 和 scheduler 编写配置文件，让它们能够连接 API server，每个文件都需要有自己的标识。同时还需要为管理权限编写名称为 `admin.conf` 的文件。
+1. 在 `/etc/kubernetes/` 中为 kubelet、controller-manager 和 scheduler 编写配置文件，让它们能够连接 API server，每个文件都需要有自己的标识。同时还需要为管理用途编写名称为 `admin.conf` 的文件。
 
 <!--
 1. If kubeadm is invoked with `--feature-gates=DynamicKubeletConfig` enabled,
@@ -63,7 +63,7 @@ following steps:
    for more information about Dynamic Kubelet Configuration.
    This functionality is now by default disabled as it is behind a feature gate, but is expected to be a default in future versions.
 -->
-1. 如果 kubeadm 的 `--feature-gates=DynamicKubeletConfig` 参数被启用，它将会把 kubelet 的初始配置信息写入 `/var/lib/kubelet/config/init/kubelet` 文件中。参阅 [通过配置文件设置 kubelet 参数](/docs/tasks/administer-cluster/kubelet-config-file.md) 和 [在存活集群中重新配置节点  kubelet](/docs/tasks/administer-cluster/reconfigure-kubelet.md) 获取更多关于 Kubelet 动态配置的信息。此功能现在默认处于禁用状态，因为它由 feature gate 配置启用，但预计在未来的版本中将成为默认功能。
+1. 如果 kubeadm 的 `--feature-gates=DynamicKubeletConfig` 参数被启用，它将会把 kubelet 的初始配置信息写入 `/var/lib/kubelet/config/init/kubelet` 文件中。参阅 [通过配置文件设置 kubelet 参数](/docs/tasks/administer-cluster/kubelet-config-file.md) 和 [在存活集群中重新配置节点  kubelet](/docs/tasks/administer-cluster/reconfigure-kubelet.md) 获取更多关于 Kubelet 动态配置的信息。此功能现在默认处于禁用状态，因为它受 feature gate 控制，但预计在未来的版本中将成为默认功能。
 
 <!--
 1. Generates static Pod manifests for the API server,
@@ -89,7 +89,7 @@ following steps:
    This functionality is now by default disabled as it is behind a feature gate, but is expected to be a default in future versions.
 -->
 1. 如果 kubeadm 的 `--feature-gates=DynamicKubeletConfig` 参数被启用，它将通过创建一个 ConfigMap 和一些 RBAC 规则来完成 kubelet 动态配置，这些规则让 kubelet 能够访问配置文件，并且更新节点以让 `Node.spec.configSource` 指向新创建的 ConfigMap。
-   此功能现在默认处于禁用状态，因为它由 feature gate 配置启用，但预计在未来的版本中将成为默认功能。
+   此功能现在默认处于禁用状态，因为它受 feature gate 控制，但预计在未来的版本中将成为默认功能。
 
 <!--
 1. Apply labels and taints to the master node so that no additional workloads will 
@@ -135,14 +135,14 @@ following steps:
    Please note that although the DNS server is deployed, it will not be scheduled until CNI is installed.
 -->
 1. 安装内部的 DNS 服务，并且通过 API server 安装 kube-proxy 插件组件。
-   请注意，就算部署了 DNS 服务，但在安装 CNI 之前它不会被调度到 node 上。
+   请注意，就算部署了 DNS 服务，但是在安装 CNI 之前它也不会被调度到 node 上。
 
 <!--
 1. If `kubeadm init` is invoked with the alpha self-hosting feature enabled,
    (`--feature-gates=SelfHosting=true`), the static Pod based control plane is
    transformed into a [self-hosted control plane](#self-hosting).
 -->
-1. 如果在启用 alpha 特性 self-hosting(`--feature-gates=SelfHosting=true`) 时调用 `kubeadm init`，那么基于静态 Pod 的控制平面将会转变为 [自托管控制平面(self-hosted control plane)](#self-hosting)。
+1. 如果在调用 `kubeadm init` 时启用 alpha 特性 self-hosting(`--feature-gates=SelfHosting=true`) ，那么基于静态 Pod 的控制平面将会转变为 [自托管控制平面(self-hosted control plane)](#self-hosting)。
 
 <!--
 ### Using kubeadm init with a configuration file {#config-file}
@@ -236,7 +236,7 @@ If you would like to override or extend the behaviour of a control plane compone
 extra arguments to kubeadm. When the component is deployed, these additional arguments are added to 
 the Pod command itself.
 -->
-如果您想要覆盖或扩展控制平面组件的行为，可以设置附加的参数到 kubeadm。部署组件时，会添加这些附加参数到 Pod 自身的命令中。
+如果您想要覆盖或扩展控制平面组件的行为，可以设置附加的参数到 kubeadm。部署组件时，这些附加参数会被添加到 Pod 自身的命令中。
 
 <!--
 For example, to add additional feature-gate arguments to the API server, your [configuration file](#config-file) 
@@ -308,7 +308,7 @@ To do so, you must place them in whatever directory is specified by the
 `--cert-dir` flag or `CertificatesDir` configuration file key. By default this
 is `/etc/kubernetes/pki`.
 -->
-要做到这一点，您必须把它们放在 `--cert-dir` 参数或者配置文件中的 `CertificatesDir` 指定的目录。默认使用目录为 `/etc/kubernetes/pki`。
+要做到这一点，您必须把它们放在 `--cert-dir` 参数或者配置文件中的 `CertificatesDir` 指定的目录。默认目录为 `/etc/kubernetes/pki`。
 
 <!--
 If a given certificate and private key pair exists, kubeadm skips the
@@ -508,7 +508,7 @@ using an external CRI implementation.
 -->
 现在 `kubelet` 已经能够使用指定的 CRI 运行时，您可以接着使用 `kubeadm init` 和 `kubeadm join` 来部署 Kubernetes 集群。
 
-当使用外部的 CRI 实现机制时，您也可能需要设置 `kubeadm init` 和 `kubeadm reset` 中的 `--cri-socket`。
+当使用外部的 CRI 实现机制时，您可能还需要设置 `kubeadm init` 和 `kubeadm reset` 中的 `--cri-socket`。
 
 <!--
 ### Using internal IPs in your cluster
@@ -552,7 +552,7 @@ manager, and scheduler run as [DaemonSet pods](/docs/concepts/workloads/controll
 configured via the Kubernetes API instead of [static pods](/docs/tasks/administer-cluster/static-pod/)
 configured in the kubelet via static files.
 -->
-从 1.8 版本开始，您可以尝试性地创建一个 _自托管（self-hosted）_ Kubernetes 控制平面。这表示关键的组件如 API server、controller manager 和 scheduler 都将以 [DaemonSet pods](/docs/concepts/workloads/controllers/daemonset/) 方式运行，DaemonSet pod 通过 Kubernetes API 配置而不是通过 kubelet 的静态文件配置。
+从 1.8 版本开始，您可以实验性地创建一个 _自托管（self-hosted）_ Kubernetes 控制平面。这表示关键的组件如 API server、controller manager 和 scheduler 都将以 [DaemonSet pods](/docs/concepts/workloads/controllers/daemonset/) 方式运行，DaemonSet pod 通过 Kubernetes API 配置而不是通过 kubelet 的静态文件配置。
 
 <!--
 **Caution:** Self-hosting is alpha, but is expected to become the default in
@@ -608,7 +608,7 @@ which still runs as a static Pod.
 The self-hosting bootstrap process is documented in the [kubeadm design
 document](https://github.com/kubernetes/kubeadm/blob/master/docs/design/design_v1.9.md#optional-self-hosting).
 -->
-在 [kubeadm 设计文档](https://github.com/kubernetes/kubeadm/blob/master/docs/design/design_v1.9.md#optional-self-hosting) 中描述了自托管引导进程。
+在 [kubeadm 设计文档](https://github.com/kubernetes/kubeadm/blob/master/docs/design/design_v1.9.md#optional-self-hosting) 中描述了自托管引导流程。
 
 <!--
 In summary, `kubeadm init --feature-gates=SelfHosting=true` works as follows:
