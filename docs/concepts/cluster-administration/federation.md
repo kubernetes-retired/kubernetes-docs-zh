@@ -32,7 +32,7 @@ major building blocks:
 Federation 使管理多个集群变得简单。它通过提供两个主要构建模块来实现：
 
   * 跨集群同步资源：Federation 提供了在多个集群中保持资源同步的能力。例如，可以保证同一个 deployment 在多个集群中存在。
-  * 跨集群服务发现：Federation 提供了自动配置 DNS 服务以及在所有集群后端上进行负载均衡的能力。例如，可以提供一个全局 VIP 或者 DNS 纪录，通过它可以访问多个集群后端。
+  * 跨集群服务发现：Federation 提供了自动配置 DNS 服务以及在所有集群后端上进行负载均衡的能力。例如，可以提供一个全局 VIP 或者 DNS 记录，通过它可以访问多个集群后端。
 
 <!--
 Some other use cases that federation enables are:
@@ -103,7 +103,7 @@ some caveats:
 <!--
 ### Hybrid cloud capabilities
 -->
-### 混合云功能
+### 混合云能力
 
 <!--
 Federations of Kubernetes Clusters can include clusters running in
