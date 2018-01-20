@@ -92,19 +92,19 @@ _tainted_ within a cluster, and only schedule pods onto them which need those
 sysctl settings. It is suggested to use the Kubernetes [_taints and toleration_
 feature](/docs/user-guide/kubectl/{{page.version}}/#taint) to implement this.
 -->
-**注意**：这里有一个很好的练习：集群中已经 _tainted_ 具有特殊 sysctl 配置的 node，如何将需要这些特殊 sysctl 配置的 pod 调度到这些 node 上。建议使用 Kubernetes 的 [_taints and toleration_ 特性](/docs/user-guide/kubectl/{{page.version}}/#taint) 来完成这个练习。
+**注意**：这里有一个很好的练习：集群中已经 _tainted_ 具有特殊 sysctl 配置的 node，如何将需要这些特殊 sysctl 配置的 pod 调度到这些 node 上。建议使用 Kubernetes 的 [_taints 和 toleration_ 特性](/docs/user-guide/kubectl/{{page.version}}/#taint) 来完成这个练习。
 
 <!--
 ## Safe vs. Unsafe Sysctls
 -->
-## 安全与非安全的 Sysctl 对比
+## 安全与不安全的 Sysctl 对比
 
 <!--
 Sysctls are grouped into _safe_  and _unsafe_ sysctls. In addition to proper
 namespacing a _safe_ sysctl must be properly _isolated_ between pods on the same
 node. This means that setting a _safe_ sysctl for one pod
 -->
-Sysctl 被分为 _安全_ 和 _非安全_ 组。为了能够更好的实现命名空间化，一个 _安全的_ sysctl 必须对同一个 node 上的 pod 进行合理的 _隔离_。这意味着为一个 pod 设置一个 _安全的_ sysctl 要做到
+Sysctl 被分为 _安全_ 和 _不安全_ 组。为了能够更好的实现命名空间化，一个 _安全的_ sysctl 必须对同一个 node 上的 pod 进行合理的 _隔离_。这意味着为一个 pod 设置一个 _安全的_ sysctl 要做到
 
 <!--
 - must not have any influence on any other pod on the node
@@ -149,14 +149,14 @@ scheduled, but will fail to launch.
 is at-your-own-risk and can lead to severe problems like wrong behavior of
 containers, resource shortage or complete breakage of a node.
 -->
-所有 _非安全的_ sysctl 默认都是禁用的，并且允许管理员在每个节点上进行手动修改。带有非安全的 sysctl 的 pod 能够被调度，但是无法启动。
+所有 _不安全的_ sysctl 默认都是禁用的，并且允许管理员在每个节点上进行手动修改。带有不安全的 sysctl 的 pod 能够被调度，但是无法启动。
 
-**警告**：由于 _非安全_ 的特性，使用 _非安全的_ sysctl 您需要自担风险，这可能会导致一些问题，如容器的错误行为、资源短缺或者 node 的完全损坏。
+**警告**：由于 _不安全_ 的特性，使用 _不安全的_ sysctl 您需要自担风险，这可能会导致一些问题，如容器的错误行为、资源短缺或者 node 的完全损坏。
 
 <!--
 ## Enabling Unsafe Sysctls
 -->
-## 启用非安全的 Sysctl
+## 启用不安全的 Sysctl
 
 <!--
 With the warning above in mind, the cluster admin can allow certain _unsafe_
@@ -164,7 +164,7 @@ sysctls for very special situations like e.g. high-performance or real-time
 application tuning. _Unsafe_ sysctls are enabled on a node-by-node basis with a
 flag of the kubelet, e.g.:
 -->
-考虑到上面的警告，在非常特殊的场景下管理员可以允许某些 _非安全的_ sysctl，例如要求高性能或者实时性应用程序调优。能够通过 kubelet 的参数来启用 _非安全的_ sysctl，例如：
+考虑到上面的警告，在非常特殊的场景下管理员可以允许某些 _不安全的_ sysctl，例如要求高性能或者实时性应用程序调优。能够通过 kubelet 的参数来启用 _不安全的_ sysctl，例如：
 
 ```shell
 $ kubelet --experimental-allowed-unsafe-sysctls 'kernel.msg*,net.ipv4.route.min_pmtu' ...
@@ -188,7 +188,7 @@ Here is an example, with different annotations for _safe_ and _unsafe_ sysctls:
 -->
 sysctl 特性是 Kubernetes 1.4 版本中的一个 alpha API。因此，需要通过 pod 的注解来设置 sysctl。这将被应用于 pod 中的所有容器。
 
-以下是通过注解来设置 _安全的_ 和 _非安全的_ sysctl 的示例：
+以下是通过注解来设置 _安全的_ 和 _不安全的_ sysctl 的示例：
 
 ```yaml
 apiVersion: v1
@@ -209,4 +209,4 @@ _node-level_ sysctls it is recommended to use [_taints and toleration_
 feature](/docs/user-guide/kubectl/v1.6/#taint) or [taints on nodes](/docs/concepts/configuration/taint-and-toleration/)
 to schedule those pods onto the right nodes.
 -->
-**注意**：在没有显式启用上述两个 _非安全的_ sysctl 的 node 上，使用上述 _非安全的_ sysctl 的 pod 将会启动失败。如果想要使用 _node 级别_ 的 sysctl，建议您使用 [_taints and toleration_ 特性](/docs/user-guide/kubectl/v1.6/#taint) 或者 [taints on nodes](/docs/concepts/configuration/taint-and-toleration/) 来把 pod 调度到正确的 node 上。
+**注意**：在没有显式启用上述两个 _不安全的_ sysctl 的 node 上，使用上述 _不安全的_ sysctl 的 pod 将会启动失败。如果想要使用 _node 级别_ 的 sysctl，建议您使用 [_taints 和 toleration_ 特性](/docs/user-guide/kubectl/v1.6/#taint) 或者 [node 上的 taint](/docs/concepts/configuration/taint-and-toleration/) 来把 pod 调度到正确的 node 上。
