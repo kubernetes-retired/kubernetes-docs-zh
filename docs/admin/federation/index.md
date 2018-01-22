@@ -488,12 +488,12 @@ like to use this mechanism instead of the new one, please let us know
 why the new mechanism doesn't work for your case by filing an issue here -
 [https://github.com/kubernetes/kubernetes/issues/new](https://github.com/kubernetes/kubernetes/issues/new)
 -->
-
+这里描述了以前创建 Kubernetes 集群联邦的机制。建议使用新的创建机制。如果您愿意想用这个机制代替新的，请在 [https://github.com/kubernetes/kubernetes/issues/new](https://github.com/kubernetes/kubernetes/issues/new) 提一个 issue 告诉我们为什么新的机制在您的使用中不起作用。
 
 <!--
 ### Getting images
 -->
-这里描述了以前创建 Kubernetes 集群联邦的机制。建议使用新的创建机制。如果您愿意想用这个机制代替新的，请在 [https://github.com/kubernetes/kubernetes/issues/new](https://github.com/kubernetes/kubernetes/issues/new) 提一个 issue 告诉我们为什么新的机制在您的使用中不起作用。
+### 获取镜像
 
 <!--
 To run these as pods, you first need images for all the components. You can use
