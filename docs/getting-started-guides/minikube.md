@@ -5,6 +5,8 @@ approvers:
 - aaron-prindle
 cn-approvers:
 - xiaosuiba
+cn-reviewers:
+- chentao1596
 title: 通过 Minikube 在本地运行 Kubernetes
 ---
 <!--
@@ -244,7 +246,7 @@ If you are behind a web proxy, you will need to pass this information in e.g. vi
 这个命令创建并配置一个运行单节点 Kubernetes 集群的虚拟机。
 这个命令还会配置您的 [kubectl](/docs/user-guide/kubectl-overview/) 以与此集群进行通信。
 
-果您处于网络代理之后，则需要通过这种方式传递代理信息：
+如果您处于网络代理之后，则需要通过这种方式传递代理信息：
 
 ```
 https_proxy=<my proxy> minikube start --docker-env HTTP_PROXY=<my proxy> --docker-env HTTPS_PROXY=<my proxy> --docker-env NO_PROXY=192.168.99.0/24
@@ -295,7 +297,7 @@ To use this feature, you can use the `--extra-config` flag on the `minikube star
 ### 配置 Kubernetes
 
 Minikube 具有一个 "configurator" 功能，允许用户使用任意值配置 Kubernetes 组件。
-要使用这个功能，你可以在 `minikube start` 命令中使用 `--extra-config` 参数。
+要使用这个功能，您可以在 `minikube start` 命令中使用 `--extra-config` 参数。
 
 <!--
 This flag is repeated, so you can pass it several times with several different values to set multiple options.
@@ -335,7 +337,7 @@ To set the `AuthorizationMode` on the `apiserver` to `RBAC`, you can use: `--ext
 -->
 要在 Kubelet 上将 `MaxPods` 设置更改为 5，请传递此参数：`--extra-config=kubelet.MaxPods=5`。
 
-该功能还支持嵌套结构。要在 scheduler 中将 `LeaderElection.LeaderElect` 设置更改为  `true`，请传递此参数：`--extra-config=scheduler.LeaderElection.LeaderElect=true`。
+该功能还支持嵌套结构。要在 scheduler 中将 `LeaderElection.LeaderElect` 设置更改为 `true`，请传递此参数：`--extra-config=scheduler.LeaderElection.LeaderElect=true`。
 
 要将 `apiserver` 上的 `AuthorizationMode` 设置为 `RBAC`，可以使用：`--extra-config=apiserver.AuthorizationMode=RBAC`。
 
@@ -357,7 +359,7 @@ This command shuts down and deletes the minikube virtual machine. No data or sta
 -->
 ### 删除集群
 `minikube delete` 命令可以用来删除集群。
-该命令将关闭并删除minikube虚拟机。没有数据或状态会被保存下来。
+该命令将关闭并删除 minikube 虚拟机。没有数据或状态会被保存下来。
 
 <!--
 ## Interacting With your Cluster
@@ -493,7 +495,7 @@ We recommend you use `ImagePullSecrets`, but if you would like to configure acce
 -->
 ## 私有容器仓库
 
-要访问私有容器注册表，请按照 [此页面](/docs/concepts/containers/images/) 中的步骤操作。
+要访问私有容器仓库，请按照 [此页面](/docs/concepts/containers/images/) 中的步骤操作。
 
 我们推荐使用 `ImagePullSecrets`，但是如果您想在 minikube 虚拟机上配置访问权限，可以把 `.dockercfg` 放在 `/home/docker` 目录下或将 `config.json` 放在 `/home/docker/.docker` 下。
 
@@ -507,7 +509,7 @@ launched each time minikube is started or restarted.
 -->
 ## 插件
 
-为了让 minikube 正确启动或重启自定义插件，请在 `~/.minikube/addons` 目录中放置你想用 minikube 启动的插件。这个文件夹中的插件将被移动到 minikube 虚拟机，并在
+为了让 minikube 正确启动或重启自定义插件，请在 `~/.minikube/addons` 目录中放置您想用 minikube 启动的插件。这个文件夹中的插件将被移动到 minikube 虚拟机，并在
 minikube 每次启动或重启时启动。
 
 <!--
