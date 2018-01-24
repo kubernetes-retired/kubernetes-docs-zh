@@ -137,7 +137,7 @@ Registry (GCR)](https://cloud.google.com/tools/container-registry/), when runnin
 Engine (GCE).  If you are running your cluster on GCE or Google Kubernetes Engine, simply
 use the full image name (e.g. gcr.io/my_project/image:tag).
 -->
-在 GCE 上运行的时候，Kubernetes 已经在本地支持 [Google 容器仓库（GCR)](https://cloud.google.com/tools/container-registry/)。如果您的集群运行在 GCE 或者 GKE 上，只需简单的使用完整镜像名（例如 gcr.io/my_project/image:tag）。
+在 GCE 上运行的时候，Kubernetes 已经原生支持 [Google 容器仓库（GCR)](https://cloud.google.com/tools/container-registry/)。如果您的集群运行在 GCE 或者 GKE 上，只需简单的使用完整镜像名（例如 gcr.io/my_project/image:tag）。
 
 <!--
 All pods in a cluster will have read access to images in this registry.
@@ -178,7 +178,7 @@ images in the ECR registry.
 <!--
 The kubelet will fetch and periodically refresh ECR credentials.  It needs the following permissions to do this:
 -->
-kubelet将获取并定期刷新 ECR 凭证。它需要以下权限才能做到这一点：
+kubelet 将获取并定期刷新 ECR 凭证。它需要以下权限才能做到这一点：
 
 - `ecr:GetAuthorizationToken`
 - `ecr:BatchCheckLayerAvailability`
@@ -307,7 +307,7 @@ example, run these on your desktop/laptop:
    1. 获取 node 列表，例如：
       - 如果想要获取名字：`nodes=$(kubectl get nodes -o jsonpath='{range.items[*].metadata}{.name} {end}')`
       - 如果想要获取IP：`nodes=$(kubectl get nodes -o jsonpath='{range .items[*].status.addresses[?(@.type=="ExternalIP")]}{.address} {end}')`
-   1. 复制您本地的 `.docker/config.json` 文件到所有 node 的 root 用户家目录下。
+   1. 复制您本地的 `.docker/config.json` 文件到所有 node 的 root 用户 home 目录下。
       - 例如：`for n in $nodes; do scp ~/.docker/config.json root@$n:/root/.docker/config.json; done`
 
 <!--
@@ -581,7 +581,7 @@ common use cases and suggested solutions.
      - It will work better with cluster autoscaling than manual node configuration.
    - Or, on a cluster where changing the node configuration is inconvenient, use `imagePullSecrets`.
 -->
-1. 集群运行一些私有镜像，这些镜像应该隐藏在公司之外，但对所有集群用户都是可见的。
+1. 集群运行一些私有镜像，这些镜像应该对公司以外用户进行隐藏，但对所有集群用户都是可见的。
    - 使用托管的 [Docker 仓库](https://docs.docker.com/registry/)。
      - 它可能托管在 [Docker Hub](https://hub.docker.com/account/signup/) 上，或其它地方。
      - 像上面描述的那样在每个节点上手动配置 .docker/config.json。
