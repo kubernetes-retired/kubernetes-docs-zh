@@ -15,7 +15,7 @@ title: CoreOS on AWS or GCE
 <!--
 There are multiple guides on running Kubernetes with [CoreOS](https://coreos.com/kubernetes/docs/latest/):
 -->
-关于如何使用 coreOS 运行 Kubernetes，有多个指南。
+关于如何使用 coreOS 运行 Kubernetes，有多个指南可供参考。
 
 <!--
 ### Official CoreOS Guides
@@ -25,7 +25,7 @@ There are multiple guides on running Kubernetes with [CoreOS](https://coreos.com
 <!--
 These guides are maintained by CoreOS and deploy Kubernetes the "CoreOS Way" with full TLS, the DNS add-on, and more. These guides pass Kubernetes conformance testing and we encourage you to [test this yourself](https://coreos.com/kubernetes/docs/latest/conformance-tests.html).
 -->
-这些指南由 CoreOS 维护，描述 “CoreOS 方式” 部署 Kubernetes，包括完整的 TLS、DNS 插件（add-on）等等。这些指南通过了 Kubernetes 的一致性测试，我们也鼓励您 [亲自测试](https://coreos.com/kubernetes/docs/latest/conformance-tests.html)。
+这些指南由 CoreOS 维护，描述以 “CoreOS 方式” 部署 Kubernetes，包括完整的 TLS、DNS 插件（add-on）等等。这些指南通过了 Kubernetes 的一致性测试，我们也鼓励您 [亲自测试](https://coreos.com/kubernetes/docs/latest/conformance-tests.html)。
 
 <!--
 [**AWS Multi-Node**](https://coreos.com/kubernetes/docs/latest/kubernetes-on-aws.html)
@@ -120,7 +120,7 @@ Configure a Vagrant-based cluster of 3 machines with networking provided by Weav
 <!--
 [**Multi-node cluster using cloud-config and Vagrant**](https://github.com/pires/kubernetes-vagrant-coreos-cluster/blob/master/README.md)
 -->
-[**使用云配置和 Vagrant 的多节点集群**](https://github.com/pires/kubernetes-vagrant-coreos-cluster/blob/master/README.md)
+[**使用 cloud-config 和 Vagrant 的多节点集群**](https://github.com/pires/kubernetes-vagrant-coreos-cluster/blob/master/README.md)
 
 <!--
 Configure a single master, multi-worker cluster locally, running on your choice of hypervisor: VirtualBox, Parallels, or VMware
