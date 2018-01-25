@@ -1,32 +1,57 @@
 
+<!--
 Output shell completion code for the specified shell (bash or zsh).
+-->
+输出指定 shell (bash or zsh) 的自动完成代码。
 
+<!--
 ### Synopsis
+-->
+### 概览
 
 
 
+<!--
 Output shell completion code for the specified shell (bash or zsh).
 The shell code must be evalutated to provide interactive
 completion of kubeadm commands. This can be done by sourcing it from
 the .bash_profile.
+-->
+输出指定 shell (bash or zsh) 的自动完成代码。
 
+<!--
 Note: this requires the bash-completion framework, which is not installed
 by default on Mac. This can be installed by using homebrew:
 
     $ brew install bash-completion
+-->
+注意：这需要 bash-completion 框架，Mac 上没有默认安装。可以使用 homebrew 来安装：
 
+    $ brew install bash-completion
+
+<!--
 Once installed, bash_completion must be evaluated. This can be done by adding the
 following line to the .bash_profile
 
     $ source $(brew --prefix)/etc/bash_completion
+-->
+一旦安装后，bash_completion 必须被执行。可以通过添加下面一行代码到 .bash_profile 来完成。
 
+
+<!--
 Note for zsh users: [1] zsh completions are only supported in versions of zsh >= 5.2
+-->
+zsh 用户需要注意： [1] zsh 自动完成只在 zsh >= 5.2 的版本才支持。
 
 ```
 kubeadm completion SHELL
 ```
 
+<!--
 ### Examples
+-->
+### 示例
+
 
 ```
 
