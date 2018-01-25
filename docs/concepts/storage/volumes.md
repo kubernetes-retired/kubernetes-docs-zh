@@ -165,7 +165,7 @@ There are some restrictions when using an awsElasticBlockStore volume:
 
 -->
 
-## awsElasticBlockStore
+### awsElasticBlockStore
 
 `awsElasticBlockStore` 卷将Amazon Web Services（AWS）[EBS Volume](http://aws.amazon.com/ebs/) 挂载到您的容器中。不像 `emptyDir`，删除 Pod 时删除 EBS 卷的内容，只是卸载卷。这意味着 EBS 卷可以预先填充数据，并且可以在数据包之间“切换”数据。
 
@@ -253,7 +253,7 @@ More details can be found [here](https://github.com/kubernetes/examples/tree/{{p
 
 `azureFile` 用于将 Microsoft Azure FIle Volume（SMB 2.1 和 3.0）挂载到 Pod 中。
 
-更多细节可以在[这里](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/azure_file/README.md)找到。
+更多细节可以在[这里](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/azure_file/README.md)找到。
 
 ### cephfs
 
@@ -752,7 +752,7 @@ See the [iSCSI example](https://github.com/kubernetes/examples/tree/{{page.githu
 
 iSCSI 的一个特点是它可以同时被多个用户以只读方式安装。这意味着您可以预先使用您的数据集填充卷，然后根据需要向多个额 pod 同时提供。不幸的是，iSCSI 卷只能由单个使用者以读写模式挂载——不允许同时写入。
 
-有关更多详细信息，请参见 [iSCSI示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/iscsi)。
+有关更多详细信息，请参见 [iSCSI示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/iscsi)。
 
 ### local
 
@@ -870,7 +870,7 @@ See the [NFS example](https://github.com/kubernetes/examples/tree/{{page.githubb
 
 **重要提示**：您必须先拥有自己的 NFS 服务器才能使用它，然后才能使用它。
 
-有关更多详细信息，请参见[NFS示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/nfs)。
+有关更多详细信息，请参见[NFS示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/nfs)。
 
 ### persistentVolumeClaim
 
@@ -914,7 +914,7 @@ All sources are required to be in the same namespace as the pod. For more detail
 - [`downwardAPI`](#downwardapi)
 - `configMap`
 
-所有来源都必须在与 pod 相同的命名空间中。有关更多详细信息，请参阅[ all-in-one 卷设计文档](https://github.com/kubernetes/community/blob/ {{page.githubbranch}}/contributors/design-suggestions/node/all-in-one-volume.md)。
+所有来源都必须在与 pod 相同的命名空间中。有关更多详细信息，请参阅[ all-in-one 卷设计文档](https://github.com/kubernetes/community/blob/{{page.githubbranch}}/contributors/design-suggestions/node/all-in-one-volume.md)。
 
 <!--
 
@@ -1072,7 +1072,7 @@ More details and examples can be found [here](https://github.com/kubernetes/exam
 **重要提示**：在 pod 中使用之前，请确保您有一个名为 `pxvol` 的现有 PortworxVolume。
 {: .caution}
 
-更多的细节和例子可以在[这里](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}} /staging/volumes/portworx/README.md)找到。
+更多的细节和例子可以在[这里](https://github.com/kubernetes/examples/tree/{{page.githubbranch}} /staging/volumes/portworx/README.md)找到。
 
 ### quobyte
 
@@ -1093,7 +1093,7 @@ See the [Quobyte example](https://github.com/kubernetes/examples/tree/{{page.git
 
 **重要提示**：您必须先创建自己的 Quobyte 安装程序，然后才能使用它。
 
-有关更多详细信息，请参见 [Quobyte示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/quobyte)。
+有关更多详细信息，请参见 [Quobyte示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/quobyte)。
 
 ### rbd
 
@@ -1126,7 +1126,7 @@ See the [RBD example](https://github.com/kubernetes/examples/tree/{{page.githubb
 
 RBD 的一个特点是它可以同时为多个用户以只读方式挂载。这意味着可以预先使用您的数据集填充卷，然后根据需要同时为多个 pod 并行提供。不幸的是，RBD 卷只能由单个用户以读写模式安装——不允许同时写入。
 
-有关更多详细信息，请参阅 [RBD示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/rbd)。
+有关更多详细信息，请参阅 [RBD示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/rbd)。
 
 ### scaleIO
 
@@ -1146,7 +1146,7 @@ The following is an example pod configuration with ScaleIO:
 
 -->
 
-ScaleIO 是一个基于软件的存储平台，可以使用现有的硬件来创建可扩展的共享块网络存储集群。`scaleIO` 卷插件允许已部署的 pod 访问现有的 ScaleIO 卷（或者它可以为持久性卷声明动态调配新卷，请参阅 [ScaleIO 持久卷](/ docs/concepts/storage/persistent-volumes/#scaleio)）。
+ScaleIO 是一个基于软件的存储平台，可以使用现有的硬件来创建可扩展的共享块网络存储集群。`scaleIO` 卷插件允许已部署的 pod 访问现有的 ScaleIO 卷（或者它可以为持久性卷声明动态调配新卷，请参阅 [ScaleIO 持久卷](/docs/concepts/storage/persistent-volumes/#scaleio)）。
 
 **重要提示**：您必须先安装现有的 ScaleIO 集群，并使用创建的卷运行，然后才能使用它们。
 {: .caution}
@@ -1299,7 +1299,7 @@ of a volume are preserved when it is unmounted. It supports both VMFS and VSAN d
 
 -->
 
-**先决条件**：配置了 vSphere Cloud Provider 的 Kubernetes。有关云提供商的配置，请参阅 [vSphere 入门指南](/ docs/getting-started-guides/vsphere/)。
+**先决条件**：配置了 vSphere Cloud Provider 的 Kubernetes。有关云提供商的配置，请参阅 [vSphere 入门指南](/docs/getting-started-guides/vsphere/)。
 {: .note}
 
 `vsphereVolume` 用于将 vSphere VMDK 卷挂载到 Pod 中。卷的内容在卸载时会被保留。支持 VMFS 和 VSAN 数据存储。
