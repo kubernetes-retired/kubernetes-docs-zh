@@ -4,10 +4,12 @@ approvers:
 - mikedanese
 - saad-ali
 - thockin
-title: Volumes
+title: Volume
 ---
 
 {% capture overview %}
+
+<!--
 
 On-disk files in a container are ephemeral, which presents some problems for
 non-trivial applications when running in containers.  First, when a container
@@ -18,11 +20,19 @@ Kubernetes `Volume` abstraction solves both of these problems.
 
 Familiarity with [pods](/docs/user-guide/pods) is suggested.
 
+-->
+
+容器磁盘上的文件的生命周期是短暂的，这就使得在容器中运行重要应用时会出现一些问题。首先，让容器崩溃时，kubelet 会重启它，但是容器中的文件讲丢失——容器以干净的状态（镜像最初的状态）重新启动。其次，在 `Pod` 中同时运行多个容器时，这些容器之间通常需要共享文件。Kubernetes 中的 `Volume` 抽象就很好的解决了这些问题。
+
+建议先熟悉 [pod](/docs/user-guide/pods)。
+
 {% endcapture %}
 
 {:toc}
 
 {% capture body %}
+
+<!--
 
 ## Background
 
@@ -35,12 +45,26 @@ drivers, but the functionality is very limited for now (e.g. as of Docker 1.7
 only one volume driver is allowed per container and there is no way to pass
 parameters to volumes).
 
+-->
+
+## 背景
+
+Docker 中也有一个 [volume](https://docs.docker.com/engine/admin/volumes/) 的概念，尽管它稍微宽松一些，管理也很少。在 Docker 中，卷就像是磁盘或是另一个容器中的一个目录。它的生命周期不受管理，直到最近才有了 local-disk-backed 卷。Docker 现在提供了卷驱动程序，但是功能还非常有限（例如Docker1.7只允许每个容器使用一个卷驱动，并且无法给卷传递参数）。
+
+<!--
+
 A Kubernetes volume, on the other hand, has an explicit lifetime - the same as
 the pod that encloses it.  Consequently, a volume outlives any containers that run
 within the Pod, and data is preserved across Container restarts. Of course, when a
 Pod ceases to exist, the volume will cease to exist, too.  Perhaps more
 importantly than this, Kubernetes supports many types of volumes, and a Pod can
 use any number of them simultaneously.
+
+-->
+
+另一方面，Kubernetes 中的卷有明确的寿命——与封装它的 Pod 相同。所以，卷的生命比 Pod 中的所有容器都长，但个容器重启时数据仍然得意保存。当然，当 Pod 不再存在时，卷也将不复存在。也许更重要的是， Kubernetes 支持多种类型的卷，Pod 可以同时使用任意数量的卷。
+
+<!--
 
 At its core, a volume is just a directory, possibly with some data in it, which
 is accessible to the containers in a pod.  How that directory comes to be, the
@@ -53,6 +77,14 @@ field) and where to mount those into containers(the
 `spec.containers.volumeMounts`
 field).
 
+-->
+
+卷的核心是目录，可能还包含了一些数据，可以通过 pod 中的容器来访问。该目录是如何形成的，支持该目录的介质以及其内容取决于所使用的特定卷类型。
+
+要使用卷，需要为 pod 指定为卷（`spec.volumes` 字段）以及将它挂载到容器的位置（`spec.containers.volumeMounts` 字段）。
+
+<!--
+
 A process in a container sees a filesystem view composed from their Docker
 image and volumes.  The [Docker
 image](https://docs.docker.com/userguide/dockerimages/) is at the root of the
@@ -61,9 +93,21 @@ the image.  Volumes can not mount onto other volumes or have hard links to
 other volumes.  Each container in the Pod must independently specify where to
 mount each volume.
 
+-->
+
+容器中的进程看到由其 Docker 镜像和卷组成的文件系统视图。 [Docker 镜像](https://docs.docker.com/userguide/dockerimages/)位于文件系统层次结构的根目录，任何卷都被挂载在镜像的指定路径中。卷无法挂载到其他卷上或与其他卷有硬连接。 Pod 中的每个容器都必须独立指定每个卷的挂载位置。
+
+<!--
+
 ## Types of Volumes
 
 Kubernetes supports several types of Volumes:
+
+-->
+
+## 卷的类型
+
+Kubernetes 支持以下类型的卷：
 
    * `awsElasticBlockStore`
    * `azureDisk`
@@ -91,7 +135,15 @@ Kubernetes supports several types of Volumes:
    * `storageos`
    * `vsphereVolume`
 
+<!--
+
 We welcome additional contributions.
+
+-->
+
+我们欢迎额外贡献。
+
+<!--
 
 ### awsElasticBlockStore
 
@@ -111,18 +163,48 @@ There are some restrictions when using an awsElasticBlockStore volume:
 * those instances need to be in the same region and availability-zone as the EBS volume
 * EBS only supports a single EC2 instance mounting a volume
 
+-->
+
+## awsElasticBlockStore
+
+`awsElasticBlockStore` 卷将Amazon Web Services（AWS）[EBS Volume](http://aws.amazon.com/ebs/) 挂载到您的容器中。不像 `emptyDir`，删除 Pod 时删除 EBS 卷的内容，只是卸载卷。这意味着 EBS 卷可以预先填充数据，并且可以在数据包之间“切换”数据。
+
+**重要提示**：您必须使用 `aws ec2 create-volume` 或 AWS API 创建 EBS 卷，才能使用它。
+
+使用 awsElasticBlockStore 卷时有一些限制：
+
+- 运行 Pod 的节点必须是 AWS EC2 实例
+- 这些实例需要与 EBS 卷位于相同的区域和可用区域
+- EBS 仅支持卷和 EC2 实例的一对一的挂载
+
+<!--
+
 #### Creating an EBS volume
 
 Before you can use an EBS volume with a pod, you need to create it.
+
+-->
+
+#### 创建一个EBS卷
+
+在 pod 中使用的 EBS 卷之前，您需要先创建它。
 
 ```shell
 aws ec2 create-volume --availability-zone=eu-west-1a --size=10 --volume-type=gp2
 ```
 
+<!--
+
 Make sure the zone matches the zone you brought up your cluster in.  (And also check that the size and EBS volume
 type are suitable for your use!)
 
 #### AWS EBS Example configuration
+
+-->
+
+确保区域与您启动集群的区域相匹配（并且检查大小和 EBS 卷类型是否适合您的使用！）
+
+### AWS EBS 示例配置
 
 ```yaml
 apiVersion: v1
@@ -146,18 +228,36 @@ spec:
 
 ### azureDisk
 
+<!--
+
 A `azureDisk` is used to mount a Microsoft Azure [Data Disk](https://azure.microsoft.com/en-us/documentation/articles/virtual-machines-linux-about-disks-vhds/) into a Pod.
 
 More details can be found [here](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/azure_disk/README.md).
 
+-->
+
+`AzureDisk` 用于将 Microsoft Azure [Data Disk](https://azure.microsoft.com/zh-cn/documentation/articles/virtual-machines-linux-about-disks-vhds) 挂载到 Pod 中。
+
+更多细节可以在[这里](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/azure_disk/README.md)找到。
+
 ### azureFile
+
+<!--
 
 A `azureFile` is used to mount a Microsoft Azure File Volume (SMB 2.1 and 3.0)
 into a Pod.
 
 More details can be found [here](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/azure_file/README.md).
 
+-->
+
+`azureFile` 用于将 Microsoft Azure FIle Volume（SMB 2.1 和 3.0）挂载到 Pod 中。
+
+更多细节可以在[这里](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/azure_file/README.md)找到。
+
 ### cephfs
+
+<!--
 
 A `cephfs` volume allows an existing CephFS volume to be
 mounted into your pod. Unlike `emptyDir`, which is erased when a Pod is
@@ -171,7 +271,19 @@ writers simultaneously.
 
 See the [CephFS example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/cephfs/) for more details.
 
+-->
+
+`cephfs` 卷允许将现有的 CephFS 卷挂载到您的容器中。不像 `emptyDir`，当删除 Pod 时被删除，`cephfs` 卷的内容将被保留，卷仅仅是被卸载。这意味着 CephFS 卷可以预先填充数据，并且可以在数据包之间“切换”数据。 CephFS 可以被多个写设备同时挂载。
+
+**重要提示**：您必须先拥有自己的 Ceph 服务器，然后才能使用它。
+
+{: .caution}
+
+有关更多详细信息，请参见[CephFS示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/cephfs/)。
+
 ### csi
+
+<!--
 
 CSI stands for [Container Storage Interface](https://github.com/container-storage-interface/spec/blob/master/spec.md),
 a specification attempting to establish an industry standard interface that
@@ -203,14 +315,40 @@ A CSI persistent volume has the following fields for users to specify:
 - `readOnly`: An optional boolean value indicating whether the volume is to be
   published as read only. Default is false.
 
+-->
+
+CSI 代表[容器存储接口](https://github.com/container-storage-interface/spec/blob/master/spec.md)，CSI 试图建立一个行业标准接口的规范，借助 CSI 容器编排系统（CO）可以将任意存储系统暴露给自己的容器工作负载。有关详细信息，请查看[设计方案](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md)。
+
+<!--  TODO：添加链接到kubernetes扩展部分 -->
+
+`csi` 卷类型是一种 in-tree 的 CSI 卷插件，用于 Pod 与在同一节点上运行的外部 CSI 卷驱动程序交互。部署 CSI 兼容卷驱动后，用户可以使用 `csi` 作为卷类型来挂载驱动提供的存储。
+
+CSI 持久化卷支持是在 Kubernetes v1.9 中引入的，作为一个 alpha 特性，必须由集群管理员明确启用。换句话说，集群管理员需要在 apiserver、controller-manager 和 kubelet 组件的 “`--feature-gates =`” 标志中加上 “`CSIPersistentVolume = true`”。
+
+CSI 持久化卷具有以下字段可供用户指定：
+
+- `driver`：一个字符串值，指定要使用的卷驱动程序的名称。必须少于 63 个字符，并以一个字符开头。驱动程序名称可以包含 “。”、“ - ”、“_” 或数字。
+- `volumeHandle`：一个字符串值，唯一标识从 CSI 卷插件的 `CreateVolume` 调用返回的卷名。随后在卷驱动程序的所有后续调用中使用卷句柄来引用该卷。
+- `readOnly`：一个可选的布尔值，指示卷是否被发布为只读。默认是 false。
+
 ### downwardAPI
+
+<!--
 
 A `downwardAPI` volume is used to make downward API data available to applications.
 It mounts a directory and writes the requested data in plain text files.
 
 See the [`downwardAPI` volume example](/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/)  for more details.
 
+-->
+
+`downwardAPI` 卷用于使应用程序可用的 API 数据下沉。它挂载一个目录，并将请求的数据写入纯文本文件。
+
+参考 [`downwardAPI` 卷示例](/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/)查看详细信息。
+
 ### emptyDir
+
+<!--
 
 An `emptyDir` volume is first created when a Pod is assigned to a Node, and
 exists as long as that Pod is running on that node.  As the name says, it is
@@ -237,7 +375,26 @@ While tmpfs is very fast, be aware that unlike disks, tmpfs is cleared on
 node reboot and any files you write will count against your container's
 memory limit.
 
+-->
+
+当 Pod 被分配给节点时，首先创建 `emptyDir` 卷，并且只要该 Pod 在该节点上运行，该卷就会存在。正如卷的名字所述，它最初是空的。Pod 中的容器可以读取和写入 `emptyDir` 卷中的相同文件，尽管该卷可以挂载到每个容器中的相同或不同路径上。当出于任何原因从节点中删除 Pod 时，`emptyDir` 中的数据将被永久删除。
+
+**注意**：容器崩溃不会从节点中移除 pod，因此 `emptyDir` 卷中的数据在容器崩溃时是安全的。
+{: .note}
+
+`emptyDir` 的用法有：
+
+- 暂存空间，例如用于基于磁盘的合并排序
+- 用作长时间计算崩溃恢复时的检查点
+- Web服务器容器提供数据时，保存内容管理器容器提取的文件
+
+<!--
+
 #### Example pod
+
+-->
+
+#### Pod 示例
 
 ```yaml
 apiVersion: v1
@@ -258,6 +415,8 @@ spec:
 
 ### fc (fibre channel)
 
+<!--
+
 An `fc` volume allows an existing fibre channel volume to be mounted in a pod.
 You can specify single or multiple target World Wide Names using the parameter
 `targetWWNs` in your volume configuration. If multiple WWNs are specified,
@@ -268,7 +427,18 @@ targetWWNs expect that those WWNs are from multi-path connections.
 
 See the [FC example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/fibre_channel) for more details.
 
+-->
+
+fc 卷允许将现有的 `fc` 卷挂载到 pod 中。您可以使用卷配置中的 `targetWWN` 参数指定单个或多个目标全球通用名称（World Wide Name）。如果指定了多个 WWN，则 targetWWN 期望这些 WWN 来自多路径连接。
+
+**重要提示**：您必须配置 FC SAN 区域划分，以便将这些 LUN（卷）预先分配给目标 WWN，以便 Kubernetes 主机可以访问它们。
+{: .caution}
+
+参考 [FC  示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/fibre_channel)获取详细信息。
+
 ### flocker
+
+<!--
 
 [Flocker](https://clusterhq.com/flocker) is an open-source clustered container data volume manager. It provides management
 and orchestration of data volumes backed by a variety of storage backends.
@@ -284,7 +454,20 @@ can be "handed off" between pods as required.
 
 See the [Flocker example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/flocker) for more details.
 
+-->
+
+[Flocker](https://clusterhq.com/flocker) 是一款开源的集群容器数据卷管理器。它提供了由各种存储后端支持的数据卷的管理和编排。
+
+`flocker` 允许将 Flocker 数据集挂载到 pod 中。如果数据集在 Flocker 中不存在，则需要先使用 Flocker CLI 或使用 Flocker API 创建数据集。如果数据集已经存在，它将被 Flocker 重新连接到 pod 被调度的节点上。这意味着数据可以根据需要在数据包之间“切换”。
+
+**重要提示**：您必须先运行自己的 Flocker 安装程序才能使用它。
+{: .caution}
+
+参考 [Flocker 示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/flocker)获取更多详细信息。
+
 ### gcePersistentDisk
+
+<!--
 
 A `gcePersistentDisk` volume mounts a Google Compute Engine (GCE) [Persistent
 Disk](http://cloud.google.com/compute/docs/disks) into your pod.  Unlike
@@ -313,11 +496,35 @@ the PD is read-only or the replica count is 0 or 1.
 
 Before you can use a GCE PD with a pod, you need to create it.
 
+->
+
+`gcePersistentDisk` 卷将 Google Compute Engine（GCE）[Persistent Disk](http://cloud.google.com/compute/docs/disks) 挂载到您的容器中。与删除 Pod 时删除的 `emptyDir` 不同，PD 的内容被保留，只是卸载了卷。这意味着 PD 可以预先填充数据，并且数据可以在 Pod 之间“切换”。
+
+**重要提示**：您必须先使用 gcloud 或 GCE API 或 UI 创建一个 PD，然后才能使用它。
+
+使用 `gcePersistentDisk` 时有一些限制：
+
+- 运行 Pod 的节点必须是 GCE 虚拟机
+- 那些虚拟机需要在与 PD 一样在 GCE 项目和区域中
+
+PD 的一个特点是它们可以同时被多个用户以只读方式挂载。这意味着您可以预先使用您的数据集填充 PD，然后根据需要给多个 Pod 中并行提供。不幸的是，只能由单个消费者以读写模式挂载 PD，而不允许同时写入。
+在由 ReplicationController 控制的 pod 上使用 PD 将会失败，除非 PD 是只读的或者副本数是 0 或 1。
+
+#### 创建 PD
+
+在您在 pod 中使用 GCE PD 之前，需要先创建它。
+
 ```shell
 gcloud compute disks create --size=500GB --zone=us-central1-a my-data-disk
 ```
 
+<!--
+
 #### Example pod
+
+-->
+
+#### Pod 示例
 
 ```yaml
 apiVersion: v1
@@ -341,12 +548,20 @@ spec:
 
 ### gitRepo
 
+<!--
+
 A `gitRepo` volume is an example of what can be done as a volume plugin.  It
 mounts an empty directory and clones a git repository into it for your pod to
 use.  In the future, such volumes may be moved to an even more decoupled model,
 rather than extending the Kubernetes API for every such use case.
 
 Here is an example for gitRepo volume:
+
+->
+
+`gitRepo` 卷是一个可以做为卷插件的例子。它会挂载一个空目录并将 git 存储库克隆到您的容器中。将来，这样的卷可能会转移到一个更加分离的模型，而不是为每个这样的用例扩展 Kubernetes API。
+
+下面是 gitRepo 卷示例：
 
 ```yaml
 apiVersion: v1
@@ -369,6 +584,8 @@ spec:
 
 ### glusterfs
 
+<!--
+
 A `glusterfs` volume allows a [Glusterfs](http://www.gluster.org) (an open
 source networked filesystem) volume to be mounted into your pod.  Unlike
 `emptyDir`, which is erased when a Pod is removed, the contents of a
@@ -382,7 +599,17 @@ simultaneously.
 
 See the [GlusterFS example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/glusterfs) for more details.
 
+-->
+
+`glusterfs` 卷允许将 [Glusterfs](http://www.gluster.org)（一个开放源代码的网络文件系统）卷挂载到您的群集中。与删除 Pod 时删除的 `emptyDir` 不同，`glusterfs` 卷的内容将被保留，而卷仅仅被卸载。这意味着 glusterfs 卷可以预先填充数据，并且可以在数据包之间“切换”数据。 GlusterFS 可以同时由多个写入挂载。
+
+**重要提示**：您必须先运行自己的 GlusterFS 安装，才能使用它。
+
+有关更多详细信息，请参阅 [GlusterFS](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/glusterfs) 示例。
+
 ### hostPath
+
+<!--
 
 A `hostPath` volume mounts a file or directory from the host node's filesystem
 into your pod. This is not something that most Pods will need, but it offers a
@@ -400,17 +627,48 @@ In addition to the required `path` property, user can optionally specify a `type
 
 The supported values for field `type` are:
 
+-->
 
-| Value | Behavior |
-|:------|:---------|
-| | Empty string (default) is for backward compatibility, which means that no checks will be performed before mounting the hostPath volume. |
+`hostPath` 卷将主机节点的文件系统中的文件或目录挂载到集群中。该功能大多数 Pod 都用不到，但它为某些应用程序提供了一个强大的退出方法。
+
+例如，`hostPath` 的用途如下：
+
+- 运行需要访问 Docker 内部的容器；使用 `/var/lib/docker` 的 `hostPath`
+- 在容器中运行 cAdvisor；使用 `/dev/cgroups` 的 `hostPath`
+- 允许 pod 指定给定的 hostPath 是否应该在 pod 运行之前存在，是否应该创建，以及它应该以什么形式存在
+
+除了所需的 `path` 属性之外，用户还可以为 `hostPath` 卷指定 `type`。
+
+`type` 字段支持以下值：
+
+<!--
+
+
+| Value               | Behavior                                 |
+| :------------------ | :--------------------------------------- |
+|                     | Empty string (default) is for backward compatibility, which means that no checks will be performed before mounting the hostPath volume. |
 | `DirectoryOrCreate` | If nothing exists at the given path, an empty directory will be created there as needed with permission set to 0755, having the same group and ownership with Kubelet. |
-| `Directory` | A directory must exist at the given path |
-| `FileOrCreate` | If nothing exists at the given path, an empty file will be created there as needed with permission set to 0644, having the same group and ownership with Kubelet. |
-| `File` | A file must exist at the given path |
-| `Socket` | A UNIX socket must exist at the given path |
-| `CharDevice` | A character device must exist at the given path |
-| `BlockDevice` | A block device must exist at the given path |
+| `Directory`         | A directory must exist at the given path |
+| `FileOrCreate`      | If nothing exists at the given path, an empty file will be created there as needed with permission set to 0644, having the same group and ownership with Kubelet. |
+| `File`              | A file must exist at the given path      |
+| `Socket`            | A UNIX socket must exist at the given path |
+| `CharDevice`        | A character device must exist at the given path |
+| `BlockDevice`       | A block device must exist at the given path |
+
+-->
+
+| 值                   | 行为                                       |
+| :------------------ | :--------------------------------------- |
+|                     | 空字符串（默认）用于向后兼容，这意味着在挂载 hostPath 卷之前不会执行任何检查。 |
+| `DirectoryOrCreate` | 如果在给定的路径上没有任何东西存在，那么将根据需要在那里创建一个空目录，权限设置为 0755，与 Kubelet 具有相同的组和所有权。 |
+| `Directory`         | 给定的路径下必须存在目录                             |
+| `FileOrCreate`      | 如果在给定的路径上没有任何东西存在，那么会根据需要创建一个空文件，权限设置为 0644，与 Kubelet 具有相同的组和所有权。 |
+| `File`              | 给定的路径下必须存在文件                             |
+| `Socket`            | 给定的路径下必须存在 UNIX 套接字                      |
+| `CharDevice`        | 给定的路径下必须存在字符设备                           |
+| `BlockDevice`       | 给的路径下必须窜爱块设备                             |
+
+<!--
 
 Watch out when using this type of volume, because:
 
@@ -423,7 +681,21 @@ Watch out when using this type of volume, because:
   [privileged container](/docs/user-guide/security-context) or modify the file
   permissions on the host to be able to write to a `hostPath` volume
 
+-->
+
+注意使用卷的类型，因为：
+
+- 由于每个节点上的文件都不同，具有相同配置（例如从 podTemplate 创建的）的 pod 在不同节点上的行为可能会有所不同
+- 当 Kubernetes 按照计划添加资源感知调度时，将无法考虑 `hostPath` 使用的资源
+- 在底层主机上创建的文件或目录只能由 root 写入。您需要在[特权容器](/docs/user-guide/security-context)中以 root 身份运行进程，或修改主机上的文件权限以便写入 `hostPath` 卷
+
+<!--
+
 #### Example pod
+
+-->
+
+#### Pod 示例
 
 ```yaml
 apiVersion: v1
@@ -448,6 +720,8 @@ spec:
 
 ### iscsi
 
+<!--
+
 An `iscsi` volume allows an existing iSCSI (SCSI over IP) volume to be mounted
 into your pod.  Unlike `emptyDir`, which is erased when a Pod is removed, the
 contents of an `iscsi` volume are preserved and the volume is merely
@@ -465,9 +739,21 @@ simultaneous writers allowed.
 
 See the [iSCSI example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/iscsi) for more details.
 
+-->
+
+`iscsi` 卷允许将现有的 iSCSI（SCSI over IP）卷挂载到容器中。不像 `emptyDir`，删除 Pod 时 `iscsi` 卷的内容将被保留，卷仅仅是被卸载。这意味着 iscsi 卷可以预先填充数据，并且这些数据可以在 pod 之间“切换”。
+
+**重要提示：**必须先创建自己的 iSCSI 服务器，然后才能使用它。
+
+iSCSI 的一个特点是它可以同时被多个用户以只读方式安装。这意味着您可以预先使用您的数据集填充卷，然后根据需要向多个额 pod 同时提供。不幸的是，iSCSI 卷只能由单个使用者以读写模式挂载——不允许同时写入。
+
+有关更多详细信息，请参见 [iSCSI示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/iscsi)。
+
 ### local
 
 {% assign for_k8s_version="v1.7" %}{% include feature-state-alpha.md %}
+
+<!--
 
 This alpha feature requires the `PersistentLocalVolumes` feature gate to be
 enabled.
@@ -488,6 +774,22 @@ However, local volumes are still subject to the availability of the underlying
 node and are not suitable for all applications.
 
 The following is an example PersistentVolume spec using a `local` volume:
+
+-->
+
+这个 alpha 功能要求启用 `PersistentLocalVolumes` 功能门。
+
+**注意：**从 1.9 开始，`VolumeScheduling` 功能门也必须启用。
+
+`local` 卷表示挂载的本地存储设备，如磁盘、分区或目录。
+
+本地卷只能用作静态创建的 PersistentVolume。
+
+与 HostPath 卷相比，local 卷可以以持久的方式使用，而无需手动将 pod 调度到节点上，因为系统通过查看 PersistentVolume 上的节点关联性来了解卷的节点约束。
+
+但是，local 卷仍然受底层节点的可用性影响，并不适用于所有应用程序。
+
+以下是使用 `local` 卷的示例 PersistentVolume 规范：
 
 ``` yaml
 apiVersion: v1
@@ -517,6 +819,8 @@ spec:
       path: /mnt/disks/ssd1
 ```
 
+<!--
+
 **Note:** The local PersistentVolume cleanup and deletion requires manual intervention without the external provisioner.
 {: .note}
 
@@ -530,7 +834,18 @@ selectors, pod affinity, and pod anti-affinity.
 For details on the `local` volume type, see the [Local Persistent Storage
 user guide](https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume).
 
+-->
+
+**注意**：本地 PersistentVolume 清理和删除需要手动干预，无外部提供程序。
+{: .note}
+
+从 1.9 开始，本地卷绑定可以被延迟，直到通过具有 StorageClass 中的 `WaitForFirstConsumer` 设置为`volumeBindingMode` 的 pod 开始调度。请参阅[示例](storage-classes.md＃local)。延迟卷绑定可确保卷绑定决策也可以使用任何其他节点约束（例如节点资源需求，节点选择器，pod 亲和性和 pod 反亲和性）进行评估。
+
+有关 `local` 卷类型的详细信息，请参见[本地持久化存储用户指南](https://github.com/kubernetes-incubator/external-storage/tree/master/local-volume)。
+
 ### nfs
+
+<!--
 
 An `nfs` volume allows an existing NFS (Network File System) share to be
 mounted into your pod. Unlike `emptyDir`, which is erased when a Pod is
@@ -544,7 +859,17 @@ writers simultaneously.
 
 See the [NFS example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/nfs) for more details.
 
+-->
+
+`nfs` 卷允许将现有的 NFS（网络文件系统）共享挂载到您的容器中。不像 `emptyDir`，当删除 Pod 时，`nfs` 卷的内容被保留，卷仅仅是被卸载。这意味着 NFS 卷可以预填充数据，并且可以在 pod 之间“切换”数据。 NFS 可以被多个写入者同时挂载。
+
+**重要提示：**您必须先拥有自己的 NFS 服务器才能使用它，然后才能使用它。
+
+有关更多详细信息，请参见[NFS示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/nfs)。
+
 ### persistentVolumeClaim
+
+<!--
 
 A `persistentVolumeClaim` volume is used to mount a
 [PersistentVolume](/docs/concepts/storage/persistent-volumes/) into a pod.  PersistentVolumes are a
@@ -554,7 +879,15 @@ iSCSI volume) without knowing the details of the particular cloud environment.
 See the [PersistentVolumes example](/docs/concepts/storage/persistent-volumes/) for more
 details.
 
+-->
+
+`persistentVolumeClaim` 卷用于将 [PersistentVolume](/docs/concepts/storage/persistent-volumes/) 挂载到容器中。PersistentVolumes 是在用户不知道特定云环境的细节的情况下“声明”持久化存储（例如 GCE PersistentDisk 或 iSCSI 卷）的一种方式。
+
+有关更多详细信息，请参阅 [PersistentVolumes 示例](/docs/concepts/storage/persistent-volumes /)。
+
 ### projected
+
+<!--
 
 A `projected` volume maps several existing volume sources into the same directory.
 
@@ -566,7 +899,25 @@ Currently, the following types of volume sources can be projected:
 
 All sources are required to be in the same namespace as the pod. For more details, see the [all-in-one volume design document](https://github.com/kubernetes/community/blob/{{page.githubbranch}}/contributors/design-proposals/node/all-in-one-volume.md).
 
+-->
+
+`projected` 卷将几个现有的卷源映射到同一个目录中。
+
+目前，可以映射以下类型的卷来源：
+
+- [`secret`](#secret)
+- [`downwardAPI`](#downwardapi)
+- `configMap`
+
+所有来源都必须在与 pod 相同的命名空间中。有关更多详细信息，请参阅[ all-in-one 卷设计文档](https://github.com/kubernetes/community/blob/ {{page.githubbranch}}/contributors/design-suggestions/node/all-in-one-volume.md)。
+
+<!--
+
 #### Example pod with a secret, a downward API, and a configmap.
+
+-->
+
+#### 带有 secret、downward API 和 configmap 的 pod
 
 ```yaml
 apiVersion: v1
@@ -606,7 +957,13 @@ spec:
               path: my-group/my-config
 ```
 
+<!--
+
 #### Example pod with multiple secrets with a non-default permission mode set.
+
+-->
+
+#### 使用非默认权限模式设置多个 secret 的示例 pod
 
 ```yaml
 apiVersion: v1
@@ -638,6 +995,8 @@ spec:
               mode: 511
 ```
 
+<!--
+
 Each projected volume source is listed in the spec under `sources`. The
 parameters are nearly the same with two exceptions:
 
@@ -647,7 +1006,16 @@ parameters are nearly the same with two exceptions:
   volume source. However, as illustrated above, you can explicitly set the `mode`
   for each individual projection.
 
+-->
+
+每个映射的卷来源在 `sources` 下的规格中列出。除了以下两个例外，参数几乎相同：
+
+- 对于 secret，`secretName` 字段已经被更改为 `name` 以与 ConfigMap 命名一致。
+- `defaultMode` 只能在映射级别指定，而不能针对每个卷源指定。但是，如上所述，您可以明确设置每个映射的 `mode`。
+
 ### portworxVolume
+
+<!--
 
 A `portworxVolume` is an elastic block storage layer that runs hyperconverged with
 Kubernetes. Portworx fingerprints storage in a server, tiers based on capabilities,
@@ -657,6 +1025,14 @@ machines or on bare metal Linux nodes.
 A `portworxVolume` can be dynamically created through Kubernetes or it can also
 be pre-provisioned and referenced inside a Kubernetes pod.
 Here is an example pod referencing a pre-provisioned PortworxVolume:
+
+-->
+
+`portworxVolume `是一个弹性块存储层，与 Kubernetes 超级聚合。Portwork 指纹存储在服务器中，基于功能的分层，以及跨多个服务器聚合容量。 Portworx 在虚拟机或裸机 Linux 节点上运行。
+
+`portworxVolume` 可以通过 Kubernetes 动态创建，也可以在 Kubernetes pod 中预先设置和引用。
+
+以下是一个引用预先配置的 PortworxVolume 的示例窗格：
 
 ```yaml
 apiVersion: v1
@@ -678,13 +1054,24 @@ spec:
       fsType: "<fs-type>"
 ```
 
+<!--
+
 **Important:** Make sure you have an existing PortworxVolume with name `pxvol`
 before using it in the pod.
 {: .caution}
 
 More details and examples can be found [here](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/portworx/README.md).
 
+-->
+
+**重要提示**：在 pod 中使用之前，请确保您有一个名为 `pxvol` 的现有 PortworxVolume。
+{: .caution}
+
+更多的细节和例子可以在[这里](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}} /staging/volumes/portworx/README.md)找到。
+
 ### quobyte
+
+<!--
 
 A `quobyte` volume allows an existing [Quobyte](http://www.quobyte.com) volume to
 be mounted into your pod.
@@ -695,7 +1082,17 @@ created before you can use it.
 
 See the [Quobyte example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/quobyte) for more details.
 
+-->
+
+`quobyte` 卷允许将现有的 [Quobyte](http://www.quobyte.com) 卷挂载到容器中。
+
+**重要提示**：您必须先创建自己的 Quobyte 安装程序，然后才能使用它。
+
+有关更多详细信息，请参见 [Quobyte示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/quobyte)。
+
 ### rbd
+
+<!--
 
 An `rbd` volume allows a [Rados Block
 Device](http://ceph.com/docs/master/rbd/rbd/) volume to be mounted into your
@@ -715,7 +1112,20 @@ simultaneous writers allowed.
 
 See the [RBD example](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/rbd) for more details.
 
+-->
+
+`rbd` 卷允许将 [Rados Block Device](http://ceph.com/docs/master/rbd/rbd/) 卷挂载到容器中。不像 `emptyDir`，删除 Pod 时 `rbd `卷的内容被保留，卷仅仅被卸载。这意味着 RBD 卷可以预先填充数据，并且可以在 pod 之间“切换”数据。
+
+**重要提示**：您必须先运行自己的 Ceph 安装，然后才能使用 RBD。
+{: .caution}
+
+RBD 的一个特点是它可以同时为多个用户以只读方式挂载。这意味着可以预先使用您的数据集填充卷，然后根据需要同时为多个 pod 并行提供。不幸的是，RBD 卷只能由单个用户以读写模式安装——不允许同时写入。
+
+有关更多详细信息，请参阅 [RBD示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/rbd)。
+
 ### scaleIO
+
+<!--
 
 ScaleIO is a software-based storage platform that can use existing hardware to
 create clusters of scalable shared block networked storage. The `scaleIO` volume
@@ -728,6 +1138,15 @@ running with the volumes created before you can use them.
 {: .caution}
 
 The following is an example pod configuration with ScaleIO:
+
+-->
+
+ScaleIO 是一个基于软件的存储平台，可以使用现有的硬件来创建可扩展的共享块网络存储集群。`scaleIO` 卷插件允许已部署的 pod 访问现有的 ScaleIO 卷（或者它可以为持久性卷声明动态调配新卷，请参阅 [ScaleIO 持久卷](/ docs/concepts/storage/persistent-volumes/#scaleio)）。
+
+**重要提示**：您必须先安装现有的 ScaleIO 集群，并使用创建的卷运行，然后才能使用它们。
+{: .caution}
+
+以下是使用 ScaleIO 的示例 pod 配置：
 
 ```yaml
 apiVersion: v1
@@ -754,9 +1173,17 @@ spec:
       fsType: xfs
 ```
 
+<!--
+
 For further detail, please the see the [ScaleIO examples](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/scaleio).
 
+-->
+
+有关更多详细信息，请参阅 [ScaleIO 示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/staging/volumes/scaleio)。
+
 ### secret
+
+<!--
 
 A `secret` volume is used to pass sensitive information, such as passwords, to
 pods.  You can store secrets in the Kubernetes API and mount them as files for
@@ -769,7 +1196,18 @@ non-volatile storage.
 
 Secrets are described in more detail [here](/docs/user-guide/secrets).
 
+-->
+
+`秘密` 卷用于将敏感信息（如密码）传递到 pod。您可以将 secret 存储在 Kubernetes API 中，并将它们挂载为文件，以供 Pod 使用，而无需直接连接到 Kubernetes。 `secret` 卷由 tmpfs（一个 RAM 支持的文件系统）支持，所以它们永远不会写入非易失性存储器。
+
+**重要提示**：您必须先在 Kubernetes API 中创建一个 secret，然后才能使用它。
+{: .caution}
+
+Secret 在[这里](/ docs/user-guide/secrets)被更详细地描述。
+
 ### storageOS
+
+<!--
 
 A `storageos` volume allows an existing [StorageOS](https://www.storageos.com)
 volume to be mounted into your pod.
@@ -788,6 +1226,19 @@ A free developer license is available.
 access StorageOS volumes or that will contribute storage capacity to the pool.
 For installation instructions, consult the
 [StorageOS documentation](https://docs.storageos.com).
+{: .caution}
+
+-->
+
+`storageos` 卷允许将现有的 [StorageOS](https://www.storageos.com) 卷挂载到容器中。
+
+StorageOS 在 Kubernetes 环境中以容器方式运行，使本地或附加存储可以从 Kubernetes 集群中的任何节点访问。可以复制数据以防止节点故障。精简配置和压缩可以提高利用率并降低成本。
+
+StorageOS 的核心是为容器提供块存储，可以通过文件系统访问。
+
+StorageOS 容器需要 64 位 Linux，没有额外的依赖关系。可以使用免费的开发者许可证。
+
+**重要提示：**您必须在每个要访问 StorageOS 卷的节点上运行 StorageOS 容器，或者为该池提供存储容量。有关安装说明，请参阅 [StorageOS文档](https://docs.storageos.com)。
 {: .caution}
 
 ```yaml
@@ -818,10 +1269,18 @@ spec:
         fsType: ext4
 ```
 
+<!--
+
 For more information including Dynamic Provisioning and Persistent Volume Claims, please see the
 [StorageOS examples](https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/storageos).
 
+-->
+
+有关更多信息，包括动态配置和持久化卷声明，请参阅 [StorageOS 示例](https://github.com/kubernetes/kubernetes/tree/master/examples/volumes/storageos)。
+
 ### vsphereVolume
+
+<!--
 
 **Prerequisite:** Kubernetes with vSphere Cloud Provider configured. For cloudprovider
 configuration please refer [vSphere getting started guide](/docs/getting-started-guides/vsphere/).
@@ -833,12 +1292,37 @@ of a volume are preserved when it is unmounted. It supports both VMFS and VSAN d
 **Important:** You must create VMDK using one of the following method before using with POD.
 {: .caution}
 
+-->
+
+**先决条件：**配置了 vSphere Cloud Provider 的 Kubernetes。有关云提供商的配置，请参阅 [vSphere 入门指南](/ docs/getting-started-guides/vsphere/)。
+{: .note}
+
+`vsphereVolume` 用于将 vSphere VMDK 卷挂载到 Pod 中。卷的内容在卸载时会被保留。支持 VMFS 和 VSAN 数据存储。
+
+**重要提示**：在 Pod 中使用它之前，您必须使用以下一种方法创建 VMDK。
+{: .caution}
+
+<!--
+
 #### Creating a VMDK volume
 
 Choose one of the following methods to create a VMDK.
 
+-->
+
+#### 创建 VMDK 卷
+
+选择以下方法之一来创建 VMDK。
+
 {% capture vmkfstools %}
+
+<!--
+
 First ssh into ESX, then use the following command to create a VMDK:
+
+-->
+
+首先进入 ESX，然后使用以下命令创建一个 VMDK：
 
 ```shell
 vmkfstools -c 2G /vmfs/volumes/DatastoreName/volumes/myDisk.vmdk
@@ -846,7 +1330,14 @@ vmkfstools -c 2G /vmfs/volumes/DatastoreName/volumes/myDisk.vmdk
 {% endcapture %}
 
 {% capture vdiskmanager %}
+
+<!--
+
 Use the following command to create a VMDK:
+
+-->
+
+使用下列命令创建一个 VMDK：
 
 ```shell
 vmware-vdiskmanager -c -t 0 -s 40GB -a lsilogic myDisk.vmdk
@@ -857,7 +1348,13 @@ vmware-vdiskmanager -c -t 0 -s 40GB -a lsilogic myDisk.vmdk
 {% assign tab_contents = site.emptyArray | push: vmkfstools | push: vdiskmanager %}
 {% include tabs.md %}
 
+<!--
+
 #### vSphere VMDK Example configuration
+
+-->
+
+#### vSphere VMDK 示例配置
 
 ```yaml
 apiVersion: v1
@@ -879,7 +1376,15 @@ spec:
       fsType: ext4
 ```
 
+<!--
+
 More examples can be found [here](https://github.com/kubernetes/examples/tree/master/staging/volumes/vsphere).
+
+-->
+
+更多的例子可以在[这里](https://github.com/kubernetes/examples/tree/master/staging/volumes/vsphere)找到。
+
+<!--
 
 
 ## Using subPath
@@ -889,6 +1394,14 @@ property can be used to specify a sub-path inside the referenced volume instead 
 
 Here is an example of a pod with a LAMP stack (Linux Apache Mysql PHP) using a single, shared volume.
 The HTML contents are mapped to its `html` folder, and the databases will be stored in its `mysql` folder:
+
+-->
+
+## 使用 subPath
+
+有时，在单个容器中共享一个卷用于多个用途是有用的。`volumeMounts.subPath` 属性可用于在引用的卷内而不是其根目录中指定子路径。
+
+下面是一个使用单个共享卷的 LAMP 堆栈（Linux Apache Mysql PHP）的示例。 HTML 内容被映射到它的 html 目录，数据库将被存储在它的 mysql 目录中：
 
 ```yaml
 apiVersion: v1
@@ -918,6 +1431,8 @@ spec:
         claimName: my-lamp-site-data
 ```
 
+<!--
+
 ## Resources
 
 The storage media (Disk, SSD, etc.) of an `emptyDir` volume is determined by the
@@ -931,7 +1446,18 @@ request a certain amount of space using a [resource](/docs/user-guide/compute-re
 specification, and to select the type of media to use, for clusters that have
 several media types.
 
+-->
+
+## 资源
+
+`emptyDir` 卷的存储介质（磁盘、SSD 等）由保存在 kubelet 根目录的文件系统的介质（通常是 `/var/lib/kubelet`）决定。 `emptyDir` 或 `hostPath` 卷可占用多少空间并没有限制，容器之间或 Pod 之间也没有隔离。
+
+在将来，我们预计 `emptyDir` 和 `hostPath` 卷将能够使用 [resource](/docs/user-guide/compute-resources) 规范请求一定的空间，并选择要使用的介质，适用于具有多种媒体类型的群集。
+
+<!--
+
 ## Out-of-Tree Volume Plugins
+
 In addition to the previously listed volume types, storage vendors may create
 custom plugins without adding it to the Kubernetes repository. This can be
 achieved by using the `FlexVolume` plugin.
@@ -942,6 +1468,18 @@ defined by the `FlexVolume` API. Drivers must be installed in a pre-defined
 volume plugin path on each node.
 
 More details can be found [here](https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md).
+
+-->
+
+## Out-of-Tree 卷插件
+
+除了之前列出的卷类型之外，存储供应商可以创建自定义插件而不将其添加到 Kubernetes 存储库中。可以通过使用 `FlexVolume` 插件来实现。
+
+`FlexVolume`使用户能够将供应商卷挂载到容器中。供应商插件是使用驱动程序实现的，该驱动程序支持由 `FlexVolume` API定义的一系列卷命令。驱动程序必须安装在每个节点的预定义卷插件路径中。
+
+更多细节可以在[这里](https://github.com/kubernetes/community/blob/master/contributors/devel/flexvolume.md)找到。
+
+<!--
 
 
 ## Mount propagation
@@ -960,6 +1498,20 @@ That is, Containers run with `private` mount propagation as described in the
 To enable this feature, specify `MountPropagation=true` in the
 `--feature-gates` command line option. When enabled, the `volumeMounts` field
 of a Container has a new `mountPropagation` subfield. Its values are:
+
+-->
+
+## 挂载传播
+
+**注意**：挂载传播是 Kubernetes 1.8 中的一个 alpha 特性，在将来的版本中可能会重新设计甚至删除。
+
+挂载传播允许将由容器挂载的卷共享到同一个 Pod 中的其他容器上，甚至是同一节点上的其他 Pod。
+
+如果禁用 MountPropagation 功能，则不会传播 pod 中的卷挂载。也就是说，容器按照 [Linux内核文档](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt)中所述的 `private` 挂载传播运行。
+
+要启用此功能，请在 `--feature-gates` 命令行选项中指定 `MountPropagation = true`。启用时，容器的 `volumeMounts` 字段有一个新的 `mountPropagation` 子字段。它的价值是：
+
+<!--
 
  * `HostToContainer` - This volume mount will receive all subsequent mounts
    that are mounted to this volume or any of its subdirectories. This is
@@ -985,17 +1537,47 @@ of a Container has a new `mountPropagation` subfield. Its values are:
    This mode is equal to `rshared` mount propagation as described in the
    [Linux kernel documentation](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt)
 
+-->
+
+- `HostToContainer`：此卷挂载将接收所有后续挂载到此卷或其任何子目录的挂载。这是 MountPropagation 功能启用时的默认模式。
+
+  换句话说，如果主机在卷挂载中挂载了任何东西，容器都可以看到。
+
+  同样的，如果任何带有 `Bidirectional` 挂载传播的 pod 挂载到同一个卷上，带有 `HostToContainer` 挂载传播的容器将会看到它。
+
+  该模式等同于[Linux内核文档](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt)中描述的 `rslave` 挂载传播。
+
+- `Bidirectional` 卷挂载与 `HostToContainer` 挂载相同。另外，由容器创建的所有卷挂载将被传播回主机和所有使用相同卷的容器的所有容器。
+
+  此模式的一个典型用例是带有 Flex 卷驱动器或需要使用 HostPath 卷在主机上挂载某些内容的 pod。
+
+  该模式等同于 [Linux内核文档](https://www.kernel.org/doc/Documentation/filesystems/sharedsubtree.txt)中所述的 `rshared` 挂载传播。
+
+<!--
+
 **Caution:** `Bidirectional` mount propagation can be dangerous. It can damage
 the host operating system and therefore it is allowed only in privileged
 Containers. Familiarity with Linux kernel behavior is strongly recommended.
 In addition, any volume mounts created by Containers in Pods must be destroyed
 (unmounted) by the Containers on termination.
+
+-->
+
+**小心**：双向挂载传播可能是危险的。它可能会损坏主机操作系统，因此只能在特权容器中使用。强烈建议熟悉 Linux 内核行为。另外，容器在 Pod 中创建的任何卷挂载必须在容器终止时销毁（卸载）。
 {: .caution}
 
 {% endcapture %}
 
 {% capture whatsnext %}
+
+<!--
+
 * Follow an example of [deploying WordPress and MySQL with Persistent Volumes](/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/).
-{% endcapture %}
+  {% endcapture %}
+
+-->
+
+- 以[使用持久化卷来部署 WordPress 和 MySQL](/docs/tutorials/stateful-application/mysql-wordpress-persistent-volume/) 为例。
+  {% endcapture %}
 
 {% include templates/concept.md %}
