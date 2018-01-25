@@ -292,7 +292,12 @@ to their container workloads.
 For more information about the details, please check the
 [design proposal](https://github.com/kubernetes/community/blob/master/contributors/design-proposals/storage/container-storage-interface.md).
 
+-->
+
 <!-- TODO: add link to the kubernetes extension section -->
+
+<!--
+
 The `csi` volume type is an in-tree CSI volume plugin for Pods to interact
 with external CSI volume drivers running on the same node.
 After having deployed a CSI compatible volume driver, users can use `csi` as the
@@ -743,7 +748,7 @@ See the [iSCSI example](https://github.com/kubernetes/examples/tree/{{page.githu
 
 `iscsi` 卷允许将现有的 iSCSI（SCSI over IP）卷挂载到容器中。不像 `emptyDir`，删除 Pod 时 `iscsi` 卷的内容将被保留，卷仅仅是被卸载。这意味着 iscsi 卷可以预先填充数据，并且这些数据可以在 pod 之间“切换”。
 
-**重要提示：**必须先创建自己的 iSCSI 服务器，然后才能使用它。
+**重要提示**：必须先创建自己的 iSCSI 服务器，然后才能使用它。
 
 iSCSI 的一个特点是它可以同时被多个用户以只读方式安装。这意味着您可以预先使用您的数据集填充卷，然后根据需要向多个额 pod 同时提供。不幸的是，iSCSI 卷只能由单个使用者以读写模式挂载——不允许同时写入。
 
@@ -779,7 +784,7 @@ The following is an example PersistentVolume spec using a `local` volume:
 
 这个 alpha 功能要求启用 `PersistentLocalVolumes` 功能门。
 
-**注意：**从 1.9 开始，`VolumeScheduling` 功能门也必须启用。
+**注意**：从 1.9 开始，`VolumeScheduling` 功能门也必须启用。
 
 `local` 卷表示挂载的本地存储设备，如磁盘、分区或目录。
 
@@ -863,7 +868,7 @@ See the [NFS example](https://github.com/kubernetes/examples/tree/{{page.githubb
 
 `nfs` 卷允许将现有的 NFS（网络文件系统）共享挂载到您的容器中。不像 `emptyDir`，当删除 Pod 时，`nfs` 卷的内容被保留，卷仅仅是被卸载。这意味着 NFS 卷可以预填充数据，并且可以在 pod 之间“切换”数据。 NFS 可以被多个写入者同时挂载。
 
-**重要提示：**您必须先拥有自己的 NFS 服务器才能使用它，然后才能使用它。
+**重要提示**：您必须先拥有自己的 NFS 服务器才能使用它，然后才能使用它。
 
 有关更多详细信息，请参见[NFS示例](https://github.com/kubernetes/examples/tree/ {{page.githubbranch}}/staging/volumes/nfs)。
 
@@ -883,7 +888,7 @@ details.
 
 `persistentVolumeClaim` 卷用于将 [PersistentVolume](/docs/concepts/storage/persistent-volumes/) 挂载到容器中。PersistentVolumes 是在用户不知道特定云环境的细节的情况下“声明”持久化存储（例如 GCE PersistentDisk 或 iSCSI 卷）的一种方式。
 
-有关更多详细信息，请参阅 [PersistentVolumes 示例](/docs/concepts/storage/persistent-volumes /)。
+有关更多详细信息，请参阅 [PersistentVolumes 示例](/docs/concepts/storage/persistent-volumes/)。
 
 ### projected
 
@@ -1203,7 +1208,7 @@ Secrets are described in more detail [here](/docs/user-guide/secrets).
 **重要提示**：您必须先在 Kubernetes API 中创建一个 secret，然后才能使用它。
 {: .caution}
 
-Secret 在[这里](/ docs/user-guide/secrets)被更详细地描述。
+Secret 在[这里](/docs/user-guide/secrets)被更详细地描述。
 
 ### storageOS
 
@@ -1238,7 +1243,7 @@ StorageOS 的核心是为容器提供块存储，可以通过文件系统访问�
 
 StorageOS 容器需要 64 位 Linux，没有额外的依赖关系。可以使用免费的开发者许可证。
 
-**重要提示：**您必须在每个要访问 StorageOS 卷的节点上运行 StorageOS 容器，或者为该池提供存储容量。有关安装说明，请参阅 [StorageOS文档](https://docs.storageos.com)。
+**重要提示**：您必须在每个要访问 StorageOS 卷的节点上运行 StorageOS 容器，或者为该池提供存储容量。有关安装说明，请参阅 [StorageOS文档](https://docs.storageos.com)。
 {: .caution}
 
 ```yaml
@@ -1294,7 +1299,7 @@ of a volume are preserved when it is unmounted. It supports both VMFS and VSAN d
 
 -->
 
-**先决条件：**配置了 vSphere Cloud Provider 的 Kubernetes。有关云提供商的配置，请参阅 [vSphere 入门指南](/ docs/getting-started-guides/vsphere/)。
+**先决条件**：配置了 vSphere Cloud Provider 的 Kubernetes。有关云提供商的配置，请参阅 [vSphere 入门指南](/ docs/getting-started-guides/vsphere/)。
 {: .note}
 
 `vsphereVolume` 用于将 vSphere VMDK 卷挂载到 Pod 中。卷的内容在卸载时会被保留。支持 VMFS 和 VSAN 数据存储。
