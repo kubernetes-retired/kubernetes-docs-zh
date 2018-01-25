@@ -332,7 +332,7 @@ CSI 持久化卷支持是在 Kubernetes v1.9 中引入的，作为一个 alpha �
 
 CSI 持久化卷具有以下字段可供用户指定：
 
-- `driver`：一个字符串值，指定要使用的卷驱动程序的名称。必须少于 63 个字符，并以一个字符开头。驱动程序名称可以包含 “`。`”、“` - `”、“`_`” 或数字。
+- `driver`：一个字符串值，指定要使用的卷驱动程序的名称。必须少于 63 个字符，并以一个字符开头。驱动程序名称可以包含 “`.`”、“`-`”、“`_`” 或数字。
 - `volumeHandle`：一个字符串值，唯一标识从 CSI 卷插件的 `CreateVolume` 调用返回的卷名。随后在卷驱动程序的所有后续调用中使用卷句柄来引用该卷。
 - `readOnly`：一个可选的布尔值，指示卷是否被发布为只读。默认是 false。
 
@@ -1149,7 +1149,7 @@ The following is an example pod configuration with ScaleIO:
 
 ScaleIO 是一个基于软件的存储平台，可以使用现有的硬件来创建可扩展的共享块网络存储集群。`scaleIO` 卷插件允许已部署的 pod 访问现有的 ScaleIO 卷（或者它可以为持久性卷声明动态调配新卷，请参阅 [ScaleIO 持久卷](/docs/concepts/storage/persistent-volumes/#scaleio)）。
 
-**重要提示**：您必须有一个已经配置好的 ScaleIO 集群，并和创建的卷一同运行。
+**重要提示**：您必须有一个已经配置好的 ScaleIO 集群，并和创建的卷一同运行，然后才能使用它们。
 {: .caution}
 
 以下是使用 ScaleIO 的示例 pod 配置：
