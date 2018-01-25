@@ -226,7 +226,7 @@ file for a Pod that has one Container:
 ## 存储 Container 字段
 
 在前面的练习中，您将 Pod 字段存储在 DownwardAPIVolumeFile 中。
-在下一个练习中，您将存储 Container 字段。这是有一个 Container 的 Pod 的配置文件：
+在下一个练习中，您将存储 Container 字段。这里是包含一个 Container 的 Pod 的配置文件：
 
 {% include code.html language="yaml" file="dapi-volume-resources.yaml" ghlink="/docs/tasks/inject-data-application/dapi-volume-resources.yaml" %}
 
@@ -234,7 +234,7 @@ file for a Pod that has one Container:
 In the configuration file, you can see that the Pod has a `downwardAPI` Volume,
 and the Container mounts the Volume at `/etc`.
 -->
-在这个配置文件中，您可以看到这个 Pod 有一个 `downwardAPI` 卷，Container 把卷挂载在 `/etc` 。
+在这个配置文件中，您可以看到这个 Pod 有一个 `downwardAPI` 卷，容器把卷挂载在 `/etc` 。
 
 <!--
 Look at the `items` array under `downwardAPI`. Each element of the array is a
@@ -246,7 +246,7 @@ should be stored in a file named `cpu_limit`.
 -->
 看下在 `downwardAPI` 下的 `items` 数组。这个数组中的每个元素是一个 [DownwardAPIVolumeFile](/docs/resources-reference/{{page.version}}/#downwardapivolumefile-v1-core)。
 
-第一个元素指定了名字为 `client-container` Container 的 `limits.cpu` 字段应该存储在名为 `cpu_limit` 的文件中。
+第一个元素指定了名字为 `client-container` 容器的 `limits.cpu` 字段应该存储在名为 `cpu_limit` 的文件中。
 
 <!--
 Create the Pod:
@@ -278,7 +278,7 @@ In your shell, view the `cpu_limit` file:
 You can use similar commands to view the `cpu_request`, `mem_limit` and
 `mem_request` files.
 -->
-您可以使用相似的命令入查看 `cpu_request`、`mem_limit` 和 `mem_request` 文件。
+您可以使用相似的命令查看 `cpu_request`、`mem_limit` 和 `mem_request` 文件。
 
 {% endcapture %}
 
@@ -287,7 +287,7 @@ You can use similar commands to view the `cpu_request`, `mem_limit` and
 <!--
 ## Capabilities of the Downward API
 -->
-## Downward API 的功能
+## Downward API 的能力
 
 <!--
 The following information is available to Containers through environment
@@ -317,8 +317,8 @@ variables and DownwardAPIVolumeFiles:
 * Pod 的 UID
 * 容器的 CPU limit
 * 容器的 CPU request
-* 容器的 memory limit
-* 容器的 memory request
+* 容器的内存 limit
+* 容器的内存 request
 
 <!--
 In addition, the following information is available through
@@ -358,7 +358,7 @@ being overly coupled to Kubernetes. The Downward API allows containers to consum
 information about themselves or the cluster without using the Kubernetes client
 or API server.
 -->
-对于容器来说，有时可以获得关于它自己的信息非常有用，而不和 Kubernetes 过度耦合。Downward API 允许容器获取有关自己或集群的信息，而不使用 Kubernetes 客户端
+对于容器来说，有时可以获得关于它自己的信息而不和 Kubernetes 过度耦合非常有用。Downward API 允许容器获取有关自己或集群的信息，而不使用 Kubernetes 客户端
 或 API server。
 
 <!--
@@ -368,7 +368,7 @@ application, but that is tedious and error prone, and it violates the goal of lo
 coupling. A better option would be to use the Pod's name as an identifier, and
 inject the Pod's name into the well-known environment variable.
 -->
-一个例子是有一个存在的应用程序，假定它有个特定的环境环境变量有唯一的标识符。一种可能性是包装应用程序，
+一个例子是假定一个已经存在的应用程序拥有有唯一的标识符个特定著名的环境变量，这个环境变量有唯一的标识符。一种可能性是包装应用程序，
 但是很乏味而且容易出错，它违反了低耦合的目标。一个更好的选择是，使用 Pod 名称作为标识符，然后将 Pod 名称转入到这环境变量中。
 
 
