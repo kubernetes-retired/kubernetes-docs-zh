@@ -4,7 +4,7 @@ approvers:
 - mikedanese
 - saad-ali
 - thockin
-title: Volume
+title: Volumes
 ---
 
 {% capture overview %}
@@ -62,7 +62,7 @@ use any number of them simultaneously.
 
 -->
 
-另一方面，Kubernetes 中的卷有明确的寿命——与封装它的 Pod 相同。所以，卷的生命比 Pod 中的所有容器都长，但个容器重启时数据仍然得以保存。当然，当 Pod 不再存在时，卷也将不复存在。也许更重要的是， Kubernetes 支持多种类型的卷，Pod 可以同时使用任意数量的卷。
+另一方面，Kubernetes 中的卷有明确的寿命——与封装它的 Pod 相同。所以，卷的生命比 Pod 中的所有容器都长，当这个容器重启时数据仍然得以保存。当然，当 Pod 不再存在时，卷也将不复存在。也许更重要的是， Kubernetes 支持多种类型的卷，Pod 可以同时使用任意数量的卷。
 
 <!--
 
@@ -347,7 +347,7 @@ See the [`downwardAPI` volume example](/docs/tasks/inject-data-application/downw
 
 -->
 
-`downwardAPI` 卷用于使应用程序可用的向下 API 数据（downward API data）对应用程序可用。它挂载一个目录，并将请求的数据写入纯文本文件。
+`downwardAPI` 卷用于使向下 API 数据（downward API data）对应用程序可用。它挂载一个目录，并将请求的数据写入纯文本文件。
 
 参考 [`downwardAPI` 卷示例](/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information/)查看详细信息。
 
@@ -672,7 +672,7 @@ The supported values for field `type` are:
 | `File`              | 给定的路径下必须存在文件                             |
 | `Socket`            | 给定的路径下必须存在 UNIX 套接字                      |
 | `CharDevice`        | 给定的路径下必须存在字符设备                           |
-| `BlockDevice`       | 给的路径下必须存在块设备                             |
+| `BlockDevice`       | 给定的路径下必须存在块设备                            |
 
 <!--
 
