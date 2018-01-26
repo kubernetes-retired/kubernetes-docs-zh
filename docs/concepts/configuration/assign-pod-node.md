@@ -38,7 +38,7 @@ repo here](https://github.com/kubernetes/kubernetes.github.io/tree/{{page.docsbr
 -->
 您可以限制 [pod](/docs/concepts/workloads/pods/pod/) 只能在特定 [node](/docs/concepts/nodes/node/)] 上运行，或者更倾向于在某些特定 node 上运行。 有几种方法可以做到这一点，他们都使用 [label selectors](/docs/user-guide/labels/) 进行选择。
 一般来说，这种约束是不必要的，因为 scheduler 会自动进行合理的安排（例如，将 pod 分布在所有 node 上，而不是将 pod 分配到空闲资源不足的 node 上，等等）
-但是在某些情况下，您可能需要更多的控制权来控制一个 node，例如，确保一个 pod 在安装有 SSD 的机器上结束，或者将来自两个不同服务并且需要大量通信的 pod 共同分配到同一个可用区域内。
+但是在某些情况下，您可能需要更多的控制权来控制一个 node，例如，确保一个 pod 调度到安装有 SSD 的机器上，或者将来自两个不同服务并且需要大量通信的 pod 共同分配到同一个可用区域内。
 
 您可以 [在我们的 docs 库中](https://github.com/kubernetes/kubernetes.github.io/tree/{{page.docsbranch}}/docs/user-guide/node-selection) 找到这些示例文件。
 
@@ -85,12 +85,12 @@ Run `kubectl get nodes` to get the names of your cluster's nodes. Pick out the o
 <!--
 If this fails with an "invalid command" error, you're likely using an older version of kubectl that doesn't have the `label` command. In that case, see the [previous version](https://github.com/kubernetes/kubernetes/blob/a053dbc313572ed60d89dae9821ecab8bfd676dc/examples/node-selection/README.md) of this guide for instructions on how to manually set labels on a node.
 -->
-如果上述命令失败并且出现 "invalid command" 错误，那么可能是因为您使用的是早期的没有 `label` 命令的 kubectl 版本。如果是这种情况，请参阅 [之前的版本](https://github.com/kubernetes/kubernetes/blob/a053dbc313572ed60d89dae9821ecab8bfd676dc/examples/node-selection/README.md) 来获得如果手动设置 node 标签的教程。
+如果上述命令失败并且出现 "invalid command" 错误，那么可能是因为您使用了没有 label 命令的早期 kubectl 版本。如果是这种情况，请参阅 [之前的版本](https://github.com/kubernetes/kubernetes/blob/a053dbc313572ed60d89dae9821ecab8bfd676dc/examples/node-selection/README.md) 来获得如何手动设置 node 标签的教程。
 
 <!--
 Also, note that label keys must be in the form of DNS labels (as described in the [identifiers doc](https://git.k8s.io/community/contributors/design-proposals/identifiers.md)), meaning that they are not allowed to contain any upper-case letters.
 -->
-另外，注意到标签键必须采用 DNS 标签的形式（如在 [identifiers doc](https://git.k8s.io/community/contributors/design-proposals/identifiers.md) 中所述），也就是标签键中不能包含任何的大写字符。
+另外请注意，标签键必须采用 DNS 标签的形式（如在 [identifiers doc](https://git.k8s.io/community/contributors/design-proposals/identifiers.md) 中所述），也就是标签键中不能包含任何的大写字符。
 
 <!--
 You can verify that it worked by re-running `kubectl get nodes --show-labels` and checking that the node now has a label.
@@ -184,7 +184,7 @@ everything that `nodeSelector` can express.
 亲和性特性包含了两种类型的亲和性，"node 亲和性" 和 "pod 间的亲和性/反亲和性"。
 Node 亲和性类似于已有的 `nodeSelector`，但是拥有上述的第一和第二个优点。Pod 间的亲和性/反亲和性以 pod 标签作为约束，而不仅仅是 node 标签，就像上述第三点所述，它同时也拥有上述第一和第二个特性。
 
-`nodeSelector` 将会像往常一样继续工作，但最终将被弃用，因为 node 亲和性可以表达 `nodeSelector` 能够表达的所有东西。
+`nodeSelector` 将会像往常一样继续工作，但最终将被弃用，因为 node 亲和性可以表达 `nodeSelector` 能够表达的所有约束。
 
 <!--
 ### Node affinity (beta feature)
@@ -210,7 +210,7 @@ met, the pod will still continue to run on the node. In the future we plan to of
 `requiredDuringSchedulingRequiredDuringExecution` which will be just like `requiredDuringSchedulingIgnoredDuringExecution`
 except that it will evict pods from nodes that cease to satisfy the pods' node affinity requirements.
 -->
-目前有两种类型的 node 亲和性，叫做 `requiredDuringSchedulingIgnoredDuringExecution` 和 `preferredDuringSchedulingIgnoredDuringExecution`。您可以认为它们分别是 "硬性" 和 "软性" 的，即前者要求 pod *必须* 满足指定的规则才能调度到 node 上（就像 `nodeSelector`，但使用更具表达性的语法），后者指定 *偏向*，即让 scheduler 尝试但是不保证完全满足规则。名称中的 "IgnoredDuringExecution" 部分意味着，就像 `nodeSelector` 一样，如果一个 node 的标签在运行时更改以致不能满足 pod 的亲和性规则，那么 pod 也将会继续运行在 node 上。以后我们计划提供 `requiredDuringSchedulingRequiredDuringExecution`，这类似于 `requiredDuringSchedulingIgnoredDuringExecution`，但是它会从不再满足 Pod 的 node 亲和性的 node 上驱逐 Pod。
+目前有两种类型的 node 亲和性，叫做 `requiredDuringSchedulingIgnoredDuringExecution` 和 `preferredDuringSchedulingIgnoredDuringExecution`。您可以认为它们分别是 "硬性" 和 "软性" 的，即前者要求 pod *必须* 满足指定的规则才能调度到 node 上（就像 `nodeSelector`，但使用更具表达性的语法），后者指定 *偏向*，即让 scheduler 尝试但是不保证完全满足规则。与 `nodeSelector` 工作方式类似，名称中的 "IgnoredDuringExecution" 部分意味着，如果一个 node 的标签在运行时发生改变，从而导致 pod 的亲和性规则不再被满足时，pod 也仍然会继续运行在 node 上。以后我们计划提供 `requiredDuringSchedulingRequiredDuringExecution`，这类似于 `requiredDuringSchedulingIgnoredDuringExecution`，但是它会从不再满足 pod 的 node 亲和性的 node 上驱逐 Pod。
 
 <!--
 Thus an example of `requiredDuringSchedulingIgnoredDuringExecution` would be "only run the pod on nodes with Intel CPUs"
@@ -255,7 +255,7 @@ For more information on node affinity, see the design doc
 -->
 如果您在 `nodeAffinity` 类型中指定了多个 `nodeSelectorTerms`，那么 pod 将会被调度到 **只要满足其中一个** `nodeSelectorTerms` 的 node 上。
 
-如果您在 `nodeSelectorTerms` 中指定了多个 `matchExpressions`，那么 pod 将会被调度到 **只有满足所有** `matchExpressions` 的 node 上。
+如果您在 `nodeSelectorTerms` 中指定了多个 `matchExpressions`，那么 pod 将会被调度到 **满足所有** `matchExpressions` 的 node 上。
 
 如果需要了解更多关于 node 亲和性的信息，请 [点击这里](https://git.k8s.io/community/contributors/design-proposals/nodeaffinity.md) 查看设计文档。
 
@@ -297,8 +297,8 @@ And inter-pod anti-affinity is specified as field `podAntiAffinity` of field `af
 
 Here's an example of a pod that uses pod affinity:
 -->
-在 PodSpec 中，Pod 间的亲和性被指定为 `affinity` 中的 `podAffinity` 字段。
-并且在 PodSpec 中，Pod 间的反亲和性被指定为 `affinity` 中的 `podAntiAffinity` 字段。
+在 PodSpec 中，通过 `affinity` 中的 `podAffinity` 字段指定 Pod 间的亲和性。
+并且在 PodSpec 中，通过 `affinity` 中的 `podAntiAffinity` 字段 指定Pod 间的反亲和性。
 
 以下是一个使用 pod 亲和性的 pod 示例：
 
@@ -320,7 +320,7 @@ label having key "security" and value "S2".) See the [design doc](https://git.k8
 for many more examples of pod affinity and anti-affinity, both the `requiredDuringSchedulingIgnoredDuringExecution`
 flavor and the `preferredDuringSchedulingIgnoredDuringExecution` flavor.
 -->
-该 pod 亲和性示例定义了一个 pod 亲和性规则和一个 pod 反亲和性规则。在这个示例中，`podAffinity` 使用的是 `requiredDuringSchedulingIgnoredDuringExecution` 而 `podAntiAffinity` 使用 `preferredDuringSchedulingIgnoredDuringExecution`。这个 pod 亲和性规则说的是这个 pod 落在的 node 必须满足一个条件：node 必须和至少一个拥有 key 为 "security" 并且 value 为 "S1" 的 pod 同一个域（更确切地说，pod 能够落在的 node N 必须满足：N 有一个 key 为 `failure-domain.beta.kubernetes.io/zone` 的标签并且满足一些 value V，V 表示至少有一个正在运行的 pod，该 pod 拥有 key 为 "security" 并且 value 为 "S1" 的标签）。pod 反亲和性规则说的是，如果 node 正在运行的 pod 带有 key 为 "security" 并且 value 为 "S2" 的标签，那么倾向于不把 pod 调度到该 node 上（如果 `topologyKey` 是 `failure-domain.beta.kubernetes.io/zone` 的话，表示如果 node 正在运行的 pod 拥有 key 为 "security" 并且 value 为 "S2" 的标签，那么这个 pod 就不能调度到该 node 上）。请参阅 [设计文档](https://git.k8s.io/community/contributors/design-proposals/podaffinity.md) 来获得更多 pod 亲和性和反亲和性的示例，同时也提供了 `requiredDuringSchedulingIgnoredDuringExecution` 和 `preferredDuringSchedulingIgnoredDuringExecution` 的示例。
+该 pod 亲和性示例定义了一个 pod 亲和性规则和一个 pod 反亲和性规则。在这个示例中，`podAffinity` 使用的是 `requiredDuringSchedulingIgnoredDuringExecution` 而 `podAntiAffinity` 使用 `preferredDuringSchedulingIgnoredDuringExecution`。这个 pod 亲和性规则说的是这个 pod 落在的 node 必须满足一个条件：node 必须和至少一个拥有 key 为 "security" 并且 value 为 "S1" 标签的运行中 pod 同一个域（更确切地说，pod 能够落在的 node N 必须满足：N 有一个 key 为 `failure-domain.beta.kubernetes.io/zone` 并且 value 为某个值 V 的标签，这样集群中就至少有一个 node 拥有这个标签，并且有一个 key 为 "security" 并且 value 为 "S1" 的标签的 pod 在之上运行）。pod 反亲和性规则说的是，如果 node 正在运行的 pod 带有 key 为 "security" 并且 value 为 "S2" 的标签，那么倾向于不把 pod 调度到该 node 上（如果 `topologyKey` 是 `failure-domain.beta.kubernetes.io/zone` 的话，表示如果 node 正在运行的 pod 拥有 key 为 "security" 并且 value 为 "S2" 的标签，那么这个 pod 就不能调度到该 node 上）。请参阅 [设计文档](https://git.k8s.io/community/contributors/design-proposals/podaffinity.md) 来获得更多 pod 亲和性和反亲和性的示例，同时也提供了 `requiredDuringSchedulingIgnoredDuringExecution` 和 `preferredDuringSchedulingIgnoredDuringExecution` 的示例。
 
 <!--
 The legal operators for pod affinity and anti-affinity are `In`, `NotIn`, `Exists`, `DoesNotExist`.
@@ -342,7 +342,7 @@ empty `topologyKey` is not allowed.
 -->
 1. 对于亲和性和 `RequiredDuringScheduling` 的 pod 反亲和性，不允许 `topologyKey` 为空。
 2. 对于 `RequiredDuringScheduling` 的 pod 反亲和性，引入 `LimitPodHardAntiAffinityTopology` 准入控制器来限制 `topologyKey` 只能是 `kubernetes.io/hostname`。如果要使其适用于自定义拓扑结构，则可以修改准入控制器，或者直接禁用它。
-3. 对于 `PreferredDuringScheduling` 的 pod 反亲和性，空的 `topologyKey` 将被理解为 "所有的拓扑结构"（这里的 "所有的拓扑结构" 仅限于`kubernetes.io/hostname`、`failure-domain.beta.kubernetes.io/zone` 和 `failure-domain.beta.kubernetes.io/region` 的组合）。
+3. 对于 `PreferredDuringScheduling` 的 pod 反亲和性，空的 `topologyKey` 将被理解为 "所有的拓扑结构"（这里的 "所有的拓扑结构" 仅限于 `kubernetes.io/hostname`、`failure-domain.beta.kubernetes.io/zone` 和 `failure-domain.beta.kubernetes.io/region` 的组合）。
 4. 除上述情况外，`topologyKey` 可以是任何合法的标签 key。
 
 <!--
@@ -447,7 +447,7 @@ will tolerate everything.
 -->
 **注意：** 有两种特殊情况：
 
-* 一个空的 `key` 并且 operator 是 `Exists` 表示能够匹配所有的 key、value 和 effect，也就是这能容忍所有情况。
+* `key` 为空并且 operator 为 `Exists` 表示能够匹配所有的 key、value 和 effect，也就是这能容忍所有情况。
 
 ```yaml
 tolerations:
@@ -494,7 +494,7 @@ scheduled onto the node (if it is not yet running on the node).
 -->
 * 如果最后剩下的 taint 中有至少一个带有 effect 为 `NoSchedule`，那么 Kubernetes 将不会把这个 pod 调度到这个 node
 * 如果最后剩下的 taint 中没有带有 effect 为 `NoSchedule` 但是有至少一个 taint 带有 effect 为 `PreferNoSchedule`，那么 Kubernetes 将会 *尝试* 避免将 pod 调度到这个 node 上
-* 如果最后剩下的 taint 中有至少一个带有 effect 为 `NoExecute`，那么这个 pod 将会从这个 node 中驱逐（如果 pod 已经运行在 node 上），并且将不会被调度到这个 node 上（如果 pod 还没有运行在 node 上）。
+* 如果最后剩下的 taint 中有至少一个带有 effect 为 `NoExecute`，那么将会把 pod 从这个 node 上驱逐（如果 pod 已经运行在 node 上），或者不会将其调度到这个 node 上（如果 pod 还没有运行在 node 上）。
 
 <!--
 For example, imagine you taint a node like this
@@ -606,7 +606,7 @@ additional mechanism, e.g. you could represent the special resource using
 and request it as a resource in the PodSpec, or you could label the nodes that have
 the special hardware and use node affinity on the pods that need the hardware.
 -->
-* **具有特殊硬件的 node**：在一个集群中有一小部分 node 有专门的硬件（例如 GPU），则需要保持不需要这些专门硬件的 pod 不被调度到这些 node 上，这样才能为后续的需要专门硬件的 pod 留有充足的空间。可以通过给具有特殊硬件的 node 添加 taint（例如，`kubectl taint nodes nodename special=true:NoSchedule` 或者
+* **具有特殊硬件的 node**：在一个集群中有一小部分 node 有专门的硬件（例如 GPU），理想情况下应该让不需要这些专门硬件的 pod 避开这些节点，这样才能为后续的需要专门硬件的 pod 留有充足的空间。可以通过给具有特殊硬件的 node 添加 taint（例如，`kubectl taint nodes nodename special=true:NoSchedule` 或者
 `kubectl taint nodes nodename special=true:PreferNoSchedule`），然后给需要这些特殊硬件的 pod 添加一个对应的 toleration。就如上述专用的 node 示例，通过 [准入控制器](/docs/admin/admission-controllers/) 来使用 toleration 会比较容易。
 例如，准入控制器可以使用 pod 的一些特性来确保 pod 能够使用这些特殊的 node，因此准入控制器应该添加 toleration。您需要一些额外的机制，来确保需要特殊硬件的 pod *只能* 被调度到具有特殊硬件的 node 上，例如，您可以使用 [不透明的整数资源](/docs/concepts/configuration/manage-compute-resources-container/#opaque-integer-resources-alpha-feature) 来表示这些特殊资源，然后在 PodSpec 中像其它资源一样进行请求；或者您也可以给具有特殊硬件的 node 添加标签，然后在需要这些硬件的 pod 上使用 node 亲和性。
 
