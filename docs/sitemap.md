@@ -114,7 +114,7 @@ Filter by Concept: <span id="conceptFilter" /><br/>
 Filter by Object: <span id="objectFilter" /><br/>
 Filter by Command: <span id="commandFilter" />
 -->
-根据内容过滤: <span id="conceptFilter" /><br/>
+根据概念过滤: <span id="conceptFilter" /><br/>
 根据对象过滤: <span id="objectFilter" /><br/>
 根据命令过滤: <span id="commandFilter" />
 </p>
