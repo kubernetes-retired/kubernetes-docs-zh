@@ -1244,7 +1244,7 @@ StorageOS 的核心是为容器提供块存储，可以通过文件系统访问�
 
 StorageOS 容器需要 64 位 Linux，没有额外的依赖关系。可以使用免费的开发者许可证。
 
-**重要提示**：您必须在每个要访问 StorageOS 卷的节点上运行 StorageOS 容器，或者为该池提供存储容量。相关的额安装说明，请参阅 [StorageOS文档](https://docs.storageos.com)。
+**重要提示**：您必须在每个要访问 StorageOS 卷的节点上运行 StorageOS 容器，或者为该池提供存储容量。相关的安装说明，请参阅 [StorageOS文档](https://docs.storageos.com)。
 {: .caution}
 
 ```yaml
