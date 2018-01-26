@@ -51,7 +51,7 @@ kubeadm token create [token]
       --groups stringSlice   当用于认证时，该 token 会以这些额外组身份进行认证。 必须和 “system:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]” 的格式匹配。（默认为 [system:bootstrappers:kubeadm:default-node-token]）
       --print-join-command   输出使用 token 加入集群所需的完整 'kubeadm join' 参数，而不是只输出 token。
       --ttl duration         token 自动删除前的持续时间（例如 1s、 2m 或 3h）。 如果设为 '0'，该 token 将永不过期（默认为 24h0m0s）
-      --usages stringSlice   描述该 token 允许的使用方式。 您可以传入 --usages 多次，或者提供一个提供逗号分隔的选项列表。 有效的选项： [signing,authentication]。（默认为[signing,authentication]）
+      --usages stringSlice   描述该 token 允许的使用方式。 您可以传入 --usages 多次，或者提供一个逗号分隔的选项列表。 有效的选项： [signing,authentication]。（默认为[signing,authentication]）
 ```
 
 <!--
