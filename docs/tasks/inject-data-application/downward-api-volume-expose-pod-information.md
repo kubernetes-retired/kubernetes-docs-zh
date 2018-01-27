@@ -47,7 +47,7 @@ Together, these two ways of exposing Pod and Container fields are called the
 * [环境变量](/docs/tasks/configure-pod-container/environment-variable-expose-pod-information/)
 * DownwardAPIVolumeFiles
 
-这两种暴露 Pod 和 Container 的方法被称为 *Downward API* 。
+这两种暴露 Pod 和 Container 字段的方法被称为 *Downward API* 。
 
 <!--
 ## Store Pod fields
@@ -66,7 +66,7 @@ Here is the configuration file for the Pod:
 In the configuration file, you can see that the Pod has a `downwardAPI` Volume,
 and the Container mounts the Volume at `/etc`.
 -->
-在这个配置文件中，您可以看到这个 Pod 有一个 `downwardAPI` 卷，Container 把卷挂载在 `/etc` 。
+在这个配置文件中，您可以看到这个 Pod 有一个 `downwardAPI` 卷，容器把卷挂载在 `/etc` 。
 
 <!--
 Look at the `items` array under `downwardAPI`. Each element of the array is a
@@ -131,7 +131,7 @@ builder="john-doe"
 <!--
 Get a shell into the Container that is running in your Pod:
 -->
-获取您的 Pod 中运行的 Container 的 shell：
+获取您的 Pod 中运行的容器的 shell：
 
 ```
 kubectl exec -it kubernetes-downwardapi-volume-example -- sh
@@ -183,7 +183,7 @@ are in a temporary subdirectory: in this example,
 a symbolic link to the temporary subdirectory. Also in  the `/etc` directory,
 `labels` and `annotations` are symbolic links.
 -->
-在这个输出中，你可以看到 `labels` 和 `annotations` 文件是在一个临时的子目录中：在本例中，是 `..2982_06_02_21_47_53.299460680` 目录。
+在这个输出中，您可以看到 `labels` 和 `annotations` 文件是在一个临时的子目录中：在本例中，是 `..2982_06_02_21_47_53.299460680` 目录。
 在 `/etc` 目录中, `..data` 是链接到临时子目录的符号链接。在 `/etc` 目录中, `labels` 和 `annotations` 也是符号链接。
 
 
@@ -226,7 +226,7 @@ file for a Pod that has one Container:
 ## 存储 Container 字段
 
 在前面的练习中，您将 Pod 字段存储在 DownwardAPIVolumeFile 中。
-在下一个练习中，您将存储 Container 字段。这里是包含一个 Container 的 Pod 的配置文件：
+在下一个练习中，您将存储 Container 字段。这里是包含一个容器的 Pod 的配置文件：
 
 {% include code.html language="yaml" file="dapi-volume-resources.yaml" ghlink="/docs/tasks/inject-data-application/dapi-volume-resources.yaml" %}
 
@@ -260,7 +260,7 @@ kubectl create -f https://k8s.io/docs/tasks/inject-data-application/dapi-volume-
 <!--
 Get a shell into the Container that is running in your Pod:
 -->
-获取您的 Pod 中运行的 Container 的 shell：
+获取您的 Pod 中运行的容器的 shell：
 
 ```
 kubectl exec -it kubernetes-downwardapi-volume-example-2 -- sh
@@ -358,7 +358,7 @@ being overly coupled to Kubernetes. The Downward API allows containers to consum
 information about themselves or the cluster without using the Kubernetes client
 or API server.
 -->
-对于容器来说，有时可以获得关于它自己的信息而不和 Kubernetes 过度耦合非常有用。Downward API 允许容器获取有关自己或集群的信息，而不使用 Kubernetes 客户端
+对于容器来说，有时在不和 Kubernetes 过度耦合的情况下获得关于它自己的信息非常有用。Downward API 允许容器获取有关自己或集群的信息，而不使用 Kubernetes 客户端
 或 API server。
 
 <!--
@@ -368,7 +368,7 @@ application, but that is tedious and error prone, and it violates the goal of lo
 coupling. A better option would be to use the Pod's name as an identifier, and
 inject the Pod's name into the well-known environment variable.
 -->
-一个例子是假定一个已经存在的应用程序拥有有唯一的标识符个特定著名的环境变量，这个环境变量有唯一的标识符。一种可能性是包装应用程序，
+一个例子是假定一个已经存在的应用程序拥有一个特别的知名环境变量，这个环境变量有唯一的标识符。一种可能性是包装应用程序，
 但是很乏味而且容易出错，它违反了低耦合的目标。一个更好的选择是，使用 Pod 名称作为标识符，然后将 Pod 名称转入到这环境变量中。
 
 
