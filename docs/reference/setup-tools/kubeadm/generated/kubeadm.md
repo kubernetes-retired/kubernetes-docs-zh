@@ -1,7 +1,7 @@
 
 kubeadm: easily bootstrap a secure Kubernetes cluster
 
-kubeadm: 简单引导一个稳固的kubernetes集群
+kubeadm: 轻松引导一个安全的kubernetes集群
 
 ### Synopsis
 
@@ -9,7 +9,7 @@ kubeadm: 简单引导一个稳固的kubernetes集群
 
 kubeadm: easily bootstrap a secure Kubernetes cluster.
 
-kubeadm: 简单引导一个稳固的kubernetes集群
+kubeadm: 轻松引导一个安全的kubernetes集群
 
     ┌──────────────────────────────────────────────────────────┐
     │ KUBEADM IS CURRENTLY IN BETA                             │
