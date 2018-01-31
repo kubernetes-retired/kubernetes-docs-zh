@@ -1,9 +1,16 @@
 
-Creates a bootstrap token to be used for node joining
+<!-- 
+Creates a bootstrap token to be used for node joining 
+-->
+创建一个 bootstrap token 用于节点加入
 
-### Synopsis
+<!-- 
+### Synopsis 
+-->
+### 摘要
 
 
+<!-- 
 Creates a bootstrap token. If no token value is given, kubeadm will generate a random token instead. 
 
 Alternatively, you can use kubeadm token. 
@@ -12,8 +19,17 @@ Alpha Disclaimer: this command is currently alpha.
 
 ```
 kubeadm alpha phase bootstrap-token create
-```
+``` 
+-->
+创建一个 bootstrap token。kubeadm 会生成一个随机 token。
 
+或者，您可以使用 kubeadm token。
+
+```
+kubeadm alpha phase bootstrap-token create
+``` 
+
+<!-- 
 ### Options
 
 ```
@@ -25,11 +41,34 @@ kubeadm alpha phase bootstrap-token create
       --token string         The token to use for establishing bidirectional trust between nodes and masters
       --ttl duration         The duration before the token is automatically deleted (e.g. 1s, 2m, 3h). If set to '0', the token will never expire (default 24h0m0s)
       --usages stringSlice   Describes the ways in which this token can be used. You can pass --usages multiple times or provide a comma separated list of options. Valid options: [signing,authentication] (default [signing,authentication])
+``` 
+-->
+
+### 选项
+
+```
+      --cert-dir string      存储证书的路径 (默认 "/etc/kubernetes/pki")
+      --config string        kubeadm配置文件的路径 （警告：配置文件的使用是实验性的）
+      --description string   关于如何使用该token的人性化描述。 （默认是 "由'kubeadm init'生成的默认引导程序标记。"）
+      --groups stringSlice   这个令牌将用于验证的额外组。必须匹配 "system:bootstrappers:[a-z0-9:-]{0,255}[a-z0-9]" (默认 [system:bootstrappers:kubeadm:default-node-token])
+      --skip-token-print     跳过bootstrap token 的打印
+      --token string         用于在节点和 masters 之间建立双向信任的 token
+      --ttl duration         token 之前的持续时间会自动删除 (e.g. 1s, 2m, 3h). 如果设置为 '0', token 永远不会过期 (默认 24h0m0s)
+      --usages stringSlice   介绍可以使用这个 token的方式. 您可以多次传递 --usages 或提供逗号分隔的选项列表. 有效的选项: [signing,authentication] (默认 [signing,authentication])
 ```
 
+
+<!-- 
 ### Options inherited from parent commands
 
 ```
       --kubeconfig string   The KubeConfig file to use when talking to the cluster (default "/etc/kubernetes/admin.conf")
+``` 
+-->
+
+### 继承自父命令的选项
+
+```
+      --kubeconfig string   与集群通信时使用的 KubeConfig 文件(默认为 "/etc/kubernetes/admin.conf")
 ```
 
