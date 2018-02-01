@@ -40,9 +40,9 @@ version and state of the documented feature.
 ### 特性状态演示
 
 <!--
-Below is a demo of the feature state snippet. Here it is used to display the feature as stable in Kuberentes version 1.6.
+Below is a demo of the feature state snippet. Here it is used to display the feature as stable in Kubernetes version 1.6.
 -->
-下面是一个特性状态片段的演示。它用于表示这是 Kuberentes 1.6 版本的稳定特性。
+下面是一个特性状态片段的演示。它用于表示这是 Kubernetes 1.6 版本的稳定特性。
 
 {% assign for_k8s_version = "1.6" %}
 {% include feature-state-stable.md %}
