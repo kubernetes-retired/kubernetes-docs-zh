@@ -339,6 +339,9 @@ This is one example where the immutability of containers is a huge asset.
 
 If you need to update more than just the image (e.g., command arguments, environment variables), you can create a new replication controller, with a new name and distinguishing label value, such as:
 -->
+这是容器不变性是巨大财富的一个例子。
+
+如果您需要更新的不仅仅是镜像（例如命令参数，环境变量），您可以用一个新的名称和不同的 label 来创建一个新的 replication controller ，例如：
 
 
 ```yaml
