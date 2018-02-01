@@ -2,7 +2,7 @@
 <!--
 Output shell completion code for the specified shell (bash or zsh).
 -->
-输出指定 shell (bash or zsh) 的自动完成代码。
+输出指定 shell (bash or zsh) 的自动补全代码。
 
 <!--
 ### Synopsis
@@ -17,7 +17,7 @@ The shell code must be evalutated to provide interactive
 completion of kubeadm commands. This can be done by sourcing it from
 the .bash_profile.
 -->
-输出指定 shell (bash or zsh) 的自动完成代码。
+输出指定 shell (bash or zsh) 的自动补全代码。shell 代码必须被执行才能提供交互式的 kubeadm 的命令补全。可以通过 sourcing .bash_profile 文件里的 shell 代码来实现。
 
 <!--
 Note: this requires the bash-completion framework, which is not installed
