@@ -17,7 +17,7 @@ approvers:
 - thockin
   title: Storage Classes
 ---
- -->
+-->
 
 <!--
 This document describes the concept of `StorageClass` in Kubernetes. Familiarity
@@ -65,7 +65,7 @@ request a particular class. Administrators set the name and other parameters
 of a class when first creating `StorageClass` objects, and the objects cannot
 be updated once they are created.
  -->
-`StorageClass` 对象的名称很重要，用户使用该类来请求一个特定的方法。
+`StorageClass` 对象的名称很重要，用户使用这个名称来请求一个特定的类。
 当创建 `StorageClass` 对象时，管理员设置名称和其他参数，一旦创建了对象就不能再对其更新。
 
 <!-- Administrators can specify a default `StorageClass` just for PVCs that don't
@@ -99,27 +99,27 @@ for provisioning PVs. This field must be specified.
  -->
 Storage class 有一个分配器，用来决定使用哪个卷插件分配 PV。该字段必须指定。
 
-| Volume Plugin        | Internal Provisioner |            Config Example             |
-| :------------------- | :------------------: | :-----------------------------------: |
-| AWSElasticBlockStore |       &#x2713;       |              [AWS](#aws)              |
-| AzureFile            |       &#x2713;       |       [Azure File](#azure-file)       |
-| AzureDisk            |       &#x2713;       |       [Azure Disk](#azure-disk)       |
-| CephFS               |          -           |                   -                   |
-| Cinder               |       &#x2713;       | [OpenStack Cinder](#openstack-cinder) |
-| FC                   |          -           |                   -                   |
-| FlexVolume           |          -           |                   -                   |
-| Flocker              |       &#x2713;       |                   -                   |
-| GCEPersistentDisk    |       &#x2713;       |              [GCE](#gce)              |
-| Glusterfs            |       &#x2713;       |        [Glusterfs](#glusterfs)        |
-| iSCSI                |          -           |                   -                   |
-| PhotonPersistentDisk |       &#x2713;       |                   -                   |
-| Quobyte              |       &#x2713;       |          [Quobyte](#quobyte)          |
-| NFS                  |          -           |                   -                   |
-| RBD                  |       &#x2713;       |         [Ceph RBD](#ceph-rbd)         |
-| VsphereVolume        |       &#x2713;       |          [vSphere](#vsphere)          |
-| PortworxVolume       |       &#x2713;       |  [Portworx Volume](#portworx-volume)  |
-| ScaleIO              |       &#x2713;       |          [ScaleIO](#scaleio)          |
-| StorageOS            |       &#x2713;       |        [StorageOS](#storageos)        |
+| Internal Provisioner | Volume Plugin        | Config Example                        |
+| :------------------- | :------------------- | :------------------------------------ |
+| &#x2713;             | AWSElasticBlockStore | [AWS](#aws)                           |
+| &#x2713;             | AzureFile            | [Azure File](#azure-file)             |
+| &#x2713;             | AzureDisk            | [Azure Disk](#azure-disk)             |
+| -                    | CephFS               | -                                     |
+| &#x2713;             | Cinder               | [OpenStack Cinder](#openstack-cinder) |
+| -                    | FC                   | -                                     |
+| -                    | FlexVolume           | -                                     |
+| &#x2713;             | Flocker              | -                                     |
+| &#x2713;             | GCEPersistentDisk    | [GCE](#gce)                           |
+| &#x2713;             | Glusterfs            | [Glusterfs](#glusterfs)               |
+| -                    | iSCSI                | -                                     |
+| &#x2713;             | PhotonPersistentDisk | -                                     |
+| &#x2713;             | Quobyte              | [Quobyte](#quobyte)                   |
+| -                    | NFS                  | -                                     |
+| &#x2713;             | RBD                  | [Ceph RBD](#ceph-rbd)                 |
+| &#x2713;             | VsphereVolume        | [vSphere](#vsphere)                   |
+| &#x2713;             | PortworxVolume       | [Portworx Volume](#portworx-volume)   |
+| &#x2713;             | ScaleIO              | [ScaleIO](#scaleio)                   |
+| &#x2713;             | StorageOS            | [StorageOS](#storageos)               |
 
 <!--
 You are not restricted to specifying the "internal" provisioners
@@ -453,16 +453,20 @@ parameters:
 
 <!--
 1. Create a StorageClass with a user specified disk format.
-   -->
-2. 使用用户指定的磁盘格式创建一个 StorageClass。
 
-        kind: StorageClass
-        apiVersion: storage.k8s.io/v1
-        metadata:
-          name: fast
-        provisioner: kubernetes.io/vsphere-volume
-        parameters:
-          diskformat: zeroedthick
+-->
+
+1. 使用用户指定的磁盘格式创建一个 StorageClass。
+
+   ```
+    kind: StorageClass
+    apiVersion: storage.k8s.io/v1
+    metadata:
+      name: fast
+    provisioner: kubernetes.io/vsphere-volume
+    parameters:
+      diskformat: zeroedthick
+   ```
 
 <!--
     `diskformat`: `thin`, `zeroedthick` and `eagerzeroedthick`. Default: `"thin"`.
@@ -471,18 +475,21 @@ parameters:
 
 <!--
 2. Create a StorageClass with a disk format on a user specified datastore.
-   -->
-3. 在用户指定的数据存储上创建磁盘格式的 StorageClass。
 
-        kind: StorageClass
-        apiVersion: storage.k8s.io/v1
-        metadata:
-          name: fast
-        provisioner: kubernetes.io/vsphere-volume
-        parameters:
-            diskformat: zeroedthick
-            datastore: VSANDatastore
+-->
 
+2. 在用户指定的数据存储上创建磁盘格式的 StorageClass。
+
+```
+ kind: StorageClass
+ apiVersion: storage.k8s.io/v1
+ metadata:
+   name: fast
+ provisioner: kubernetes.io/vsphere-volume
+ parameters:
+     diskformat: zeroedthick
+     datastore: VSANDatastore
+```
 <!--
     `datastore`: The user can also specify the datastore in the StorageClass.
     The volume will be created on the datastore specified in the storage class,
@@ -496,8 +503,10 @@ parameters:
 
 <!--
 3. Storage Policy Management inside kubernetes
-  -->
-4. Kubernetes 中的 Storage Policy Management（存储策略管理）
+
+-->
+
+3. Kubernetes 中的 Storage Policy Management（存储策略管理）
 
 <!--
     * Using existing vCenter SPBM policy
@@ -962,7 +971,7 @@ parameters:
   <!--
 * `fsType`: the file system to use for the volume (default ext4)
    -->
-   *`fsType`：卷的文件系统（默认是 ext4）
+* `fsType`：卷的文件系统（默认是 ext4）
 
 <!--
 The ScaleIO Kubernetes volume plugin requires a configured Secret object.
