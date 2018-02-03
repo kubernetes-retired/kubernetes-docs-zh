@@ -7,78 +7,68 @@ approvers:
 - janetkuo
 - kow3ns
 - smarterclayton
-title: Debug a StatefulSet
+title: 调试 StatefulSet
+cn-approvers:
+- chentao1596
 ---
+<!--
+title: Debug a StatefulSet
+-->
 
 {% capture overview %}
 
+<!--
 This task shows you how to debug a StatefulSet.
+-->
+本任务展示如何调试 StatefulSet。
 
 {% endcapture %}
 
 {% capture prerequisites %}
 
-
+<!--
 * You need to have a Kubernetes cluster, and the kubectl command-line tool must be configured to communicate with your cluster.
 * You should have a StatefulSet running that you want to investigate.
+-->
+* 您需要有一个 Kubernetes 集群，必须配置 kubectl 命令行工具，用以跟您的集群进行通信。
+* 您应该有一个您想要进行调试的运行中的 StatefulSet。
 
 {% endcapture %}
 
 {% capture steps %}
 
+<!--
 ## Debugging a StatefulSet
+-->
+## 调试 StatefulSet
 
-In order to list all the pods which belong to a StatefulSet, which have a label `app=myapp` set on them, you can use the following:
+<!--
+In order to list all the pods which belong to a StatefulSet, which have a label `app=myapp` set on them,
+you can use the following:
+-->
+为了列出属于一个 StatefulSet 并且设置了标签 `app=myapp` 的所有 pod，您可以使用以下命令：
 
 ```shell
 kubectl get pods -l app=myapp
 ```
 
-If you find that any Pods listed are in `Unknown` or `Terminating` state for an extended period of time, refer to the [Deleting StatefulSet Pods](/docs/tasks/manage-stateful-set/delete-pods/) task for instructions on how to deal with them. You can debug individual Pods in a StatefulSet using the [Debugging Pods](/docs/user-guide/debugging-pods-and-replication-controllers/#debugging-pods) guide.
-
-StatefulSets provide a debug mechanism to pause all controller operations on Pods using an annotation. Setting the `pod.alpha.kubernetes.io/initialized` annotation to `"false"` on any StatefulSet Pod will *pause* all operations of the StatefulSet. When paused, the StatefulSet will not perform any scaling operations. Once the debug hook is set, you can execute commands within the containers of StatefulSet pods without interference from scaling operations. You can set the annotation to `"false"` by executing the following:
-
-```shell
-kubectl annotate pods <pod-name> pod.alpha.kubernetes.io/initialized="false" --overwrite
-```
-
-When the annotation is set to `"false"`, the StatefulSet will not respond to its Pods becoming unhealthy or unavailable. It will not create replacement Pods till the annotation is removed or set to `"true"` on each StatefulSet Pod.
-
-### Step-wise Initialization
-
-You can also use the same annotation to debug race conditions during bootstrapping of the StatefulSet by setting the `pod.alpha.kubernetes.io/initialized` annotation to `"false"` in the `.spec.template.metadata.annotations` field of the StatefulSet prior to creating it.
-
-```yaml
-apiVersion: apps/v1beta1
-kind: StatefulSet
-metadata:
-  name: my-app
-spec:
-  serviceName: "my-app"
-  replicas: 3
-  template:
-    metadata:
-      labels:
-        app: my-app
-      annotations:
-        pod.alpha.kubernetes.io/initialized: "false"
-...
-...
-...
-
-```
-
-After setting the annotation, if you create the StatefulSet, you can wait for each Pod to come up and verify that it has initialized correctly. The StatefulSet will not create any subsequent Pods till the debug annotation is set to `"true"` (or removed) on each Pod that has already been created. You can set the annotation to `"true"` by executing the following:
-
-```shell
-kubectl annotate pods <pod-name> pod.alpha.kubernetes.io/initialized="true" --overwrite
-```
+<!--
+If you find that any Pods listed are in `Unknown` or `Terminating` state for an extended period of time,
+refer to the [Deleting StatefulSet Pods](/docs/tasks/manage-stateful-set/delete-pods/) task for
+instructions on how to deal with them.
+You can debug individual Pods in a StatefulSet using the
+[Debugging Pods](/docs/tasks/debug-application-cluster/debug-pod-replication-controller/) guide.
+-->
+如果您发现列出的任何 pod 在很长一段时间内处于 `Unknown` 或者 `Terminating` 状态，请参阅 [删除 StatefulSet Pod](/docs/tasks/manage-stateful-set/delete-pods/) 以获得有关如何处理它们的说明。您还可以使用 [调试 Pod](/docs/tasks/debug-application-cluster/debug-pod-replication-controller/) 指南去调试 StatefulSet 中的单个 pod。
 
 {% endcapture %}
 
 {% capture whatsnext %}
 
-Learn more about [debugging an init-container](/docs/tasks/troubleshoot/debug-init-containers/).
+<!--
+Learn more about [debugging an init-container](/docs/tasks/debug-application-cluster/debug-init-containers/).
+-->
+了解有关 [调试一个 init-container](/docs/tasks/debug-application-cluster/debug-init-containers/) 的更多信息。
 
 {% endcapture %}
 
