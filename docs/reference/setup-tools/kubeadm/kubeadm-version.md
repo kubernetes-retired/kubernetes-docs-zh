@@ -4,6 +4,8 @@ approvers:
 - luxas
 - jbeda
 title: kubeadm version 
+cn-approvers:
+- chentao1596
 ---
 {% capture overview %}
 {% endcapture %}
