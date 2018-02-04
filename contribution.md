@@ -3,6 +3,115 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 27 周：2018-01-22 ~ 2018-01-28 - 有效合并 17 篇
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/sitemap](https://k8smeetup.github.io/docs/sitemap) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/coreos/index](https://k8smeetup.github.io/docs/getting-started-guides/coreos/index) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/index](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/index) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tasks/tools/install-minikube](https://k8smeetup.github.io/docs/tasks/tools/install-minikube) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/concepts/containers/images](https://k8smeetup.github.io/docs/concepts/containers/images) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tutorials/stateless-application/hello-minikube](https://k8smeetup.github.io/docs/tutorials/stateless-application/hello-minikube) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node](https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/concepts/storage/volumes](https://k8smeetup.github.io/docs/concepts/storage/volumes) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_delete](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_delete) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_create](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_create) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_generate](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_generate) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_list](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token_list) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/admin/federation/index](https://k8smeetup.github.io/docs/admin/federation/index) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/minikube](https://k8smeetup.github.io/docs/getting-started-guides/minikube) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information](https://k8smeetup.github.io/docs/tasks/inject-data-application/downward-api-volume-expose-pod-information) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/search](https://k8smeetup.github.io/docs/search) by [linyouchong](https://github.com/linyouchong)
+
+
+### 第 26 周：2018-01-15 ~ 2018-01-21 - 有效合并 17 篇
+
+[https://k8smeetup.github.io/docs/tasks/inject-data-application/define-environment-variable-container](https://k8smeetup.github.io/docs/tasks/inject-data-application/define-environment-variable-container) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/pods/disruptions](https://k8smeetup.github.io/docs/concepts/workloads/pods/disruptions) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/admin/kube-proxy](https://k8smeetup.github.io/docs/admin/kube-proxy) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/jobs-run-to-completion](https://k8smeetup.github.io/docs/concepts/workloads/controllers/jobs-run-to-completion) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-init](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-init) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_node_allow-post-csrs](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_node_allow-post-csrs) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_node_allow-auto-approve](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_node_allow-auto-approve) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-join](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-join) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/federation](https://k8smeetup.github.io/docs/concepts/cluster-administration/federation) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/sysctl-cluster](https://k8smeetup.github.io/docs/concepts/cluster-administration/sysctl-cluster) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/openstack-heat](https://k8smeetup.github.io/docs/getting-started-guides/openstack-heat) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_version](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_version) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/kubeadm-upgrade-1-9](https://k8smeetup.github.io/docs/tasks/administer-cluster/kubeadm-upgrade-1-9) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl-conventions](https://k8smeetup.github.io/docs/user-guide/kubectl-conventions) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/concepts/overview/extending](https://k8smeetup.github.io/docs/concepts/overview/extending) by [linyouchong](https://github.com/linyouchong)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/proxies](https://k8smeetup.github.io/docs/concepts/cluster-administration/proxies) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/alternatives](https://k8smeetup.github.io/docs/getting-started-guides/alternatives) by [xiaosuiba](https://github.com/xiaosuiba)
+
+
+### 第 25 周：2018-01-08 ~ 2018-01-14 - 有效合并 16 篇
+
+[https://k8smeetup.github.io/docs/concepts/storage/persistent-volumes](https://k8smeetup.github.io/docs/concepts/storage/persistent-volumes) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/manage-deployment](https://k8smeetup.github.io/docs/concepts/cluster-administration/manage-deployment) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-alpha) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/resources-reference/v1.5/README](https://k8smeetup.github.io/docs/resources-reference/v1.5/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/resources-reference/v1.6/README](https://k8smeetup.github.io/docs/resources-reference/v1.6/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl/v1.8/README](https://k8smeetup.github.io/docs/user-guide/kubectl/v1.8/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl/v1.6/README](https://k8smeetup.github.io/docs/user-guide/kubectl/v1.6/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl/v1.7/README](https://k8smeetup.github.io/docs/user-guide/kubectl/v1.7/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/resources-reference/v1.7/README](https://k8smeetup.github.io/docs/resources-reference/v1.7/README) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/extended-resource-node](https://k8smeetup.github.io/docs/tasks/administer-cluster/extended-resource-node) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-reset](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-reset) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-token](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-token) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-upgrade) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-config](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-config) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/tasks/configure-pod-container/extended-resource](https://k8smeetup.github.io/docs/tasks/configure-pod-container/extended-resource) by [lichuqiang](https://github.com/lichuqiang)
+
+
 ### 第 24 周：2018-01-01 ~ 2018-01-07 - 有效合并 18 篇
 
 [https://k8smeetup.github.io/docs/contribute/README](https://k8smeetup.github.io/docs/contribute/README) by [chentao1596](https://github.com/chentao1596)
