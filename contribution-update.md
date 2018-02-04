@@ -1,6 +1,21 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 6 篇
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm) by [KeithTt](https://github.com/KeithTt)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset) by [KeithTt](https://github.com/KeithTt)
+
+[https://k8smeetup.github.io/docs/concepts/storage/storage-classes](https://k8smeetup.github.io/docs/concepts/storage/storage-classes) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/home/contribute/includes](https://k8smeetup.github.io/docs/home/contribute/includes) by [yinshuxun](https://github.com/yinshuxun)
+
+[https://k8smeetup.github.io/docs/user-guide/docker-cli-to-kubectl](https://k8smeetup.github.io/docs/user-guide/docker-cli-to-kubectl) by [2eron](https://github.com/2eron)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/cpu-memory-limit](https://k8smeetup.github.io/docs/tasks/administer-cluster/cpu-memory-limit) by [yinshuxun](https://github.com/yinshuxun)
+
+
 ### 第 27 周：2018-01-22 ~ 2018-01-28 - 有效合并 1 篇
 
 [https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment](https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment) by [pigletfly](https://github.com/pigletfly)

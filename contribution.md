@@ -3,6 +3,53 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 22 篇
+
+[https://k8smeetup.github.io/docs/setup/pick-right-solution](https://k8smeetup.github.io/docs/setup/pick-right-solution) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/admin/kubefed_unjoin](https://k8smeetup.github.io/docs/admin/kubefed_unjoin) by [JounQin](https://github.com/JounQin)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_init](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_init) by [KeithTt](https://github.com/KeithTt)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_create](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_bootstrap-token_create) by [yinshuxun](https://github.com/yinshuxun)
+
+[https://k8smeetup.github.io/docs/admin/kubeadm](https://k8smeetup.github.io/docs/admin/kubeadm) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/api-reference/v1.8/README](https://k8smeetup.github.io/docs/api-reference/v1.8/README) by [2eron](https://github.com/2eron)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/glossary](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/glossary) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/api-reference/v1.5/README](https://k8smeetup.github.io/docs/api-reference/v1.5/README) by [CoderAway28th](https://github.com/CoderAway28th)
+
+[https://k8smeetup.github.io/docs/tasks/configure-pod-container/opaque-integer-resource](https://k8smeetup.github.io/docs/tasks/configure-pod-container/opaque-integer-resource) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tasks/run-application/run-stateless-application-deployment](https://k8smeetup.github.io/docs/tasks/run-application/run-stateless-application-deployment) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload_from-flags](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload_from-flags) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_view](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_view) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload_from-file](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload_from-file) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config_upload) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_config) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/tasks/run-application/rolling-update-replication-controller](https://k8smeetup.github.io/docs/tasks/run-application/rolling-update-replication-controller) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_completion](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_completion) by [pigletfly](https://github.com/pigletfly)
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-stateful-set](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-stateful-set) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-version](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-version) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/_includes/partner-script](https://k8smeetup.github.io/_includes/partner-script) by [yinshuxun](https://github.com/yinshuxun)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm) by [KeithTt](https://github.com/KeithTt)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_reset) by [KeithTt](https://github.com/KeithTt)
+
+
 ### 第 27 周：2018-01-22 ~ 2018-01-28 - 有效合并 17 篇
 
 [https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_token) by [lichuqiang](https://github.com/lichuqiang)
