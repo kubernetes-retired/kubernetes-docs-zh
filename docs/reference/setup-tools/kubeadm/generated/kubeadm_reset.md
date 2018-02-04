@@ -28,5 +28,5 @@ kubeadm reset
 ```
     --cert-dir string: 存放证书的路径。如果指定了，则清除这个目录。（默认为 "/etc/kubernetes/pki"）
     --cri-socket string: 使用 crictl 清理容器时 CRI 套接字的路径。（默认为 "/var/run/dockershim.sock"）
-    --ignore-checks-errors stringSlice: 一个检查列表，检查出来的错误会作为警告显示。示例: 'IsPrivilegedUser,Swap'。"all" 表示忽略所有检测到得错误。
+    --ignore-checks-errors stringSlice: 一个检查列表，检查出来的错误会作为警告显示。示例: 'IsPrivilegedUser,Swap'。"all" 表示忽略所有检测到的错误。
 ```    
