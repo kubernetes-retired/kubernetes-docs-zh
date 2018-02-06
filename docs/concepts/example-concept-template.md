@@ -51,7 +51,10 @@ To use ...
 
 {% capture whatsnext %}
 
+<!--
 **[Optional Section]**
+-->
+**[可选部分]**
 
 <!--
 * Learn more about [Writing a New Topic](/docs/home/contribute/write-new-topic/).
