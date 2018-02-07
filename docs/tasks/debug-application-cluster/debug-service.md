@@ -21,7 +21,7 @@ that a `Service` is not working properly.  You've run your `Deployment` and
 created a `Service`, but you get no response when you try to access it.
 This document will hopefully help you to figure out what's going wrong.
 -->
-对于新安装的 Kubernetes，经常出现的一个问题是 `Service` 没有正常工作。如果您已经运行了 `Deployment` 并创建了一个 `Service`，但是当您尝试访问它时没有得到响应，希望这份文件能帮助您找出问题所在。
+对于新安装的 Kubernetes，经常出现的一个问题是 `Service` 没有正常工作。如果您已经运行了 `Deployment` 并创建了一个 `Service`，但是当您尝试访问它时没有得到响应，希望这份文档能帮助您找出问题所在。
 
 * TOC
 {:toc}
@@ -516,7 +516,7 @@ values on your `Pods`.  A common mistake is to have a typo or other error, such
 as the `Service` selecting for `run=hostnames`, but the `Deployment` specifying
 `app=hostnames`.
 -->
-这证实 endpoints 控制器已经为您的 `Service` 找到了正确的 `Pods`。如果 `hostnames` 行为空，则应检查 `Service` 的 `spec.selector` 字段，以及您实际想选择的 `Pods` 的 `metadata.labels` 的值。常见的是有一个错误了或其他错误了，例如 `Service` 想选择 `run=hostnames`，但是 `Deployment` 指定的是 `app=hostnames`。
+这证实 endpoints 控制器已经为您的 `Service` 找到了正确的 `Pods`。如果 `hostnames` 行为空，则应检查 `Service` 的 `spec.selector` 字段，以及您实际想选择的 `Pods` 的 `metadata.labels` 的值。常见的错误是设置出现了问题，例如 `Service` 想选择 `run=hostnames`，但是 `Deployment` 指定的是 `app=hostnames`。
 
 <!--
 ## Are the Pods working?
