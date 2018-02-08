@@ -4,7 +4,7 @@ cn-approvers:
 approvers:
 - aveshagarwal
 - erictune
-title: 用 Ansible 配置 Fedora
+title: 使用 Ansible 配置 Fedora
 ---
 <!--
 ---
@@ -109,7 +109,7 @@ kube-node-02.example.com
 <!--
 ## Setting up ansible access to your nodes
 -->
-## 配置 ansible 与您所有节点的访问机制
+## 使 ansible 能访问您的所有 node
 
 <!--
 If you already are running on a machine which has passwordless ssh access to the kube-master and kube-node-{01,02} nodes, and 'sudo' privileges, simply set the value of `ansible_ssh_user` in `~/contrib/ansible/inventory/group_vars/all.yml` to the username which you use to ssh to the nodes (i.e. `fedora`), and proceed to the next step...
@@ -246,7 +246,7 @@ This will finally setup your whole Kubernetes cluster for you.
 -->
 **叫 ansible 起来工作！**
 
-这将最终为您配置整个 Kubernetes 群集。
+这将最终为您建立整个 Kubernetes 群集。
 
 ```shell
 cd ~/contrib/ansible/
