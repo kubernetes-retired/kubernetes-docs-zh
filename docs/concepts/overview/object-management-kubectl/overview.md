@@ -16,7 +16,7 @@ Kubernetes objects. This document provides an overview of the different
 approaches.
 -->
 `kubectl` 命令行工具支持多种不同的创建和管理 Kubernetes 对象的方法。
-本文提供了不同方法的概述。
+本文提供了对不同方法的概述。
 {% endcapture %}
 
 {% capture body %}
@@ -127,7 +127,7 @@ in YAML or JSON format.
 -->
 ## 命令式对象配置
 
-在命令式对象配置中，kubectl 命令指定操作（创建、替换等）、可选标记和至少一个文件名称。
+在命令式对象配置中，kubectl 命令指定操作（创建、替换等）、可选参数和至少一个文件名称。
 指定文件必须以 YAML 或 JSON 格式包含对象的完整定义。
 
 <!--
