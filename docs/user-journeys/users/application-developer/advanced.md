@@ -170,12 +170,9 @@ Before making any customizations, it's important that you understand the general
   <div class="emphasize-box" markdown="1">
 
   1. 检查当前状态（副本数、容器镜像等）
-
   2. 对比当前状态和期望状态
-
   3. 如果不匹配则更新当前状态
-
-     </div>
+    </div>
 
   这些状态是通过 Kubernetes API 来获取的。
 
