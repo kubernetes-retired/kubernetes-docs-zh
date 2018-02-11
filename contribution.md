@@ -3,6 +3,27 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 29 周：2018-02-05 ~ 2018-02-11 - 有效合并 9 篇
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-service](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-service) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/reference/feature-gates](https://k8smeetup.github.io/docs/reference/feature-gates) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/setup/building-from-source](https://k8smeetup.github.io/docs/setup/building-from-source) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/overview](https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/overview) by [lichuqiang](https://github.com/lichuqiang)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_ansible_config](https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_ansible_config) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/stackpoint](https://k8smeetup.github.io/docs/getting-started-guides/stackpoint) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/local](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/local) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/user-journeys/users/application-developer/advanced](https://k8smeetup.github.io/docs/user-journeys/users/application-developer/advanced) by [rootsongjc](https://github.com/rootsongjc)
+
+[https://k8smeetup.github.io/docs/concepts/example-concept-template](https://k8smeetup.github.io/docs/concepts/example-concept-template) by [tianshapjq](https://github.com/tianshapjq)
+
+
 ### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 22 篇
 
 [https://k8smeetup.github.io/docs/setup/pick-right-solution](https://k8smeetup.github.io/docs/setup/pick-right-solution) by [chentao1596](https://github.com/chentao1596)
