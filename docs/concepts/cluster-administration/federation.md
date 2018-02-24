@@ -29,6 +29,7 @@ major building blocks:
     resources in multiple clusters in sync. For example, you can ensure that the same deployment exists in multiple clusters.
   * Cross cluster discovery: Federation provides the ability to auto-configure DNS servers and load balancers with backends from all clusters. For example, you can ensure that a global VIP or DNS record can be used to access backends from multiple clusters.
 -->
+
 Federation 使管理多个集群变得简单。它通过提供两个主要构建模块来实现：
 
   * 跨集群同步资源：Federation 提供了在多个集群中保持资源同步的能力。例如，可以保证同一个 deployment 在多个集群中存在。
@@ -42,7 +43,8 @@ Some other use cases that federation enables are:
   failure.
 * Avoiding provider lock-in: By making it easier to migrate applications across
   clusters, federation prevents cluster provider lock-in.
--->
+  -->
+
 Federation 还可以提供一些其它用例：
 
 * 高可用：通过在集群间分布负载并自动配置 DNS 服务和负载均衡，federation 最大限度地减少集群故障的影响。
@@ -52,7 +54,7 @@ Federation 还可以提供一些其它用例：
 Federation is not helpful unless you have multiple clusters. Some of the reasons
 why you might want multiple clusters are:
 
-* Low latency: Having clusters in multiple regions minimises latency by serving
+* Low latency: Having clusters in multiple regions minimize latency by serving
   users from the cluster that is closest to them.
 * Fault isolation: It might be better to have multiple small clusters rather
   than a single large  cluster for fault isolation (for example: multiple
@@ -64,11 +66,12 @@ why you might want multiple clusters are:
 * [Hybrid cloud](#hybrid-cloud-capabilities): You can have multiple clusters on different cloud providers or
   on-premises data centers.
 -->
-Federation 对于单个集群没有用处。您可能会需要多个集群的某些原因如下：
+
+Federation 对于单个集群没有用处。基于下面这些原因您可能会需要多个集群：
 
 * 低延迟：通过在多个区域部署集群可以最大限度减少区域近端用户的延迟。
-* 故障隔离：拥有多个小集群可能比单个大集群更利于故障隔离（例如：在云服务提供商的不同可用区中的多个集群）。详情请参考 [多集群指南](/docs/concepts/cluster-administration/federation/)
-* 可伸缩性：单个集群有可伸缩性限制（对于大多数用户这不是典型场景。更多细节请参考 [Kubernetes 弹性伸缩与性能目标](https://git.k8s.io/community/sig-scalability/goals.md)）
+* 故障隔离：拥有多个小集群可能比单个大集群更利于故障隔离（例如：在云服务提供商的不同可用区中的多个集群）。详情请参考 [多集群指南](/docs/concepts/cluster-administration/federation/)。
+* 可伸缩性：单个集群有可伸缩性限制（对于大多数用户这不是典型场景。更多细节请参考 [Kubernetes 弹性伸缩与性能目标](https://git.k8s.io/community/sig-scalability/goals.md)）。
 * [混合云](#混合云能力)：您可以在不同的云服务提供商或本地数据中心中拥有多个集群。
 
 <!--
@@ -91,14 +94,15 @@ some caveats:
   on the side of safety and avoiding multi-cluster outage.
 * Maturity: The federation project is relatively new and is not very mature.
   Not all resources are available and many are still alpha. [Issue
-  38893](https://github.com/kubernetes/kubernetes/issues/38893) enumerates
+  88](https://github.com/kubernetes/kubernetes/issues/88) enumerates
   known issues with the system that the team is busy solving.
 -->
-虽然存在许多具有吸引力的 federation 使用案例，但也有一些注意事项：
+
+虽然 federation 有很多吸引人的使用案例，但也有一些注意事项：
 
 * 增加网络带宽和成本：federation 控制平面监控所有集群以确保当前状态符合预期。如果集群在云服务提供商的不同区域或者不同的云服务提供商上运行时，这将导致明显的网络成本增加。
 * 减少跨集群隔离：federation 控制平面中的 bug 可能影响所有集群。通过在 federation 中实现最少的逻辑可以缓解这种情况。只要有可能，它就将尽力把工作委托给 kubernetes 集群中的控制平面。这种设计和实现在安全性及避免多集群停止运行上也是错误的。
-* 成熟度：federation 项目相对比较新，还不是很成熟。并不是所有资源都可用，许多仍然处于 alpha 状态。 [问题 38893](https://github.com/kubernetes/kubernetes/issues/38893) 列举了团队目前正忙于解决的与系统相关的已知问题。
+* 成熟度：federation 项目相对比较新，还不是很成熟。并不是所有资源都可用，许多仍然处于 alpha 状态。 [Issue 88](https://github.com/kubernetes/kubernetes/issues/88) 列举了团队目前正忙于解决的与系统相关的已知问题。
 
 <!--
 ### Hybrid cloud capabilities
@@ -114,7 +118,7 @@ register each cluster's API endpoint and credentials with your
 Federation API Server (See the
 [federation admin guide](/docs/admin/federation/) for details).
 -->
-Kubernetes 集群 federation 可以包含运行在不同云服务提供商（例如 Google Cloud, AWS）及本地（例如在 OpenStack 上）的集群。您只需要按需在适合的云服务提供商和/或地点上简单的创建集群，然后向 Federation API Server 注册每个集群的 API endpoint 和凭据即可。（详细信息请参阅 [federation 管理指南](/docs/admin/federation/)）。
+Kubernetes 集群 federation 可以包含运行在不同云服务提供商（例如 Google Cloud、AWS）及本地（例如在 OpenStack 上）的集群。您只需要按需在适合的云服务提供商和/或地点上简单的创建集群，然后向 Federation API Server 注册每个集群的 API endpoint 和凭据即可。（详细信息请参阅 [federation 管理指南](/docs/admin/federation/)）。
 
 <!--
 Thereafter, your [API resources](#api-resources) can span different clusters
@@ -212,6 +216,7 @@ We suggest that all the VMs in a Kubernetes cluster should be in the same availa
   - when the Kubernetes developers are designing the system (e.g. making assumptions about latency, bandwidth, or
     correlated failures) they are assuming all the machines are in a single data center, or otherwise closely connected.
 -->
+
 在诸如 Google Compute Engine 或者 Amazon Web Services 等 IaaS 服务提供商中，虚拟机存在于 [区域](https://cloud.google.com/compute/docs/zones) 或 [可用区](http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html) 上。我们建议 Kubernetes 集群中的所有虚拟机应该位于相同的可用区，因为：
 
   - 与拥有单个全局 Kubernetes 集群相比，单点故障更少。
@@ -227,7 +232,8 @@ Reasons to prefer fewer clusters are:
   - reduced costs for per-cluster fixed resource costs, e.g. apiserver VMs (but small as a percentage
     of overall cluster cost for medium to large clusters).
 -->
-在每个可用区域拥有多个集群是可以的，但总体而言，我们认为少一点更好。
+
+在每个可用区域同时拥有多个集群也是可以的，但总体而言，我们认为少一点更好。
 选择较少集群的理由是：
 
   - 某些情况下，在一个集群中拥有更多的节点可以改进 Pod 的装箱打包（较少资源碎片）。
@@ -241,6 +247,7 @@ Reasons to have multiple clusters include:
     below).
   - test clusters to canary new Kubernetes releases or other cluster software.
 -->
+
 拥有多个集群的原因包括：
 
   - 严格的安全策略要求将一类工作与另一类工作隔离开来（但是，请参见下面的分区集群（Partitioning Clusters））。
@@ -278,7 +285,7 @@ you need at least the larger of `R` or `U + 1` clusters.  If it is not (e.g. you
 users in the event of a cluster failure), then you need to have `R * (U + 1)` clusters
 (`U + 1` in each of `R` regions).  In any case, try to put each cluster in a different zone.
 -->
-如果在集群故障的情形允许负载均衡将流量引导到任何区域，则至少需要比 `R` 或 `U + 1` 数量更大的集群。如果不允许（例如希望在集群发生故障时对所有用户确保低延迟），那么您需要有数量为 `R * (U + 1)` 的集群（`R` 个区域，每个中有 `U + 1` 个集群）。无论如何，请尝试将每个集群放在不同的区域中。
+如果在集群故障的情形下允许负载均衡将流量引导到任何区域，则至少需要有比 `R` 或 `U + 1` 数量更大的集群。如果不行的话（例如希望在集群发生故障时对所有用户确保低延迟），那么您需要有数量为 `R * (U + 1)` 的集群（`R` 个区域，每个中有 `U + 1` 个集群）。无论如何，请尝试将每个集群放在不同的区域中。
 
 <!--
 Finally, if any of your clusters would need more than the maximum recommended number of nodes for a Kubernetes cluster, then
