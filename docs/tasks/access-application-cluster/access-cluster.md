@@ -237,17 +237,17 @@ Go 客户端可以使用与 kubectl 命令行工具相同的 [kubeconfig 文件]
 
 #### Python client
 
-To use [Python client](https://github.com/kubernetes-incubator/client-python), run the following command: `pip install kubernetes` See [Python Client Library page](https://github.com/kubernetes-incubator/client-python) for more installation options.
+To use [Python client](https://github.com/kubernetes-client/python), run the following command: `pip install kubernetes` See [Python Client Library page](https://github.com/kubernetes-client/python) for more installation options.
 
 The Python client can use the same [kubeconfig file](/docs/user-guide/kubeconfig-file)
-as the kubectl CLI does to locate and authenticate to the apiserver. See this [example](https://github.com/kubernetes-incubator/client-python/tree/master/examples/example1.py).
+as the kubectl CLI does to locate and authenticate to the apiserver. See this [example](https://github.com/kubernetes-client/python/tree/master/examples/example1.py).
 -->
 
 #### Python 客户端
 
-要使用 [Python client](https://github.com/kubernetes-incubator/client-python)，请运行以下命令：`pip install kubernetes`。查看  [Python 客户端库页面](https://github.com/kubernetes-incubator/client-python) 获取更多的安装选择。
+要使用 [Python client](https://github.com/kubernetes-client/python)，请运行以下命令：`pip install kubernetes`。查看  [Python 客户端库页面](https://github.com/kubernetes-client/python) 获取更多的安装选择。
 
-Python 客户端可以使用与 kubectl 命令行工具相同的 [kubeconfig 文件](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/) 来定位和验证 apiserver。参考该 [示例](https://github.com/kubernetes-incubator/client-python/tree/master/examples/example1.py)。
+Python 客户端可以使用与 kubectl 命令行工具相同的 [kubeconfig 文件](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/) 来定位和验证 apiserver。参考该 [示例](https://github.com/kubernetes-client/python/tree/master/examples/example1.py)。
 <!--
 
 
