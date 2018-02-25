@@ -37,13 +37,13 @@ This page explains how Kubernetes objects are represented in the Kubernetes API,
 <!--
 A Kubernetes object is a "record of intent"--once you create the object, the Kubernetes system will constantly work to ensure that object exists. By creating an object, you're effectively telling the Kubernetes system what you want your cluster's workload to look like; this is your cluster's **desired state**.
 
-To work with Kubernetes objects--whether to create, modify, or delete them--you'll need to use the [Kubernetes API](https://git.k8s.io/community/contributors/devel/api-conventions.md). When you use the `kubectl` command-line interface, for example, the CLI makes the necessary Kubernetes API calls for you; you can also use the Kubernetes API directly in your own programs. Kubernetes currently provides a `golang` [client library](https://github.com/kubernetes/client-go) for this purpose, and other language libraries (such as [Python](https://github.com/kubernetes-incubator/client-python)) are being developed.
+To work with Kubernetes objects--whether to create, modify, or delete them--you'll need to use the [Kubernetes API](https://git.k8s.io/community/contributors/devel/api-conventions.md). When you use the `kubectl` command-line interface, for example, the CLI makes the necessary Kubernetes API calls for you; you can also use the Kubernetes API directly in your own programs. Kubernetes currently provides a `golang` [client library](https://github.com/kubernetes/client-go) for this purpose, and other language libraries (such as [Python](https://github.com/kubernetes-client/python)) are being developed.
 -->
 
 Kubernetes 对象是 “目标性记录” —— 一旦创建对象，Kubernetes 系统将持续工作以确保对象存在。通过创建对象，可以有效地告知 Kubernetes 系统，所需要的集群工作负载看起来是什么样子的，这就是 Kubernetes 集群的 **期望状态**。
 
 与 Kubernetes 对象工作 —— 是否创建、修改，或者删除 —— 需要使用 [Kubernetes API](https://git.k8s.io/community/contributors/devel/api-conventions.md)。当使用 `kubectl` 命令行接口时，比如，CLI 会使用必要的 Kubernetes API 调用，也可以在程序中直接使用 Kubernetes API。为了实现该目标，Kubernetes 当前提供了一个 `golang` [客户端库](https://github.com/kubernetes/client-go) 
-，其它语言库（例如[Python](https://github.com/kubernetes-incubator/client-python)）也正在开发中。
+，其它语言库（例如[Python](https://github.com/kubernetes-client/python)）也正在开发中。
 
 <!--
 ### Object Spec and Status
