@@ -4,7 +4,7 @@
 
 
 <!-- ## Step Zero: Prerequisites -->
-## 1 预备知识
+## 第0步：先决条件
 
 <!-- This example assumes you have a Kubernetes cluster installed and running, and that you have
 installed the `kubectl` command line tool somewhere in your path. Please see [pick the right solution
@@ -12,7 +12,7 @@ started](/docs/setup/pick-right-solution/) for installation instructions for you
 本例假定您已经安装好一个 Kubernetes 集群并正在运行，并在您的路径中安装了 `kubectl` 命令行工具。 请访问 [选择正确的解决方案](/docs/setup/pick-right-solution/) 查看适合您的平台的安装说明。
 
 <!-- ## Step One: Create the ConfigMap -->
-## 2 创建 ConfigMap
+## 第1步：创建 ConfigMap
 
 <!-- A ConfigMap contains a set of named strings. -->
 一个 ConfigMap 包含一组命名的字符串
@@ -63,7 +63,7 @@ metadata:
 ```
 
 <!-- ## Step Two: Create a pod that consumes a configMap in environment variables -->
-## 3 创建一个 pod 并在其环境变量中使用 configMap
+## 第2步：创建一个 pod 并在其环境变量中使用 configMap
 
 <!-- Use the [`env-pod.yaml`](env-pod.yaml) file to create a Pod that consumes the
 ConfigMap in environment variables. -->
@@ -83,11 +83,11 @@ KUBE_CONFIG_2=value-2
 ```
 
 <!-- ## Step Three: Create a pod that sets the command line using ConfigMap -->
-## 4 创建一个 pod 并使用 ConfigMap 设置其命令行
+## 第3步：创建一个 pod 并使用 ConfigMap 设置其命令行
 
 <!-- Use the [`command-pod.yaml`](command-pod.yaml) file to create a Pod with a container
 whose command is injected with the keys of a ConfigMap: -->
-使用 [`command-pod.yaml`](command-pod.yaml) 文件创建一个 Pod 并使用 ConfigMap 的键定制容器的命令行：
+使用 [`command-pod.yaml`](command-pod.yaml) 文件创建一个 Pod 并将 ConfigMap 的键注入容器的命令行：
 
 ```shell
 $ kubectl create -f docs/user-guide/configmap/command-pod.yaml
@@ -102,10 +102,10 @@ value-1 value-2
 ```
 
 <!-- ## Step Four: Create a pod that consumes a configMap in a volume -->
-## 5 创建一个 pod 在卷中使用 configMap
+## 第4步：创建一个在 volume 中使用 configMap 的 pod
 
 <!-- Pods can also consume ConfigMaps in volumes.  Use the [`volume-pod.yaml`](volume-pod.yaml) file to create a Pod that consumes the ConfigMap in a volume. -->
-Pod 也可以在 volume 中使用 ConfigMap 。  使用 [`volume-pod.yaml`](volume-pod.yaml) 文件来创建一个 Pod 并在其 volume 中使用 ConfigMap ：
+Pod 也可以在 volume 中使用 ConfigMap 。使用 [`volume-pod.yaml`](volume-pod.yaml) 文件来创建一个 Pod 并在其 volume 中使用 ConfigMap ：
 
 ```shell
 $ kubectl create -f docs/user-guide/configmap/volume-pod.yaml
