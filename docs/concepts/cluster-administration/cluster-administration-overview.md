@@ -89,7 +89,7 @@ If you are using a guide involving Salt, see [Configuring Kubernetes with Salt](
 <!--
 * [Controlling Access to the Kubernetes API](/docs/admin/accessing-the-api) describes how to set up permissions for users and service accounts.
 -->
-* [控制到 Kubernetes API 的访问](/docs/admin/accessing-the-api) 描述了如何为用户和 service accounts 建立权限许可.
+* [控制到 Kubernetes API 的访问](/docs/admin/accessing-the-api) 描述了如何为用户和 service accounts 建立权限许可。
 
 <!--
 * [Authenticating](/docs/admin/authentication) explains authentication in Kubernetes, including the various authentication options.
