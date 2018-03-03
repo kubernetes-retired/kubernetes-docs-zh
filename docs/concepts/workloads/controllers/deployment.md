@@ -426,7 +426,7 @@ before changing course.
 
 ### Rollover（多个rollout并行）
 
-每当 Deployment controller 观测到有新的 deployment 被创建时，如果没有已存在的 ReplicaSet 来创建期望个数的 Pod 的话，就会创建出一个新的 ReplicaSet 来做这件事。已存在的 ReplicaSet 控制 label 与`.spec.selector`匹配但是 template 跟`.spec.template`不匹配的 Pod 缩容。最终，新的 ReplicaSet 将会扩容出`.spec.replicas`指定数目的 Pod，旧的 ReplicaSet 会缩容到0。
+每当 Deployment controller 观测到有新的 Deployment 被创建时，如果没有已存在的 ReplicaSet 来创建期望个数的 Pod 的话，就会创建出一个新的 ReplicaSet 来做这件事。已存在的 ReplicaSet 控制 label 与`.spec.selector`匹配但是 template 跟`.spec.template`不匹配的 Pod 缩容。最终，新的 ReplicaSet 将会扩容出`.spec.replicas`指定数目的 Pod，旧的 ReplicaSet 会缩容到0。
 
 如果您更新了一个的已存在并正在进行中的 Deployment，每次更新 Deployment都会创建一个新的 ReplicaSet并扩容它，同时回滚之前扩容的 ReplicaSet ——将它添加到旧的 ReplicaSet 列表中，开始缩容。
 
