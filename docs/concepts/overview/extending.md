@@ -262,7 +262,7 @@ Adding an API does not directly let you affect the behavior of existing APIs (e.
 <!--
 When a request reaches the Kubernetes API Server, it is first Authenticated, then Authorized, then subject to various types of Admission Control. See [[Accessing the API](/docs/admin/accessing-the-api/)] for more on this flow.
 -->
-当请求到达 Kubernetes API Server 时，它首先被要求进行用户认证，然后要进行授权检查，接着受到各种类型的准入控制的检查。 有关此流程的更多信息，请参阅 [访问 API](/docs/admin/accessing-the-api/)]。
+当请求到达 Kubernetes API Server 时，它首先被要求进行用户认证，然后要进行授权检查，接着受到各种类型的准入控制的检查。 有关此流程的更多信息，请参阅 [访问 API](/docs/admin/accessing-the-api/)。
 
 <!--
 Each of these steps offers extension points.
