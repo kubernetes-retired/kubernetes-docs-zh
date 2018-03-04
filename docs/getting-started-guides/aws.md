@@ -4,6 +4,8 @@ approvers:
 - clove
 cn-approvers:
 - xiaosuiba
+cn-reviewers:
+- lichuqiang
 title: 在 AWS EC2 上运行 Kubernetes
 ---
 <!--
@@ -34,7 +36,7 @@ title: Running Kubernetes on AWS EC2
 
 * [CoreOS Tectonic](https://coreos.com/tectonic/) 包含开源的 [Tectonic 安装程序](https://github.com/coreos/tectonic-installer)，用于在 AWS 上的 Container Linux 节点中创建 Kubernetes 集群。
 
-* [`kube-aws`](https://github.com/kubernetes-incubator/kube-aws) 是由 CoreOS 发起，并由 Kubernetes 孵化器维护的一个 CLI 工具 ，用于在 [Container Linux](https://coreos.com/why/) 节点上创建和管理 Kubernetes 集群，它使用 AWS 工具：EC2、CloudFormation 和 Autoscaling。
+* [`kube-aws`](https://github.com/kubernetes-incubator/kube-aws) 是由 CoreOS 发起，并由 Kubernetes Incubator 维护的一个 CLI 工具 ，用于在 [Container Linux](https://coreos.com/why/) 节点上创建和管理 Kubernetes 集群，它使用 AWS 工具：EC2、CloudFormation 和 Autoscaling。
 
 ---
 
@@ -52,7 +54,7 @@ Next, add the appropriate binary folder to your `PATH` to access kubectl:
 
 ### 命令行管理工具：`kubectl`
 
-集群启动脚本会在您的工作站上留下一个 `kubernetes` 目录。此外，您也可以从 [此页面](https://github.com/kubernetes/kubernetes/releases) 下载最新的 Kubernetes 发行版。
+集群启动脚本会在您的工作站上生成一个 `kubernetes` 目录。此外，您也可以从 [此页面](https://github.com/kubernetes/kubernetes/releases) 下载最新的 Kubernetes 发行版。
 
 ```shell
 # OS X
@@ -71,7 +73,7 @@ For more information, please read [kubeconfig files](/docs/tasks/access-applicat
 可以在这里找到此工具最新的文档：[kubectl 手册](/docs/user-guide/kubectl/)。
 
 默认情况下，`kubectl` 将使用集群启动过程中生成的 `kubeconfig` 文件对 API 进行验证。
-更多信息，请阅读 [kubeconfig文件](/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)。
+更多信息，请阅读 [kubeconfig 文件](/docs/tasks/access-application-cluster/configure-access-multiple-clusters/)。
 
 <!--
 ### Examples
@@ -88,7 +90,7 @@ For more complete applications, please look in the [examples directory](https://
 
 "Guestbook" 应用程序是另一个开始使用 Kubernetes 的流行示例：[guestbook 示例](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/guestbook/)。
 
-获取更多完整应用程序，请查看 [examples 目录](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/)。
+希望获取更多完整应用程序，请查看 [examples 目录](https://github.com/kubernetes/examples/tree/{{page.githubbranch}}/)。
 
 <!--
 ## Scaling the cluster
@@ -97,7 +99,7 @@ Adding and removing nodes through `kubectl` is not supported. You can still scal
 -->
 ## 伸缩集群
 
-不支持通过 `kubectl` 添加或删除节点。您仍然可以通过调整 [自动伸缩组（Auto Scaling Group）](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-manual-scaling.html) 中的 "Desired" 和 "Max" 属性来手动调整节点数量，它是在安装过程中创建的。
+不支持通过 `kubectl` 添加或删除节点。您仍然可以通过调整 [自动伸缩组（Auto Scaling Group）](http://docs.aws.amazon.com/autoscaling/latest/userguide/as-manual-scaling.html) 中的 "Desired" 和 "Max" 属性来手动调整节点数量，自动伸缩组是在安装过程中创建的。
 
 <!--
 ## Tearing down the cluster
