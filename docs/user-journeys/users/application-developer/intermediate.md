@@ -27,6 +27,11 @@ After checking out the current page and its linked sections, you should have a b
 * Community tools that can improve your development workflow
 -->
    本文假设您之前已经尝试过使用 Kubernetes。此时，您应该拥有与 Kubernetes 集群（本地 Minikube 或其它）交互的基本经验，并可以使用 Deployment 等 API 对象来运行应用程序。如果还没有这样的能力，您应该先查看 [新手 APP 开发人员](/docs/user-journeys/users/application-developer/foundational/){:target="_blank"} 主题。
+   
+在查看本页及其链接的内容后，您应该会对以下内容有更好的理解：
+* 除 Deployment 外的其他 Kubernetes 工作负载
+* 使 Kubernetes 应用程序符合生产条件需要做些什么
+* 能够改进您工作流程的社区工具
 
 {% endcapture %}
 
@@ -164,6 +169,8 @@ There are pros and cons to each approach, though the declarative approach (such 
 For additional configuration best practices, familiarize yourself with [this guide](/docs/concepts/configuration/overview/){:target="_blank"}
 -->
 每种方法都有优点和缺点，尽管声明式方法（如`kubectl apply -f`）可能是生产环境中最有用的。通过这些方法，您可以依靠本地 YAML 文件确保获得正真的期望状态。这还使得您可以对配置进行版本控制，对代码审查和审计跟踪很有帮助。
+
+想要了解其他的配置最佳实践，请熟悉 [这个指南](/docs/concepts/configuration/overview/){:target="_blank"}
 
 <!--
 #### Security
