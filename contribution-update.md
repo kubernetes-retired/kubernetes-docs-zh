@@ -1,6 +1,39 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 32 周：2018-02-26 ~ 2018-03-04 - 有效合并 5 篇
+
+[https://k8smeetup.github.io/docs/concepts/containers/images](https://k8smeetup.github.io/docs/concepts/containers/images) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/storage/volumes](https://k8smeetup.github.io/docs/concepts/storage/volumes) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/overview/extending](https://k8smeetup.github.io/docs/concepts/overview/extending) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/cluster-administration-overview](https://k8smeetup.github.io/docs/concepts/cluster-administration/cluster-administration-overview) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment](https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment) by [AdamDang](https://github.com/AdamDang)
+
+
+### 第 31 周：2018-02-19 ~ 2018-02-25 - 有效合并 6 篇
+
+[https://k8smeetup.github.io/docs/concepts/overview/working-with-objects/kubernetes-objects](https://k8smeetup.github.io/docs/concepts/overview/working-with-objects/kubernetes-objects) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/reference/client-libraries](https://k8smeetup.github.io/docs/reference/client-libraries) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-api](https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-api) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/reference/index](https://k8smeetup.github.io/docs/reference/index) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster](https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/concepts/cluster-administration/federation](https://k8smeetup.github.io/docs/concepts/cluster-administration/federation) by [rootsongjc](https://github.com/rootsongjc)
+
+
+### 第 29 周：2018-02-05 ~ 2018-02-11 - 有效合并 1 篇
+
+[https://k8smeetup.github.io/docs/user-journeys/users/application-developer/advanced](https://k8smeetup.github.io/docs/user-journeys/users/application-developer/advanced) by [rootsongjc](https://github.com/rootsongjc)
+
+
 ### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 6 篇
 
 [https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm) by [KeithTt](https://github.com/KeithTt)
