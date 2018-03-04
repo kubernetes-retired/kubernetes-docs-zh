@@ -13,7 +13,7 @@ title: Overview of Kubernetes Online Training
 <!--
 Here are some of the sites that offer online training for Kubernetes:
 -->
-这是一些提供 Kubernetes 在线培训的网站：
+这里是一些提供 Kubernetes 在线培训的网站：
 
 {% endcapture %}
 
