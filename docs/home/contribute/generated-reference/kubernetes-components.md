@@ -1,23 +1,40 @@
+<!--
 ---
 title: Generating Reference Pages for Kubernetes Components and Tools
+---
+-->
+---
+title: 为 Kubernetes 组件和工具生成参考页面
+cn-approvers:
+- niuhp
 ---
 
 {% capture overview %}
 
+<!--
 This page shows how to use the `update-imported-docs` tool to generate
 reference documentation for tools and components in the
 [Kubernetes](https://github.com/kubernetes/kubernetes) and
 [Federation](https://github.com/kubernetes/federation) repositories.
+-->
+这个页面展示了如何使用 `update-imported-docs` 工具为 [Kubernetes](https://github.com/kubernetes/kubernetes) 和 [Federation](https://github.com/kubernetes/federation) 仓库中的工具和组件生成参考文档。
 
 {% endcapture %}
 
 
 {% capture prerequisites %}
 
+<!--
 * You need a machine that is running Linux or MacOS.
+-->
+* 您需要一台运行 Linux 或 MacOS 的机器。
 
+<!--
 * You need to have this software installed:
+-->
+* 您需要安装以下软件：
 
+<!--
     * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 
     * [Golang](https://golang.org/doc/install) version 1.9 or later
@@ -25,6 +42,14 @@ reference documentation for tools and components in the
     * [make](https://www.gnu.org/software/make/)
 
     * [gcc compiler/linker](https://gcc.gnu.org/)
+-->    
+    * [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+    * [Golang](https://golang.org/doc/install) 1.9 版本或更高
+
+    * [make](https://www.gnu.org/software/make/)
+
+    * [gcc compiler/linker](https://gcc.gnu.org/)    
 
 * Your `$GOPATH` environment variable must be set.
 
