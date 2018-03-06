@@ -53,7 +53,7 @@ Typically, this involves creating a fork of the repository. For more
 information, see
 [Creating a Documentation Pull Request](/docs/home/contribute/create-pull-request/).
 -->
-* 您必须知道如何创建一个 pull request 到 GitHub 仓库。通常，这需要创建一个该仓库的分支。更多信息请查阅[创建文档请求](/docs/home/contribute/create-pull-request/)。
+* 您必须知道如何创建一个 pull request 到 GitHub 仓库。通常，这需要创建一个该仓库的分支。更多信息请查阅[创建一个文档 PR](/docs/home/contribute/create-pull-request/)。
 
 {% endcapture %}
 
@@ -133,21 +133,21 @@ the master branch of
 [github.com/kubernetes/kubernetes](https://github.com/kubernetes/kubernetes).
 -->
 Kubernetes 组件和工具的参考文档是从 Kubernetes 源码自动生成，如果您想更改这些参考文档，第一步就是更改一处或多处 Kubernetes 源码的注释。
-在您的本地 kubernetes/kubernetes 仓库做出更改，然后提交一个 pull request 到 [github.com/kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) 的主分支。
+在您的本地 kubernetes/kubernetes 仓库做出更改，然后提交一个 PR 到 [github.com/kubernetes/kubernetes](https://github.com/kubernetes/kubernetes) 的主分支。
 
 <!--
 [PR 56942](https://github.com/kubernetes/kubernetes/pull/56942)
 is an example of a pull request that makes changes to comments in the Kubernetes
 source code.
 -->
-[PR 56942](https://github.com/kubernetes/kubernetes/pull/56942) 是一个对 Kubernetes 源码注释做出更改的 pull request 的示例。
+[PR 56942](https://github.com/kubernetes/kubernetes/pull/56942) 是一个对 Kubernetes 源码注释做出更改的 PR 示例。
 
 <!--
 Monitor your pull request, and respond to reviewer comments. Continue to monitor
 your pull request until it is merged into the master branch of the
 `kubernetes/kubernetes` repository.
 -->
-监控您的 pull request 并对评审者的评论做出回应。继续监控您的 pull request 直到它被合并到 `kubernetes/kubernetes` 仓库的主分支。
+监控您的 PR 并对评审者的评论做出回应。继续监控您的 PR 直到它被合并到 `kubernetes/kubernetes` 仓库的主分支。
 
 <!--
 ## Cherry picking your change into a release branch
@@ -173,7 +173,7 @@ to do this, see
 <!--
 Monitor your cherry-pick pull request until it is merged into the release branch.
 -->
-监控您的 cherry-pick pull request 直到它被合并到主分支。
+监控您的 cherry-pick PR 直到它被合并到主分支。
 
 <!--
 **Note:** Proposing a cherry pick requires that you have permission to set a label
@@ -181,7 +181,7 @@ and a milestone in your pull request. If you don’t have those permissions, you
 need to work with someone who can set the label and milestone for you.
 {: .note}
 -->
-**注意：** 提出一个 cherry pick 要求您有设置标签的权限并在您的 pull request 中有一个里程碑。
+**注意：** 提出一个 cherry pick 要求您有设置标签的权限并在您的 PR 中有一个里程碑。
 如果您没有这些权限，您必须和一个能为您设置标签和里程碑的人一起工作。{: .note}
 
 <!--
@@ -210,7 +210,7 @@ The `update-imported-docs` tool performs these steps:
 1. 运行 `kubernetes/kubernetes/hack` 下的几个脚本。 这些脚本生成 Markdown 文件并替换 `kubernetes/kubernetes/docs` 下的文件。
 1. 复制生成的 Markdown 文件到一个在 `kubernetes/website/docs/reference/generated` 下的 `kubernetes/website` 仓库的本地克隆。
 1. 克隆 `kubernetes/federation` 仓库。
-1. 运行 `kubernetes/federation/hack` 下的几个脚本。 这些脚本生成 Markdown 文件并替换 `kubernetes/kubernetes/docs` 下的文件。
+1. 运行 `kubernetes/federation/hack` 下的几个脚本。 这些脚本生成 Markdown 文件并替换 `kubernetes/federation/docs` 下的文件。
 1. 复制生成的 Markdown 文件到一个在 `kubernetes/website/docs/reference/generated` 下的 `kubernetes/website` 仓库的本地克隆。
 
 <!--
@@ -220,7 +220,7 @@ repository, you can submit them in a
 to `kubernetes/website`.
 -->
 在这些 Markdown 文件都在您的 `kubernetes/website` 仓库的本地克隆之后，您可以在一个 
-[pull request](https://kubernetes.io/docs/home/contribute/create-pull-request/) 中提交他们到 `kubernetes/website`。
+[PR](https://kubernetes.io/docs/home/contribute/create-pull-request/) 中提交他们到 `kubernetes/website`。
 
 <!--
 ## Setting the branch
@@ -416,21 +416,21 @@ Run `git add` and `git commit` to commit the files.
 <!--
 ## Creating a pull request
 -->
-## 创建 pull request
+## 创建 PR
 
 <!--
 Create a pull request to the `kubernetes/website` repository. Monitor your
 pull request, and respond to review comments as needed. Continue to monitor
 your pull request until it is merged.
 -->
-创建一个 pull request 到 `kubernetes/website` 仓库。监控您的 pull request 并响应评审者的评论，持续监控您的 pull request 直到它被合并。
+创建一个 PR 到 `kubernetes/website` 仓库。监控您的 PR 并对评审者的评论做出回应，继续监控您的 PR 直到它被合并。
 
 <!--
 A few minutes after your pull request is merged, your updated reference
 topics will be visible in the
 [published documentation](/docs/home/).
 -->
-待您的 pull request 被合并几分钟后, 您的更新主题将在 [发布文档](/docs/home/) 中可见。
+待您的 PR 被合并几分钟后, 您的更新主题将在 [发布文档](/docs/home/) 中可见。
 
 {% endcapture %}
 
