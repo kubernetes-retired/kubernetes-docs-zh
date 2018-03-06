@@ -51,7 +51,7 @@ you can do one of the following:
 - enable the [AlwaysPullImages](/docs/admin/admission-controllers/#alwayspullimages) admission controller.
 -->
 - 设置容器的 `imagePullPolicy` 为 `Always`；
-- 使用 `:latest` 作为镜像的标签去使用
+- 使用 `:latest` 作为镜像的标签去使用；
 - 开启 [AlwaysPullImages](/docs/admin/admission-controllers/#alwayspullimages) 准入控制器。
 
 <!--

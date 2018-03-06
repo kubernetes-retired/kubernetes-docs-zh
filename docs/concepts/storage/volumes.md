@@ -1034,7 +1034,7 @@ Here is an example pod referencing a pre-provisioned PortworxVolume:
 
 -->
 
-``portworxVolume` 是一个与 Kubernetes 一起，以超融合模式运行的弹性块存储层。Portwork 指纹存储在服务器中，基于功能的分层，以及跨多个服务器聚合容量。 Portworx 在虚拟机或裸机 Linux 节点上运行。
+`portworxVolume` 是一个与 Kubernetes 一起，以超融合模式运行的弹性块存储层。Portworx 指纹存储在服务器中，基于功能的分层，以及跨多个服务器聚合容量。 Portworx 在虚拟机或裸机 Linux 节点上运行。
 
 `portworxVolume` 可以通过 Kubernetes 动态创建，也可以在 Kubernetes pod 中预先设置和引用。
 
