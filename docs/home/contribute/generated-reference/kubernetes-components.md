@@ -1,13 +1,13 @@
+---
+cn-approvers:
+- niuhp
+title: 为 Kubernetes 组件和工具生成参考页面
+---
 <!--
 ---
 title: Generating Reference Pages for Kubernetes Components and Tools
 ---
 -->
----
-title: 为 Kubernetes 组件和工具生成参考页面
-cn-approvers: 
-- niuhp
----
 
 {% capture overview %}
 
