@@ -155,7 +155,7 @@ Start with the [basics on Kubernetes logging](/docs/concepts/cluster-administrat
 从 [Kubernetes 日志基础知识](/docs/concepts/cluster-administration/logging/) 开始，了解容器如何执行日志记录和常见模式。集群运维人员通常希望添加一些东西来收集和聚合这些日志。请参阅以下主题：
 
 * [使用 Elasticsearch 和 Kibana 记录日志](/docs/tasks/debug-application-cluster/logging-elasticsearch-kibana/)
-* [使用 Stackdriver 纪录日志](/docs/tasks/debug-application-cluster/logging-stackdriver/)
+* [使用 Stackdriver 记录日志](/docs/tasks/debug-application-cluster/logging-stackdriver/)
 
 <!--
 Like log aggregation, many clusters utilize additional software to help capture metrics and display them. There is an overview of tools at [Tools for Monitoring Compute, Storage, and Network Resources](/docs/tasks/debug-application-cluster/resource-usage-monitoring/).
