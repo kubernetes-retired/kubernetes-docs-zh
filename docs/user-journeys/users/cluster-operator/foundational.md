@@ -61,7 +61,7 @@ If you have not already done so, start your understanding by reading through [Wh
 Kubernetes is quite flexible, and a cluster can be run in a wide variety of places. You can interact with Kubernetes entirely on your own laptop or local development machine with it running within a virtual machine. Kubernetes can also run on virtual machines hosted either locally or in a cloud provider, and you can run a Kubernetes cluster on bare metal.
 -->
 
-Kubernetes 非常灵活，集群可以在各种各样的地方运行。您可以完全在您自己的笔记本电脑或本地开发机器上与 Kubernetes 进行交互，并在虚拟机中运行它。。Kubernetes 还可以在本地或云提供商托管的虚拟机上运行，您也可以在裸机上运行 Kubernetes 集群。
+Kubernetes 非常灵活，集群可以在各种各样的地方运行。您可以完全在您自己的笔记本电脑或本地开发机器上与 Kubernetes 进行交互，并在虚拟机中运行它。Kubernetes 还可以在本地或云提供商托管的虚拟机上运行，您也可以在裸机上运行 Kubernetes 集群。
 
 <!--
 A cluster is made up of one or more [Nodes](/docs/concepts/architecture/nodes/); where a node is a physical or virtual machine.
