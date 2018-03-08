@@ -150,7 +150,7 @@ kubectl
 * [kubectl rolling-update](/docs/user-guide/kubectl/v1.7/#rolling-update)     - 给指定的 ReplicationController 执行一个滚动升级
 * [kubectl rollout](/docs/user-guide/kubectl/v1.7/#rollout)     - 完成一个 deployment 的部署
 * [kubectl run](/docs/user-guide/kubectl/v1.7/#run)     - 在集群中使用指定镜像启动容器
-* [kubectl scale](/docs/user-guide/kubectl/v1.7/#scale)     - 为一个 Deployment, ReplicaSet, Replication Controller, 或者 Job 设置一个新的规格
+* [kubectl scale](/docs/user-guide/kubectl/v1.7/#scale)     - 为一个 Deployment, ReplicaSet, ReplicationController, 或者 Job 设置一个新的规格
 * [kubectl set](/docs/user-guide/kubectl/v1.7/#set)     - 在资源对象设置特定的功能
 * [kubectl taint](/docs/user-guide/kubectl/v1.7/#taint)     - 在一个或者多个节点上更新污点配置
 * [kubectl top](/docs/user-guide/kubectl/v1.7/#top)     - 显示资源（ CUP /内存/存储）使用率
