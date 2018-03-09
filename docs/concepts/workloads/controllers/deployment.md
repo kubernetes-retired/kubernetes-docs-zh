@@ -371,7 +371,7 @@ Deployment 可以保证在升级时只有一定数量的 Pod 是 down 的。默�
 
 Deployment 同时也可以确保只创建出超过期望数量的一定数量的 Pod。默认的，它会确保最多比期望的 Pod 数量多一个的 Pod 是 up 的（最多1个 surge ）。
 
-**在未来的 Kuberentes 版本中，将从1-1变成25%-25%。**
+**在未来的 Kubernetes 版本中，将从1-1变成25%-25%。**
 
 例如，如果您自己看下上面的 Deployment，您会发现，开始创建一个新的 Pod，然后删除一些旧的 Pod 再创建一个新的。当新的Pod创建出来之前不会杀掉旧的 Pod。这样能够确保可用的 Pod 数量至少有2个，Pod 的总数最多4个。
 
@@ -941,7 +941,7 @@ nginx-deployment-618515232    11        11        11        7m
 
 <!--
 
-## Pausing and Resuming a Deployment 
+## Pausing and Resuming a Deployment
 
 You can pause a Deployment before triggering one or more updates and then resume it. This will allow you to
 apply multiple fixes in between pausing and resuming without triggering unnecesarry rollouts.
@@ -987,7 +987,7 @@ deployment "nginx" resource requirements updated
 ```
 
 The initial state of the Deployment prior to pausing it will continue its function, but new updates to
-the Deployment will not have any effect as long as the Deployment is paused. 
+the Deployment will not have any effect as long as the Deployment is paused.
 
 Eventually, resume the Deployment and observe a new ReplicaSet coming up with all the new updates:
 ```shell
@@ -1429,7 +1429,7 @@ $ echo $?
 
 You can set `.spec.revisionHistoryLimit` field in a Deployment to specify how many old ReplicaSets for
 this Deployment you want to retain. The rest will be garbage-collected in the background. By default,
-all revision history will be kept. In a future version, it will default to switch to 2. 
+all revision history will be kept. In a future version, it will default to switch to 2.
 
 **Note:** Explicitly setting this field to 0, will result in cleaning up all the history of your Deployment
 thus that Deployment will not be able to roll back.
@@ -1444,7 +1444,7 @@ thus that Deployment will not be able to roll back.
 
 <!--
 
-## Use Cases 
+## Use Cases
 
 ### Canary Deployment
 
@@ -1584,7 +1584,7 @@ ReplicaSets will be kept by default, consuming resources in `etcd` and crowding 
 if this field is not set. The configuration of each Deployment revision is stored in its ReplicaSets;
 therefore, once an old ReplicaSet is deleted, you lose the ability to rollback to that revision of Deployment.
 
-More specifically, setting this field to zero means that all old ReplicaSets with 0 replica will be cleaned up. 
+More specifically, setting this field to zero means that all old ReplicaSets with 0 replica will be cleaned up.
 In this case, a new Deployment rollout cannot be undone, since its revision history is cleaned up.
 
 ### Paused
