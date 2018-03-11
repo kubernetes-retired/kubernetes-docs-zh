@@ -3,6 +3,21 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 33 周：2018-03-05 ~ 2018-03-11 - 有效合并 6 篇
+
+[https://k8smeetup.github.io/docs/setup/independent/high-availability](https://k8smeetup.github.io/docs/setup/independent/high-availability) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/troubleshooting](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/troubleshooting) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/security](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/security) by [tianshapjq](https://github.com/tianshapjq)
+
+[https://k8smeetup.github.io/docs/home/contribute/generated-reference/kubernetes-components](https://k8smeetup.github.io/docs/home/contribute/generated-reference/kubernetes-components) by [niuhp](https://github.com/niuhp)
+
+[https://k8smeetup.github.io/docs/setup/hosted-solutions/overview](https://k8smeetup.github.io/docs/setup/hosted-solutions/overview) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/admin/high-availability/building](https://k8smeetup.github.io/docs/admin/high-availability/building) by [xiaosuiba](https://github.com/xiaosuiba)
+
+
 ### 第 32 周：2018-02-26 ~ 2018-03-04 - 有效合并 5 篇
 
 [https://k8smeetup.github.io/docs/tutorials/online-training/overview](https://k8smeetup.github.io/docs/tutorials/online-training/overview) by [xiaosuiba](https://github.com/xiaosuiba)

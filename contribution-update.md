@@ -1,6 +1,21 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 33 周：2018-03-05 ~ 2018-03-11 - 有效合并 6 篇
+
+[https://k8smeetup.github.io/docs/admin/high-availability/index](https://k8smeetup.github.io/docs/admin/high-availability/index) by [xiaosuiba](https://github.com/xiaosuiba)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl/index](https://k8smeetup.github.io/docs/user-guide/kubectl/index) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment](https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment) by [normanjoyner](https://github.com/normanjoyner)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/statefulset](https://k8smeetup.github.io/docs/concepts/workloads/controllers/statefulset) by [normanjoyner](https://github.com/normanjoyner)
+
+[https://k8smeetup.github.io/docs/user-journeys/users/cluster-operator/intermediate](https://k8smeetup.github.io/docs/user-journeys/users/cluster-operator/intermediate) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/user-journeys/users/cluster-operator/foundational](https://k8smeetup.github.io/docs/user-journeys/users/cluster-operator/foundational) by [AdamDang](https://github.com/AdamDang)
+
+
 ### 第 32 周：2018-02-26 ~ 2018-03-04 - 有效合并 5 篇
 
 [https://k8smeetup.github.io/docs/concepts/containers/images](https://k8smeetup.github.io/docs/concepts/containers/images) by [AdamDang](https://github.com/AdamDang)
