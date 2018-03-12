@@ -36,9 +36,9 @@ services that communicate a lot into the same availability zone.
 You can find all the files for these examples [in our docs
 repo here](https://github.com/kubernetes/kubernetes.github.io/tree/{{page.docsbranch}}/docs/user-guide/node-selection).
 -->
-您可以限制 [pod](/docs/concepts/workloads/pods/pod/) 只能在特定 [node](/docs/concepts/nodes/node/)] 上运行，或者更倾向于在某些特定 node 上运行。 有几种方法可以做到这一点，他们都使用 [label selectors](/docs/user-guide/labels/) 进行选择。
+您可以限制 [pod](/docs/concepts/workloads/pods/pod/) 只能在特定 [node](/docs/concepts/nodes/node/) 上运行，或者更倾向于在某些特定 node 上运行。 有几种方法可以做到这一点，他们都使用 [label selectors](/docs/user-guide/labels/) 进行选择。
 一般来说，这种约束是不必要的，因为 scheduler 会自动进行合理的安排（例如，将 pod 分布在所有 node 上，而不是将 pod 分配到空闲资源不足的 node 上，等等）
-但是在某些情况下，您可能需要更多的控制权来控制一个 node，例如，确保一个 pod 调度到安装有 SSD 的机器上，或者将来自两个不同服务并且需要大量通信的 pod 共同分配到同一个可用区域内。
+但是在某些情况下，您可能需要对 node 有更多的控制权，例如，确保一个 pod 调度到安装有 SSD 的机器上，或者将来自两个不同服务并且需要大量通信的 pod 分配到同一个可用区域内。
 
 您可以 [在我们的 docs 库中](https://github.com/kubernetes/kubernetes.github.io/tree/{{page.docsbranch}}/docs/user-guide/node-selection) 找到这些示例文件。
 
@@ -55,7 +55,7 @@ to run on a node, the node must have each of the indicated key-value pairs as la
 additional labels as well). The most common usage is one key-value pair.
 -->
 `nodeSelector` 是最简单的控制方式。
-`nodeSelector` 是 PodSpec 中的一个字段，它指定了键-值对的映射。如果想要 pod 能够运行在 node 上，这个 node 必须将每个指定的键-值对作为标签（node 也能拥有其它标签）。最常用的方式是单键-值对。
+`nodeSelector` 是 PodSpec 中的一个字段，它指定了键-值对的映射。如果想要 pod 能够运行在某个 node 上，那么这个 node 必须具有所有指定的键-值对的标签（node 也能拥有其它标签）。最常用的方式是单键-值对。
 
 <!--
 Let's walk through an example of how to use `nodeSelector`.
@@ -169,7 +169,7 @@ feature, currently in beta, greatly expands the types of constraints you can exp
    rather than against labels on the node itself, which allows rules about which pods can and cannot be co-located
 -->
 1. 表达语言更丰富（不仅仅是 "AND 精确匹配"）
-2. 你可以指定规则是 “软”/“偏好” 的，而不是一个硬性要求，所以如果 scheduler 不能满足它的规则，pod 仍然会被调度
+2. 你可以指定规则是 “软”/“偏好” 的，而不是一个硬性要求，所以即使 scheduler 不能满足它的规则，pod 仍然会被调度
 3. 您可以针对 node 上正在运行的其它 pod （或者其它的拓扑域）制定标签，而不仅仅是 node 自身，这就能指定哪些 pod 能够（或者不能够）落在同一节点。
 
 <!--
