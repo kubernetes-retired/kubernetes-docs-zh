@@ -21,7 +21,7 @@ externally-accessible IP address that sends traffic to the correct port on your
 cluster nodes _provided your cluster runs in a supported environment and is configured with the correct cloud load balancer provider package_.
  -->
 当创建一个服务时，你可以选择自动创建一个云端的网路负载均衡器。这能为外部提供一个可达的 IP 地址，
-这个地址会将数据传递到集群节点上正确的服务端口，_但前提是，集群运行在一个可支持负载均衡的环境中，并且对云端但负载均衡正确地进行了配置_。
+这个地址会将数据传递到集群节点上正确的服务端口，_但前提是，集群运行在一个可支持负载均衡的环境中，并且对云端的负载均衡正确地进行了配置_。
 
 {% endcapture %}
 
