@@ -26,7 +26,7 @@ title: Connect a Front End to a Back End Using a Service
        backend application. -->
 * 使用部署对象（Deployment object）创建并运行一个微服务
 * 从后端将流量路由到前端
-* 使用服务对象把前端应用连接到后端应用
+* 使用服务对象（Service object）把前端应用连接到后端应用
 
 {% endcapture %}
 
@@ -145,7 +145,7 @@ DNS 名是 "hello"，也就是 Service 配置文件中 `name` 字段的值。
 <!-- Similar to the backend, the frontend has a Deployment and a Service. The -->
 <!-- configuration for the Service has `type: LoadBalancer`, which means that -->
 <!-- the Service uses the default load balancer of your cloud provider. -->
-与后端类似，前端用包含一个 Deployment 和一个 Service。Service 的配置文件包含了 `type: LoadBalancer`，
+与后端类似，前端应用包含一个 Deployment 和一个 Service。Service 的配置文件包含了 `type: LoadBalancer`，
 也就是说，Service 会使用你的云服务商的默认负载均衡设备。
 
 {% include code.html language="yaml" file="frontend.yaml" ghlink="/docs/tasks/access-application-cluster/frontend.yaml" %}
