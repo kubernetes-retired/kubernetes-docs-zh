@@ -1,7 +1,7 @@
 ---
 approvers:
 - chrismarino
-title: 为了 NetworkPolicy 使用 Romana
+title: 使用 Romana 来提供 NetworkPolicy 
 ---
 
 {% capture overview %}
@@ -9,7 +9,7 @@ title: 为了 NetworkPolicy 使用 Romana
 <!--
 This page shows how to use Romana for NetworkPolicy.
 -->
-本页展示怎么样为了 NetworkPolicy 使用 Romana
+本页展示怎么样使用 Romana 来提供 NetworkPolicy
 
 {% endcapture %}
 
