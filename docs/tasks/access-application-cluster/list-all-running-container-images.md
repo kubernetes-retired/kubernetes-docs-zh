@@ -71,7 +71,7 @@ uniq -c
 The above command will recursively return all fields named `image`
 for all items returned.
 -->
-上面对命令会对所有对返回项递归地取出 `image` 字段并计数。
+上面的命令会对所有对返回项递归地取出 `image` 字段并计数。
 
 <!--
 As an alternative, it is possible to use the absolute path to the image
