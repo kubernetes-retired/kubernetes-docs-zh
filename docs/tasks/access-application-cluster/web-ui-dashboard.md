@@ -85,7 +85,7 @@ If the username and password are configured but unknown to you, then use `kubect
 ### Master 服务器
 UI 可以直接通过 Kubernetes master apiserver 访问。打开浏览器，输入 `https://<kubernetes-master>/ui`，其中 `<kubernetes-master>` 是 Kubernetes master 的 IP 地址或者域名。
 
-请注意，只有当 apiserver 允许使用用户名密码认证时，这中方式才可以正常工作。但对于安装工具（如 `kubeadm`）来说并没有设置。关于如何手工设置认证，参见 [authentication 管理文档](/docs/admin/authentication/)。
+请注意，只有当 apiserver 允许使用用户名密码认证时，这种方式才可以正常工作。但对于安装工具（如 `kubeadm`）来说并没有设置。关于如何手工设置认证，参见 [authentication 管理文档](/docs/admin/authentication/)。
 
 如果您不知道配置的用户名密码，使用 `kubectl config view` 查询。
 
@@ -156,7 +156,7 @@ The deploy wizard expects that you provide the following information:
 -->
 - **Service**（可选）：对于应用的某些部分（比如前端），您可能想对外暴露 [Service](/docs/concepts/services-networking/service/) ，可能是集群外部（external Service）的公网地址。对于外部服务，需要开放一个或者多个端口来满足。更多信息请参考 [这里](/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/。
 
-  其它只能对集群内部可见对 Service 称为 internal Service。
+  其它只能对集群内部可见的 Service 称为 internal Service。
 
   不管哪种 Service 类型，如果您选择创建一个 Service，而且容器在一个端口上开启了监听（入向的），那么您需要定义两个端口。创建的 Service 会将（入向的）端口映射到容器可见的目标端口。Service 将会路由到您部署的 Pod。支持 TCP 和 UDP 协议。这个 Service 内部的 DNS 解析名就是之前您定义的应用名称。
 
