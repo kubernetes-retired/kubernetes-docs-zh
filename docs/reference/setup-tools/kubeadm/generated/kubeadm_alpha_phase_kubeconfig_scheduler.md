@@ -35,7 +35,7 @@ kubeadm alpha phase kubeconfig scheduler
 ```
  -->
 ```
-kubeadm alpha阶段kubeconfig调度器
+kubeadm alpha phase kubeconfig scheduler
 ```
 
 <!-- 
