@@ -30,7 +30,7 @@ see the [sidecar approach](/docs/concepts/cluster-administration/logging#using-a
 in the Kubernetes logging overview.
 -->
 
-在阅读本页之前，强烈建议您熟悉[Kubernetes 日志概述](/docs/concepts/cluster-administration/logging)。
+在阅读本页之前，强烈建议您熟悉 [Kubernetes 日志概述](/docs/concepts/cluster-administration/logging)。
 
 **注意：** 默认情况下，Stackdriver 仅收集容器的标准输出和标准错误流日志。如果要收集应用程序写入文件的日志，请参阅 Kubernetes 日志概述中的 [sidecar 方法](/docs/concepts/cluster-administration/logging#using-a-sidecar-container-with-the-logging-agent)。
 
@@ -83,7 +83,7 @@ Stackdriver Logging agents to the running cluster.
 在使用 `kube-up.sh` 创建的 *新* 集群中，可以使用如下的方法部署 Stackdriver Logging：
 
 1. 设置 `KUBE_LOGGING_DESTINATION` 环境变量为 `gcp`。
-2. **如果没有运行在 GCE **，需要在 `KUBE_NODE_LABELS` 变量中包含 `beta.kubernetes.io/fluentd-ds-ready=true`。
+2. **如果没有运行在 GCE**，需要在 `KUBE_NODE_LABELS` 变量中包含 `beta.kubernetes.io/fluentd-ds-ready=true`。
 
 一旦集群已经启动，每个节点都已经运行 Stackdriver 日志代理。`DaemonSet` 和 `ConfigMap` 配置为插件。如果没有使用 `kube-up.sh`，需要先启动一个没有配置日志解决方案的集群，然后部署 Stackdriver 日志代理到运行的集群。
 
@@ -311,7 +311,7 @@ pod "counter" deleted
 ```
 -->
 
-就像日志概述中描述的一样，这个命名从容器的日志文件中获取日志。如果容器被 Kubernetes 杀掉或重启，仍然可以访问前一个容器的日志。但是如果 pod 被从节点中驱逐，日志文件将丢失。我们可以通过删除当前正在运行的 counter 容器验证这个：
+就像日志概述中描述的一样，这个命令从容器的日志文件中获取日志。如果容器被 Kubernetes 杀掉或重启，仍然可以访问前一个容器的日志。但是如果 pod 被从节点中驱逐，日志文件将丢失。我们可以通过删除当前正在运行的 counter 容器验证这个：
 
 ```shell
 $ kubectl delete pod counter
@@ -384,7 +384,7 @@ two containers, named `container_1` and `container_2` in the spec, their logs
 will have log names `container_1` and `container_2` respectively.
 -->
 
-最重要的 metadata 是资源类型和日志名称。容器日志的资源类型是 `container`，它在 UI 中被称作 `GKE Containers` （即使 Kubernetes 集群不在 GKE 上）。日志名称是容器的名称，因此如果一个 pod 中有两个容器，叫做 `container_1` 和  `container_2`，他们的日志名称分别是 `container_1` 和  `container_2`
+最重要的 metadata 是资源类型和日志名称。容器日志的资源类型是 `container`，它在 UI 中被称作 `GKE Containers` （即使 Kubernetes 集群不在 GKE 上）。日志名称是容器的名称，因此如果一个 pod 中有两个容器，叫做 `container_1` 和  `container_2`，它们的日志名称分别是 `container_1` 和  `container_2`。
 
 <!--
 System components have resource type `compute`, which is named
@@ -447,7 +447,7 @@ $ gcloud beta logging read 'logName="projects/$YOUR_PROJECT_ID/logs/count"' --fo
 "0: Mon Jan  1 00:00:00 UTC 2001\n"
 ```
 
-正像你所看到的，他会输出第一个和第二个 counter 的日志，即使第一个容器已经被删除。
+正像你所看到的，它会输出第一个和第二个 counter 的日志，即使第一个容器已经被删除。
 
 <!--
 ### Exporting logs
@@ -484,7 +484,7 @@ In this case you need to be able to change the parameters of `DaemonSet` and `Co
 * 你可能引入额外的解析来从日志中消息中抽取更多的 metadata，例如日志级别或源码位置。
 * 你可能不只发送到 Stackdriver，或只部分发送到 Stackdriver。
 
-在这种情况下，你就需要更改`DaemonSet` 和 `ConfigMap` 中的参数
+在这种情况下，你就需要更改 `DaemonSet` 和 `ConfigMap` 中的参数
 
 <!--
 ### Prerequisites
@@ -562,7 +562,7 @@ site](http://docs.fluentd.org).
 
 ### 更改 fluentd 参数
 
-Fluentd 配置存储在 `ConfigMap` 对象。它实际上包含一组配置文件。你可以在[官网](http://docs.fluentd.org)找到更多 fluentd 配置。
+Fluentd 配置存储在 `ConfigMap` 对象。它实际上包含一组配置文件。你可以在 [官网](http://docs.fluentd.org) 找到更多 fluentd 配置。
 
 <!--
 Imagine you want to add a new parsing logic to the configuration, so that fluentd can understand
@@ -619,7 +619,7 @@ using [guide above](#changing-daemonset-parameters).
 
 然后，在 `containers.input.conf` 的值中，将新的 filter 正好插入到 `source` 后面。**注意：**顺序很重要。
 
-在 apiserver 中，更新 `ConfigMap` 要比更新 `DaemonSet` 更加复杂。最好认为 `ConfigMap` 是不可变的。然后，为了更新配置，您应该使用新名称创建 `ConfigMap`，然后使用上面的[指南](#changing-daemonset-parameters)更改 `DaemonSet` 以指向它。
+在 apiserver 中，更新 `ConfigMap` 要比更新 `DaemonSet` 更加复杂。最好认为 `ConfigMap` 是不可变的。然后，为了更新配置，您应该使用新名称创建 `ConfigMap`，然后使用上面的 [指南](#changing-daemonset-parameters) 更改 `DaemonSet` 以指向它。
 
 <!--
 ### Adding fluentd plugins
