@@ -26,7 +26,7 @@ Alpha Disclaimer: this command is currently alpha.
 
 生成kubeconfig文件给调度器使用且把它保存至/etc/kubernetes/scheduler.conf。
 
-Alpha Disclaimer: 此命令目前为alpha阶段。
+Alpha免责声明：此命令处于Alpha阶段。
 
 
 <!-- 
