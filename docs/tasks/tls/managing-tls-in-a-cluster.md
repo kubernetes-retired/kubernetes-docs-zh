@@ -29,7 +29,7 @@ protocol that is similar to the
 
 ## 概览
 
-每个 Kubernetes 集群都有一个集群根证书颁发机构（CA）。 集群中的组件通常使用 CA 来验证 API server 的证书，由API服务器验证 kubelet 客户端证书等。为了支持这一点，CA 证书包被分发到集群中的每个节点，并作为一个 sercret 附加分发到默认 service account 上。 或者，您的工作负载可以使用此 CA 建立信任。 您的应用程序可以使用类似于 [ACME草案](https://github.com/ietf-wg-acme/acme/) 的协议，使用 `certificates.k8s.io` API 请求证书签名。
+每个 Kubernetes 集群都有一个集群根证书颁发机构（CA）。 集群中的组件通常使用 CA 来验证 API server 的证书，由API服务器验证 kubelet 客户端证书等。为了支持这一点，CA 证书包被分发到集群中的每个节点，并作为一个 secret 附加分发到默认 service account 上。 或者，您的工作负载可以使用此 CA 建立信任。 您的应用程序可以使用类似于 [ACME草案](https://github.com/ietf-wg-acme/acme/) 的协议，使用 `certificates.k8s.io` API 请求证书签名。
 
 <!--
 ## Trusting TLS in a Cluster
