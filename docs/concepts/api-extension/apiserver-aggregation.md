@@ -24,7 +24,7 @@ The aggregation layer allows Kubernetes to be extended with additional APIs, bey
 
 {% capture body %}
 -->
-聚合层允许Kubernetes使用额外的APIs进行扩展，超出了Kubernetes核心APIs所提供的范围。
+聚合层允许Kubernetes使用额外的API进行扩展，超出了Kubernetes核心API所提供的范围。
 
 <!--
 ## Overview
@@ -33,8 +33,8 @@ The aggregation layer enables installing additional Kubernetes-style APIs in you
 -->
 ## 概述
 
-聚合层允许在你的集群中安装更多的Kubernetes风格的APIs。这些可以是预构建的，现有的第三方解决方案，例如[service-catalog](https://github.com/kubernetes-incubator/service-catalog/blob/master/README.md),
-或者是可以让你使用的用户创建的APIs，如[apiserver-builder](https://github.com/kubernetes-incubator/apiserver-builder/blob/master/README.md)。
+聚合层允许在你的集群中安装更多的Kubernetes风格的API。这些可以是预构建的，现有的第三方解决方案，例如[service-catalog](https://github.com/kubernetes-incubator/service-catalog/blob/master/README.md),
+或者是可以让你使用的用户创建的API，如[apiserver-builder](https://github.com/kubernetes-incubator/apiserver-builder/blob/master/README.md)。
 
 <!--
 In 1.7 the aggregation layer runs in-process with the kube-apiserver. Until an extension resource is registered, the aggregation layer will do nothing. To register their API, users must add an APIService object, which "claims" the URL path in the Kubernetes API. At that point, the aggregation layer will proxy anything sent to that API path (e.g. /apis/myextension.mycompany.io/v1/…) to the registered APIService. 
