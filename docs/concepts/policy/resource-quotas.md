@@ -184,7 +184,7 @@ supply of Pod IPs.
 | ------ | ------ |
 | congfigmaps | 命名空间中可以存在的配置映射的总数。
 | persistentvolumeclaims | 命名空间中可以存在的PVC总数。
-| pods | 命名空间中可以存在的非终止态的pods总数。如果一个pod的`status.phase` 是 `Failed, Succeeded`, 则该pod处于终止态。
+| pods | 命名空间中可以存在的非终止态的pod总数。如果一个pod的`status.phase` 是 `Failed, Succeeded`, 则该pod处于终止态。
 | replicationcontrollers | 命名空间中可以存在的`rc`总数。
 | resourcequotas | 命名空间中可以存在的资源配额（[resource quotas](https://kubernetes.io/docs/admin/admission-controllers/#resourcequota)）总数。
 | services | 命名空间中可以存在的服务总数量。
@@ -192,8 +192,8 @@ supply of Pod IPs.
 | services.nodeports | 命名空间中可以存在的服务的主机接口的总数量。
 | secrets | 命名空间中可以存在的`secrets`的总数量。
 
-例如，pods 数量配额，则表示在单个命名空间中可以创建的pod的最大值。
-你可能想要在一个命名空间中定义一个pod限额来避免一个用户创建了许多小的pods从而耗光这个集群Pod IPs 的情况。
+例如，pod 数量配额，则表示在单个命名空间中可以创建的pod的最大值。
+你可能想要在一个命名空间中定义一个pod限额来避免一个用户创建了许多小的pod从而耗光这个集群Pod IPs 的情况。
 
 <!--
 ## Quota Scopes
@@ -229,10 +229,10 @@ The `Terminating`, `NotTerminating`, and `NotBestEffort` scopes restrict a quota
 
 | 作用域 | 描述 |
 | ------ | ------ |
-| Terminating | 匹配 `spec.activeDeadlineSeconds >= 0` 的pods
-| NotTerminating | 匹配 `spec.activeDeadlineSeconds is nil` 的pods
-| BestEffort | 匹配具有最佳服务质量的pods
-| NotBestEffort | 匹配具有非最佳服务质量的pods
+| Terminating | 匹配 `spec.activeDeadlineSeconds >= 0` 的pod
+| NotTerminating | 匹配 `spec.activeDeadlineSeconds is nil` 的pod
+| BestEffort | 匹配具有最佳服务质量的pod
+| NotBestEffort | 匹配具有非最佳服务质量的pod
 
 `BestEffort`作用域禁止限额跟踪以下的资源：
 * pods
@@ -420,7 +420,7 @@ restrictions around nodes: pods from several namespaces may run on the same node
 * 允许每个租户根据需要增加资源使用，但有一个宽松的限制来防止意外的资源枯竭。
 * 从命名空间检测需求，添加节点并增加配额。
 使用`ResourceQuota`作为一个构建模块，编写一个`controller`监听配额使用率和根据其它信号调整每个命名空间下的配额的硬性限制可以实现这些策略。
-注意资源配额分割集群的总资源，但是它不能对节点创建限制：来自多个命名空间下的pods可以在同一个节点上运行。
+注意资源配额分割集群的总资源，但是它不能对节点创建限制：来自多个命名空间下的pod可以在同一个节点上运行。
 <!--
 ## Example
 
