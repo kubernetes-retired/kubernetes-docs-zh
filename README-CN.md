@@ -1,6 +1,8 @@
 # K8SMeetup 翻译流程与翻译校稿规范
 
-time：2017-07-13 update：2017-12-21 author：xiaolong@caicloud.io
+time：2017-07-13 update：2018-3-22 author：xiaolong@caicloud.io
+
+2018年3月发布翻译版本[路线图](./roadmap.md)，计划2018年6月底发布全量版本的中文文献第一个版本。
 
 K8SMeetup 维护两个仓库：
 
