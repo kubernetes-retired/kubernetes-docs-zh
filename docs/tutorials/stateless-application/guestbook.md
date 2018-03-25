@@ -193,7 +193,7 @@ redis-slave    10.0.0.201   <none>        6379/TCP   20s
 ```
 
 现在，您可以用前端服务的 `<Cluster-IP>:<PORT>` 访问每个节点上的 guestbook ，例如 本指南中的 `10.0.0.117:80` 。 `<Cluster-IP>` 是集群内部的 IP 。 
-如果要从群集外部访问 guestbook ，请在前端 Service 的 `spec` 字段中添加 `type: NodePort` 。 然后，您可以从集群外部使用 `<NodeIP>:NodePort` 访问 guestbook 。 
+如果要从集群外部访问 guestbook ，请在前端 Service 的 `spec` 字段中添加 `type: NodePort` 。 然后，您可以从集群外部使用 `<NodeIP>:NodePort` 访问 guestbook 。 
 在支持外部负载平衡器的云提供商上，将`type: LoadBalancer`添加到前端 Service 的`spec`字段中将为您的 Service 提供负载均衡器。 有几种访问 guestbook 的方法， 
 请参阅[访问集群中运行的服务](https://kubernetes.io/docs/concepts/cluster-administration/access-cluster/#accessing-services-running-on-the-cluster)。
 
@@ -450,7 +450,7 @@ Note that switching to env causes creation-order dependencies, since Services ne
 
 此示例已配置为默认使用 DNS 服务。
 
-如果您的群集没有启用DNS服务，那么您可以先设置 [redis-slave-deployment.yaml](https://git.k8s.io/examples/guestbook/redis-slave-deployment.yaml) 和 [frontend-deployment.yaml](https://git.k8s.io/examples/guestbook/frontend-deployment.yaml)
+如果您的集群没有启用DNS服务，那么您可以先设置 [redis-slave-deployment.yaml](https://git.k8s.io/examples/guestbook/redis-slave-deployment.yaml) 和 [frontend-deployment.yaml](https://git.k8s.io/examples/guestbook/frontend-deployment.yaml)
 中的环境变量 `GET_HOSTS_FROM` 的从 `dns` 到 `env` 的环境值，然后再启动应用程序。
 （但是，这不是必须的。 您可以通过运行 `kubectl --namespace = kube-system get rc -l k8s-app = kube-dns` 来检查集群服务列表中的 DNS 服务。）
 请注意，变换 env 会引发创建顺序依赖关系，因为 Services 需要在他们的客户端需要环境变量之前创建出来。
@@ -482,7 +482,7 @@ $ kubectl get pods
 
 #### 创建 Deployment
 
-然后，在您的 Kubernetes 群集中创建 redis master pod ，执行如下命令：
+然后，在您的 Kubernetes 集群中创建 redis master pod ，执行如下命令：
 
 ```console
 $ kubectl create -f guestbook/redis-master-deployment.yaml
@@ -497,7 +497,7 @@ NAME           DESIRED   CURRENT   UP-TO-DATE   AVAILABLE   AGE
 redis-master   1         1         1            1           27s
 ```
 
-然后，您可以列出群集中的pod，以验证 master 正在运行：
+然后，您可以列出集群中的pod，以验证 master 正在运行：
 
 ```console
 $ kubectl get pods
@@ -525,7 +525,7 @@ For more details, please see [Configuring containers](http://kubernetes.io/docs/
 
 -->
 
-您将看到群集中的所有pod，包括 redis master pod 和每个 pod 的状态。
+您将看到集群中的所有pod，包括 redis master pod 和每个 pod 的状态。
 redis master 的名字将与以下列表中的名称类似：
 
 ```console
@@ -781,7 +781,7 @@ You should see a single redis master pod and two redis slave pods.  As mentioned
 
 -->
 
-当 Deployment 运行后，您可以列出群集中的 pod ，以验证 master 和 slaves 是否正在运行。 您可以看到类似于以下内容的清单：
+当 Deployment 运行后，您可以列出集群中的 pod ，以验证 master 和 slaves 是否正在运行。 您可以看到类似于以下内容的清单：
 
 ```console
 $ kubectl get pods
@@ -974,7 +974,7 @@ You should see a single redis master pod, two redis slaves, and three frontend p
 The code for the PHP server that the frontends are running is in `examples/guestbook/php-redis/guestbook.php`.  It looks like this:
 -->
 
-一旦启动，即当期望的 replicas 数量与当前的 replicas 不一致时（再次创建pod可能需要三十秒），您可以在群集中列出具有指定 labels 的 pod ，以验证 master 、 slaves 和前端都在运行。 
+一旦启动，即当期望的 replicas 数量与当前的 replicas 不一致时（再次创建pod可能需要三十秒），您可以在集群中列出具有指定 labels 的 pod ，以验证 master 、 slaves 和前端都在运行。 
 您可以看到 label 为 'tier' 的所有pod的列表，如下所示：
 
 ```console
@@ -1067,7 +1067,7 @@ $ <kubernetes>/cluster/kube-down.sh
 $ kubectl delete deployments,services -l "app in (redis, guestbook)"
 ```
 
-要完全停止 Kubernetes 群集，如果您是用源代码运行的，可以使用：
+要完全停止 Kubernetes 集群，如果您是用源代码运行的，可以使用：
 
 ```console
 $ <kubernetes>/cluster/kube-down.sh
@@ -1083,7 +1083,7 @@ Then, see the [troubleshooting documentation](http://kubernetes.io/docs/troubles
 
 ### 故障排除
 
-如果您无法启动您的 guestbook 应用程序，请仔细检查您的外部IP是否正确定义了您的前端 Service ，并且群集节点的防火墙是否打开了80端口。
+如果您无法启动您的 guestbook 应用程序，请仔细检查您的外部IP是否正确定义了您的前端 Service ，并且集群节点的防火墙是否打开了80端口。
 
 然后，请参阅[故障排除文档](http://kubernetes.io/docs/troubleshooting/)以进一步获取常见问题的列表以及如何诊断它们。
 
