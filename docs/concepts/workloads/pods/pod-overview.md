@@ -33,13 +33,13 @@ A Pod encapsulates an application container (or, in some cases, multiple contain
 {:toc}
 
 {% capture body %}
-##什么是 Pods
+##什么是 Pod
 
 *Pod* 是 Kubernetes 最基本的组成块 -- 这是 Kubernetes 最小、最简单的可用来创建和部署的单元。 一个 Pod 代表了一个运行在集群里的进程。
 
 Pod 里封装了一个（或者多个）应用容器，存储资源，以及惟一的网络 IP，和指导容器如何运行的选贤。 一个 Pod 表示这样一组部署： 由一个容器或者一组紧耦合容器组成共享资源的 *Kubernets 应用实例*，
 
-> [Docker](https://www.docker.com)是 Kubernetes Pod 里最常见的运行环境， 当然 Pods 也支持其他的容器环境。
+> [Docker](https://www.docker.com)是 Kubernetes Pod 里最常见的运行环境， 当然 Pod 也支持其他的容器环境。
 
 <!--
 Pods are employed in a number of ways in a Kubernetes cluster, including:
@@ -49,8 +49,8 @@ Pods are employed in a number of ways in a Kubernetes cluster, including:
 -->
 Kubernetes 运用 pod 的方式：
 
-* **Pods 里只运行一个单独容器** "one-container-per-Pod" 模式是 Kubernetes 最常见的使用场景；在这种情况下，可以把 Pod 看做是一个单独容器的连接器， Kubernetes 通过 Pod 去管理容器。
-* **Pods 中运行多个相互作用容器**。 Pod 封装了一组紧耦合、共享资源、协同寻址的容器。 这些协同寻址的容器可能来自一组粘性很强的服务 -- 比如说：在用容器的共享卷提供对外文件服务的同时用 "sidecar" 容器刷新、更新这些文件。Pod 将这些容器和存储资源打包成一个管理实体。
+* **Pod 里只运行一个单独容器** "one-container-per-Pod" 模式是 Kubernetes 最常见的使用场景；在这种情况下，可以把 Pod 看做是一个单独容器的连接器， Kubernetes 通过 Pod 去管理容器。
+* **Pod 中运行多个相互作用容器**。 Pod 封装了一组紧耦合、共享资源、协同寻址的容器。 这些协同寻址的容器可能来自一组粘性很强的服务 -- 比如说：在用容器的共享卷提供对外文件服务的同时用 "sidecar" 容器刷新、更新这些文件。Pod 将这些容器和存储资源打包成一个管理实体。
 
 <!--
 The [Kubernetes Blog](http://blog.kubernetes.io) has some additional information on Pod use cases. For more information, see:
@@ -78,7 +78,7 @@ Note that grouping multiple co-located and co-managed containers in a single Pod
 Pods provide two kinds of shared resources for their constituent containers: *networking* and *storage*.
 
 -->
-### Pods 如何管理多个容器
+### Pod 如何管理多个容器
 
 Pod 被设计成支持用多个相互协作的进程（比如说：容器）来构成一组高粘性的服务。 Pod 的容器能在集群里的物理或者虚拟机上自动协同寻址、协同调度到同一台机器上。 容器之间能够共享资源和依赖，能相互通信，还能相互协调容器终止的方式和终止的时间点。
 
