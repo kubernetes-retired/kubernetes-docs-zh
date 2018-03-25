@@ -37,7 +37,7 @@ Developers" term_id="platform-developer" %} or Kubernetes Project {% glossary_to
 useful as an introduction to what extension points and patterns
 exist, and their trade-offs and limitations.
 -->
-本文档介绍自定义 Kubernetes 群集的选项。 本文档的目标读者是希望了解如何使 Kubernetes 集群满足其业务环境需求的 {% glossary_tooltip text="集群运维人员" term_id="cluster-operator" %} 。 Kubernetes 项目的贡献者或潜在的开发人员也可以从本文找到有用的信息，如对已存在扩展点和模式的介绍，以及它们的权衡和限制。
+本文档介绍自定义 Kubernetes 集群的选项。 本文档的目标读者是希望了解如何使 Kubernetes 集群满足其业务环境需求的 {% glossary_tooltip text="集群运维人员" term_id="cluster-operator" %} 。 Kubernetes 项目的贡献者或潜在的开发人员也可以从本文找到有用的信息，如对已存在扩展点和模式的介绍，以及它们的权衡和限制。
 
 {% endcapture %}
 
@@ -77,7 +77,7 @@ Flags and configuration files may not always be changeable in a hosted Kubernete
 <!--
 *Built-in Policy APIs*, such as [ResourceQuota](/docs/concepts/policy/resource-quotas/), [PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/), [NetworkPolicy](/docs/concepts/services-networking/network-policies/) and Role-based Access Control ([RBAC](/docs/admin/authorization/rbac/)), are built-in Kubernetes APIs. APIs are typically used with hosted Kubernetes services and with managed Kubernetes installations. They are declarative and use the same conventions as other Kubernetes resources like pods, so new cluster configuration can be repeatable and be managed the same way as applications. And, where they are stable, they enjoy a [defined support policy](/docs/reference/deprecation-policy/) like other Kubernetes APIs. For these reasons, they are preferred over *configuration files* and *flags* where suitable.
 -->
-*内置策略 API*，例如 [ResourceQuota](/docs/concepts/policy/resource-quotas/)、[PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/)、[NetworkPolicy](/docs/concepts/services-networking/network-policies/) 和 基于角色的权限控制 ([RBAC](/docs/admin/authorization/rbac/)), 是内置的 Kubernetes API。API 通常与托管的 Kubernetes 服务和受控的 Kubernetes 安装一起使用。 它们是声明性的，并使用与其他 Kubernetes 资源（如 Pod ）相同的约定，所以新的群集配置可以重复使用，并以与应用程序相同的方式进行管理。而且，当他们变稳定后，他们和其他Kubernetes API 一样享受 [定义支持政策](/docs/reference/deprecation-policy/)。 出于这些原因，在合适的情况下它们优先于 *配置文件* 和 *标志* 被使用。
+*内置策略 API*，例如 [ResourceQuota](/docs/concepts/policy/resource-quotas/)、[PodSecurityPolicies](/docs/concepts/policy/pod-security-policy/)、[NetworkPolicy](/docs/concepts/services-networking/network-policies/) 和 基于角色的权限控制 ([RBAC](/docs/admin/authorization/rbac/)), 是内置的 Kubernetes API。API 通常与托管的 Kubernetes 服务和受控的 Kubernetes 安装一起使用。 它们是声明性的，并使用与其他 Kubernetes 资源（如 Pod ）相同的约定，所以新的集群配置可以重复使用，并以与应用程序相同的方式进行管理。而且，当他们变稳定后，他们和其他Kubernetes API 一样享受 [定义支持政策](/docs/reference/deprecation-policy/)。 出于这些原因，在合适的情况下它们优先于 *配置文件* 和 *标志* 被使用。
 
 <!--
 ## Extensions
@@ -111,7 +111,7 @@ the guidance in this doc you can write highly available and robust automation.
 Automation generally works with any Kubernetes cluster, including hosted
 clusters and managed installations.
 -->
-Kubernetes 的设计是通过编写客户端程序来实现自动化的。任何 读和（或）写 Kubernetes API 的程序都可以提供有用的自动化工作。*自动化*程序可以运行在集群之中或之外。按照本文档的指导，您可以编写出高可用的和健壮的自动化程序。自动化程序通常适用于任何 Kubernetes 群集，包括托管群集和受管理安装的集群。
+Kubernetes 的设计是通过编写客户端程序来实现自动化的。任何 读和（或）写 Kubernetes API 的程序都可以提供有用的自动化工作。*自动化*程序可以运行在集群之中或之外。按照本文档的指导，您可以编写出高可用的和健壮的自动化程序。自动化程序通常适用于任何 Kubernetes 集群，包括托管集群和受管理安装的集群。
 
 <!--
 There is a specific pattern for writing client programs that work well with
