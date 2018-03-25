@@ -419,9 +419,10 @@ tolerations:
 
 ```yaml
 tolerations: 
-- key: "key"
-  operator: "Exists"
-  effect: "NoSchedule"
+- key: key
+  operator: Exists
+  value: value
+  effect: NoSchedule
 ```
 
 <!--
