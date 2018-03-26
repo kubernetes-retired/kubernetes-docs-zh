@@ -1,5 +1,7 @@
 ---
 title: Kubernetes 开发者指南
+cn-approvers:
+- fatalc
 ---
 
 <!---
