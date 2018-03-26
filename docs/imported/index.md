@@ -1,5 +1,7 @@
 ---
 title: 导入的文档
+cn-approvers:
+- fatalc
 ---
 
 <!-- 
