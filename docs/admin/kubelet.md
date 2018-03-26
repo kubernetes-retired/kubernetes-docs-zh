@@ -284,7 +284,7 @@ TaintBasedEvictions=true|false (ALPHA - default=false)
       --kube-api-content-type string                            发送到 apiserver 的请求 Content type 。（默认“application/vnd.kubernetes.protobuf”）
       --kube-api-qps int32                                      与 kubernetes apiserver 会话时的 QPS 。（默认 15）
       --kube-reserved mapStringString                           一个资源预留量的集合（例如 cpu=200m,memory=500Mi, storage=1Gi ） ，即为 kubernetes 系统组件预留的资源，目前支持根文件系统的 cpu、内存和本地存储。查看 http://kubernetes.io/docs/user-guide/compute-resources 或许更多细节。[默认 none]
-      --kube-reserved-cgroup string                             用来管理 kubernetes 组件的顶级 cgroup 的绝对名称，这些组件用来管理那些标记‘--kube-reserved’的计算资源。 [默认'']
+      --kube-reserved-cgroup string                             用来管理 Kubernetes 组件的顶级 cgroup 的绝对名称，这些组件用来管理那些标记‘--kube-reserved’的计算资源。 [默认'']
       --kubeconfig string                                       kubeconfig 文件的路径，用来指定如何连接到 API server ，此时将使用 --api-servers  除非设置了 --require-kubeconfig 。（默认“/var/lib/kubelet/kubeconfig”）
       --kubelet-cgroups string                                  可选的 cgroups 的绝对名称来创建和运行 kubelet 
       --lock-file string                                        <警告: Alpha 特性> kubelet 用于锁文件的路径。
