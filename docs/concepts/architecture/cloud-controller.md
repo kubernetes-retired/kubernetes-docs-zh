@@ -203,7 +203,7 @@ The PersistentVolumeLabels controller was created specifically for the CCM; that
 
 在用户创建 AWS EBS 或 GCE PD 卷时，PersistentVolumeLabel 控制器为其设置标签。 这使得用户不必手动为这些卷设置标签。
 
-这些标签对 Pod 调度来说是必不可少的，因为这些卷只有在它们所在的地域/区域中才能正常工作，因此任何使用这些卷的 pod
+这些标签对 Pod 调度来说是必不可少的，因为这些卷只有在它们所在的地域/区域中才能正常工作，因此任何使用这些卷的 Pod
 都需要被调度到同样的地域/区域中。
 
 PersistentVolumeLabel 控制器是专门为 CCM 创建的，换句话说，CCM 出现之前该控制器并不存在。 我们创建该控制器，是为了将
