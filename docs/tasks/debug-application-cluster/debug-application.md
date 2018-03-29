@@ -20,7 +20,7 @@ This guide is to help users debug applications that are deployed into Kubernetes
 This is *not* a guide for people who want to debug their cluster.  For that you should check out
 [this guide](/docs/admin/cluster-troubleshooting).
 -->
-本指南旨在帮助用户调试那些部署到 Kubernetes 中但是行为不正确的应用。这 *不是* 针对想要调试集群的人员的指南。如果想要调试集群，您应该看看 [这个指南]/docs/admin/cluster-troubleshooting)。
+本指南旨在帮助用户调试那些部署到 Kubernetes 中但是行为不正确的应用。这 *不是* 针对想要调试集群的人员的指南。如果想要调试集群，您应该看看 [这个指南](/docs/admin/cluster-troubleshooting)。
 
 * TOC
 {:toc}
@@ -34,7 +34,7 @@ This is *not* a guide for people who want to debug their cluster.  For that you 
 The first step in troubleshooting is triage.  What is the problem?  Is it your Pods, your Replication Controller or
 your Service?
 -->
-故障排查的第一步是分诊。问题是什么？是您的 Pod？您的复本控制器（RC：Replication Controller）？还是您的服务？
+故障排查的第一步是分诊。问题是什么？是您的 Pod？您的副本控制器（RC：Replication Controller）？还是您的服务？
 
 <!--
    * [Debugging Pods](#debugging-pods)
@@ -42,7 +42,7 @@ your Service?
    * [Debugging Services](#debugging-services)
 -->
    * [调试 Pod](#调试-Pod)
-   * [调试复本控制器](#调试复本控制器)
+   * [调试副本控制器](#调试副本控制器)
    * [调试服务](#调试服务)
 
 <!--
@@ -214,19 +214,19 @@ version, then this may indicate a problem with your pod spec.
 <!--
 ### Debugging Replication Controllers
 -->
-### 调试复本控制器
+### 调试副本控制器
 
 <!--
 Replication controllers are fairly straightforward.  They can either create Pods or they can't.  If they can't
 create pods, then please refer to the [instructions above](#debugging-pods) to debug your pods.
 -->
-复本控制器相当直接。它们要么能够创建 Pod 要么不能。如果他们无法创建 pod，请参阅 [上面的说明](#调试-Pod) 来调试您的 pod。
+副本控制器相当直接。它们要么能够创建 Pod 要么不能。如果他们无法创建 pod，请参阅 [上面的说明](#调试-Pod) 来调试您的 pod。
 
 <!--
 You can also use `kubectl describe rc ${CONTROLLER_NAME}` to introspect events related to the replication
 controller.
 -->
-您也可以使用 `kubectl describe rc ${CONTROLLER_NAME}` 内省与复本控制器相关的事件。
+您也可以使用 `kubectl describe rc ${CONTROLLER_NAME}` 内省与副本控制器相关的事件。
 
 <!--
 ### Debugging Services
