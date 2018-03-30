@@ -3,7 +3,8 @@
 
 ### 概要
 
-<!--Generates the controller-manager static Pod manifest.
+<!--
+Generates the controller-manager static Pod manifest.
 
 ### Synopsis
 -->
