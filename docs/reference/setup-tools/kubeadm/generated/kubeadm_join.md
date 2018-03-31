@@ -126,6 +126,6 @@ kubeadm join [flags]
     SupportIPVSProxyMode=true|false (ALPHA - default=false)
       --ignore-checks-errors stringSlice              一个检查列表，其中的错误将被当作警告。例子：'IsPrivilegedUser,Swap'。值 'all' 表示忽略所有检查中的错误。
       --node-name string                              指定 node 节点名字。
-      --tls-bootstrap-token string                    用来做 TLS 引导的 token。
-      --token string                                  该 token 可以用来代替 discovery-token 和 tls-bootstrap-token。
+      --tls-bootstrap-token string                    用来做 TLS 引导的令牌。
+      --token string                                  该令牌可以用来代表 discovery-token 和 tls-bootstrap-token。
 ```
