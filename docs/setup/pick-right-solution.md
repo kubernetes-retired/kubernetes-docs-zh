@@ -149,7 +149,7 @@ a Kubernetes cluster from scratch.
 These solutions allow you to create Kubernetes clusters on a range of Cloud IaaS providers with only a
 few commands. These solutions are actively developed and have active community support.
 -->
-通过这些解决方案，您可以只使用几条命令就可以在一系列云 IaaS 提供商上创建 Kuberntes 集群。这些解决方案得到了积极的发展，并得到了的社区的积极支持。
+通过这些解决方案，您可以只使用几条命令就可以在一系列云 IaaS 提供商上创建 Kubernetes 集群。这些解决方案得到了积极的发展，并得到了的社区的积极支持。
 
 <!--
 * [Conjure-up Kubernetes with Ubuntu on AWS, Azure, Google Cloud, Oracle Cloud](/docs/getting-started-guides/ubuntu/)
