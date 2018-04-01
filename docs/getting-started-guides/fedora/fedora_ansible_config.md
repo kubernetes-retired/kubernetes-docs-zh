@@ -140,7 +140,7 @@ If you already have ssh access to every machine using ssh public keys you may sk
 
 Make sure your local machine (root) has an ssh key pair if not
 -->
-如果您已经可以使用 ssh 公钥访问每台机器，那么您可以跳到 [配置群集](#setting-up-the-cluster)。
+如果您已经可以使用 ssh 公钥访问每台机器，那么您可以跳到 [配置集群](#setting-up-the-cluster)。
 
 如果您的本地机器（root 用户）没有 ssh 的秘钥对，可以通过以下方式生成
 
@@ -246,7 +246,7 @@ This will finally setup your whole Kubernetes cluster for you.
 -->
 **叫 ansible 起来工作！**
 
-这将最终为您建立整个 Kubernetes 群集。
+这将最终为您建立整个 Kubernetes 集群。
 
 ```shell
 cd ~/contrib/ansible/
