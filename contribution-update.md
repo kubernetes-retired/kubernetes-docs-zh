@@ -1,6 +1,69 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 36 周：2018-03-26 ~ 2018-04-01 - 有效合并 7 篇
+
+[https://k8smeetup.github.io/docs/admin/kubelet](https://k8smeetup.github.io/docs/admin/kubelet) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/concepts/overview/extending](https://k8smeetup.github.io/docs/concepts/overview/extending) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_ansible_config](https://k8smeetup.github.io/docs/getting-started-guides/fedora/fedora_ansible_config) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster](https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tutorials/stateless-application/guestbook](https://k8smeetup.github.io/docs/tutorials/stateless-application/guestbook) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/architecture/cloud-controller](https://k8smeetup.github.io/docs/concepts/architecture/cloud-controller) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/pods/disruptions](https://k8smeetup.github.io/docs/concepts/workloads/pods/disruptions) by [AdamDang](https://github.com/AdamDang)
+
+
+### 第 35 周：2018-03-19 ~ 2018-03-25 - 有效合并 15 篇
+
+[https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node](https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/logging-stackdriver](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/logging-stackdriver) by [xqxiao](https://github.com/xqxiao)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/tasks/tls/managing-tls-in-a-cluster](https://k8smeetup.github.io/docs/tasks/tls/managing-tls-in-a-cluster) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters](https://k8smeetup.github.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/api-extension/apiserver-aggregation](https://k8smeetup.github.io/docs/concepts/api-extension/apiserver-aggregation) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/policy/resource-quotas](https://k8smeetup.github.io/docs/concepts/policy/resource-quotas) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/pods/pod-overview](https://k8smeetup.github.io/docs/concepts/workloads/pods/pod-overview) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/architecture/cloud-controller](https://k8smeetup.github.io/docs/concepts/architecture/cloud-controller) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-api](https://k8smeetup.github.io/docs/tasks/administer-cluster/access-cluster-api) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication](https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication) by [xqxiao](https://github.com/xqxiao)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard](https://k8smeetup.github.io/docs/tasks/access-application-cluster/web-ui-dashboard) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/romana-network-policy) by [AdamDang](https://github.com/AdamDang)
+
+
+### 第 34 周：2018-03-12 ~ 2018-03-18 - 有效合并 5 篇
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/create-external-load-balancer](https://k8smeetup.github.io/docs/tasks/access-application-cluster/create-external-load-balancer) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/list-all-running-container-images](https://k8smeetup.github.io/docs/tasks/access-application-cluster/list-all-running-container-images) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/connecting-frontend-backend](https://k8smeetup.github.io/docs/tasks/access-application-cluster/connecting-frontend-backend) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters](https://k8smeetup.github.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node](https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node) by [rootsongjc](https://github.com/rootsongjc)
+
+
 ### 第 33 周：2018-03-05 ~ 2018-03-11 - 有效合并 6 篇
 
 [https://k8smeetup.github.io/docs/admin/high-availability/index](https://k8smeetup.github.io/docs/admin/high-availability/index) by [xiaosuiba](https://github.com/xiaosuiba)
