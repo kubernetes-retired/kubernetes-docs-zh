@@ -201,7 +201,7 @@ with future high-availability support.
 
 以上示例使用`--insecure` 标志。 这使得它容易受到 MITM 攻击。 当 kubectl 访问集群时，它使用存储的根证书和客户端证书来访问服务器。 （这些安装在`~/.kube`目录中）。 由于集群证书通常是自签名的，因此可能需要特殊配置才能让您的 http 客户端使用根证书。
 
-对于某些群集，apiserver 可能不需要身份验证；可以选择在本地主机上服务，或者使用防火墙保护。 对此还没有一个标准。[配置对API的访问](/docs/admin/accessing-the-api) 描述了群集管理员如何配置此操作。 这种方法可能与未来的高可用性支持相冲突。
+对于某些集群，apiserver 可能不需要身份验证；可以选择在本地主机上服务，或者使用防火墙保护。 对此还没有一个标准。[配置对API的访问](/docs/admin/accessing-the-api) 描述了集群管理员如何配置此操作。 这种方法可能与未来的高可用性支持相冲突。
 <!--
 
 ### Programmatic access to the API
@@ -230,7 +230,7 @@ Kubernetes 支持 [Go](#go-client) 和 [Python](#python-client) 客户端库。
 
 Go 客户端可以使用与 kubectl 命令行工具相同的 [kubeconfig 文件](/docs/concepts/cluster-administration/authenticate-across-clusters-kubeconfig/) 来定位和验证 apiserver。参考该 [示例](https://git.k8s.io/client-go/examples/out-of-cluster-client-configuration/main.go)。
 
-如果应用程序在群集中以 Pod 的形式部署，请参考 [下一节](#accessing-the-api-from-a-pod)。
+如果应用程序在集群中以 Pod 的形式部署，请参考 [下一节](#accessing-the-api-from-a-pod)。
 
 <!--
 
@@ -373,7 +373,7 @@ You have several options for connecting to nodes, pods and services from outside
 
 - 通过 public IP 访问 service。
   - 使用 `NodePort` 和 `LoadBalancer` 类型的 service，以使 service 能够在集群外部被访问到。请查看 [service](/docs/user-guide/services) 和 [kubectl expose](/docs/user-guide/kubectl/v1.6/#expose) 文档。
-  - 根据您的群集环境，这可能会将服务暴露给您的公司网络，或者可能会将其暴露在互联网上。想想暴露的服务是否安全。它是否自己进行身份验证？
+  - 根据您的集群环境，这可能会将服务暴露给您的公司网络，或者可能会将其暴露在互联网上。想想暴露的服务是否安全。它是否自己进行身份验证？
   - 将 pod 放在服务后面。 要从一组副本（例如为了调试）访问一个特定的 pod，请在 pod 上放置一个唯一的 label，并创建一个选择该 label 的新服务。
   - 在大多数情况下，应用程序开发人员不需要通过 node IP 直接访问节点。
 - 通过 Proxy  规则访问 service、node、pod。
@@ -384,7 +384,7 @@ You have several options for connecting to nodes, pods and services from outside
   - [见此描述](#manually-constructing-apiserver-proxy-urls)。
 - 在集群内访问 node 和 pod。
   - 运行一个 pod，然后使用 [kubectl exec](/docs/user-guide/kubectl/v1.6/#exec) 命令连接到 shell。从该 shell 中连接到其他 node、pod 和 service。
-  - 有些集群可能允许 ssh 到集群上的某个节点。 从那个节点您可以访问到集群中的服务。这是一个非标准的方法，它可能将在某些集群上奏效，而在某些集群不行。这些节点上可能安装了浏览器和其他工具也可能没有。群集 DNS 可能无法正常工作。
+  - 有些集群可能允许 ssh 到集群上的某个节点。 从那个节点您可以访问到集群中的服务。这是一个非标准的方法，它可能将在某些集群上奏效，而在某些集群不行。这些节点上可能安装了浏览器和其他工具也可能没有。集群 DNS 可能无法正常工作。
 
 <!--
 
@@ -560,7 +560,7 @@ will typically ensure that the latter types are setup correctly.
    - 添加身份验证 header
 2. [apiserver 代理](#discovering-builtin-services)：
    - 将一个堡垒机作为 apiserver
-   - 将群集之外的用户连接到群集IP，否则可能无法访问
+   - 将集群之外的用户连接到集群IP，否则可能无法访问
    - 在 apiserver 进程中运行
    - 客户端到代理使用 HTTPS（或 http，如果 apiserver 如此配置）
    - 根据代理目标的可用信息由代理选择使用 HTTP 或 HTTPS
@@ -573,7 +573,7 @@ will typically ensure that the latter types are setup correctly.
    - 提供负载均衡
    - 只是用来访问 service
 4. apiserver 前面的代理/负载均衡器：
-   - 存在和实现因群集而异（例如 nginx）
+   - 存在和实现因集群而异（例如 nginx）
    - 位于所有客户端和一个或多个 apiserver 之间
    - 作为负载均衡器，如果有多个 apiserver
 5. 外部服务的云负载均衡器：
