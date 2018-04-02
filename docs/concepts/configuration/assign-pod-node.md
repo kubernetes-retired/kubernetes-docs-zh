@@ -153,7 +153,7 @@ with a standard set of labels. As of Kubernetes v1.4 these labels are
 <!--
 ## Affinity and anti-affinity
 -->
-## 亲和性（Affinity）和反亲和性（anti-affinity）
+## 亲和性（Affinity）和反亲和性（Anti-affinity）
 
 <!--
 `nodeSelector` provides a very simple way to constrain pods to nodes with particular labels. The affinity/anti-affinity
