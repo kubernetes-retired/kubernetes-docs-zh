@@ -25,7 +25,7 @@ Kubernetes contains the following built-in tools:
 
 #### 本地工具
 
-kubernetes中包含了以下内建工具
+Kubernetes中包含了以下内建工具
 
 <!--
 ##### Kubectl 
@@ -35,7 +35,7 @@ kubernetes中包含了以下内建工具
 
 ##### kubectl
 
-[`kubectl`](/docs/user-guide/kubectl/)是kubernetes的命令行工具。它控制着kubernetes的集群管理。
+[`kubectl`](/docs/user-guide/kubectl/)是Kubernetes的命令行工具。它控制着Kubernetes的集群管理。
 
 <!--
 ##### Kubeadm 
@@ -45,7 +45,7 @@ kubernetes中包含了以下内建工具
 
 ##### kubeadm
 
-[`kubeadm`](/docs/getting-started-guides/kubeadm/)可以在物理、云服务器或是虚拟机(目前处于alpha）上，轻松配置安全的kubernetes集群的命令行工具。
+[`kubeadm`](/docs/getting-started-guides/kubeadm/)可以在物理、云服务器或是虚拟机(目前处于alpha）上，轻松配置安全的Kubernetes集群的命令行工具。
 
 <!--
 ##### Kubefed
