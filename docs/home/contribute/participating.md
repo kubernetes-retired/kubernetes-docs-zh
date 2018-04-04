@@ -14,7 +14,7 @@ title: Participating in SIG-DOCS
 <!--
 SIG-DOCS is one of the [special interest groups](https://github.com/kubernetes/community/blob/master/sig-list.md) within the Kubernetes project, focused on writing, updating, and maintaining the documentation for Kubernetes as a whole.
 -->
-SIG-DOCS 是 Kubernetes 项目中的 [特殊兴趣小组](https://github.com/kubernetes/community/blob/master/sig-list.md) 之一，专注于编写、更新和维护整个 Kubernetes 的文档。
+SIG-DOCS 是 Kubernetes 项目中的一个 [特殊兴趣小组](https://github.com/kubernetes/community/blob/master/sig-list.md), 重点是编写、更新和维护 Kubernetes 的文档。
 
 {% endcapture %}
 
