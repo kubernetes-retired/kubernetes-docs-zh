@@ -72,7 +72,7 @@ resource requests/limits of that type for each Container in the Pod.
 
 Pod 中的每个容器都可以指定以下的一个或者多个值：
 
-- spec.containers[].resources.limits.cpu`
+- `spec.containers[].resources.limits.cpu`
 - `spec.containers[].resources.limits.memory`
 - `spec.containers[].resources.requests.cpu`
 - `spec.containers[].resources.requests.memory`
