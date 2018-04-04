@@ -17,7 +17,7 @@ This page shows how to automatically generate reference pages for the
 Kubernetes Federation API.
 -->
 
-这个页面显示了如何自动为Kubernetes Federation API生成相关参考文档。
+本页面将展示如何自动为Kubernetes Federation API生成相关参考文档。
 
 {% endcapture %}
 
@@ -46,7 +46,7 @@ information, see
 
 * 你需要安装1.9.1 或者更高版本的[Golang](https://golang.org/doc/install),同时你的环境变量中需要将`$GOPATH`设置正确
 
-*  你需要知道如何去创建一个`PR`.例如,你首先需要将远程仓库`fork`到你的个人仓库.详见[创建一个文档相关的PR](/docs/home/contribute/create-pull-request/)
+* 你需要知道如何去创建一个`PR`.例如,你首先需要将远程仓库`fork`到你的个人仓库.详见[创建一个文档相关的PR](/docs/home/contribute/create-pull-request/)
 
 {% endcapture %}
 
