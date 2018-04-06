@@ -136,7 +136,7 @@ curl -L http://${KUBERNETES_MASTER_IP}:4001/v2/keys/
 <!--
 If connectivity is OK, you will see an output of the available keys in etcd (if any).
 -->
-如果连接正常，您会看到数据库中的 键 列表（如果有的话）
+如果连接正常，您会看到数据库中的 键值 列表（如果有的话）
 
 <!--
 ### Start Kubernetes-Mesos Services
