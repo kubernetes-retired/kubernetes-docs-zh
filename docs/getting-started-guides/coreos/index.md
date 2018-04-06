@@ -15,7 +15,7 @@ title: CoreOS on AWS or GCE
 <!--
 There are multiple guides on running Kubernetes with [CoreOS](https://coreos.com/kubernetes/docs/latest/):
 -->
-关于如何使用 coreOS 运行 Kubernetes，有多个指南可供参考。
+关于如何使用 CoreOS 运行 Kubernetes，有多个指南可供参考。
 
 <!--
 ### Official CoreOS Guides
