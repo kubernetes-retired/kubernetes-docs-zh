@@ -218,7 +218,7 @@ Output format | Description
 `-o=yaml`     | Output a YAML formatted API object.-->
 输出格式 | 描述
 --------------| -----------
-`-o=custom-columns=<spec>` | 输入使用逗号分隔的列表打印表格 [custom columns](#custom-columns)。
+`-o=custom-columns=<spec>` | 输出使用逗号分隔的列表打印表格 [custom columns](#custom-columns)。
 `-o=custom-columns-file=<filename>` | 使用文件中的[自定义列模板](#custom-columns)打印表`<filename>`。
 `-o=json`     | 输出JSON格式的API对象。
 `-o=jsonpath=<template>` | 打印在[jsonpath](/docs/user-guide/jsonpath)表达式中定义的字段
