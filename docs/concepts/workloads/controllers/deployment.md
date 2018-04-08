@@ -1619,7 +1619,7 @@ Deployment 也需要 [`.spec` section](https://github.com/kubernetes/community/b
 
  `.spec.template` 是 `.spec`中唯一要求的字段。
 
-`.spec.template` 是 [pod template](docs/user-guide/replication-controller/#pod-template). 它跟 [Pod](docs/user-guide/pods)有一模一样的s chema，除了它是嵌套的并且不需要`apiVersion` 和 `kind`字段。
+`.spec.template` 是 [pod template](docs/user-guide/replication-controller/#pod-template). 它跟 [Pod](docs/user-guide/pods)有一模一样的schema，除了它是嵌套的并且不需要`apiVersion` 和 `kind`字段。
 
 另外为了划分 Pod 的范围，Deployment 中的 pod template 必须指定适当的 label（不要跟其他 controller 重复了，参考[selector](docs/concepts/workloads/controllers/deployment.md#selector)）和适当的重启策略。
 
