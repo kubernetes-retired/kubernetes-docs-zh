@@ -50,12 +50,12 @@ See the [Calico documentation](http://docs.projectcalico.org/) for more options 
 <!--
 Deploying a cluster with Calico adds Pods that support Kubernetes NetworkPolicy.  These Pods run in the `kube-system` Namespace.
 -->
-部署使用 Calico 的集群其实是增加了支持 Kubernetes NetworkPolicy 的 Pods， 这些 Pods 运行在 `kube-system` 命名空间下。
+部署使用 Calico 的集群其实是增加了支持 Kubernetes NetworkPolicy 的 Pod， 这些 Pod 运行在 `kube-system` 命名空间下。
 
 <!--
 To see this list of Pods run:
 -->
-使用如下方式去查看这些运行的 Pods：
+使用如下方式去查看这些运行的 Pod：
 
 ```shell
 kubectl get pods --namespace=kube-system
@@ -64,7 +64,7 @@ kubectl get pods --namespace=kube-system
 <!--
 You'll see a list of Pods similar to this:
 -->
-您可以看到类似下面这样的一个 Pods 列表：
+您可以看到类似下面这样的一个 Pod 列表：
 
 ```console
 NAME                                                 READY     STATUS    RESTARTS   AGE
@@ -83,7 +83,7 @@ There are two main components to be aware of:
 <!--
 - One `calico-node` Pod runs on each node in your cluster and enforces network policy on the traffic to/from Pods on that machine by configuring iptables.
 -->
-- 在集群的每个节点上都会运行一个以 `calico-node` 开头命名的 Pod，用于配置 iptables 去实现那些机器上 Pods 的出/入网络策略
+- 在集群的每个节点上都会运行一个以 `calico-node` 开头命名的 Pod，用于配置 iptables 去实现那些机器上 Pod 的出/入网络策略
 <!--
 - The `calico-policy-controller` Pod reads the policy and label information from the Kubernetes API and configures Calico appropriately.
 -->
