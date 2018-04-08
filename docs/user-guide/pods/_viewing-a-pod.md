@@ -56,7 +56,7 @@ Events:
 <!--
 To list all pods running on a cluster:
 -->
-列出在某集群中运行着的全部 pods:
+列出在某集群中运行着的全部 pod:
 
 ```shell
 $ kubectl get pods

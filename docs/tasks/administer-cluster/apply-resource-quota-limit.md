@@ -59,7 +59,7 @@ The cluster-admin has the following goals:
 * Prevent the use of node ports to preserve scarce resources
 * Provide default compute resource requests to enable better scheduling decisions
   -->
-* 限制运行中 pods 使用的计算资源数量
+* 限制运行中 pod 使用的计算资源数量
 * 限制 persistent volume claims 数量以控制对存储的访问
 * 限制 load balancers 数量以控制成本
 * 防止使用 node ports 以保留稀缺资源
@@ -185,7 +185,7 @@ The quota system will now prevent the namespace from having more than 4 non-term
 addition, it will enforce that each container in a pod makes a `request` and defines a `limit` for
 `cpu` and `memory`.
 -->
-配额系统现在会防止 namespace 拥有超过 4 个没有终止的 pods。此外它还将强制 pod 中的每个容器配置一个 `request` 并为 `cpu` 和 `memory` 定义 `limit`。
+配额系统现在会防止 namespace 拥有超过 4 个没有终止的 pod。此外它还将强制 pod 中的每个容器配置一个 `request` 并为 `cpu` 和 `memory` 定义 `limit`。
 
 <!--
 ## Applying default resource requests and limits
@@ -195,7 +195,7 @@ addition, it will enforce that each container in a pod makes a `request` and def
 <!--
 Pod authors rarely specify resource requests and limits for their pods.
 -->
-Pod 的作者很少为它们的 pods 指定资源请求和限制。
+Pod 的作者很少为它们的 pod 指定资源请求和限制。
 
 <!--
 Since we applied a quota to our project, let's see what happens when an end-user creates a pod that has unbounded
@@ -216,7 +216,7 @@ deployment "nginx" created
 <!--
 Now let's look at the pods that were created.
 -->
-现在我们来看一下创建的 pods。
+现在我们来看一下创建的 pod。
 
 ```shell
 $ kubectl get pods --namespace=quota-example
@@ -225,7 +225,7 @@ $ kubectl get pods --namespace=quota-example
 <!--
 What happened?  I have no pods!  Let's describe the deployment to get a view of what is happening.
 -->
-发生了什么？我一个 pods 都没有！让我们 describe 这个 deployment 来看看发生了什么。
+发生了什么？我一个 pod 都没有！让我们 describe 这个 deployment 来看看发生了什么。
 
 ```shell
 $ kubectl describe deployment nginx --namespace=quota-example
@@ -274,7 +274,7 @@ Events:
 The Kubernetes API server is rejecting the replica set requests to create a pod because our pods
 do not specify `requests` or `limits` for `cpu` and `memory`.
 -->
-Kubernetes API server 拒绝了  replica set 创建一个 pod 的请求，因为我们的 pods 没有为 `cpu` 和 `memory` 指定 `requests` 或 `limits`。
+Kubernetes API server 拒绝了  replica set 创建一个 pod 的请求，因为我们的 pod 没有为 `cpu` 和 `memory` 指定 `requests` 或 `limits`。
 
 <!--
 So let's set some default values for the amount of `cpu` and `memory` a pod can consume:
@@ -318,7 +318,7 @@ $ kubectl run nginx \
 Now that we have applied default compute resources for our namespace, our replica set should be able to create
 its pods.
 -->
-由于已经为我们的 namespace 申请了默认的计算资源，我们的 replica set 应该能够创建它的 pods 了。
+由于已经为我们的 namespace 申请了默认的计算资源，我们的 replica set 应该能够创建它的 pod 了。
 
 ```shell
 $ kubectl get pods --namespace=quota-example
@@ -374,7 +374,7 @@ Instead, you want to let users run a specific number of `BestEffort` pods in the
 advantage of slack compute resources, and then require that users make an explicit resource request for
 pods that require a higher quality of service.
 -->
-作为替换，你希望用户在它们的 namespace 中运行指定数量的 `BestEffort` pods，以从宽松的计算资源中获得好处。然后要求用户为需要更高质量服务的 pods 配置一个显式的资源请求。
+作为替换，你希望用户在它们的 namespace 中运行指定数量的 `BestEffort` pod，以从宽松的计算资源中获得好处。然后要求用户为需要更高质量服务的 pod 配置一个显式的资源请求。
 
 <!--
 Let's create a new namespace with two quotas to demonstrate this behavior:
@@ -444,12 +444,12 @@ all 8 pods.  This is because it is tracked by the `best-effort` quota, and the `
 quota will just ignore it.  The `not-best-effort` quota will track the `not-best-effort-nginx`
 deployment since it creates pods with `Burstable` quality of service.
 -->
-虽然没有指定默认的 limits，`best-effort-nginx` deployment 还是会创建 8 个 pods。这是由于它被 `best-effort` 配额追踪，而 `not-best-effort` 配额将忽略它。`not-best-effort` 配额将追踪 `not-best-effort-nginx` deployment，因为它创建的 pods 具有 `Burstable` 服务质量。
+虽然没有指定默认的 limits，`best-effort-nginx` deployment 还是会创建 8 个 pod。这是由于它被 `best-effort` 配额追踪，而 `not-best-effort` 配额将忽略它。`not-best-effort` 配额将追踪 `not-best-effort-nginx` deployment，因为它创建的 pod 具有 `Burstable` 服务质量。
 
 <!--
 Let's list the pods in the namespace:
 -->
-让我们列出 namespace 中的 pods：
+让我们列出 namespace 中的 pod：
 
 ```shell
 $ kubectl get pods --namespace=quota-scopes
@@ -469,7 +469,7 @@ not-best-effort-nginx-2204666826-ke746   1/1       Running   0          23s
 <!--
 As you can see, all 10 pods have been allowed to be created.
 -->
-如你看到的，所有 10 个 pods 都已经被准许创建。
+如你看到的，所有 10 个 pod 都已经被准许创建。
 
 <!--
 Let's describe current quota usage in the namespace:
@@ -505,7 +505,7 @@ As you can see, the `best-effort` quota has tracked the usage for the 8 pods we 
 the `best-effort-nginx` deployment, and the `not-best-effort` quota has tracked the usage for
 the 2 pods we created in the `not-best-effort-nginx` quota.
 -->
-如你看到的，`best-effort` 配额追踪了我们在 `best-effort-nginx` deployment 中创建的 8 个 pods 的资源用量，而 `not-best-effort` 配额追踪了我们在 `not-best-effort-nginx` deployment 中创的两个 pods 的用量。
+如你看到的，`best-effort` 配额追踪了我们在 `best-effort-nginx` deployment 中创建的 8 个 pod 的资源用量，而 `not-best-effort` 配额追踪了我们在 `not-best-effort-nginx` deployment 中创的两个 pod 的用量。
 
 <!--
 Scopes provide a mechanism to subdivide the set of resources that are tracked by
@@ -521,7 +521,7 @@ where `spec.activeDeadlineSeconds is not nil`.  The `NotTerminating` scope will 
 where `spec.activeDeadlineSeconds is nil`.  These scopes allow you to quota pods based on their
 anticipated permanence on a node in your cluster.
 -->
-除 `BestEffort` 和 `NotBestEffort` scopes 之外，还有用于限制长时间运行和有时限 pods 的scopes。`Terminating` scope 将匹配任何 `spec.activeDeadlineSeconds` 不为 `nil` 的 pod。`NotTerminating` scope 将匹配任何 `spec.activeDeadlineSeconds` 为 `nil` 的 pod。这些 scopes 允许你基于 pods 在你集群中 node 上的预期持久程度来为它们指定配额。
+除 `BestEffort` 和 `NotBestEffort` scopes 之外，还有用于限制长时间运行和有时限 pod 的scopes。`Terminating` scope 将匹配任何 `spec.activeDeadlineSeconds` 不为 `nil` 的 pod。`NotTerminating` scope 将匹配任何 `spec.activeDeadlineSeconds` 为 `nil` 的 pod。这些 scopes 允许你基于 pod 在你集群中 node 上的预期持久程度来为它们指定配额。
 
 {% endcapture %}
 
