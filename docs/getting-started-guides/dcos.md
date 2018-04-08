@@ -32,7 +32,7 @@ If you have problems completing the steps below, please [file an issue against t
 
 ## 关于 在 DCOS 上的 Kubernetes
 
-DCOS 是管理计算机集群硬件和软件资源并为分布式应用提供通用服务的系统软件。在其他服务中，它提供 [Apache Mesos](http://mesos.apache.org/) 作为他的集群内核，[Marathon](https://mesosphere.github.io/marathon/) 作为他的初始系统。与 DCOS CLI，Mesos 框架类似，可以用单独的命令安装 [Kubernetes-Mesos](https://github.com/mesosphere/kubernetes-mesos)。
+DCOS 是管理计算机集群硬件和软件资源并为分布式应用提供通用服务的系统软件。在其他服务中，它提供 [Apache Mesos](http://mesos.apache.org/) 作为它的集群内核，[Marathon](https://mesosphere.github.io/marathon/) 作为它的初始系统。与 DCOS CLI，Mesos 框架类似，可以用单独的命令安装 [Kubernetes-Mesos](https://github.com/mesosphere/kubernetes-mesos)。
 
 DCOS CLI 的另一个特性是它允许插件，像 [DCOS Kubectl plugin](https://github.com/mesosphere/dcos-kubectl)。这允许通过简单的版本编译 Kubectl ，不用手工下载或安装。
 
