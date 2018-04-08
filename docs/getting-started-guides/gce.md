@@ -124,7 +124,7 @@ wget -q -O - https://get.k8s.io | bash
 
 默认的，一些容器已经运行在你的集群。像容器 `fluentd` 提供[日志](/docs/user-guide/logging/overview)，同时 `heapster` 提供[监控](http://releases.k8s.io/{{page.githubbranch}}/cluster/addons/cluster-monitoring/README.md)服务。
 
-通过上面命令运行脚本创建一个集群命名／签准为 “kubernetes”。它定义了一个指定的集群配置，所以你不能多次运行它。
+通过上面命令运行脚本创建一个集群命名／前缀为 “kubernetes”。它定义了一个指定的集群配置，所以你不能多次运行它。
 
 或者，你可以从[这个页面](https://github.com/kubernetes/kubernetes/releases)下载安装最新的 Kubernetes 版本，然后运行 `<kubernetes>/cluster/kube-up.sh` 脚本来开启集群：
 
