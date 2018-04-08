@@ -417,7 +417,7 @@ To make sure that turning on this feature doesn't break DaemonSets, starting in 
 - `node.kubernetes.io/disk-pressure`
 - `node.kubernetes.io/out-of-disk` (*only for critical pods*)
   -->
-    为了保证开启这个功能特性不会对 DaemonSet 造成破坏，从 1.8 版本开始，DaemonSet controller 会自动地给所有的 daemon 添加如下 effect 为 `NoSchedule` 的 toleration：
+为了保证开启这个功能特性不会对 DaemonSet 造成破坏，从 1.8 版本开始，DaemonSet controller 会自动地给所有的 daemon 添加如下 effect 为 `NoSchedule` 的 toleration：
 - `node.kubernetes.io/memory-pressure`
 - `node.kubernetes.io/disk-pressure`
 - `node.kubernetes.io/out-of-disk` (*只适合 critical pod*)
