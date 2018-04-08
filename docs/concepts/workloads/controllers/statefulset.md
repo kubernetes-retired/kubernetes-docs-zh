@@ -88,7 +88,7 @@ StatefulSet 适用于有以下某个或多个需求的应用：
 - StatefulSet 是 beta 资源，Kubernetes 1.5 以前版本不支持。
 - 对于所有的 alpha/beta 的资源，您都可以通过在 apiserver 中设置  `--runtime-config` 选项来禁用。
 - 给定 Pod 的存储必须由 [PersistentVolume Provisioner](http://releases.k8s.io/{{page.githubbranch}}/examples/persistent-volume-provisioning/README.md) 根据请求的 `storage class` 进行配置，或由管理员预先配置。
-- 删除或 scale StatefulSet 将_不会_删除与 StatefulSet 相关联的 volume。 这样做是为了确保数据安全性，这通常比自动清除所有相关 StatefulSet 资源更有价值。
+- 删除或 scale StatefulSet 将不会删除与 StatefulSet 相关联的 volume。 这样做是为了确保数据安全性，这通常比自动清除所有相关 StatefulSet 资源更有价值。
 - StatefulSets 目前要求 [Headless Service](/docs/concepts/services-networking/service/#headless-services) 负责 Pod 的网络标识。 您有责任创建此服务。
 
 <!--
