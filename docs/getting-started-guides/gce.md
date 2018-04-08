@@ -167,7 +167,7 @@ document to see how you can set up the latest `kubectl` on your workstation.
 
 集群启动脚本将运行集群并在你的工作站上留下一个 `kubernetes` 目录。
 
-[kubectl](/docs/user-guide/kubectl/) 工具管理 Kubernetes 集群。它可以让你审查你的集群资源，创建，删除，和更新组建，还有更多。你将使用它来查看你的新集群和启动例子应用。
+[kubectl](/docs/user-guide/kubectl/) 工具管理 Kubernetes 集群。它可以让你审查你的集群资源，创建，删除，和更新组件，还有更多。你将使用它来查看你的新集群和启动例子应用。
 
 你可以在你的工作站使用 `gcloud` 来安装 `kubectl` 命令行工具：
 
