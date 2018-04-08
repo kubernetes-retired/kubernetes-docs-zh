@@ -78,7 +78,7 @@ to a Kubernetes cluster, troubleshoot them, and manage the cluster and its resou
 
 ##### Dashboard
 
-[Dashboard](/docs/tasks/web-ui-dashboard/),是基于web用户界面的kubernetes,允许您部署容器应用到kubernetes集群中，并对其进行故障排除，以及管理集群和其自身的资源。
+[Dashboard](/docs/tasks/web-ui-dashboard/),是基于web用户界面的Kubernetes,允许您部署容器应用到Kubernetes集群中，并对其进行故障排除，以及管理集群和其自身的资源。
 
 <!--
 #### Third-Party Tools
@@ -88,7 +88,7 @@ Kubernetes supports various third-party tools. These include, but are not limite
 
 #### 第三方工具
 
-kubernetes支持有效的第三方工具。包括这些，但不限制于这些：
+Kubernetes支持有效的第三方工具。包括这些，但不限制于这些：
 
 <!--
 ##### Helm
@@ -130,11 +130,11 @@ Use Kompose to:
 
 ##### Kompose
 
-[Kompose](https://github.com/kubernetes-incubator/kompose)是一款帮助Docker Compose用户迁移到kubernetes的工具。
+[Kompose](https://github.com/kubernetes-incubator/kompose)是一款帮助Docker Compose用户迁移到Kubernetes的工具。
 
 kompose的使用:
 
-* 将Docker Compose文件转换为kubernetes对象
+* 将Docker Compose文件转换为Kubernetes对象
 * 从本地的Docker开发到Kubernetes管理的应用
 * 转换 v1、v2版本的Docker Compose`yaml`文件、以及[Distributed Application Bundles](https://docs.docker.com/compose/bundles/)
 
