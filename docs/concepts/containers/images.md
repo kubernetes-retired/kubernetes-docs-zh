@@ -26,7 +26,7 @@ You create your Docker image and push it to a registry before referring to it in
 <!--
 The `image` property of a container supports the same syntax as the `docker` command does, including private registries and tags.
 -->
-容器的 `image` 属性支持与 `docker` 命令相同的语法，包括私有仓库和标签（tag）。
+容器的 `image` 属性支持与 `Docker` 命令相同的语法，包括私有仓库和标签（tag）。
 {% endcapture %}
 
 {:toc}
