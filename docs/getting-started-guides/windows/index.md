@@ -154,7 +154,7 @@ To build *kube-proxy*, run:
 
 **kube-proxy**
 
-要投建*kube-proxy*,运行：
+要构建*kube-proxy*,运行：
 
 1. `cd $GOPATH/src/k8s.io/kubernetes`
 2. 构建 *kube-proxy*
