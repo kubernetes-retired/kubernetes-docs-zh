@@ -246,7 +246,7 @@ kops 将为你的集群创建配置。注意它 _只_ 创建配置，不真正�
 * 编辑你的节点实例组：`kops edit ig --name=useast1.dev.example.com nodes`
 * 编辑你的主实例组：`kops edit ig --name=useast1.dev.example.com master-us-east-1c`
 
-如果这是你第一次使用 kops，花几分钟来尝试这些！一个实例组是一系列实例，它将注册为 kubernetes 节点。在 AWS 上这是通过自动伸缩组来实现的。你可以有多种实例组，例如，如果你想要竞价和永久实例混合的节点，或 GPU 和无 GPU 实例。
+如果这是你第一次使用 kops，花几分钟来尝试这些！一个实例组是一系列实例，它将注册为 kubernetes 节点。在 AWS 上这是通过自动伸缩组来实现的。你可以有多种实例组，例如，如果你想要混合的和按需实例的节点，或 GPU 和无 GPU 实例。
 
 <!--
 ### (5/5) Create the cluster in AWS
