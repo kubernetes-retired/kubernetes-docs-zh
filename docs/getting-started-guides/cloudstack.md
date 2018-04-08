@@ -173,7 +173,7 @@ For support level information on all solutions, see the [Table of solutions](/do
 -->
 ## 支持
 
-aaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
+IaaS Provider        | Config. Mgmt | OS     | Networking  | Docs                                              | Conforms | Support Level
 -------------------- | ------------ | ------ | ----------  | ---------------------------------------------     | ---------| ----------------------------
 CloudStack           | Ansible      | CoreOS | flannel     | [docs](/docs/getting-started-guides/cloudstack)                             |          | Community ([@Guiques](https://github.com/ltupin/))
 
