@@ -308,7 +308,7 @@ rkt 在一个可互换的隔离环境中运行容器。这个功能被称作 [*s
 <!--
 In addition to the three provided stage1 images, you can [create your own](https://coreos.com/rkt/docs/latest/devel/stage1-implementors-guide.html) for specific isolation requirements. If no configuration is set, the [default stage1](https://coreos.com/rkt/docs/latest/build-configure.html#parameters-for-setting-up-default-stage1-image) is used. There are two ways to select a different stage1; either per-node, or per-pod:
 -->
-除了上述的三个 stage1 镜像，您也可以根据您自己特定的隔离需求来 [创建您自己的镜像]https://coreos.com/rkt/docs/latest/devel/stage1-implementors-guide.html)。如果不配置，那么将默认使用 [default stage1](https://coreos.com/rkt/docs/latest/build-configure.html#parameters-for-setting-up-default-stage1-image)。目前有两种方法来选择不同的 stage1；通过 node 或者通过 pod：
+除了上述的三个 stage1 镜像，您也可以根据您自己特定的隔离需求来 [创建您自己的镜像]https://coreos.com/rkt/docs/latest/devel/stage1-implementors-guide.html)。如果不配置，那么将默认使用 [default stage1](https://coreos.com/rkt/docs/latest/build-configure.html#parameters-for-setting-up-default-stage1-image)。目前有两种方法来选择不同的 stage1；通过每个 node 或者每个 pod：
 
 <!--
 * Set the kubelet's `--rkt-stage1-image` flag, which tells the kubelet the stage1 image to use for every pod on the node. For example, `--rkt-stage1-image=coreos/rkt/stage1-coreos` selects the default systemd-nspawn stage1.
