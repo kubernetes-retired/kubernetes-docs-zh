@@ -179,7 +179,7 @@ On large clusters, retrieving the collection of some resource types may result i
 <!--
 To retrieve a single list in chunks, two new parameters `limit` and `continue` are supported on collection requests and a new field `continue` is returned from all list operations in the list `metadata` field. A client should specify the maximum results they wish to receive in each chunk with `limit` and the server will return up to `limit` resources in the result and include a `continue` value if there are more resources in the collection. The client can then pass this `continue` value to the server on the next request to instruct the server to return the next chunk of results. By continuing until the server returns an empty `continue` value the client can consume the full set of results. 
 -->
-要以区块方式检索单个列表，在收集请求上受支持支持两个新参数 `limit` 和 `continue` ，并且从列表的 `metadata` 字段中的所有列表操作返回一个新的字段 `continue`。客户端应该使用 `limit` 指定他们希望在每个块中接收的最大结果，并且如果集合中有更多的资源，服务器将返回结果中的 `limit` 资源，并包含一个 `continue` 值。然后，客户端可以在下一个请求中将这个 `continue` 值传递给服务器，指示服务器返回下一个结果块。通过不断继续，直到服务器返回一个空的 `continue` 值，客户端才能使用完整的结果集。
+要以区块方式检索单个列表，在收集请求上受支持两个新参数 `limit` 和 `continue` ，并且从列表的 `metadata` 字段中的所有列表操作返回一个新的字段 `continue`。客户端应该使用 `limit` 指定他们希望在每个块中接收的最大结果，并且如果集合中有更多的资源，服务器将返回结果中的 `limit` 资源，并包含一个 `continue` 值。然后，客户端可以在下一个请求中将这个 `continue` 值传递给服务器，指示服务器返回下一个结果块。通过不断继续，直到服务器返回一个空的 `continue` 值，客户端才能使用完整的结果集。
 
 <!--
 Like a watch operation, a `continue` token will expire after a short amount of time (by default 5 minutes) and return a `410 Gone` if more results cannot be returned. In this case, the client will need to start from the beginning or omit the `limit` parameter.
