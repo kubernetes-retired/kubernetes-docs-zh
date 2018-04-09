@@ -254,8 +254,8 @@ Run the following in a PowerShell window with administrative privileges. Be awar
 ## Scheduling Pods on Windows
 Because your cluster has both Linux and Windows nodes, you must explicitly set the nodeSelector constraint to be able to schedule Pods to Windows nodes. You must set nodeSelector with the label beta.kubernetes.io/os to the value windows; see the following example:
 -->
-## 在Windows上调度pod 
-由于你的集群中既有Linux也有Windows节点，为了能将pod调度到Windows节点上，你必须显示地设置nodeSelector限制条件。你必须把nodeSelector的标签beta.kubernetes.io/os的值设置为windows；请看下面的例子：
+## 在Windows上调度Pod 
+由于你的集群中既有Linux也有Windows节点，为了能将Pod调度到Windows节点上，你必须显示地设置nodeSelector限制条件。你必须把nodeSelector的标签beta.kubernetes.io/os的值设置为windows；请看下面的例子：
 ```
 {
   "apiVersion": "v1",
