@@ -63,7 +63,7 @@ This section contains information to assist users in migrating core Workloads AP
 <!--
 - If your deployment requires features that are available in the apps/v1beta2 group version, you can migrate to this group version before the apps/v1 release.
 -->
-- 如果您的 deployment 需要 apps/v1beta2 组版本中提供的功能，那么可以在 apps/v1 版本发布前迁移到 apps/v1beta2 组版本。
+- 如果您的 Deployment 需要 apps/v1beta2 组版本中提供的功能，那么可以在 apps/v1 版本发布前迁移到 apps/v1beta2 组版本。
 
 <!--
 - You should develop all new code against the latest stable release.
