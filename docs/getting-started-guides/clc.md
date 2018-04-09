@@ -71,7 +71,6 @@ The requirements to run this script are:
 - A CenturyLink Cloud account with rights to create new hosts
 - An active VPN connection to the CenturyLink Cloud from your linux host
 -->
-运行这个脚本的要求是：
 
 运行这个脚本的要求是：
 - 一个 Linux 管理主机（在 Ubuntu 和 OSX 测试过）
