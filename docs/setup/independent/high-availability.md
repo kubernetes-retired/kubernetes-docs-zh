@@ -21,7 +21,7 @@ This document shows you how to perform setup tasks that kubeadm doesn't perform:
 -->
 本指南为您展示了如何使用 kubeadm 安装并设置一个高可用集群。
 
-本文为您展示了如何执行 kubeadm 没有执行的配置任务：配置硬件；配置多个系统；和负载均衡。
+本文为您展示了如何执行 kubeadm 没有执行的配置任务：配置硬件；配置多个系统和负载均衡。
 
 <!--
 **Note:** This guide is only one potential solution, and there are many ways to configure a highly available cluster. If a better solution works for you, please use it. If you find a better solution that can be adopted by the community, feel free to contribute it back.
