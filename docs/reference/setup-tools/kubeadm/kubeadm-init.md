@@ -45,7 +45,7 @@ following steps:
    (`/etc/kubernetes/pki` by default) this step is skipped as described in the
    [Using custom certificates](#custom-certificates) document.
 -->
-1. 生成自签名的 CA，（或使用现有的 CA，如果用户提供）为群集中的每个组件设置身份。如 [使用自定义证书](#custom-certificates) 中所述，如果用户在通过 `--cert-dir` 配置的目录中（默认为 `/etc/kubernetes/pki`）提供了自己的 CA 证书和（或）密钥，则跳过此步骤。
+1. 生成自签名的 CA，（或使用现有的 CA，如果用户提供）为集群中的每个组件设置身份。如 [使用自定义证书](#custom-certificates) 中所述，如果用户在通过 `--cert-dir` 配置的目录中（默认为 `/etc/kubernetes/pki`）提供了自己的 CA 证书和（或）密钥，则跳过此步骤。
 
 <!--
 1. Writes kubeconfig files in `/etc/kubernetes/`  for
