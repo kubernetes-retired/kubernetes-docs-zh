@@ -37,11 +37,11 @@ reference page, see
 ,
 [kubectl apply](/docs/reference/generated/kubectl/kubectl-commands#apply) 和
 [kubectl taint](/docs/reference/generated/kubectl/kubectl-commands#taint) 生成相关文档.
-本文不包含
+本文不包含为
 [kubectl](/docs/reference/generated/kubectl/kubectl/)
-相关选项页面. 可以在
+相关选项生成相关文档. 可以在
 [为 Kubernetes 组件和工具生成参考页面](/docs/home/contribute/generated-reference/kubernetes-components/)
-查看生成kubectl 相关选项页面的指令.
+查看为kubectl 相关选项生成相关文档的指令.
 {: .note}
 
 {% endcapture %}
@@ -164,7 +164,7 @@ go get github.com/kubernetes-incubator/reference-docs
 确定你[kubernetes-incubator/reference-docs](https://github.com/kubernetes-incubator/reference-docs)项目的根目录.例如,如果你执行了上面的命令，你的根目录应该为`$GOPATH/src/github.com/kubernetes-incubator/reference-docs.`下文将以`<rdocs-base>`指代项目根目录.
 
 在你本地的 kubernetes/kubernetes 仓库下, 切换到相关的分支,
-并且确保它是最新的. 例如, 如果你想为
+并且确保该分支是最新状态. 例如, 如果你想为
 Kubernetes 1.9生成文档, 你可以使用以下命令:
 
 ```shell
@@ -220,15 +220,15 @@ need to work with someone who can set the label and milestone for you.
 
 ## 将你的变更移植到指定发布分支
 
-你的所做的变更现在是基于master分支，该分支是为了开发Kubernetes下个版本. 如果你想将你的变更移植到已经发布的Kubernetes版本的文档中, 你需要指明你所做的更改基于的相关分支.
+你的所做的变更现在是基于master分支，该分支的存在是为了开发Kubernetes下个版本. 如果你想将你的变更移植到已经发布的Kubernetes版本的文档中, 你需要指明你所做更改移植的目标分支.
 
 例如，假设主分支被用来开发Kubernetes 1.10，你想把你的变更移植到已经发布的1.9分支. 可以参考
 [做出一个移植](https://github.com/kubernetes/community/blob/master/contributors/devel/cherry-picks.md).
 
-关注你做出移植的PR直到它被合并到相关的分支.
+关注你做出移植后提交的的PR直到它被合并到目标分支.
 
 **Note:**
-提出一个移植需要你有向你提交的PR添加标签和里程碑的权限. 如果你没有该权限，你需要和具有相关权限的人合作让他帮你添加相关的标签和里程碑.
+做出一个移植操作需要你拥有向你所提交的PR内添加标签和里程碑的权限. 如果你没有该权限，你需要和具有相关权限的人合作让他帮你添加相关的标签和里程碑.
 {: .note}
 
 <!-- ## Editing Makefile
@@ -276,9 +276,9 @@ pwittrock/brodocs   latest              999d34a50d56        5 weeks ago         
 
 ## 创建 brodocs 镜像
 
-控制文档自动生成的代码需要`pwittrock/brodocs` Docker 镜像.
+控制文档自动生成的代码需要`pwittrock/brodocs`Docker 镜像.
 
-以下命令生成`pwittrock/brodocs` Docker 镜像. 同时，它将尝试将镜像推送到Dockerhub, 推送的过程失败无伤大雅. 只要你本地有该镜像, 代码将会成功生成.
+以下命令生成`pwittrock/brodocs`Docker 镜像. 同时，将尝试将镜像推送到Dockerhub, 推送的过程失败无伤大雅. 只要你本地有该镜像, 控制文档自动生成的代码将会成功生成.
 
 
 ```shell
@@ -313,8 +313,8 @@ cp -r gen-kubectldocs/generators/v1_8/* gen-kubectldocs/generators/v1_9
 
 ## 创建一个版本文件
 
-如果在你的`gen-kubectldocs/generators`文件下还没有`v1_MINOR_VERSION`文件, 将之前版本的同名文件拷贝一份. 例如, 假设你想为
-Kubernetes 1.9生成文档, 但是你没有`v1_9` 文件夹.你可以通过以下命令创建并填充`v1_9`文件:
+如果在你的`gen-kubectldocs/generators`文件下还没有`v1_MINOR_VERSION`文件, 将之前版本的类似文件拷贝一份. 例如, 假设你想为
+Kubernetes 1.9生成文档, 但是`gen-kubectldocs/generators`文件下还没有`v1_9`文件.你可以通过以下命令创建并填充`v1_9`文件:
 
 ```shell
 mkdir gen-kubectldocs/generators/v1_9
@@ -330,7 +330,7 @@ you local branch is up to date. -->
 
 ## 在kubernetes/kubernetes下切换分支
 
-在你本地的 kubernetes/kubernetes 仓库内, 切换到你文档相关的Kubernetes分支. 例如,如果你想为Kubernetes 1.9生成文档, 你需要切换到 release-1.9 分支. 确保你的分支是最新状态.
+在你本地的 kubernetes/kubernetes 仓库内, 切换到你文档相关的Kubernetes分支. 例如,如果你想为Kubernetes 1.9生成文档, 你需要切换到 release-1.9 分支. 确保该分支是最新状态.
 
 <!-- ## Running the doc generation code
 
