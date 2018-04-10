@@ -218,36 +218,37 @@ milestone in your pull request. If you don’t have those permissions, you will
 need to work with someone who can set the label and milestone for you.
 {: .note} -->
 
-## Cherry picking your change into a release branch
+## 将你的变更移植到指定发布分支
 
-Your change is now in the master branch, which is used for development of the next
-Kubernetes release. If you want your change to appear in the docs for a Kubernetes
-version that has already been released, you need to propose that your change be
-cherry picked into the release branch.
+你的所做的变更现在是基于master分支，该分支是为了开发Kubernetes下个版本. 如果你想将你的变更移植到已经发布的Kubernetes版本的文档中, 你需要指明你所做的更改基于的相关分支.
 
-For example, suppose the master branch is being used to develop Kubernetes 1.10,
-and you want to backport your change to the release-1.9 branch. For instructions
-on how to do this, see
-[Propose a Cherry Pick](https://github.com/kubernetes/community/blob/master/contributors/devel/cherry-picks.md).
+例如，假设主分支被用来开发Kubernetes 1.10，你想把你的变更移植到已经发布的1.9分支. 可以参考
+[做出一个移植](https://github.com/kubernetes/community/blob/master/contributors/devel/cherry-picks.md).
 
-Monitor your cherry-pick pull request until it is merged into the release branch.
+关注你做出移植的PR直到它被合并到相关的分支.
 
 **Note:**
-Proposing a cherry pick requires that you have permission to set a label and a
-milestone in your pull request. If you don’t have those permissions, you will
-need to work with someone who can set the label and milestone for you.
+提出一个移植需要你有向你提交的PR添加标签和里程碑的权限. 如果你没有该权限，你需要和具有相关权限的人合作让他帮你添加相关的标签和里程碑.
 {: .note}
 
-## Editing Makefile
+<!-- ## Editing Makefile
 
 Go to `<rdocs-base>`, and open `Makefile` for editing:
 
 Set `K8SROOT` to the base directory of your local kubernetes/kubernetes
 repository. Set `WEBROOT` to the base directory of your local kubernetes/website repository.
 Set `MINOR_VERSION` to the minor version of the docs you want to build. For example,
-if you want to build docs for Kubernetes 1.9, set `MINOR_VERSION` to 9. Save and close `Makefile`.
+if you want to build docs for Kubernetes 1.9, set `MINOR_VERSION` to 9. Save and close `Makefile`. -->
 
-## Building the brodocs image
+## 修改Makefile
+
+进入`<rdocs-base>`目录, 打开并编辑 `Makefile` :
+
+设置`K8SROOT`变量指向你本地的 kubernetes/kubernetes 仓库根目录. 设置`WEBROOT` 变量指向你本地的 kubernetes/website 仓库根目录.
+设置`MINOR_VERSION` 为你将创建的文档的次要版本.例如,
+如果你想为Kubernetes 1.9创建文档, 你需要将 `MINOR_VERSION` 设置为 9. 保存修改并退出`Makefile`.
+
+<!-- ## Building the brodocs image
 
 The doc generation code requires the `pwittrock/brodocs` Docker image.
 
@@ -271,9 +272,33 @@ The output shows `pwittrock/brodocs` as one of the available images:
 ```shell
 REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
 pwittrock/brodocs   latest              999d34a50d56        5 weeks ago         714MB
+``` -->
+
+## 创建 brodocs 镜像
+
+控制文档自动生成的代码需要`pwittrock/brodocs` Docker 镜像.
+
+以下命令生成`pwittrock/brodocs` Docker 镜像. 同时，它将尝试将镜像推送到Dockerhub, 推送的过程失败无伤大雅. 只要你本地有该镜像, 代码将会成功生成.
+
+
+```shell
+make brodocs
 ```
 
-## Creating a version directory
+确认你本地有 brodocs 镜像:
+
+```shell
+docker images
+```
+
+输出显示 `pwittrock/brodocs` 为可用镜像:
+
+```shell
+REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+pwittrock/brodocs   latest              999d34a50d56        5 weeks ago         714MB
+```
+
+<!-- ## Creating a version directory
 
 In the `gen-kubectldocs/generators` directory, if you do not already
 have a directory named `v1_MINOR_VERSION`, create one now by copying the directory
@@ -284,16 +309,30 @@ create and populate a `v1_9` directory by running these commands:
 ```shell
 mkdir gen-kubectldocs/generators/v1_9
 cp -r gen-kubectldocs/generators/v1_8/* gen-kubectldocs/generators/v1_9
+``` -->
+
+## 创建一个版本文件
+
+如果在你的`gen-kubectldocs/generators`文件下还没有`v1_MINOR_VERSION`文件, 将之前版本的同名文件拷贝一份. 例如, 假设你想为
+Kubernetes 1.9生成文档, 但是你没有`v1_9` 文件夹.你可以通过以下命令创建并填充`v1_9`文件:
+
+```shell
+mkdir gen-kubectldocs/generators/v1_9
+cp -r gen-kubectldocs/generators/v1_8/* gen-kubectldocs/generators/v1_9
 ```
 
-## Checking out a branch in kubernetes/kubernetes
+<!-- ## Checking out a branch in kubernetes/kubernetes
 
 In you local kubernetes/kubernetes repository, checkout the branch that has
 the version of Kubernetes that you want to document. For example, if you want
 to generate docs for Kubernetes 1.9, checkout the release-1.9 branch. Make sure
-you local branch is up to date.
+you local branch is up to date. -->
 
-## Running the doc generation code
+## 在kubernetes/kubernetes下切换分支
+
+在你本地的 kubernetes/kubernetes 仓库内, 切换到你文档相关的Kubernetes分支. 例如,如果你想为Kubernetes 1.9生成文档, 你需要切换到 release-1.9 分支. 确保你的分支是最新状态.
+
+<!-- ## Running the doc generation code
 
 In you local kubernetes-incubator/reference-docs repository, build and run the
 doc generation code. You might need to run the command as root:
@@ -301,16 +340,32 @@ doc generation code. You might need to run the command as root:
 ```shell
 cd <rdocs-base>
 make cli
+``` -->
+
+## 运行文档生成代码
+
+在你本地的 kubernetes-incubator/reference-docs 仓库内, 构建并运行文档生成代码. 你可能需要root权限去运行以下命令:
+
+```shell
+cd <rdocs-base>
+make cli
 ```
 
-## Locate the generated files
+<!-- ## Locate the generated files
 
 These two files are the primary output of a successful build. Verify that they exist:
 
 * `<rdocs-base>/gen-kubectldocs/generators/build/index.html`
+* `<rdocs-base>/gen-kubectldocs/generators/build/navData.js` -->
+
+## 找到生成文档
+
+这两个文件是成功构建的主要输出. 确认它们已经被生成:
+
+* `<rdocs-base>/gen-kubectldocs/generators/build/index.html`
 * `<rdocs-base>/gen-kubectldocs/generators/build/navData.js`
 
-## Copying files to the kubernetes/website repository
+<!-- ## Copying files to the kubernetes/website repository
 
 Copy the generated files from your local kubernetes-incubator/reference-docs
 repository to your local kubernetes/website repository.
@@ -318,9 +373,19 @@ repository to your local kubernetes/website repository.
 ```shell
 cd <rdocs-base>
 make copycli
+``` -->
+
+## 拷贝文件到 kubernetes/website 仓库
+
+从你本地的kubernetes-incubator/reference-docs
+仓库中将生成文件拷贝到你本地的kubernetes/website仓库中.
+
+```shell
+cd <rdocs-base>
+make copycli
 ```
 
-## Adding and committing changes in kubernetes/website
+<!-- ## Adding and committing changes in kubernetes/website
 
 List the files that were generated and copied to the `kubernetes/website`
 repository:
@@ -338,9 +403,28 @@ modified: docs/reference/generated/kubectl/kubectl-commands.html
 modified: docs/reference/generated/kubectl/navData.js
 ```
 
-Run `git add` and `git commit` to commit the files.
+Run `git add` and `git commit` to commit the files. -->
 
-## Creating a pull request
+## 添加并提交变更到 kubernetes/website
+
+列出被生成并拷贝到 `kubernetes/website`
+仓库的文件:
+
+```
+cd <web-base>
+git status
+```
+
+输出显示新添加和被修改的文件. 例如:
+
+```shell
+modified: docs/reference/generated/kubectl/kubectl-commands.html
+modified: docs/reference/generated/kubectl/navData.js
+```
+
+运行 `git add` 和 `git commit` 提交修改的文件.
+
+<!-- ## Creating a pull request
 
 Create a pull request to the `kubernetes/website` repository. Monitor your
 pull request, and respond to review comments as needed. Continue to monitor
@@ -348,16 +432,22 @@ your pull request until it is merged.
 
 A few minutes after your pull request is merged, your updated reference
 topics will be visible in the
-[published documentation](/docs/home).
+[published documentation](/docs/home). -->
 
+## 创建一个PR
+
+在`kubernetes/website` 远程仓库创建一个PR. 关注你的PR, 并根据需要对评论作出回应. 持续关注你的PR直到它被合并.
+
+你的PR被合并不久, 你更新的相关主题可以在
+[已发布文档](/docs/home)访问.
 
 {% endcapture %}
 
 {% capture whatsnext %}
 
-* [Generating Reference Documentation for Kubernetes Components and Tools](/docs/home/contribute/generated-reference/kubernetes-components/)
-* [Generating Reference Documentation for the Kubernetes API](/docs/home/contribute/generated-reference/kubernetes-api/)
-* [Generating Reference Documentation for the Kubernetes Federation API](/docs/home/contribute/generated-reference/federation-api/)
+* [为Kubernetes组件和工具生成参考文档](/docs/home/contribute/generated-reference/kubernetes-components/)
+* [为Kubernetes API生成参考文档](/docs/home/contribute/generated-reference/kubernetes-api/)
+* [为Kubernetes Federation API生成参考文档](/docs/home/contribute/generated-reference/federation-api/)
 
 {% endcapture %}
 
