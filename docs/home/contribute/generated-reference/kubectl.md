@@ -1,13 +1,24 @@
 ---
-title: Generating Reference Documentation for kubectl Commands
+cn-approvers:
+- jonyhy96
+title: 为kubectl 命令生成参考文档
 ---
+
+<!--
+---
+title: Generating Reference Documentation for kubectl Commands
+--- 
+-->
 
 {% capture overview %}
 
-This page shows how to automatically generate reference pages for the
-commands provided by the `kubectl` tool.
+<!-- This page shows how to automatically generate reference pages for the
+commands provided by the `kubectl` tool. -->
 
-**Note:**
+本页面将展示如何自动为`kubectl 命令行工具`生成相关参考文档。
+
+
+<!-- **Note:**
 This topic shows how to generate reference documentation for
 [kubectl commands](/docs/reference/generated/kubectl/kubectl-commands)
 like
@@ -18,6 +29,19 @@ This topic does not show how to generate the
 options reference page. For instructions on how to generate the kubectl options
 reference page, see
 [Generating Reference Pages for Kubernetes Components and Tools](/docs/home/contribute/generated-reference/kubernetes-components/).
+{: .note} -->
+
+**Note:**
+本文将介绍如何为
+[kubectl commands](/docs/reference/generated/kubectl/kubectl-commands)
+,
+[kubectl apply](/docs/reference/generated/kubectl/kubectl-commands#apply) 和
+[kubectl taint](/docs/reference/generated/kubectl/kubectl-commands#taint) 生成相关文档.
+本文不包含
+[kubectl](/docs/reference/generated/kubectl/kubectl/)
+相关选项页面. 可以在
+[为 Kubernetes 组件和工具生成参考页面](/docs/home/contribute/generated-reference/kubernetes-components/)
+查看生成kubectl 相关选项页面的指令.
 {: .note}
 
 {% endcapture %}
@@ -25,7 +49,7 @@ reference page, see
 
 {% capture prerequisites %}
 
-* You need to have
+<!-- * You need to have
 [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 installed.
 
@@ -40,14 +64,20 @@ and your `$GOPATH` environment variable must be set.
 Typically, this involves creating a fork of the repository. For more
 information, see
 [Creating a Documentation Pull Request](/docs/home/contribute/create-pull-request/) and
-[GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962).
+[GitHub Standard Fork & Pull Request Workflow](https://gist.github.com/Chaser324/ce0505fbed06b947d962). -->
+
+* 你需要安装好[Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+
+* 你需要安装1.9.1 或者更高版本的[Golang](https://golang.org/doc/install),同时你的环境变量中需要将`$GOPATH`设置正确
+
+* 你需要知道如何去创建一个`PR`.例如,你首先需要将远程仓库`fork`到你的个人仓库.详见[创建一个文档相关的PR](/docs/home/contribute/create-pull-request/)和[GitHub 标准的Fork & PR工作流程](https://gist.github.com/Chaser324/ce0505fbed06b947d962). 
 
 {% endcapture %}
 
 
 {% capture steps %}
 
-## Getting three repositories
+<!-- ## Getting three repositories
 
 If you don't already have the kubernetes/kubernetes repository, get it now:
 
@@ -99,9 +129,51 @@ Kubernetes 1.9, you could use these commands:
 cd <k8s-base>
 git checkout release-1.9
 git pull https://github.com/kubernetes/kubernetes release-1.9
+``` -->
+
+## 拉取三个仓库
+
+如果你本地还没有kubernetes/kubernetes 仓库,请先下载:
+
+```shell
+mkdir $GOPATH/src
+cd $GOPATH/src
+go get github.com/kubernetes/kubernetes
 ```
 
-## Editing the kubectl source code
+确定你[kubernetes/kubernetes](https://github.com/kubernetes/kubernetes)项目的根目录.例如,如果你执行了上面的命令，你的根目录应该为`$GOPATH/src/github.com/kubernetes/kubernetes`下文将以`<k8s-base>`指代项目根目录.
+
+如果你本地还没有kubernetes/website 仓库,请先下载:
+
+```shell
+mkdir $GOPATH/src
+cd $GOPATH/src
+go get github.com/kubernetes/website
+```
+
+确定你[kubernetes/website](https://github.com/kubernetes/website)项目的根目录.例如,如果你执行了上面的命令，你的根目录应该为`$GOPATH/src/github.com/kubernetes/website`下文将以`<web-base>`指代项目根目录.
+
+如果你本地还没有kubernetes-incubator/reference-docs 仓库,请先下载:
+
+```shell
+mkdir $GOPATH/src
+cd $GOPATH/src
+go get github.com/kubernetes-incubator/reference-docs
+```
+
+确定你[kubernetes-incubator/reference-docs](https://github.com/kubernetes-incubator/reference-docs)项目的根目录.例如,如果你执行了上面的命令，你的根目录应该为`$GOPATH/src/github.com/kubernetes-incubator/reference-docs.`下文将以`<rdocs-base>`指代项目根目录.
+
+在你本地的 kubernetes/kubernetes 仓库下, 切换到相关的分支,
+并且确保它是最新的. 例如, 如果你想为
+Kubernetes 1.9生成文档, 你可以使用以下命令:
+
+```shell
+cd <k8s-base>
+git checkout release-1.9
+git pull https://github.com/kubernetes/kubernetes release-1.9
+```
+
+<!-- ## Editing the kubectl source code
 
 The reference documentation for the kubectl commands is automatically generated from
 kubectl source code. If you want to change the reference documentation, the first step
@@ -113,7 +185,38 @@ local kubernetes/kubernetes repository, and then submit a pull request to the ma
 is an example of a pull request that fixes a typo in the kubectl source code.
 
 Monitor your pull request, and respond to reviewer comments. Continue to monitor your
-pull request until it is merged into the master branch of the kubernetes/kubernetes repository.
+pull request until it is merged into the master branch of the kubernetes/kubernetes repository. -->
+
+## 修改 kubectl 源码
+
+kubectl命令的参考文档是根据kubectl 源码自动生成的. 如果你想修改相关文档,首先你要去修改kubectl 源码中的一行或多行注释. 在你本地的
+kubernetes/kubernetes 仓库中做出修改, 然后在
+[github.com/kubernetes/kubernetes](https://github.com/kubernetes/kubernetes)的master分支提交一个PR.
+
+[PR 56673](https://github.com/kubernetes/kubernetes/pull/56673/files)
+是一个修复输入错误的PR例子.
+
+实时关注你的PR, 并且回复reviewer的评论. 持续关注你的PR直到它被合并到kubernetes/kubernetes仓库的master分支.
+
+<!-- ## Cherry picking your change into a release branch
+
+Your change is now in the master branch, which is used for development of the next
+Kubernetes release. If you want your change to appear in the docs for a Kubernetes
+version that has already been released, you need to propose that your change be
+cherry picked into the release branch.
+
+For example, suppose the master branch is being used to develop Kubernetes 1.10,
+and you want to backport your change to the release-1.9 branch. For instructions
+on how to do this, see
+[Propose a Cherry Pick](https://github.com/kubernetes/community/blob/master/contributors/devel/cherry-picks.md).
+
+Monitor your cherry-pick pull request until it is merged into the release branch.
+
+**Note:**
+Proposing a cherry pick requires that you have permission to set a label and a
+milestone in your pull request. If you don’t have those permissions, you will
+need to work with someone who can set the label and milestone for you.
+{: .note} -->
 
 ## Cherry picking your change into a release branch
 
