@@ -59,7 +59,7 @@ status: implementable
   * [Table of Contents](#table-of-contents)
   * [概要](#概要)
   * [动机](#动机)
-  * [参考级解释](#r参考级解释)
+  * [参考及解释](#r参考及解释)
       * [KEP应该跟踪什么类型的工作](#KEP应该跟踪什么类型的工作)
       * [KEP模板](#KEP模板)
       * [KEP元数据](#KEP元数据)
