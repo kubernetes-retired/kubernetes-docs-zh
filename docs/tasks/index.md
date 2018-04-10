@@ -40,9 +40,9 @@ Install and setup the `kubectl` command-line tool used to directly manage Kubern
 Perform common configuration tasks for Pods and Containers.
 -->
 
-#### 配置 Pods 和容器
+#### 配置 Pod 和容器
 
-执行 Pods 和容器常见的配置任务。
+执行 Pod 和容器常见的配置任务。
 
 <!--
 #### Running Applications
@@ -52,7 +52,7 @@ Perform common application management tasks, such as rolling updates, injecting 
 
 #### 运行应用
 
-执行常见的应用管理任务，例如： 滚动更新，注入信息到 pods，和 pod 的水平自动扩展。
+执行常见的应用管理任务，例如： 滚动更新，注入信息到 pod，和 pod 的水平自动扩展。
 
 <!--
 #### Running Jobs
