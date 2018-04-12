@@ -65,7 +65,7 @@ $ kubectl config set-context gce --user=cluster-admin --namespace=foo \
 
 ## Kubectl 上下文和配置
 
-设置 `kubectl` 命令交互的 kubernetes 集群并修改配置信息。参阅 [使用 kubeconfig 文件进行跨集群验证](/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) 获取关于配置文件的详细信息。
+设置 `kubectl` 命令交互的 Kubernetes 集群并修改配置信息。参阅 [使用 kubeconfig 文件进行跨集群验证](/docs/tasks/access-application-cluster/configure-access-multiple-clusters/) 获取关于配置文件的详细信息。
 
 ```console
 $ kubectl config view # 显示合并后的 kubeconfig 配置
@@ -513,7 +513,7 @@ The following table includes a list of all the supported resource types and thei
 
 ## 资源类型
 
-下表列出的是 kubernetes 中所有支持的类型和缩写的别名。
+下表列出的是 Kubernetes 中所有支持的类型和缩写的别名。
 
 | 资源类型                       | 缩写别名     |
 | -------------------------- | -------- |
