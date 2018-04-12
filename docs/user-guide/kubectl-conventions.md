@@ -36,7 +36,7 @@ If you need stable output in a script, you should:
 -->
 * 请求一个面向机器的输出表单，如 `-o name`， `-o json`， `-o yaml`， `-o go-template` 或者 `-o jsonpath`
 * 指定 `--output-version`，因为这些输出表单（不包括 `-o name`）使用特定的 API 版本输出资源
-* 如果使用基于生成器的命令（如 `kubectl run` 或 `kubectlexpose`），请指定 `--generator` 永久地锁定特定行为
+* 如果使用基于生成器的命令（如 `kubectl run` 或 `kubectl expose`），请指定 `--generator` 永久地锁定特定行为
 * 不要依赖上下文、首选项或其他隐式状态
 
 <!--
