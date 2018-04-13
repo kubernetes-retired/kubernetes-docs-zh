@@ -132,7 +132,7 @@ Use Kompose to:
 
 [Kompose](https://github.com/kubernetes-incubator/kompose)是一款帮助Docker Compose用户迁移到Kubernetes的工具。
 
-kompose的使用:
+Kompose的使用:
 
 * 将Docker Compose文件转换为Kubernetes对象
 * 从本地的Docker开发到Kubernetes管理的应用
