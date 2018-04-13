@@ -274,7 +274,7 @@ for production clusters!
 
 这将花几秒来运行，但是你的集群好像花了几分钟来确认准备完毕。当你更改集群配置时，`kops update cluster` 将成为你使用的工具；它将你改变的配置应用到你的集群 - 看需要重新配置 AWS 或 kubernetes。
 
-举例，在你 `kops edit ig nodes` 后，然后 `kops update cluster --yes` 来生效你的配置，又是你害需要 `kops rolling-update cluster` 来立刻动态更新配置。
+举例，在你 `kops edit ig nodes` 后，然后 `kops update cluster --yes` 来生效你的配置，又是你还需要 `kops rolling-update cluster` 来立刻动态更新配置。
 
 <!--
 ### Explore other add-ons
