@@ -278,7 +278,7 @@ For more complete applications, please look in the [examples directory](https://
 
 接下来，看[一个简单的 nginx 例子](/docs/user-guide/simple-nginx) 来试试你的新集群。
 
-为更多完整应用，请看[试例目录](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/)。[留言簿试例](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/)是一个好的“入门”演练。
+为更多完整应用，请看[示例目录](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/)。[留言簿示例](https://github.com/kubernetes/kubernetes/tree/{{page.githubbranch}}/examples/guestbook/)是一个好的“入门”演练。
 
 <!--
 ### Tearing down the cluster
