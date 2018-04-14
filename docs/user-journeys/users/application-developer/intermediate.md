@@ -168,7 +168,7 @@ There are pros and cons to each approach, though the declarative approach (such 
 
 For additional configuration best practices, familiarize yourself with [this guide](/docs/concepts/configuration/overview/){:target="_blank"}
 -->
-每种方法都有优点和缺点，尽管声明式方法（如`kubectl apply -f`）可能是生产环境中最有用的。通过这些方法，您可以依靠本地 YAML 文件确保获得正真的期望状态。这还使得您可以对配置进行版本控制，对代码审查和审计跟踪很有帮助。
+每种方法都有优点和缺点，尽管声明式方法（如`kubectl apply -f`）可能是生产环境中最有用的。通过这些方法，您可以依靠本地 YAML 文件确保获得真正的期望状态。这还使得您可以对配置进行版本控制，对代码审查和审计跟踪很有帮助。
 
 想要了解其他的配置最佳实践，请熟悉 [这个指南](/docs/concepts/configuration/overview/){:target="_blank"}
 
