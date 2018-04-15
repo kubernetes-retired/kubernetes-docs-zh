@@ -153,7 +153,7 @@ kubectl
 * [kubectl scale](/docs/user-guide/kubectl/v1.7/#scale)     - 为一个 Deployment, ReplicaSet, ReplicationController, 或者 Job 设置一个新的规格
 * [kubectl set](/docs/user-guide/kubectl/v1.7/#set)     - 在资源对象设置特定的功能
 * [kubectl taint](/docs/user-guide/kubectl/v1.7/#taint)     - 在一个或者多个节点上更新污点配置
-* [kubectl top](/docs/user-guide/kubectl/v1.7/#top)     - 显示资源（ CUP /内存/存储）使用率
+* [kubectl top](/docs/user-guide/kubectl/v1.7/#top)     - 显示资源（ CPU /内存/存储）使用率
 * [kubectl uncordon](/docs/user-guide/kubectl/v1.7/#uncordon)     - 标记节点为可调度
 * [kubectl version](/docs/user-guide/kubectl/v1.7/#version)     - 输出客户端和服务器的版本信息
 
