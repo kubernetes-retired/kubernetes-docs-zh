@@ -130,7 +130,7 @@ but not under `example.com`).
 
 ### （2/5）为你的集群创建一个 route53 域名
 
-kops 使用 DNS 来发现，无论是在集群内还是在客户端都可以访问 kubeernetes API 服务器。
+kops 使用 DNS 来发现，无论是在集群内还是在客户端都可以访问 kubernetes API 服务器。
 
 kops 在集群名上有个强烈的建议：它应该是一个合法的 DNS 名。通过这么做，你将不再混淆你的集群，你可以毫不犹豫的与同事共享集群，你不用记住 IP 地址就可以访问他们。
 
