@@ -445,6 +445,10 @@ topics will be visible in the
 
 {% capture whatsnext %}
 
+<!-- * [Generating Reference Documentation for Kubernetes Components and Tools](/docs/home/contribute/generated-reference/kubernetes-components/)
+* [Generating Reference Documentation for the Kubernetes API](/docs/home/contribute/generated-reference/kubernetes-api/)
+* [Generating Reference Documentation for the Kubernetes Federation API](/docs/home/contribute/generated-reference/federation-api/) -->
+
 * [为Kubernetes组件和工具生成参考文档](/docs/home/contribute/generated-reference/kubernetes-components/)
 * [为Kubernetes API生成参考文档](/docs/home/contribute/generated-reference/kubernetes-api/)
 * [为Kubernetes Federation API生成参考文档](/docs/home/contribute/generated-reference/federation-api/)
