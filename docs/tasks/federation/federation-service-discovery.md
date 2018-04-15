@@ -79,7 +79,7 @@ availability zone or regional outages.-->
 automatically find the local shard of the Federated Service in their
 cluster if it exists and is healthy, or the closest healthy shard in a
 different cluster if it does not.-->
-在集群联邦内部的客户端(即 Pods )，如果集群联邦存在且健康，会自动在所在集群中找到集群联邦的本地分片，
+在集群联邦内部的客户端(即 Pod )，如果集群联邦存在且健康，会自动在所在集群中找到集群联邦的本地分片，
 如果不存在，将会寻找最接近健康的分片。
 
 <!--## Hybrid cloud capabilities
@@ -200,7 +200,7 @@ aspect later).-->
 所以联邦服务还没有认为这些服务是健康的服务分片，因此还没有将这些服务添加到这个联邦服务的 DNS 记录中(后面更多关于这方面的内容)。
 
 <!--## Adding backend pods-->
-## 添加后端 pods
+## 添加后端 pod
 
 <!--To render the underlying service shards healthy, we need to add
 backend Pods behind them. This is currently done directly against the
@@ -249,7 +249,7 @@ this. For example, if your Federation is configured to use Google
 Cloud DNS, and a managed DNS domain 'example.com':-->
 ## 验证公共 DNS 记录
 
-一旦上面的 Pods 成功启动，并开始监听连接，Kubernetes 将报告 Pods 作为在该集群服务的健康端点(通过自动健康检查)。
+一旦上面的 Pod 成功启动，并开始监听连接，Kubernetes 将报告 Pod 作为在该集群服务的健康端点(通过自动健康检查)。
 集群联邦将依次考虑这些服务“分片”中的每一个都是健康的，并通过自动配置相应的公共 DNS 记录以将其放置在服务中。
 您可以使用您的首选接口到您配置的 DNS 提供商来验证这一点。例如，如果您的联邦配置为使用Google Cloud DNS，
 并且托管 DNS 域名为'example.com':
@@ -336,11 +336,11 @@ due to caching by intermediate DNS servers.-->
 2. 同样，还有区域'A'记录，包括该地区所有健康的分片。
 例如，'us-central1'。这些区域记录对于不具有特定区域首选项的客户端以及下述局部自动化和故障转移机制的构建块非常有用。
 3. 对于当前没有健康后端端点的区域，使用CNAME('Canonical Name')记录将这些查询别名(自动重定向)到下一个最接近的健康区域。
-在本例中，us-central1-f 中的服务分片当前没有健康的后端端点(即 Pods )，
+在本例中，us-central1-f 中的服务分片当前没有健康的后端端点(即 Pod )，
 因此已创建CNAME记录自动将查询重定向到该区域中的其他分片(本例中为 us-central1 )。
 4. 同样，如果封闭区域内没有健康的碎片，
 搜索就会进一步扩展。在 europe-west1-d 可用性区域，没有健康的后端，
-所以查询被重定向到更广泛的 europe-west1 (其也没有健康的后端Pods)，
+所以查询被重定向到更广泛的 europe-west1 (其也没有健康的后端Pod)，
 并且继续到全局健康的地址('nginx.mynamespace .myfederation.svc.example.com。')。
 
 <!-- The above set of DNS records is automatically kept in sync with the
@@ -360,7 +360,7 @@ addresses if required).-->
 ## 发现联邦服务
 
 <!--### From pods inside your federated clusters-->
-### 从联邦集群内部的 pods
+### 从联邦集群内部的 pod
 
 <!--By default, Kubernetes clusters come pre-configured with a
 cluster-local DNS server ('KubeDNS'), as well as an intelligently
@@ -426,7 +426,7 @@ automatic traversal of the hierarchy of DNS records in the above
 example, and ends up at one of the external IP's of the Federated
 Service in the local us-central1 region (i.e. 104.197.247.191,
 104.197.244.180 or 104.197.245.170).-->
-但是如果这个服务在本地集群中不存在的话(或者服务存在,但是没有健康的后端 pods )，那么 DNS 查询会自动扩展为
+但是如果这个服务在本地集群中不存在的话(或者服务存在,但是没有健康的后端 pod )，那么 DNS 查询会自动扩展为
 ```"nginx.mynamespace.myfederation.svc.us-central1-f.example.com”```
 (即逻辑上"找到离我的可用区域最近的其中一个分片的外部 IP "),这个扩展是由 KubeDNS 自动执行的，它返回相关的 CNAME 记录。
 在上面的例子中，这导致了自动遍历 DNS 记录的层次结构，并且在本地 us-central1 区域的联邦服务的外部IP之一处结束
@@ -481,7 +481,7 @@ improve upon this even further.-->
 Kubernetes 集群联邦自动处理所有必需的故障转移。未来的版本将进一步改善。
 
 <!--## Handling failures of backend pods and whole clusters-->
-## 处理后端 pods 和整个集群的失败
+## 处理后端 pod 和整个集群的失败
 
 <!--Standard Kubernetes service cluster-IP's already ensure that
 non-responsive individual Pod endpoints are automatically taken out of

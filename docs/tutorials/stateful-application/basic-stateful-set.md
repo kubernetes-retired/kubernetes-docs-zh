@@ -17,7 +17,7 @@ This tutorial provides an introduction to managing applications with
 [StatefulSets](/docs/concepts/abstractions/controllers/statefulsets/). It 
 demonstrates how to create, delete, scale, and update the Pods of StatefulSets.
 -->
-本教程介绍了如何使用 [StatefulSets](/docs/concepts/abstractions/controllers/statefulsets/) 来管理应用。演示了如何创建、删除、扩容/缩容和更新 StatefulSets 的 Pods。
+本教程介绍了如何使用 [StatefulSets](/docs/concepts/abstractions/controllers/statefulsets/) 来管理应用。演示了如何创建、删除、扩容/缩容和更新 StatefulSets 的 Pod。
 {% endcapture %}
 
 {% capture prerequisites %}
@@ -76,10 +76,10 @@ StatefulSets 旨在与有状态的应用及分布式系统一起使用。然而�
 在阅读本教程后，你将熟悉以下内容：
 
 * 如何创建 StatefulSet
-* StatefulSet 怎样管理它的 Pods
+* StatefulSet 怎样管理它的 Pod
 * 如何删除 StatefulSet
 * 如何对 StatefulSet 进行扩容/缩容
-* 如何更新一个 StatefulSet 的 Pods
+* 如何更新一个 StatefulSet 的 Pod
   {% endcapture %}
 
 
@@ -110,7 +110,7 @@ You will need to use two terminal windows. In the first terminal, use
 [`kubectl get`](/docs/user-guide/kubectl/{{page.version}}/#get) to watch the creation 
 of the StatefulSet's Pods.
 -->
-你需要使用两个终端窗口。在第一个终端中，使用 [`kubectl get`](/docs/user-guide/kubectl/{{page.version}}/#get)  来查看 StatefulSet 的 Pods 的创建情况。
+你需要使用两个终端窗口。在第一个终端中，使用 [`kubectl get`](/docs/user-guide/kubectl/{{page.version}}/#get)  来查看 StatefulSet 的 Pod 的创建情况。
 
 ```shell
 kubectl get pods -w -l app=nginx

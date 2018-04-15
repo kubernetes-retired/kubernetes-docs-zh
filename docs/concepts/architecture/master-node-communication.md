@@ -63,7 +63,7 @@ The `kubernetes` service (in all namespaces) is configured with a virtual IP
 address that is redirected (via kube-proxy) to the HTTPS endpoint on the
 apiserver.
 -->
-想要连接到 apiserver 的 Pods 可以使用一个 service account 安全的进行连接。这种情况下，当 Pods 被实例化时 Kubernetes 将自动的把公共根证书和一个有效的不记名令牌注入到 pod 里。`kubernetes` service （所有 namespaces 中）都配置了一个虚拟 IP 地址，用于转发（通过 kube-proxy）请求到 apiserver 的 HTTPS endpoint。
+想要连接到 apiserver 的 Pod 可以使用一个 service account 安全的进行连接。这种情况下，当 Pod 被实例化时 Kubernetes 将自动的把公共根证书和一个有效的不记名令牌注入到 pod 里。`kubernetes` service （所有 namespaces 中）都配置了一个虚拟 IP 地址，用于转发（通过 kube-proxy）请求到 apiserver 的 HTTPS endpoint。
 
 <!--
 The master components communicate with the cluster apiserver over the
@@ -81,7 +81,7 @@ As a result, the default operating mode for connections from the cluster
 (nodes and pods running on the nodes) to the master is secured by default
 and can run over untrusted and/or public networks.
 -->
-这样的结果使得从集群（在节点上运行的 nodes 和 pods）到 master 的缺省连接操作模式默认被保护，能够在不可信或公网中运行。
+这样的结果使得从集群（在节点上运行的 node 和 pod）到 master 的缺省连接操作模式默认被保护，能够在不可信或公网中运行。
 
 <!--
 ## Master -> Cluster
@@ -107,7 +107,7 @@ for pods, attaching (through kubectl) to running pods, and using the kubelet's
 port-forwarding functionality. These connections terminate at the kubelet's
 HTTPS endpoint.
 -->
-从 apiserver 到 kubelet 的连接用于获取 pods 日志、连接（通过 kubectl）运行中的 pods，以及使用 kubele 的端口转发功能。这些连接终止于 kubelet 的 HTTPS endpoint。
+从 apiserver 到 kubelet 的连接用于获取 pod 日志、连接（通过 kubectl）运行中的 pod，以及使用 kubele 的端口转发功能。这些连接终止于 kubelet 的 HTTPS endpoint。
 
 <!--
 By default, the apiserver does not verify the kubelet's serving certificate,
