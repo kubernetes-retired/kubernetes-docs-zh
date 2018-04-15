@@ -173,8 +173,8 @@ func validateObject(obj runtime.Object) (errors field.ErrorList) {
 			t.Namespace = api.NamespaceDefault
 		}
 		errors = ext_validation.ValidateIngress(t)
-	case *extensions.PodSecurityPolicy:
-		errors = ext_validation.ValidatePodSecurityPolicy(t)
+	case *policy.PodSecurityPolicy:
+		errors = policy_validation.ValidatePodSecurityPolicy(t)
 	case *extensions.ReplicaSet:
 		if t.Namespace == "" {
 			t.Namespace = api.NamespaceDefault
@@ -317,9 +317,9 @@ func TestExampleObjectSchemas(t *testing.T) {
 			"nginx-deployment": {&extensions.Deployment{}},
 		},
 		"../docs/concepts/policy": {
-			"privileged-psp": {&extensions.PodSecurityPolicy{}},
-			"restricted-psp": {&extensions.PodSecurityPolicy{}},
-			"example-psp":    {&extensions.PodSecurityPolicy{}},
+			"privileged-psp": {&policy.PodSecurityPolicy{}},
+			"restricted-psp": {&policy.PodSecurityPolicy{}},
+			"example-psp":    {&policy.PodSecurityPolicy{}},
 		},
 		"../docs/concepts/services-networking": {
 			"curlpod":          {&extensions.Deployment{}},
@@ -414,6 +414,7 @@ func TestExampleObjectSchemas(t *testing.T) {
 			"security-context-2":      {&api.Pod{}},
 			"security-context-3":      {&api.Pod{}},
 			"security-context-4":      {&api.Pod{}},
+			"share-process-namespace": {&api.Pod{}},
 			"task-pv-claim":           {&api.PersistentVolumeClaim{}},
 			"task-pv-pod":             {&api.Pod{}},
 			"task-pv-volume":          {&api.PersistentVolume{}},
@@ -426,6 +427,8 @@ func TestExampleObjectSchemas(t *testing.T) {
 			"fluentd-gcp-ds":        {&extensions.DaemonSet{}},
 			"nginx-dep":             {&extensions.Deployment{}},
 			"shell-demo":            {&api.Pod{}},
+			"node-problem-detector":        {&extensions.DaemonSet{}},
+			"node-problem-detector-configmap":        {&extensions.DaemonSet{}},
 			"termination":           {&api.Pod{}},
 		},
 		// TODO: decide whether federation examples should be added
@@ -589,6 +592,8 @@ func TestExampleObjectSchemas(t *testing.T) {
 	capabilities.SetForTests(capabilities.Capabilities{
 		AllowPrivileged: true,
 	})
+	// PodShareProcessNamespace needed for example share-process-namespace.yaml
+	utilfeature.DefaultFeatureGate.Set("PodShareProcessNamespace=true")
 
 	for path, expected := range cases {
 		tested := 0

@@ -2,10 +2,9 @@ reviewers:
 - tengqm
 - zhangxiaoyu-zidif
 - xiangpengzhao
+- bradtopol
 approvers:
 - heckj
-- a-mccarthy
-- abiogenesis-now
 - bradamant3
 - bradtopol
 - steveperry-53

@@ -3,6 +3,28 @@
 本文档只包含新增更新，[更新参考](contribution-update.md)。
 
 
+### 第 38 周：2018-04-09 ~ 2018-04-15 - 有效合并 2 篇
+
+[https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/imperative-command](https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/imperative-command) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-cluster](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-cluster) by [tianshapjq](https://github.com/tianshapjq)
+
+
+### 第 37 周：2018-04-02 ~ 2018-04-08 - 有效合并 6 篇
+
+[https://k8smeetup.github.io/docs/imported/community/keps](https://k8smeetup.github.io/docs/imported/community/keps) by [fatalc](https://github.com/fatalc)
+
+[https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/imperative-config](https://k8smeetup.github.io/docs/concepts/overview/object-management-kubectl/imperative-config) by [chentao1596](https://github.com/chentao1596)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl-overview](https://k8smeetup.github.io/docs/user-guide/kubectl-overview) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/home/contribute/generated-reference/federation-api](https://k8smeetup.github.io/docs/home/contribute/generated-reference/federation-api) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/home/contribute/generated-reference/kubernetes-api](https://k8smeetup.github.io/docs/home/contribute/generated-reference/kubernetes-api) by [](https://github.com/)
+
+[https://k8smeetup.github.io/docs/home/contribute/participating](https://k8smeetup.github.io/docs/home/contribute/participating) by [chentao1596](https://github.com/chentao1596)
+
+
 ### 第 36 周：2018-03-26 ~ 2018-04-01 - 有效合并 20 篇
 
 [https://k8smeetup.github.io/docs/tasks/administer-cluster/encrypt-data](https://k8smeetup.github.io/docs/tasks/administer-cluster/encrypt-data) by [tianshapjq](https://github.com/tianshapjq)
@@ -21,7 +43,7 @@
 
 [https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_addon_all](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_addon_all) by [bjdzliu](https://github.com/bjdzliu)
 
-[https://k8smeetup.github.io/...ence/setup-tools/kubeadm/generated/kubeadm_alpha_phase_controlplane_controller-manager](https://k8smeetup.github.io/...ence/setup-tools/kubeadm/generated/kubeadm_alpha_phase_controlplane_controller-manager) by [bjdzliu](https://github.com/bjdzliu)
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_controlplane_controller-manager](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm_alpha_phase_controlplane_controller-manager) by [bjdzliu](https://github.com/bjdzliu)
 
 [https://k8smeetup.github.io/chart](https://k8smeetup.github.io/chart) by [scf0920](https://github.com/scf0920)
 
@@ -133,7 +155,7 @@
 [https://k8smeetup.github.io/docs/concepts/example-concept-template](https://k8smeetup.github.io/docs/concepts/example-concept-template) by [tianshapjq](https://github.com/tianshapjq)
 
 
-### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 22 篇
+### 第 28 周：2018-01-29 ~ 2018-02-04 - 有效合并 21 篇
 
 [https://k8smeetup.github.io/docs/setup/pick-right-solution](https://k8smeetup.github.io/docs/setup/pick-right-solution) by [chentao1596](https://github.com/chentao1596)
 
@@ -172,8 +194,6 @@
 [https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-stateful-set](https://k8smeetup.github.io/docs/tasks/debug-application-cluster/debug-stateful-set) by [chentao1596](https://github.com/chentao1596)
 
 [https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-version](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-version) by [chentao1596](https://github.com/chentao1596)
-
-[https://k8smeetup.github.io/_includes/partner-script](https://k8smeetup.github.io/_includes/partner-script) by [yinshuxun](https://github.com/yinshuxun)
 
 [https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/generated/kubeadm) by [KeithTt](https://github.com/KeithTt)
 

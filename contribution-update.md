@@ -1,6 +1,116 @@
 # K8SMeetup 中文翻译社区每周文章更新汇编
 
 
+### 第 38 周：2018-04-09 ~ 2018-04-15 - 有效合并 29 篇
+
+[https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication](https://k8smeetup.github.io/docs/concepts/architecture/master-node-communication) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/federation/federation-service-discovery](https://k8smeetup.github.io/docs/tasks/federation/federation-service-discovery) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/index](https://k8smeetup.github.io/docs/tasks/index) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tutorials/stateful-application/basic-stateful-set](https://k8smeetup.github.io/docs/tutorials/stateful-application/basic-stateful-set) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl-cheatsheet](https://k8smeetup.github.io/docs/user-guide/kubectl-cheatsheet) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster](https://k8smeetup.github.io/docs/tasks/access-application-cluster/access-cluster) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/setup/independent/high-availability](https://k8smeetup.github.io/docs/setup/independent/high-availability) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tutorials/object-management-kubectl/object-management](https://k8smeetup.github.io/docs/tutorials/object-management-kubectl/object-management) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/reference/api-concepts](https://k8smeetup.github.io/docs/reference/api-concepts) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/configure-pod-container/configure-projected-volume-storage](https://k8smeetup.github.io/docs/tasks/configure-pod-container/configure-projected-volume-storage) by [jonyhy96](https://github.com/jonyhy96)
+
+[https://k8smeetup.github.io/docs/tools/kompose/user-guide](https://k8smeetup.github.io/docs/tools/kompose/user-guide) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl-conventions](https://k8smeetup.github.io/docs/user-guide/kubectl-conventions) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tools/index](https://k8smeetup.github.io/docs/tools/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/docker-cli-to-kubectl](https://k8smeetup.github.io/docs/user-guide/docker-cli-to-kubectl) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/concepts/index](https://k8smeetup.github.io/docs/concepts/index) by [chenpengdev](https://github.com/chenpengdev)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/kops](https://k8smeetup.github.io/docs/getting-started-guides/kops) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/kubectl/index](https://k8smeetup.github.io/docs/user-guide/kubectl/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/walkthrough/k8s201](https://k8smeetup.github.io/docs/user-guide/walkthrough/k8s201) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/jsonpath](https://k8smeetup.github.io/docs/user-guide/jsonpath) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/index](https://k8smeetup.github.io/docs/tasks/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-journeys/users/application-developer/intermediate](https://k8smeetup.github.io/docs/user-journeys/users/application-developer/intermediate) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/user-guide/downward-api/README](https://k8smeetup.github.io/docs/user-guide/downward-api/README) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/kops](https://k8smeetup.github.io/docs/getting-started-guides/kops) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/gce](https://k8smeetup.github.io/docs/getting-started-guides/gce) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-init](https://k8smeetup.github.io/docs/reference/setup-tools/kubeadm/kubeadm-init) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/clc](https://k8smeetup.github.io/docs/getting-started-guides/clc) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/imported/community/keps](https://k8smeetup.github.io/docs/imported/community/keps) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/reference/workloads](https://k8smeetup.github.io/docs/reference/workloads) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/windows/index](https://k8smeetup.github.io/docs/getting-started-guides/windows/index) by [yulng](https://github.com/yulng)
+
+
+### 第 37 周：2018-04-02 ~ 2018-04-08 - 有效合并 23 篇
+
+[https://k8smeetup.github.io/docs/getting-started-guides/gce](https://k8smeetup.github.io/docs/getting-started-guides/gce) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/kops](https://k8smeetup.github.io/docs/getting-started-guides/kops) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/apply-resource-quota-limit](https://k8smeetup.github.io/docs/tasks/administer-cluster/apply-resource-quota-limit) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy](https://k8smeetup.github.io/docs/tasks/administer-cluster/calico-network-policy) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/user-guide/pods/_viewing-a-pod](https://k8smeetup.github.io/docs/user-guide/pods/_viewing-a-pod) by [AdamDang](https://github.com/AdamDang)
+
+[https://k8smeetup.github.io/docs/setup/pick-right-solution](https://k8smeetup.github.io/docs/setup/pick-right-solution) by [scf0920](https://github.com/scf0920)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node](https://k8smeetup.github.io/docs/concepts/configuration/assign-pod-node) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tools/index](https://k8smeetup.github.io/docs/tools/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/statefulset](https://k8smeetup.github.io/docs/concepts/workloads/controllers/statefulset) by [chenpengdev](https://github.com/chenpengdev)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/taint-and-toleration](https://k8smeetup.github.io/docs/concepts/configuration/taint-and-toleration) by [chenpengdev](https://github.com/chenpengdev)
+
+[https://k8smeetup.github.io/docs/concepts/containers/images](https://k8smeetup.github.io/docs/concepts/containers/images) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/coreos/index](https://k8smeetup.github.io/docs/getting-started-guides/coreos/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/mesos/index](https://k8smeetup.github.io/docs/getting-started-guides/mesos/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/rkt/index](https://k8smeetup.github.io/docs/getting-started-guides/rkt/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/backups](https://k8smeetup.github.io/docs/getting-started-guides/ubuntu/backups) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/windows/index](https://k8smeetup.github.io/docs/getting-started-guides/windows/index) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/clc](https://k8smeetup.github.io/docs/getting-started-guides/clc) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/cloudstack](https://k8smeetup.github.io/docs/getting-started-guides/cloudstack) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/dcos](https://k8smeetup.github.io/docs/getting-started-guides/dcos) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment](https://k8smeetup.github.io/docs/concepts/workloads/controllers/deployment) by [chenpengdev](https://github.com/chenpengdev)
+
+[https://k8smeetup.github.io/docs/concepts/configuration/manage-compute-resources-container](https://k8smeetup.github.io/docs/concepts/configuration/manage-compute-resources-container) by [chenpengdev](https://github.com/chenpengdev)
+
+[https://k8smeetup.github.io/docs/getting-started-guides/gce](https://k8smeetup.github.io/docs/getting-started-guides/gce) by [yulng](https://github.com/yulng)
+
+[https://k8smeetup.github.io/docs/tools/index](https://k8smeetup.github.io/docs/tools/index) by [yulng](https://github.com/yulng)
+
+
 ### 第 36 周：2018-03-26 ~ 2018-04-01 - 有效合并 7 篇
 
 [https://k8smeetup.github.io/docs/admin/kubelet](https://k8smeetup.github.io/docs/admin/kubelet) by [yulng](https://github.com/yulng)
