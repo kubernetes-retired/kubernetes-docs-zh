@@ -25,7 +25,7 @@ title: 配置Pod使用配套的存储卷作为存储
 ---
 
 {% capture overview %}
-这篇教程指导如何使用[`配套`](/docs/concepts/storage/volumes/#projected)卷来挂载几个存在的卷到相同的目录。目前，`secret`, `configMap`,和`downwardAPI` 卷都可以作为配套卷使用。
+这篇教程指导如何使用[`配套`](/docs/concepts/storage/volumes/#projected)卷来挂载几个存在的卷到相同的目录。目前，`secret`, `configMap`和`downwardAPI` 卷都可以作为配套卷使用。
 {% endcapture %}
 
 {% capture prerequisites %}
