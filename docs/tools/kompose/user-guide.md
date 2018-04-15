@@ -401,7 +401,7 @@ WARN Unsupported key dockerfile - ignoring
 ## 标签
 
 <!--`kompose` supports Kompose-specific labels within the `docker-compose.yml` file in order to explicitly define a service's behavior upon conversion. -->
-`kompose`支持
+`kompose`支持Kompose-specific,标签在docker-compose.yml文件中显式定义了在转换时的一个service的行为
 
 
 <!--- kompose.service.type defines the type of service to be created. -->
