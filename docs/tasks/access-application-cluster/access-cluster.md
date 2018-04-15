@@ -332,7 +332,7 @@ such as your desktop machine.
 
 ## 访问集群中运行的 service
 
-上一节是关于连接到 kubernetes API  server。这一节是关于连接到 kubernetes 集群中运行的 service。在 Kubernetes 中，[node](/docs/admin/node)、 [pod](/docs/user-guide/pods) 和 [services](/docs/user-guide/services) 都有它们自己的 IP。很多情况下，集群中 node 的 IP、Pod 的 IP、service 的 IP 都是不可路由的，因此在集群外面的机器就无法访问到它们，例如从您自己的笔记本电脑。
+上一节是关于连接到 kubernetes API  server。这一节是关于连接到 kubernetes 集群中运行的 service。在 Kubernetes 中，[node](/docs/admin/node)、 [pod](/docs/user-guide/pods) 和 [service](/docs/user-guide/services) 都有它们自己的 IP。很多情况下，集群中 node 的 IP、Pod 的 IP、service 的 IP 都是不可路由的，因此在集群外面的机器就无法访问到它们，例如从您自己的笔记本电脑。
 
 <!--
 
