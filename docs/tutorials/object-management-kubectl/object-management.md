@@ -95,7 +95,7 @@ Disadvantages compared to object configuration:
 与对象配置相比的优点:
 
  - 命令简单易学，易于记忆。
- - 命令只需要一个步骤即可对群集进行更改。
+ - 命令只需要一个步骤即可对集群进行更改。
 
 与对象配置相比的缺点:
 
