@@ -326,8 +326,10 @@ Here's a configuration file for a pod that has two sidecar containers:
 
 {% include code.html language="yaml" file="two-files-counter-pod-streaming-sidecar.yaml" ghlink="/docs/concepts/cluster-administration/two-files-counter-pod-streaming-sidecar.yaml" %}
 
+<!--
 Now when you run this pod, you can access each log stream separately by
 running the following commands:
+-->
 
 现在当您运行这个 pod 时，您可以分别地访问每一个日志流，运行如下命令：
 
