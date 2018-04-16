@@ -6,10 +6,10 @@ cn-approvers:
 <!--
 ---
 title: Rancher Integration with Ubuntu Kubernetes
----
-->
+-->
 
 {% capture overview %}
+
 <!--
 This repository explains how to deploy Rancher 2.0alpha on Canonical Kubernetes. 
 -->
