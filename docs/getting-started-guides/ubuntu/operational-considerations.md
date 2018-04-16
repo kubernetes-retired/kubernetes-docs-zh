@@ -166,7 +166,7 @@ When you are done and want to come back to your initial model, exit the controll
 
 Then if you need to switch back to your cluster and ssh into the units, run
 -->
-如果您完成了操作然后向返回到最初的模型，那么退出控制器并且
+如果您完成了操作然后想返回到最初的模型，那么退出控制器并且
 
 然后，如果您想要切换回您的集群并且 ssh 进入其他单元，运行
 
