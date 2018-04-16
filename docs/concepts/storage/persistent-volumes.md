@@ -933,7 +933,7 @@ Static provisioning support for Raw Block Volumes is included as an alpha featur
 
 ## 原始块卷支持
 
-原始块卷的静态配置在 v1.9 中作为 alpha 功能引入。由于这个改变，需要一些新的 API 字段来使用该功能。目前，Fibre Channl 是支持该功能的唯一插件。
+原始块卷的静态配置在 v1.9 中作为 alpha 功能引入。由于这个改变，需要一些新的 API 字段来使用该功能。目前，Fibre Channel 是支持该功能的唯一插件。
 
 <!--
 
