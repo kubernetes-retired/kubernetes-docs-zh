@@ -75,7 +75,7 @@ patch-demo-28633765-j5qs3   1/1       Running   0          23s
 Make a note of the names of the running Pods. Later, you will see that these Pods
 get terminated and replaced by new ones.
 -->
-记下这些运行中的 Pod 的名称，稍后您会看到这些 Pod 被中止了并且会被新的 Pod 所取代。
+记下这些运行中的 Pod 的名称，稍后您会看到这些 Pod 被终止了并且会被新的 Pod 所取代。
 
 <!--
 At this point, each Pod has one Container that runs the nginx image. Now suppose
@@ -147,7 +147,7 @@ were running previously. The Deployment terminated the old Pods and created two
 new Pods that comply with the updated Deployment spec. The `2/2` indicates that
 each Pod has two Containers:
 -->
-输出内容显示当前正在运行的 Pod 名称与打补丁之前的 Pod 名称不一样了。这个 Deployment 中止了原先的 Pod 然后使用更新后的 spec 重新创建了两个新的 Pod 。`2/2` 表示每个 Pod 拥有两个容器：
+输出内容显示当前正在运行的 Pod 名称与打补丁之前的 Pod 名称不一样了。这个 Deployment 终止了原先的 Pod 然后使用更新后的 spec 重新创建了两个新的 Pod 。`2/2` 表示每个 Pod 拥有两个容器：
 
 ```
 NAME                          READY     STATUS    RESTARTS   AGE
@@ -303,7 +303,7 @@ kubectl get pods
 In the output, you can see that the existing Pods were terminated, and new Pods
 were created. The `1/1` indicates that each new Pod is running only one Container.
 -->
-在输出内容中，您可以看到原先的 Pod 被中止了，然后有新的 Pod 被创建了。`1/1` 表示每个 Pod 只拥有一个容器。
+在输出内容中，您可以看到原先的 Pod 被终止了，然后有新的 Pod 被创建了。`1/1` 表示每个 Pod 只拥有一个容器。
 
 ```shell
 NAME                          READY     STATUS    RESTARTS   AGE
