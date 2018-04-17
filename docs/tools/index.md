@@ -78,7 +78,7 @@ to a Kubernetes cluster, troubleshoot them, and manage the cluster and its resou
 
 ##### Dashboard
 
-[Dashboard](/docs/tasks/web-ui-dashboard/),是基于web用户界面的Kubernetes,允许您部署容器应用到Kubernetes集群中，并对其进行故障排除，以及管理集群和其自身的资源。
+[Dashboard](/docs/tasks/web-ui-dashboard/)是基于web用户界面的Kubernetes,允许您部署容器应用到Kubernetes集群中，并对其进行故障排除，以及管理集群和其自身的资源。
 
 <!--
 #### Third-Party Tools
