@@ -49,7 +49,7 @@ Once a custom resource is installed, users can create and access its objects wit
 [kubectl](/docs/user-guide/kubectl-overview/), just as they do for built-in resources like *pods*.
 -->
 在一个运行中的集群内，自定义资源可以通过动态注册出现和消失，集群管理员可以独立于集群本身更新自定义资源。  
-一旦安装了自定义资源，用户就可以通过[kubectl](/docs/user-guide/kubectl-overview/)创建和访问他的对象，就像操作内建资源*pods*那样。
+一旦安装了自定义资源，用户就可以通过[kubectl](/docs/user-guide/kubectl-overview/)创建和访问它的对象，就像操作内建资源*pods*那样。
 
 <!--
 ## Custom controllers
@@ -63,7 +63,7 @@ and continually takes action to achieve and maintain that state.
 ## 自定义控制器
 
 自定义资源本身让你简单地存储和索取结构化数据。  
-只有当和*控制器*结合后，他们才成为一种真正的[declarative API](/docs/concepts/overview/working-with-objects/kubernetes-objects/#understanding-kubernetes-objects)。
+只有当和*控制器*结合后，它们才成为一种真正的[declarative API](/docs/concepts/overview/working-with-objects/kubernetes-objects/#understanding-kubernetes-objects)。
 控制器将结构化数据解释为用户所期望状态的记录，并且不断地采取行动来实现和维持该状态。
 
 <!--
