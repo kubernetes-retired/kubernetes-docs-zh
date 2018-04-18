@@ -53,7 +53,7 @@ To deploy Rancher, we just need to run the Rancher container workload on-top of 
 <!--
 If you're running your own registry or have an offline deployment, the container should be downloaded and pushed to a private registry before proceeding.
 -->
-如果您正在运行自己的仓库或进行离线部署，则在继续之前，应该下载容器镜像并其推入私有仓库。
+如果您正在运行自己的仓库或进行离线部署，则在继续之前，应该下载容器镜像并将其推入私有仓库。
 
 <!--
 ### Deploying Rancher with a nodeport
@@ -196,7 +196,7 @@ Now we need to open this nodeport so we can access it. For that, we can use juju
 <!--
 Rancher can now be accessed on this port through a worker IP or DNS entries if you have created them. It is generally recommended that you create a DNS entry for each of the worker nodes in your cluster. For example, if you have three worker nodes and you own the domain example.com, you could create three A records, one for each worker in the cluster. 
 -->
-现在可以通过工作节点 IP 或 DNS 条目在此端口上访问 Rancher（如果已创建它们）。通常建议您为集群中的每个工作节点创建一个 DNS 条目。例如，如果您有三个工作节点并且您拥有域 example.com，则可以创建三条 A 记录，每个集群中的每个工作节点都有一条记录。
+现在可以通过工作节点 IP 或 DNS 条目在此端口上访问 Rancher（如果已创建它们）。通常建议您为集群中的每个工作节点创建一个 DNS 条目。例如，如果您有三个工作节点并且您拥有域 example.com，则可以创建三条 A 记录，集群中的每个工作节点都有一条记录。
 
 <!--
 As creating DNS entries is outside of the scope of this document, we will use the freely available xip.io service which can return A records for an IP address which is part of the domain name. For example, if you have the domain rancher.35.178.130.245.xip.io, the xip.io service will automatically return the IP address 35.178.130.245 as an A record which is useful for testing purposes.  For your deployment, the IP address 35.178.130.245 should be replaced with one of your worker IP address, which can be found using Juju or AWS: 
@@ -396,7 +396,7 @@ spec:
 <!--
 It is generally recommended that you create a DNS entry for each of the worker nodes in your cluster. For example, if you have three worker nodes and you own the domain example.com, you could create three A records, one for each worker in the cluster.
 -->
-通常建议您为集群中的每个工作节点创建一个 DNS 条目。例如，如果您有三个工作节点并且您拥有域 example.com，则可以创建三条 A 记录，每个集群中的每个工作人员都有一条记录。
+通常建议您为集群中的每个工作节点创建一个 DNS 条目。例如，如果您有三个工作节点并且您拥有域 example.com，则可以创建三条 A 记录，集群中的每个工作节点都有一条记录。
 
 <!--
 As creating DNS entries is outside of the scope of this tutorial, we will use the freely available xip.io service which can return A records for an IP address which is part of the domain name. For example, if you have the domain rancher.35.178.130.245.xip.io, the xip.io service will automatically return the IP address 35.178.130.245 as an A record which is useful for testing purposes.  
