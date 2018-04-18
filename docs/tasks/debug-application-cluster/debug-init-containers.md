@@ -137,12 +137,12 @@ Init Containers:
     ...
 ```
 
-<--
+<!--
 You can also access the Init Container statuses programmatically by reading the
 `status.initContainerStatuses` field on the Pod Spec:
 -->
 
-您还也可以通过编程的方式读取 Pod Spec 中的 `status.initContainerStatuses` 字段获取 Init 容器的状态：
+您也可以通过编程的方式读取 Pod Spec 中的 `status.initContainerStatuses` 字段获取 Init 容器的状态：
 
 {% raw %}
 ```shell
