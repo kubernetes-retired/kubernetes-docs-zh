@@ -85,7 +85,7 @@ The usage of these fields varies depending on your cloud provider or bare metal 
 <!--
 Deprecated: node phase is no longer used.
 -->
-一废弃：node 阶段已经不再使用。
+已废弃：node 阶段已经不再使用。
 
 <!--
 ### Condition
