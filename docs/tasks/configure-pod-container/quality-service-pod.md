@@ -176,8 +176,8 @@ Delete your Pod:
 kubectl delete pod qos-demo --namespace=qos-example
 ```
 -->
-**注意:** 如果一个容器配置了内存限制，但是没有配置内存申请，那 Kubernetes 会自动给容器分配一个符合内存限制的请求。
-类似的，如果容器有 CPU 限制，但是没有 CPU 申请，Kubernetes 也会自动分配一个符合限制的请求。
+**注意:** 如果一个容器配置了内存限制，但是没有配置内存请求，那 Kubernetes 会自动给容器分配一个符合内存限制的请求。
+类似的，如果容器有 CPU 限制，但是没有 CPU 请求，Kubernetes 也会自动分配一个符合限制的请求。
 {: .note}
 
 删除你的 Pod:
@@ -218,7 +218,7 @@ kubectl get pod qos-demo-2 --namespace=qos-example --output=yaml
 * 该 Pod 不满足 QoS 等级 Guaranteed 的要求。
 * Pod 里至少有一个容器有内存或者 CPU 请求。
 
-这是 Pod 的配置文件，里面有一个容器。这个容器配置了200MB的内存限制和100MB的内存申请。
+这是 Pod 的配置文件，里面有一个容器。这个容器配置了200MB的内存限制和100MB的内存请求。
 
 {% include code.html language="yaml" file="qos-pod-2.yaml" ghlink="/docs/tasks/configure-pod-container/qos-pod-2.yaml" %}
 
@@ -380,7 +380,7 @@ kubectl get pod qos-demo-4 --namespace=qos-example --output=yaml
 -->
 ## 创建一个拥有两个容器的 Pod 
 
-这是一个含有两个容器的 Pod 的配置文件，其中一个容器指定了内存申请为 200MB ，另外一个没有任何申请或限制。
+这是一个含有两个容器的 Pod 的配置文件，其中一个容器指定了内存请求为 200MB ，另外一个没有任何请求或限制。
 
 {% include code.html language="yaml" file="qos-pod-4.yaml" ghlink="/docs/tasks/configure-pod-container/qos-pod-4.yaml" %}
 
