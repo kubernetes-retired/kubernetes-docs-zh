@@ -270,7 +270,7 @@ running such processes via a DaemonSet:
 -->
 
 - 像对待应用程序一样，具备为 daemon 提供监控和管理日志的能力。
-- 为 daemon 和应用城西使用相同的配置语言和工具（如 Pod 模板、`kubectl`）。
+- 为 daemon 和应用程序使用相同的配置语言和工具（如 Pod 模板、`kubectl`）。
 - Kubernetes 未来版本可能会支持对 DaemonSet 创建 Pod 与 Node升级工作流进行集成。
 - 在资源受限的容器中运行 daemon，能够增加 daemon 和应用容器的隔离性。然而这也实现了在容器中运行 daemon，但却不能在 Pod 中运行（例如，直接基于 Docker 启动）。
 
