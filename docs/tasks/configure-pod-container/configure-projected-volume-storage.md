@@ -60,7 +60,7 @@ Here is the configuration file for the Pod:
 
 ## 给Pod配置配套卷
 
-在这个例子里，我们会从本地文件里创建用户名和密码Secretes。然后新建一个Pod来运行这个容器，使用[`配套`](/docs/concepts/storage/volumes/#projected) 卷来挂载Secretes到同一个共享目录。
+在这个例子里，我们会从本地文件里创建用户名和密码Secrets。然后新建一个Pod来运行这个容器，使用[`配套`](/docs/concepts/storage/volumes/#projected) 卷来挂载Secrets到同一个共享目录。
 
 下面是Pod的配置文件:
 
