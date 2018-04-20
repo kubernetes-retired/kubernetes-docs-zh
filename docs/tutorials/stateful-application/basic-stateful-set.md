@@ -476,7 +476,7 @@ PersistentVolumeClaims are remounted to their `volumeMount`s. No matter what
 node `web-0`and `web-1` are scheduled on, their PersistentVolumes will be 
 mounted to the appropriate mount points.
 -->
-虽然 `web-0` 和 `web-1` 被重新调度了，但它们仍然继续监听各自的主机名，因为和它们的 PersistentVolumeClaim 相关联的 PersistentVolume 被重新挂载到了各自的 `volumeMount` 上。不管 `web-0` 和 `web-1` 被调度到了哪个节点上，它们的 PersistentVolumes 将会被挂载到合适的挂载点上。
+虽然 `web-0` 和 `web-1` 被重新调度了，但它们仍然继续监听各自的主机名，因为和它们的 PersistentVolumeClaims 相关联的 PersistentVolumes 被重新挂载到了各自的 `volumeMount` 上。不管 `web-0` 和 `web-1` 被调度到了哪个节点上，它们的 PersistentVolumes 将会被挂载到合适的挂载点上。
 
 <!--
 ## Scaling a StatefulSet
