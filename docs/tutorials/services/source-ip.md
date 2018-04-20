@@ -70,7 +70,7 @@ deployment "source-ip-app" created
 * Understand how each Service type handles source IP NAT
 * Understand the tradeoffs involved in preserving source IP
 -->
-* 通过多种类型的 Services 暴露一个简单应用
+* 通过多种类型的 Service 暴露一个简单应用
 * 理解每种 Service 类型如何处理源 IP NAT
 * 理解保留源 IP 的折中
 
