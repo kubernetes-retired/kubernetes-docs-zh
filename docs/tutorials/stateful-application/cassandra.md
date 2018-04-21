@@ -1,5 +1,5 @@
 ---
-title: 示例：使用 Stateful Sets 部署 Cassandra
+title: 示例：使用 StatefulSets 部署 Cassandra
 assignees:
 - ahmetb
 cn-approvers:
