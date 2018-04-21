@@ -1127,7 +1127,7 @@ If you are more advanced in the ops arena, you can also manually get the service
 
 <img width="50%" src="http://amy-jo.storage.googleapis.com/images/gb_k8s_ex1.png">
 
-如果您觉得您的技术比较牛逼，您还可以查看 `kubectl get pods,services` 的输出来手动获取服务 IP ，并修改防火墙的标准工具和服务 (firewalld, iptables, selinux) 。
+如果您更深入在ops场曩，您还可以查看 `kubectl get pods,services` 的输出来手动获取服务 IP ，并修改防火墙的标准工具和服务 (firewalld, iptables, selinux) 。
 
 <!-- 
 #### Google Compute Engine External Load Balancer Specifics
