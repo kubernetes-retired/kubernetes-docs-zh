@@ -52,7 +52,7 @@ unschedulable.** You should use a dedicated cluster for this tutorial, or you
 should ensure that the disruption you cause will not interfere with other
 tenants.
 -->
-你需要一个至少包含四个节点的集群，每个节点至少 2 CPUs 和  4 GiB 内存。在本教程中你将会 cordon 和 drain 集群的节点。**这意味着集群节点上所有的 Pods 将会被终止并移除。这些节点也会暂时变为不可调度。**在本教程中你应该使用一个独占的集群，或者保证你造成的干扰不会影响其它租户。
+你需要一个至少包含四个节点的集群，每个节点至少 2 CPU 和  4 GiB 内存。在本教程中你将会 cordon 和 drain 集群的节点。**这意味着集群节点上所有的 Pods 将会被终止并移除。这些节点也会暂时变为不可调度。**在本教程中你应该使用一个独占的集群，或者保证你造成的干扰不会影响其它租户。
 
 <!--
 This tutorial assumes that your cluster is configured to dynamically provision
