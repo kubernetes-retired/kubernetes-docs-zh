@@ -137,7 +137,7 @@ This plug-in will deny exec and attach commands to pods that run with escalated 
 allow host access.  This includes pods that run as privileged, have access to the host IPC namespace, and
 have access to the host PID namespace.
 -->
-这个插件将拒绝在拥有衍生特权而具备访问宿主机能力的 pod 中执行 exec 和 attach 命令。这包括在特权模式运行的 pod ，可以访问主机 IPC 名称空间的 pod ，和访问主机 PID 命名空间的 pod 。
+这个插件将拒绝在拥有衍生特权而具备访问宿主机能力的 pod 中执行 exec 和 attach 命令。这包括在特权模式运行的 pod ，可以访问主机 IPC 命名空间的 pod ，和访问主机 PID 命名空间的 pod 。
 
 <!--
 If your cluster supports containers that run with escalated privileges, and you want to
@@ -364,7 +364,7 @@ your Kubernetes deployment, you MUST use this plug-in to enforce those constrain
 be used to apply default resource requests to Pods that don't specify any; currently, the default LimitRanger
 applies a 0.1 CPU requirement to all Pods in the `default` namespace.
 -->
-这个插件将观察传入的请求，并确保它不会违反 `Namespace` 中 `LimitRange` 对象枚举的任何约束。如果您在 Kubernetes 部署中使用了 `LimitRange` 对象，则必须使用此插件来执行这些约束。LimitRanger 插件还可以用于将默认资源请求应用到没有指定任何内容的 Pod ；当前，默认的 LimitRanger 对 `default` 名称空间中的所有 pod 应用了0.1 CPU 的需求。
+这个插件将观察传入的请求，并确保它不会违反 `Namespace` 中 `LimitRange` 对象枚举的任何约束。如果您在 Kubernetes 部署中使用了 `LimitRange` 对象，则必须使用此插件来执行这些约束。LimitRanger 插件还可以用于将默认资源请求应用到没有指定任何内容的 Pod ；当前，默认的 LimitRanger 对 `default` 命名空间中的所有 pod 应用了0.1 CPU 的需求。
 
 <!--
 See the [limitRange design doc](https://git.k8s.io/community/contributors/design-proposals/admission_control_limit_range.md) and the [example of Limit Range](/docs/tasks/configure-pod-container/limit-range/) for more details.
@@ -401,7 +401,7 @@ and ensures that requests in a non-existent `Namespace` are rejected.
 A `Namespace` deletion kicks off a sequence of operations that remove all objects (pods, services, etc.) in that
 namespace.  In order to enforce integrity of that process, we strongly recommend running this plug-in.
 -->
-删除 `Namespace` 触发了在该名称空间中删除所有对象（ pod 、 services 等）的一系列操作。为了确保这个过程的完整性，我们强烈建议启用这个插件。
+删除 `Namespace` 触发了在该命名空间中删除所有对象（ pod 、 services 等）的一系列操作。为了确保这个过程的完整性，我们强烈建议启用这个插件。
 
 ### DefaultStorageClass
 
@@ -440,7 +440,7 @@ the taints `notready:NoExecute` and `unreachable:NoExecute` for 5 minutes.
 <!--
 This plug-in defaults and limits what node selectors may be used within a namespace by reading a namespace annotation and a global configuration.
 -->
-通过读取命名空间注释和全局配置,这个插件默认并限制了在一个名称空间中使用什么节点选择器。
+通过读取命名空间注释和全局配置,这个插件默认并限制了在一个命名空间中使用什么节点选择器。
 
 <!--
 #### Configuration File Format
