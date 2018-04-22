@@ -206,7 +206,7 @@ out of the cluster, and can potentially break existing deployments in very
 strange ways relating to x509 validation of certificates, which affects both
 servers and clients.
 -->
-**警告：** 如果该项配置缺失，那么您将无法从外部访问集群，并且很可能会使得现有的 deployment 出现 x509 证书验证相关的奇怪问题，这些都会对服务端和客户端造成影响。
+**警告：** 如果该项配置缺失，那么您将无法从外部访问集群，并且很可能会使得现有的 deployment 出现 x509 证书验证相关的异常问题，这些都会对服务端和客户端造成影响。
 {: .caution}
 
 <!--
