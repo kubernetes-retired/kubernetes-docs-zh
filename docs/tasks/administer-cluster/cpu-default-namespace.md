@@ -214,7 +214,7 @@ it can be allowed to run in a namespace that is restricted by a quota.
 ## 默认CPU限额和请求的动机
 
 如果你的命名空间含有[资源配额](https://kubernetes.io/docs/tasks/administer-cluster/cpu-default-namespace/),
-它是有帮助的对于设置一个CPU限额的默认值。
+它对于设置一个CPU限额的默认值是有帮助的。
 以下是资源配额对命名空间施加的两个限制：
 
 * 在命名空间运行的每一个容器必须含有它自己的CPU限额。
