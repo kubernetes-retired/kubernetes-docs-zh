@@ -237,7 +237,7 @@ kubernetesstack-node-uah8pkju   Ready     47m     v1.6.0+fff5156
 <!--
 Being a new cluster, there will be no pods or replication controllers in the default namespace:
 -->
-作一个新的集群，default 命名空间下没有 pod 和 replication controller：
+作为一个新的集群，default 命名空间下没有 pod 和 replication controller：
 
 ```console
 ./cluster/kubectl.sh get pods
