@@ -219,7 +219,7 @@ The next step is to package your application in a Docker container.
 <!--
 ## Create a Docker container image
 -->
-## 创建 Ddocker 容器镜像
+## 创建 Docker 容器镜像
 
 <!--
 Create a file, also in the `hellonode` folder, named `Dockerfile`. A Dockerfile describes
