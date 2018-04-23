@@ -306,7 +306,7 @@ Use the following set of examples to help you familiarize yourself with running 
 `kubectl create` - Create a resource from a file or stdin.-->
 ##### 例子
 
-要打印按名称排序的荚列表，请运行：
+要打印按名称排序的pod列表，请运行：
 
 `$ kubectl get pods --sort-by=.metadata.name`
 
