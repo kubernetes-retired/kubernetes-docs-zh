@@ -74,7 +74,7 @@ describe easy installation for single-master clusters on a variety of platforms.
 ## 初始设置
 
 本指南的其余部分假设您正在设置一个 3 节点的集群 master，其中的每台机器上都运行着某种 Linux。本指南中的例子针对 Debian 发行版，但他们应该很容易的用于其他发行版上。
-同样的，无论是在公有/私有云服务提供商上，还是在裸金属上运行集群，这些设置都应该可以工作。
+同样的，无论是在公有/私有云服务提供商上，还是在裸机上运行集群，这些设置都应该可以工作。
 
 实现高可用 Kubernetes 集群最简单的方法是从一个现有的单 master 集群开始。[https://get.k8s.io](https://get.k8s.io) 处的说明描述了在各种平台上安装单 master 集群的简单方法。
 
