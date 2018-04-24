@@ -17,7 +17,7 @@ authorized for API access.
 When a request reaches the API, it goes through several stages, illustrated in the
 following diagram:
 -->
-用户可以通过kubectl命令, 客户端库， 或者发送REST请求来[访问API](/docs/user-guide/accessing-the-cluster) 。kubernetes用户和[服务账号](/docs/tasks/configure-pod-container/configure-service-account/)都可以用于API访问时的授权。 当请求到达API时， 它会经历几个阶段，如下图所示：
+用户可以通过kubectl命令, 客户端库， 或者发送REST请求来[访问API](/docs/user-guide/accessing-the-cluster) 。Kubernetes用户和[服务账号](/docs/tasks/configure-pod-container/configure-service-account/)都可以用于API访问时的授权。 当请求到达API时， 它会经历几个阶段，如下图所示：
 ![Diagram of request handling steps for Kubernetes API request](/images/docs/admin/access-control-overview.svg)
 <!--
 ## Transport Security
@@ -184,7 +184,7 @@ for the corresponding API object, and then written to the object store (shown as
 它们在对象创建， 删除，更新， 连接（代理）期间起作用，在读取对象时它们不起作用。
 可以配置多个准入控制器， 每个准入控制器会按照顺序被调用。
 如图示中的步骤**3**所示。
-跟认证和授权模块不同的时，如果任何一个准入控制模块拒绝了请求， 那么请求就会立马被拒绝掉。
+跟认证和授权模块不同的是，如果任何一个准入控制模块拒绝了请求， 那么请求就会立马被拒绝掉。
 除了拒绝对象之外， 准入控制器还可以为字段设置复杂的默认值。
 
 可用的准入控制模块的详情请参考[这里](/docs/admin/admission-controllers/)。
