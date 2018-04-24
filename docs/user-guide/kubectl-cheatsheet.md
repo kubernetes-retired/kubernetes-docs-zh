@@ -394,10 +394,10 @@ $ KUBE_EDITOR="nano" kubectl edit svc/docker-registry   # 使用其它编辑器
 ## Scaling Resources
 
 ```console
-$ kubectl scale --replicas=3 rs/foo                                 # 扩容名为 “foo” 的 replicatset 到 3 个副本
-$ kubectl scale --replicas=3 -f foo.yaml                            # 扩容“foo.yaml” 中定义的资源到 3 个副本
-$ kubectl scale --current-replicas=2 --replicas=3 deployment/mysql  # 如果名为 mysql 的 Deployment 的当前副本是2，则扩容到 3
-$ kubectl scale --replicas=5 rc/foo rc/bar rc/baz                   # 扩容多个 replication controller
+$ kubectl scale --replicas=3 rs/foo                                 # Scale a replicaset named 'foo' to 3
+$ kubectl scale --replicas=3 -f foo.yaml                            # Scale a resource specified in "foo.yaml" to 3
+$ kubectl scale --current-replicas=2 --replicas=3 deployment/mysql  # If the deployment named mysql's current size is 2, scale mysql to 3
+$ kubectl scale --replicas=5 rc/foo rc/bar rc/baz                   # Scale multiple replication controllers
 ```
 
 -->
@@ -405,10 +405,10 @@ $ kubectl scale --replicas=5 rc/foo rc/bar rc/baz                   # 扩容多�
 ## Scale资源
 
 ```console
-$ kubectl scale --replicas=3 rs/foo                                 # Scale a replicaset named 'foo' to 3
-$ kubectl scale --replicas=3 -f foo.yaml                            # Scale a resource specified in "foo.yaml" to 3
-$ kubectl scale --current-replicas=2 --replicas=3 deployment/mysql  # If the deployment named mysql's current size is 2, scale mysql to 3
-$ kubectl scale --replicas=5 rc/foo rc/bar rc/baz                   # Scale multiple replication controllers
+$ kubectl scale --replicas=3 rs/foo                                 # 扩容名为 “foo” 的 replicatset 到 3 个副本
+$ kubectl scale --replicas=3 -f foo.yaml                            # 扩容“foo.yaml” 中定义的资源到 3 个副本
+$ kubectl scale --current-replicas=2 --replicas=3 deployment/mysql  # 如果名为 mysql 的 Deployment 的当前副本是2，则扩容到 3
+$ kubectl scale --replicas=5 rc/foo rc/bar rc/baz                   # 扩容多个 replication controller
 ```
 
 <!--
