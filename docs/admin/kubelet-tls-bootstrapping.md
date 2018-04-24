@@ -108,7 +108,7 @@ The API for requesting certificates adds a certificate-issuing control loop to t
 
 ### kube-controller-manager 配置
 
-请求证书的 API 向 Kubernetes controller manager 中添加证书颁发控制循环。使用磁盘上的 [cfssl](https://blog.cloudflare.com/introducing-cfssl/) 本地签名文件的形式。目前，所有发型的证书均为一年有效期和并具有一系列关键用途。
+请求证书的 API 向 Kubernetes controller manager 中添加证书颁发控制循环。使用磁盘上的 [cfssl](https://blog.cloudflare.com/introducing-cfssl/) 本地签名文件的形式。目前，所有发行的证书均为一年有效期并具有一系列关键用途。
 
 <!--
 
