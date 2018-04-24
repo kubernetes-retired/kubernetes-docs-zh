@@ -172,7 +172,7 @@ Key | Value
 <!--
 `publicAddressOverride` | (Optional) The IP address the kube-apiserver should use to bind against for external read-only access
 -->
-`publicAddressOverride` | （可选）kube-apiserver 用于绑定外部只读访问的IP地址
+`publicAddressOverride` | （可选）kube-apiserver 用于外部只读访问而绑定的IP地址
 <!--
 `roles` | (Required) 1. `kubernetes-master` means this machine is the master in the Kubernetes cluster.  2. `kubernetes-pool` means this machine is a kubernetes-node.  Depending on the role, the Salt scripts will provision different resources on the machine.
 -->
