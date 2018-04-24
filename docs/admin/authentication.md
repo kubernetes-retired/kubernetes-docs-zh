@@ -859,7 +859,7 @@ contexts:
   name: webhook
 ```
 
-当客户端尝试使用 bearer token 与API server 进行认证是，如 [上](#putting-a-bearer-token-in-a-request) 论述，认证 webhook 用饱含该 token 的对象查询远程服务。Kubernetes 不会挑战缺少该 header 的请求。
+当客户端尝试使用 bearer token 与API server 进行认证时，如 [上](#putting-a-bearer-token-in-a-request) 论述，认证 webhook 用包含该 token 的对象查询远程服务。Kubernetes 不会挑战缺少该 header 的请求。
 
 请注意，webhook API对象与其他 Kubernetes API 对象具有相同的 [版本控制兼容性规则](/docs/concepts/overview/kubernetes-api/)。实现者应该意识到 Beta 对象的宽松兼容性承诺，并检查请求的 “apiVersion” 字段以确保正确的反序列化。此外，API server 必须启用 `authentication.k8s.io/v1beta1` API 扩展组（`--runtime config =authentication.k8s.io/v1beta1=true`）。
 
