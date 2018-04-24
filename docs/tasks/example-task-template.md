@@ -83,7 +83,7 @@ Here's an interesting thing to know about the steps you just did.
 * See [Using Page Templates - Task template](/docs/home/contribute/page-templates/#task_template) for how to use this template.
  -->
 * 学习如何 [撰写一个新的主题](/docs/home/contribute/write-new-topic/)。
-* 如何使用这个模板，参见 [使用页面模板 - 任务模板](/docs/home/contribute/page-templates/#task_template)
+* 如何使用这个模板，参见 [使用页面模板 - 任务模板](/docs/home/contribute/page-templates/#task_template)。
 
 {% endcapture %}
 
