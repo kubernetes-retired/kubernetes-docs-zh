@@ -698,7 +698,7 @@ started.
    As they come up they should find each other and form the cluster.  The same
    `--token` argument can be used on both `kubeadm init` and `kubeadm join`.
 -->
-1. 使用此令牌同时启动 master 和 node 节点。当他们启动后，他们应该能够找到彼此并形成集群。在 `kubeadm init` 和 kubeadm join` 上都可以使用相同的 `--token` 参数。
+1. 使用此令牌同时启动 master 和 node 节点。当他们启动后，他们应该能够找到彼此并形成集群。在 `kubeadm init` 和 `kubeadm join` 上都可以使用相同的 `--token` 参数。
 
 <!--
 Once the cluster is up, you can grab the admin credentials from the master node
