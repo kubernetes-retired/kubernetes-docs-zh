@@ -1263,7 +1263,7 @@ domains to ensure availability. In order to avoid an outage, due to the loss of 
 individual machine, best practices preclude co-locating multiple instances of the
 application on the same machine.
 -->
-ZooKeeper 需要一个服务的 quorum 来成功的提交数据变动。对于一个 3 个服务的 ensemble，必须有两个是健康的写入才能成功。在基于 quorum 的系统里，成员被部署在故障域之间以保证可用性。为了防止由于某台机器断连引起服务中断，最佳实践是防止应用的多个示例在相同的机器上共存。
+ZooKeeper 需要一个服务的 quorum 来成功的提交数据变动。对于一个 3 个服务的 ensemble，必须有两个是健康的写入才能成功。在基于 quorum 的系统里，成员被部署在故障域之间以保证可用性。为了防止由于某台机器断连引起服务中断，最佳实践是防止应用的多个实例在相同的机器上共存。
 
 <!--
 By default, Kubernetes may co-locate Pods in a StatefulSet on the same node.
