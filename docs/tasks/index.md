@@ -72,7 +72,7 @@ Configure load balancing, port forwarding, or setup firewall or DNS configuratio
 
 #### 访问集群中的应用
 
-配置负载均衡，端口转发或设置防火墙，DNS；以访问集群中的应用。
+配置负载均衡，端口转发或设置防火墙或DNS配置以访问集群中的应用。
 
 <!--
 #### Monitoring, Logging, and Debugging
