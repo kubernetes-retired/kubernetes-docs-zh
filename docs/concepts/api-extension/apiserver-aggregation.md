@@ -15,17 +15,16 @@ assignees:
 - chenopis
 ---
 
-<!--
 {% capture overview %}
 
+<!--
 The aggregation layer allows Kubernetes to be extended with additional APIs, beyond what is offered by the core Kubernetes APIs. 
+-->
+聚合层允许Kubernetes使用额外的API进行扩展，超出了Kubernetes核心API所提供的范围。
 
 {% endcapture %}
 
 {% capture body %}
--->
-聚合层允许Kubernetes使用额外的API进行扩展，超出了Kubernetes核心API所提供的范围。
-
 <!--
 ## Overview
 
@@ -49,19 +48,21 @@ Ordinarily, the APIService will be implemented by an *extension-apiserver* in a 
 因此，apiserver构建器实际上为两者提供了一个架构。
 另一个例子，当service-catalog安装后，它为它提供的服务提供了extension-apiserver和控制器。
 
-<!--
 {% endcapture %}
 
 {% capture whatsnext %}
 
+<!--
 * To get the aggregator working in your environment, [configure the aggregation layer](/docs/tasks/access-kubernetes-api/configure-aggregation-layer/).
 * Then, [setup an extension api-server](/docs/tasks/access-kubernetes-api/setup-extension-api-server/) to work with the aggregation layer.
 * Also, learn how to [extend the Kubernetes API using Custom Resource Definitions](/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/).
 
-{% endcapture %}
-
-{% include templates/concept.md %}
 -->
+
 * 使聚合层在你的环境中工作，[配置聚合层](/docs/tasks/access-kubernetes-api/configure-aggregation-layer/)。
 * 然后，[设置拓展api-server](/docs/tasks/access-kubernetes-api/setup-extension-api-server/) 与聚合层一起工作.
 * 另外，学习如何[使用CRD扩展Kubernetes API](/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/)。
+
+{% endcapture %}
+
+{% include templates/concept.md %}

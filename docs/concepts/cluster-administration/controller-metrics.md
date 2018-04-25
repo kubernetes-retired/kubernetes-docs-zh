@@ -38,8 +38,6 @@ cloudprovider_gce_api_request_duration_seconds { request = "detach_disk"}
 cloudprovider_gce_api_request_duration_seconds { request = "list_disk"}
 ```
 
-
-
 <!--## Configuration-->
 
 ## 配置

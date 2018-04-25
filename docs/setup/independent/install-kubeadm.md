@@ -1,38 +1,27 @@
-<!--
----
-title: Installing kubeadm
----
-
-{% capture overview %}
-
-This page shows how to use install kubeadm.
-
-{% endcapture %}
-
-{% capture prerequisites %}
-
-* One or more machines running Ubuntu 16.04+, CentOS 7 or HypriotOS v1.0.1+
-* 1GB or more of RAM per machine (any less will leave little room for your apps)
-* Full network connectivity between all machines in the cluster (public or private network is fine)
-* Unique MAC address and product_uuid for every node
-* Certain ports are open on your machines. See the section below for more details
-
-{% endcapture %}
-
-{% capture steps %}
--->
-
 ---
 title: 安装 kubeadm
 ---
 
+<!--
+---
+title: Installing kubeadm
+---
+-->
+
 {% capture overview %}
 
+<!-- This page shows how to use install kubeadm. -->
 这一页展示如何安装kubeadm
 
 {% endcapture %}
 
 {% capture prerequisites %}
+
+<!-- * One or more machines running Ubuntu 16.04+, CentOS 7 or HypriotOS v1.0.1+
+* 1GB or more of RAM per machine (any less will leave little room for your apps)
+* Full network connectivity between all machines in the cluster (public or private network is fine)
+* Unique MAC address and product_uuid for every node
+* Certain ports are open on your machines. See the section below for more details -->
 
 * 一台或以上的机器运行 Ubuntu 16.04+, CentOS 7 或者 HypriotOS v1.0.1+
 * 每台机器至少有1GB内存 (太少的话可能运行不了您的应用)
@@ -48,21 +37,21 @@ title: 安装 kubeadm
 
 ### Master node(s)
 
-| Port Range | Purpose                         |
-|------------|---------------------------------|
-| 6443*      | Kubernetes API server           |
-| 2379-2380  | etcd server client API          |
-| 10250      | Kubelet API                     |
-| 10251      | kube-scheduler                  |
-| 10252      | kube-controller-manager         |
-| 10255      | Read-only Kubelet API (Heapster)|
+| Port Range | Purpose                          |
+|:-----------|:---------------------------------|
+| 6443*      | Kubernetes API server            |
+| 2379-2380  | etcd server client API           |
+| 10250      | Kubelet API                      |
+| 10251      | kube-scheduler                   |
+| 10252      | kube-controller-manager          |
+| 10255      | Read-only Kubelet API (Heapster) |
 
 ### Worker node(s)
 
-| Port Range  | Purpose                         |
-|-------------|---------------------------------|
-| 10250       | Kubelet API                     |
-| 10255       | Read-only Kubelet API (Heapster)|
+| Port Range  | Purpose                                                                                                                                                                                                                    |
+|:------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 10250       | Kubelet API                                                                                                                                                                                                                |
+| 10255       | Read-only Kubelet API (Heapster)                                                                                                                                                                                           |
 | 30000-32767 | Default port range for [NodePort Services](/docs/concepts/services-networking/service). Typically, these ports would need to be exposed to external load-balancers, or other external consumers of the application itself. |
 
 Any port numbers marked with * are overridable, so you will need to ensure any
@@ -80,22 +69,22 @@ documentation for the plugins about what port(s) those need.
 
 ### 主节点
 
-| 端口范围    | 用途                             |
-|------------|---------------------------------|
-| 6443*      | Kubernetes API server           |
-| 2379-2380  | etcd server client API          |
-| 10250      | Kubelet API                     |
-| 10251      | kube-scheduler                  |
-| 10252      | kube-controller-manager         |
-| 10255      | Read-only Kubelet API (Heapster)|
+| 端口范围  | 用途                             |
+|:----------|:---------------------------------|
+| 6443*     | Kubernetes API server            |
+| 2379-2380 | etcd server client API           |
+| 10250     | Kubelet API                      |
+| 10251     | kube-scheduler                   |
+| 10252     | kube-controller-manager          |
+| 10255     | Read-only Kubelet API (Heapster) |
 
 ### 从节点
 
-| 端口范围     | 用途                             |
-|-------------|---------------------------------|
-| 10250       | Kubelet API                     |
-| 10255       | Read-only Kubelet API (Heapster)|
-| 30000-32767 | Default port range for [NodePort Services](/docs/concepts/services-networking/service). 正常来说，这些端口需要开放给外部负载均衡设备或者其他客户应用。
+| 端口范围    | 用途                                                                                                                                                   |
+|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------|
+| 10250       | Kubelet API                                                                                                                                            |
+| 10255       | Read-only Kubelet API (Heapster)                                                                                                                       |
+| 30000-32767 | Default port range for [NodePort Services](/docs/concepts/services-networking/service). 正常来说，这些端口需要开放给外部负载均衡设备或者其他客户应用。 |
 
 任何标志*的端口号都可以更改，因此你必须根据要求保证开放任何需要的端口号。
 

@@ -36,6 +36,7 @@ services that communicate a lot into the same availability zone.
 You can find all the files for these examples [in our docs
 repo here](https://github.com/kubernetes/kubernetes.github.io/tree/{{page.docsbranch}}/docs/user-guide/node-selection).
 -->
+
 您可以限制 [pod](/docs/concepts/workloads/pods/pod/) 只能在特定 [node](/docs/concepts/nodes/node/) 上运行，或者更倾向于在某些特定 node 上运行。 有几种方法可以做到这一点，他们都使用 [label selectors](/docs/user-guide/labels/) 进行选择。
 一般来说，这种约束是不必要的，因为 scheduler 会自动进行合理的安排（例如，将 pod 分布在所有 node 上，而不是将 pod 分配到空闲资源不足的 node 上，等等）
 但是在某些情况下，您可能需要对 node 有更多的控制权，例如，确保一个 pod 调度到安装有 SSD 的机器上，或者将来自两个不同服务并且需要大量通信的 pod 分配到同一个可用区域内。

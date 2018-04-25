@@ -14,9 +14,8 @@ cn-reviewers:
 - shidrdn
 ---
 
-<!--
-title: Authenticate Across Clusters with kubeconfig
--->
+
+<!-- title: Authenticate Across Clusters with kubeconfig -->
 
 <!--
 

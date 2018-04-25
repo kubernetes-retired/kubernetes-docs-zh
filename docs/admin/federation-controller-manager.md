@@ -4,9 +4,8 @@ cn-approvers:
 title: federation-controller-manager
 notitle: true
 ---
+
 ## federation-controller-manager
-
-
 
 <!--
 ### Synopsis

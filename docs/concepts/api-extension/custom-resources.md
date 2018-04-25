@@ -13,16 +13,17 @@ assignees:
 - deads2k
 ---
 
-<!--
 {% capture overview %}
+<!--
 This page explains the concept of *custom resources*, which are extensions of the Kubernetes API.
-{% endcapture %}
-
-{% capture body %}
-## Custom resources
 -->
 本页阐释了*自定义资源*的概念，它是对Kubernetes API的扩展。
 
+{% endcapture %}
+
+{% capture body %}
+
+<!-- ## Custom resources -->
 ## 自定义资源
 
 <!--
@@ -48,6 +49,7 @@ and cluster admins can update custom resources independently of the cluster itse
 Once a custom resource is installed, users can create and access its objects with
 [kubectl](/docs/user-guide/kubectl-overview/), just as they do for built-in resources like *pods*.
 -->
+
 在一个运行中的集群内，自定义资源可以通过动态注册出现和消失，集群管理员可以独立于集群本身更新自定义资源。  
 一旦安装了自定义资源，用户就可以通过[kubectl](/docs/user-guide/kubectl-overview/)创建和访问它的对象，就像操作内建资源*pods*那样。
 
@@ -124,18 +126,18 @@ making them available to all of its clients.
 [聚合层](/docs/concepts/api-extension/)允许你通过编写和部署你自己的从API服务为你自定义的资源提供指定的实现。  
 主API服务把这些该由你处理的自定义资源的请求委托给你，使它们对于它的所有客户端是可用的。
 
-<!--
 {% endcapture %}
 
 {% capture whatsnext %}
+<!--
 * Learn how to [Extend the Kubernetes API with the aggregation layer](/docs/concepts/api-extension/apiserver-aggregation/).
 * Learn how to [Extend the Kubernetes API with CustomResourceDefinition](/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/).
 * Learn how to [Migrate a ThirdPartyResource to CustomResourceDefinition](/docs/tasks/access-kubernetes-api/migrate-third-party-resource/).
-{% endcapture %}
-
-{% include templates/concept.md %}
 -->
 * 学习如何[使用聚合层扩展Kubernetes API](/docs/concepts/api-extension/apiserver-aggregation/)。
 * 学习如何[使用定制化资源定义扩展Kubernetes API](/docs/tasks/access-kubernetes-api/extend-api-custom-resource-definitions/)。
 * 学习如何[迁移第三方资源到定制化资源定义](/docs/tasks/access-kubernetes-api/migrate-third-party-resource/)。
 
+{% endcapture %}
+
+{% include templates/concept.md %}
