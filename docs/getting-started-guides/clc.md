@@ -292,7 +292,7 @@ Cloud control portal and delete the parent server group that contains the
 Kubernetes Cluster. We hope to add a scripted option to do this soon.
  -->
 2) 使用 CenturyLink Cloud 用户界面。
-要删除集群，请登录到 CenturyLink Cloud 控制门户并删除包含该的父服务器组 Kubernetes 集群。
+要删除集群，请登录到 CenturyLink Cloud 控制门户并删除包含该父服务器组的 Kubernetes 集群。
 我们希望添加一个脚本化的选项来尽快做到这一点。
 
 <!--
