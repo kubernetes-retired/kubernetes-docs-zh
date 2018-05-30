@@ -18,7 +18,7 @@ title: Kubernetes Documentation
 <!--
 Kubernetes documentation can help you set up Kubernetes, learn about the system, or get your applications and workloads running on Kubernetes. To learn the basics of what Kubernetes is and how it works, read "[What is Kubernetes](/docs/concepts/overview/what-is-kubernetes/)".
 -->
-Kubernetes 文档可以帮助您设置 Kubernetes，了解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么，和它是如何运行的，请参阅 "[Kubernetes 是什么](/docs/concepts/overview/what-is-kubernetes/)"。
+Kubernetes 文档可以帮助您设置 Kubernetes，理解系统，或者让您的应用程序和工作负载在 Kubernetes 上运行。如果想要了解 Kubernetes 是什么，和它是如何运行的，请参阅 "[Kubernetes 是什么](/docs/concepts/overview/what-is-kubernetes/)"。
 
 <!--
 ## Interactive Tutorial
