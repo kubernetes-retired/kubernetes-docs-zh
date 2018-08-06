@@ -1,23 +1,3 @@
-**NOTICE:** This repo is being repurposed and will host the Kubernetes.io CNCF Chinese Translation Workforce project. Consequently, the contents of [k8smeetup/k8smeetup.github.io](https://github.com/k8smeetup/k8smeetup.github.io) will be moved here, and the previous contents of the `master` branch will be located in the [kubernetes-docs-cn-master-archive.zip](/kubernetes-docs-cn-master-archive.zip) file.
-
-[翻译组工作流程（中文版）](README-CN.md)
-
-The `release-1.1-cn` branch is still currently; however, it will be deprecated once the open issue and pull request authors have been properly notified and those issues/PRs have been closed.
-
-
-The workflow for the CNCF Chinese Translation Workforce is documented here:
-
-[https://docs.google.com/document/d/1xz7BhW8Qkh6reYU7S7RDzSov5e101Vz_fHjq-fEX-W4/edit#heading=h.gjdgxs](https://docs.google.com/document/d/1xz7BhW8Qkh6reYU7S7RDzSov5e101Vz_fHjq-fEX-W4/edit#heading=h.gjdgxs)
-
-Changes are coordinated via the WeChat Group (for instant communication) and a worksheet, which includes the article index, work assignment, internal reviewer assignees and status, is tracking the progress:
-
-[https://docs.google.com/spreadsheets/d/1FDFCv9RK5nSMgLXhPrJ5k7r5QvHnNEFnXbvoFiM8v20/edit#gid=906253755](https://docs.google.com/spreadsheets/d/1FDFCv9RK5nSMgLXhPrJ5k7r5QvHnNEFnXbvoFiM8v20/edit#gid=906253755)
-
-Individual contributions are being tracked as well in a weekly manner:
-
-[https://docs.google.com/spreadsheets/d/165tm5Tmp3oJJeZb1W7BNJ7pJlThyxg9LuN-lHhVLkbY/edit#gid=0](https://docs.google.com/spreadsheets/d/165tm5Tmp3oJJeZb1W7BNJ7pJlThyxg9LuN-lHhVLkbY/edit#gid=0)
-
-
 ## Instructions for Contributing to the Kubernetes Documentation
 
 Welcome! We are very pleased you want to contribute to the Kubernetes documentation.
@@ -35,6 +15,37 @@ For more information about contributing to the Kubernetes documentation, see:
 * [Staging Your Documentation Changes](http://kubernetes.io/docs/home/contribute/stage-documentation-changes/)
 * [Using Page Templates](http://kubernetes.io/docs/home/contribute/page-templates/)
 * [Documentation Style Guide](http://kubernetes.io/docs/home/contribute/style-guide/)
+
+## Building the site using Docker
+
+If you'd like, you can build the Kubernetes docs using Docker. To get started, build the image locally:
+
+```bash
+$ make docker-image
+
+# The underlying command:
+$ docker build . \
+  --tag kubernetes-hugo \
+  --build-arg HUGO_VERSION=0.40.3
+```
+
+You can create an image for a different version of Hugo by changing the value of the `HUGO_VERSION` argument for the build. You *must* specify a version or the image will not build.
+Once the `kubernetes-hugo` image has been built locally, you can build the site:
+
+```bash
+$ make docker-serve
+
+# The underlying command:
+$ docker run \
+  --rm \
+  --interactive \
+  --tty \
+  --volume $(PWD):/src \
+  kubernetes-hugo:latest \
+  hugo
+```
+
+As when building without using a Docker container, the results of the build will be published to the `public` directory (the default output directory for [Hugo](https://gohugo.io), the static site generator used to build this site).
 
 ## Thank you!
 
