@@ -41,9 +41,9 @@ aliases:
     - chrislovecnm
     - mfburnett
   sig-azure: #Microsoft Azure
-    - slack
-    - colemickens
-    - jdumars
+    - andyzhangx
+    - feiskyer
+    - karataliu
   sig-big-data: #GH: sig-big-data-pr-reviews
     - foxish
   sig-cli: #Team: CLI; GH: sig-cli-pr-reviews; e.g. kubectl
@@ -62,15 +62,10 @@ aliases:
     - soltysh
     - sttts
   sig-cluster-lifecycle: #GH: sig-cluster-lifecycle-pr-reviews
-    - jbeda
     - timothysc
-    - lukemarsden
-    - pipejakob
-    - dmmcquay
-    - mattmoyer
     - luxas
     - roberthbailey
-    - medinatiger
+    - fabriziopandini 
   sig-cluster-ops:
     - zehicle
     - jdumars
