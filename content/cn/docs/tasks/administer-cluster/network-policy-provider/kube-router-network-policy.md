@@ -22,7 +22,7 @@ weight: 30
 The Kube-router Addon comes with a Network Policy Controller that watches Kubernetes API server for any NetworkPolicy and pods updated and configures iptables rules and ipsets to allow or block traffic as directed by the policies. Please follow the [trying Kube-router with cluster installers](https://www.kube-router.io/docs/user-guide/#try-kube-router-with-cluster-installers) guide to install Kube-router addon. -->
 
 ## 安装 Kube-router 插件
-Kube-router 插件自带一个Network Policy 控制器，监视来自于Kubernetes API server 的 NetworkPolicy 和 pods 的变化，根据策略指示配置 iptables 规则和 ipsets 来允许或阻止流量。请根据[尝试通过集群安装器使用 Kube-router](https://www.kube-router.io/docs/user-guide/#try-kube-router-with-cluster-installers)指南安装 Kube-router 插件。
+Kube-router 插件自带一个Network Policy 控制器，监视来自于Kubernetes API server 的 NetworkPolicy 和 pods 的变化，根据策略指示配置 iptables 规则和 ipsets 来允许或阻止流量。请根据 [尝试通过集群安装器使用 Kube-router](https://www.kube-router.io/docs/user-guide/#try-kube-router-with-cluster-installers) 指南安装 Kube-router 插件。
 {{% /capture %}}
 
 {{% capture whatsnext %}}
