@@ -6,7 +6,7 @@ url: /blog/2016/04/Kubernetes-On-Aws_15
 --- -->
 
 ---
-title: " 如何在AWS上部署安全，可审计，可重现的k8s集群 "
+title: " 如何在AWS上部署安全，可审计，可复现的k8s集群 "
 date: 2016-04-15
 slug: kubernetes-on-aws_15
 url: /blog/2016/04/Kubernetes-On-Aws_15
@@ -22,7 +22,7 @@ _加入到我们的[柏林CoreOS盛宴](https://coreos.com/fest/)，这是一个
 
 <!-- At CoreOS, we're all about deploying Kubernetes in production at scale. Today we are excited to share a tool that makes deploying Kubernetes on Amazon Web Services (AWS) a breeze. Kube-aws is a tool for deploying auditable and reproducible Kubernetes clusters to AWS, currently used by CoreOS to spin up production clusters. -->
 
-在CoreOS, 我们一直都是在生产环境中大规模部署Kubernetes。今天我们非常兴奋地想分享一款工具，它能让你的Kubernetes生产环境大规模部署更加的轻松。Kube-aws这个工具可以用来在AWS上部署可审计，可重现的k8s集群，而CoreOS本身就在生产环境中使用它。
+在CoreOS, 我们一直都是在生产环境中大规模部署Kubernetes。今天我们非常兴奋地想分享一款工具，它能让你的Kubernetes生产环境大规模部署更加的轻松。Kube-aws这个工具可以用来在AWS上部署可审计，可复现的k8s集群，而CoreOS本身就在生产环境中使用它。
 
 <!-- Today you might be putting the Kubernetes components together in a more manual way. With this helpful tool, Kubernetes is delivered in a streamlined package to save time, minimize interdependencies and quickly create production-ready deployments. -->
 
@@ -37,7 +37,7 @@ _加入到我们的[柏林CoreOS盛宴](https://coreos.com/fest/)，这是一个
 如果要跳过演讲，直接了解这个项目，可以看看[kube-aws的最新发布](https://github.com/coreos/coreos-kubernetes/releases)，支持Kubernetes 1.2.x。如果要部署集群，可以参考[文档]](https://coreos.com/kubernetes/docs/latest/kubernetes-on-aws.html).
 
 <!-- **Why kube-aws? Security, auditability and reproducibility** -->
-**为什么是kube-aws？安全，可审计，可重现**
+**为什么是kube-aws？安全，可审计，可复现**
 
 <!-- Kube-aws is designed with three central goals in mind. -->
 Kube-aws设计初衷有三个目标。
