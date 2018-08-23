@@ -79,7 +79,7 @@ Sysctls are grouped into _safe_  and _unsafe_ sysctls. In addition to proper
 namespacing a _safe_ sysctl must be properly _isolated_ between pods on the same
 node. This means that setting a _safe_ sysctl for one pod
 --->
-sysctl 参数分为 _安全_ 和 _非安全的_。_安全_ sysctl 参数除了需要设置恰当的命名空间外，在同一 node 上的不同 Pod 之间也必须是 _相互隔离的_ 的。这意味着在 Pod 上设置 _安全_ sysctl 参数
+sysctl 参数分为 _安全_ 和 _非安全的_。_安全_ sysctl 参数除了需要设置恰当的命名空间外，在同一 node 上的不同 Pod 之间也必须是 _相互隔离的_。这意味着在 Pod 上设置 _安全_ sysctl 参数
 
 <!--
 - must not have any influence on any other pod on the node
@@ -101,12 +101,10 @@ The following sysctls are supported in the _safe_ set:
 - `net.ipv4.ip_local_port_range`,
 - `net.ipv4.tcp_syncookies`.
 
+{{< note >}}
 <!--
-{{< note >}}
 **Note**: The example `net.ipv4.tcp_syncookies` is not namespaced on Linux kernel version 4.4 or lower.
-{{< /note >}}
 --->
-{{< note >}}
 **注意**: 示例中的 `net.ipv4.tcp_syncookies` 在Linux 内核 4.4 或更低的版本中是无命名空间的。
 {{< /note >}}
 
@@ -198,13 +196,11 @@ the specification.
 --->
 此示例中，使用 Pod SecurityContext 来对一个安全的 sysctl 参数 `kernel.shm_rmid_forced` 以及两个非安全的 sysctl 参数 `net.ipv4.route.min_pmtu`和 `kernel.msgmax` 进行设置。在 Pod 规格中对 _安全的_ 和 _非安全的_ sysctl 参数不做区分。
 
-<!--
 {{< warning >}}
+<!--
 Only modify sysctl parameters after you understand their effects, to avoid
 destabilizing your operating system.
-{{< /warning >}}
 --->
-{{< warning >}}
 为了避免破坏操作系统的稳定性，请您在了解变更后果之后再修改 sysctl 参数。
 {{< /warning >}}
 
@@ -228,14 +224,12 @@ spec:
 
 {{% capture discussion %}}
 
-<!--
 {{< warning >}}
+<!--
 **Warning**: Due to their nature of being _unsafe_, the use of _unsafe_ sysctls
 is at-your-own-risk and can lead to severe problems like wrong behavior of
 containers, resource shortage or complete breakage of a node.
-{{< /warning >}}
 --->
-{{< warning >}}
 **警告**：由于 _非安全的_ sysctl 参数其本身具有不稳定性，在使用 _非安全的_ sysctl 参数时可能会导致一些严重问题，如容器的错误行为、机器资源不足或节点被完全破坏，用户需自行承担风险。
 {{< /warning >}}
 
@@ -303,15 +297,13 @@ given sysctl is both allowed and forbidden.
 --->
 `allowedUnsafeSysctls` 与 `forbiddenSysctls` 两字段的配置不能重叠，否则这就意味着存在某个 sysctl 参数既被启用又被禁用。
 
-<!--
 {{< warning >}}
+<!--
 **Warning**: If you whitelist unsafe sysctls via the `allowedUnsafeSysctls` field
 in a PodSecurityPolicy, any pod using such a sysctl will fail to start
 if the sysctl is not whitelisted via the `--allowed-unsafe-sysctls` kubelet
 flag as well on that node.
-{{< /warning >}}
 --->
-{{< warning >}}
 **警告**：如果您通过 PodSecurityPolicy 中的 `allowedUnsafeSysctls` 字段将非安全的 sysctl 参数列入白名单，但该 sysctl 参数未通过 kubelet 命令行参数 `--allowed-unsafe-sysctls` 在节点上将其列入白名单，则设置了这个 sysctl 参数的 Pod 将会启动失败。
 {{< /warning >}}
 
