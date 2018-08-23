@@ -16,7 +16,7 @@ weight: 40
 {{% capture prerequisites %}}
 
 <!-- Complete steps 1, 2, and 3 of  the [kubeadm getting started guide](/docs/getting-started-guides/kubeadm/). -->
-完成[kubeadm 入门指南](/docs/getting-started-guides/kubeadm/)中的1、2和3步。
+完成[kubeadm 入门指南](/docs/getting-started-guides/kubeadm/)中的1、2、3步。
 
 {{% /capture %}}
 
@@ -36,7 +36,7 @@ To apply network policies use one of the following:
  -->
 ## 使用 kubeadm 安装 Romana
 
-按照[容器化安装指南](https://github.com/romana/romana/tree/master/containerize) 的 kubeadmin 部分。
+按照[容器化安装指南](https://github.com/romana/romana/tree/master/containerize)获取 kubeadmin。
 
 ## 运用网络策略
 
