@@ -1,0 +1,194 @@
+---
+reviewers:
+- smarterclayton
+title: 通过 Rest 加密 Secret 数据
+content_template: templates/task
+---
+
+{{% capture overview %}}
+本文将展示如何通过 rest 启用和配置 secret 数据的加密。
+{{% /capture %}}
+
+{{% capture prerequisites %}}
+
+* {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
+
+* 需要 Kubernetes 1.7.0 或者更高版本
+
+* 需要 etcd v3 或者更高版本
+
+* 通过 rest 加密在 1.7.0 中仍然是 alpha 版本，这意味着它可能会在没有通知的情况下进行更改。在升级到 1.8.0 之前，用户可能需要解密他们的数据。
+
+{{% /capture %}}
+
+{{< toc >}}
+
+{{% capture prerequisites %}}
+
+{{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
+
+{{% /capture %}}
+
+{{% capture steps %}}
+
+## 配置并确定是否已启用通过 rest 加密
+
+`kube-apiserver` 的参数 `--experimental-encryption-provider-config` 控制 API 数据在 etcd 中的加密方式。
+下面提供一个配置示例。
+
+## 理解 rest 配置的加密
+
+```yaml
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+    - secrets
+    providers:
+    - identity: {}
+    - aesgcm:
+        keys:
+        - name: key1
+          secret: c2VjcmV0IGlzIHNlY3VyZQ==
+        - name: key2
+          secret: dGhpcyBpcyBwYXNzd29yZA==
+    - aescbc:
+        keys:
+        - name: key1
+          secret: c2VjcmV0IGlzIHNlY3VyZQ==
+        - name: key2
+          secret: dGhpcyBpcyBwYXNzd29yZA==
+    - secretbox:
+        keys:
+        - name: key1
+          secret: YWJjZGVmZ2hpamtsbW5vcHFyc3R1dnd4eXoxMjM0NTY=
+```
+
+每个 `resources` 数组项目是一个单独的完整的配置。 `resources.resources` 字段是要加密的 Kubernetes 资源名称（`resource` 或 `resource.group`）的数组。 `providers` 数组是可能的加密 provider 的有序列表。每个条目只能指定一个 provider 类型（可以是 `identity` 或 `aescbc`，但不能在同一个项目中同时指定）。
+
+列表中的第一个提供者用于加密进入存储的资源。当从存储器读取资源时，与存储的数据匹配的所有提供者将尝试按顺序解密数据。 如果由于格式或密钥不匹配而导致提供者无法读取存储的数据，则会返回一个错误，以防止客户端访问该资源。
+
+**重要：** 如果通过加密配置无法读取资源（因为密钥已更改），唯一的方法是直接从基础 etcd 中删除该密钥。任何尝试读取资源的调用将会失败，直到它被删除或提供有效的解密密钥。
+
+### Providers:
+
+名称 | 加密类型 | 强度 | 速度 | 密钥长度 | 其它事项
+-----|------------|----------|-------|------------|---------------------
+`identity` | 无 | N/A | N/A | N/A | 不加密写入的资源。当设置为第一个 provider 时，资源将在新值写入时被解密。
+`aescbc` | 填充 PKCS#7 的 AES-CBC | 最强 | 快 | 32字节 | 建议使用的加密项，但可能比 `secretbox` 稍微慢一些。
+`secretbox` | XSalsa20 和 Poly1305 | 强 | 更快 | 32字节 | 较新的标准，在需要高度评审的环境中可能不被接受。
+`aesgcm` | 带有随机数的 AES-GCM | 必须每 200k 写入一次 | 最快 | 16, 24, 或者 32字节 | 建议不要使用，除非实施了自动密钥循环方案。
+`kms` | 使用信封加密方案：数据使用带有 PKCS#7 填充的 AES-CBC 通过 data encryption keys（DEK）加密，DEK 根据 Key Management Service（KMS）中的配置通过 key encryption keys（KEK）加密 | 最强 | 快 | 32字节 | 建议使用第三方工具进行密钥管理。为每个加密生成新的 DEK，并由用户控制 KEK 轮换来简化密钥轮换。[配置 KMS 提供程序](/docs/tasks/administer-cluster/kms-provider/)
+
+每个 provider 都支持多个密钥 - 在解密时会按顺序使用密钥，如果是第一个 provider，则第一个密钥用于加密。
+
+## 加密您的数据
+
+创建一个新的加密配置文件：
+
+```yaml
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+    - secrets
+    providers:
+    - aescbc:
+        keys:
+        - name: key1
+          secret: <BASE 64 ENCODED SECRET>
+    - identity: {}
+```
+
+遵循如下步骤来创建一个新的 secret：
+
+1. 生成一个 32 字节的随机密钥并进行 base64 编码。如果您在 Linux 或 Mac OS X 上，请运行以下命令：
+
+    ```
+    head -c 32 /dev/urandom | base64
+    ```
+
+2. 将这个值放入到 secret 字段中。
+3. 设置 `kube-apiserver` 的 `--experimental-encryption-provider-config` 参数，将其指定到配置文件所在位置。
+4. 重启您的 API server。
+
+**重要：** 您的配置文件包含可以解密 etcd 内容的密钥，因此您必须正确限制主设备的权限，以便只有能运行 kube-apiserver 的用户才能读取它。
+
+
+## 验证数据是否被加密
+
+数据在写入 etcd 时会被加密。重新启动你的 `kube-apiserver` 后，任何新创建或更新的密码在存储时都应该被加密。如果想要检查，你可以使用 `etcdctl` 命令行程序来检索你的加密内容。
+
+1. 创建一个新的 secret，名称为 `secret1`，命名空间为 `default`：
+
+    ```
+    kubectl create secret generic secret1 -n default --from-literal=mykey=mydata
+    ```
+
+2. 使用 etcdctl 命令行，从 etcd 中读取 secret：
+
+    ```
+    ETCDCTL_API=3 etcdctl get /registry/secrets/default/secret1 [...] | hexdump -C
+    ```
+
+    这里的 `[...]` 是用来连接 etcd 服务的额外参数。
+3. 验证存储的密钥前缀是否为 `k8s:enc:aescbc:v1:`，这表明 `aescbc` provider 已加密结果数据。
+4. 通过 API 检索，验证 secret 是否被正确解密：
+
+    ```
+    kubectl describe secret secret1 -n default
+    ```
+
+    必须匹配 `mykey: mydata`
+
+
+## 确保所有 secret 都被加密
+
+由于 secret 是在写入时被加密，因此对 secret 执行更新也会加密该内容。
+
+```
+kubectl get secrets --all-namespaces -o json | kubectl replace -f -
+```
+
+上面的命令读取所有 secret，然后使用服务端加密来进行更新。
+如果由于冲突写入而发生错误，请重试该命令。
+对于较大的集群，您可能希望通过命名空间或更新脚本来分割 secret。
+
+
+## 回滚解密密钥
+
+在不发生停机的情况下更改 secret 需要多步操作，特别是在有多个 `kube-apiserver` 进程正在运行的高可用部署的情况下。
+
+1. 生成一个新密钥并将其添加为所有服务器上当前提供程序的第二个密钥条目
+2. 重新启动所有 `kube-apiserver` 进程以确保每台服务器都可以使用新密钥进行解密
+3. 将新密钥设置为 `keys` 数组中的第一个条目，以便在配置中使用其进行加密
+4. 重新启动所有 `kube-apiserver` 进程以确保每个服务器现在都使用新密钥进行加密
+5. 运行 `kubectl get secrets --all-namespaces -o json | kubectl replace -f -` 以用新密钥加密所有现有的秘密
+6. 在使用新密钥备份 etcd 后，从配置中删除旧的解密密钥并更新所有密钥
+
+如果只有一个 `kube-apiserver`，第 2 步可能可以忽略。
+
+
+## 解密所有数据
+
+要禁用 rest 加密，请将 `identity` provider 作为配置中的第一个条目：
+
+```yaml
+kind: EncryptionConfig
+apiVersion: v1
+resources:
+  - resources:
+    - secrets
+    providers:
+    - identity: {}
+    - aescbc:
+        keys:
+        - name: key1
+          secret: <BASE 64 ENCODED SECRET>
+```
+
+并重新启动所有 `kube-apiserver` 进程。然后运行命令 `kubectl get secrets --all-namespaces -o json | kubectl replace -f -` 强制解密所有 secret。
+
+{{% /capture %}}
+
+
