@@ -2,27 +2,24 @@
 cn-approvers:
 - linyouchong
 title: 使用工作队列进行精细的并行处理
+content_template: templates/task
+weight: 40
 ---
 <!--
 ---
 title: Fine Parallel Processing Using a Work Queue
+content_template: templates/task
+weight: 40
 ---
 -->
 
-* TOC
-{:toc}
-
-<!--
-# Example: Job with Work Queue with Multiple Work Items Per Pod
--->
-# 示例：每个 Pod 处理工作队列中多个工作项的 Job
+{{% capture overview %}}
 
 <!--
 In this example, we will run a Kubernetes Job with multiple parallel
-worker processes.  You may want to be familiar with the basic,
-non-parallel, use of [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/) first.
+worker processes in a given pod.
 -->
-在这个例子中，我们会运行一个存在多个并行工作进程的 Kubernetes Job。您可能希望先了解一些基础的、非并行使用 [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/) 的知识。
+在这个例子中，我们会运行一个Kubernetes Job，其中的 Pod 会运行多个并行工作进程。
 
 <!--
 In this example, as each pod is created, it picks up one unit of work
@@ -55,6 +52,27 @@ Here is an overview of the steps in this example:
 -->
 1. **启动一个 Job 对队列中的任务进行处理**。这个 Job 启动了若干个 Pod 。每个 Pod 从消息队列中取出一个工作任务，处理它，然后重复，直到到达队列的尾部。
 
+{{% /capture %}}
+
+{{< toc >}}
+
+{{% capture prerequisites %}}
+
+{{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
+
+{{% /capture %}}
+
+{{% capture steps %}}
+
+<!--
+Be familiar with the basic,
+non-parallel, use of [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/).
+-->
+熟秋基础知识，非并行方式运行 [Job](/docs/concepts/jobs/run-to-completion-finite-workloads/)。
+
+{{% /capture %}}
+
+{{% capture steps %}}
 
 <!--
 ## Starting Redis
@@ -70,21 +88,31 @@ of deploying Redis scalably and redundantly.
 了解如何部署一个可伸缩、高可用的 Redis 例子，请查看 [Redis 样例](https://github.com/kubernetes/examples/tree/master/guestbook) 
 
 <!--
-Start a temporary Pod running Redis and a service so we can find it.
+If you are working from the website source tree, you can go to the following
+directory and start  a temporary Pod running Redis and a service so we can find it.
 -->
-启动一个临时的 Pod 用于运行 Redis 和 一个临时的 service 以便我们能够找到这个 Pod
+如果您在使用本文档库的源代码目录，您可以进入如下目录，然后启动一个临时的 Pod 用于运行 Redis 和 一个临时的 service 以便我们能够找到这个 Pod
 
 ```shell
-$ kubectl create -f docs/tasks/job/fine-parallel-processing-work-queue/redis-pod.yaml
-pod "redis-master" created
-$ kubectl create -f docs/tasks/job/fine-parallel-processing-work-queue/redis-service.yaml
-service "redis" created
+$ cd content/en/examples/application/job/redis
+$ kubectl create -f ./redis-pod.yaml
+pod/redis-master created
+$ kubectl create -f ./redis-service.yaml
+service/redis created
 ```
 
 <!--
-If you're not working from the source tree, you could also download [`redis-pod.yaml`](redis-pod.yaml?raw=true) and [`redis-service.yaml`](redis-service.yaml?raw=true) directly.
+If you're not working from the source tree, you could also download the following
+files directly:
 -->
-如果您没有使用本文档库的源代码目录，您可以直接下载 [`redis-pod.yaml`](redis-pod.yaml?raw=true) 和 [`redis-service.yaml`](redis-service.yaml?raw=true) 。
+如果您没有使用本文档库的源代码目录，您可以直接下载如下文件：
+
+- [`redis-pod.yaml`](/examples/application/job/redis/redis-pod.yaml)
+- [`redis-service.yaml`](/examples/application/job/redis/redis-service.yaml)
+- [`Dockerfile`](/examples/application/job/redis/Dockerfile)
+- [`job.yaml`](/examples/application/job/redis/job.yaml)
+- [`rediswq.py`](/examples/application/job/redis/rediswq.py)
+- [`worker.py`](/examples/application/job/redis/worker.py)
 
 <!--
 ## Filling the Queue with tasks
@@ -175,9 +203,9 @@ the messages from the message queue.
 
 <!--
 A simple Redis work queue client library is provided,
-called rediswq.py ([Download](rediswq.py?raw=true)).
+called rediswq.py ([Download](/examples/application/job/redis/rediswq.py)).
 -->
-这里提供了一个简单的 Redis 工作队列客户端库，叫 rediswq.py ([下载](rediswq.py?raw=true))。
+这里提供了一个简单的 Redis 工作队列客户端库，叫 rediswq.py ([下载](/examples/application/job/redis/rediswq.py))。
 
 <!--
 The "worker" program in each Pod of the Job uses the work queue
@@ -185,15 +213,15 @@ client library to get work.  Here it is:
 -->
 Job 中每个 Pod 内的 “工作程序” 使用工作队列客户端库获取工作。如下：
 
-{% include code.html language="python" file="worker.py" ghlink="/docs/tasks/job/fine-parallel-processing-work-queue/worker.py" %}
+{{< codenew language="python" file="application/job/redis/worker.py" >}}
 
 <!--
 If you are working from the source tree,
-change directory to the `docs/tasks/job/fine-parallel-processing-work-queue/` directory.
-Otherwise, download [`worker.py`](worker.py?raw=true), [`rediswq.py`](rediswq.py?raw=true), and [`Dockerfile`](Dockerfile?raw=true)
+change directory to the `content/en/examples/application/job/redis/` directory.
+Otherwise, download [`worker.py`](/examples/application/job/redis/worker.py), [`rediswq.py`](/examples/application/job/redis/rediswq.py), and [`Dockerfile`](/examples/application/job/redis/Dockerfile)
 using above links. Then build the image:
 -->
-如果您在使用本文档库的源代码目录，请将当前目录切换到 `docs/tasks/job/fine-parallel-processing-work-queue/`。否则，请点击链接下载 [`worker.py`](worker.py?raw=true)、 [`rediswq.py`](rediswq.py?raw=true) 和 [`Dockerfile`](Dockerfile?raw=true)。然后构建镜像：
+如果您在使用本文档库的源代码目录，请将当前目录切换到 `content/en/examples/application/job/redis/`。否则，请点击链接下载 [`worker.py`](/examples/application/job/redis/worker.py)、 [`rediswq.py`](/examples/application/job/redis/rediswq.py) 和 [`Dockerfile`](/examples/application/job/redis/Dockerfile)。然后构建镜像：
 
 ```shell
 docker build -t job-wq-2 .
@@ -246,7 +274,7 @@ Here is the job definition:
 -->
 这是 job 定义：
 
-{% include code.html language="yaml" file="job.yaml" ghlink="/docs/tasks/job/fine-parallel-processing-work-queue/job.yaml" %}
+{{< codenew file="application/job/redis/job.yaml" >}}
 
 <!--
 Be sure to edit the job template to
@@ -326,6 +354,10 @@ As you can see, one of our pods worked on several work units.
 -->
 您可以看到，其中的一个 pod 处理了若干个工作单元。
 
+{{% /capture %}}
+
+{{% capture discussion %}}
+
 <!--
 ## Alternatives
 -->
@@ -344,3 +376,5 @@ and consider running a background processing library such as
 [https://github.com/resque/resque](https://github.com/resque/resque).
 -->
 如果您有连续的后台处理业务，那么可以考虑使用 `replicationController` 来运行您的后台业务，和运行一个类似 [https://github.com/resque/resque](https://github.com/resque/resque) 的后台处理库。
+
+{{% /capture %}}
