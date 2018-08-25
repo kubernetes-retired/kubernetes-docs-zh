@@ -1,17 +1,22 @@
 ---
 cn-approvers:
 - linyouchong
-approvers:
+reviewers:
 - davidopp
 title: 使用 Salt 配置 Kubernetes 集群
+weight: 70
+content_template: templates/concept
 ---
 <!--
----
-approvers:
+reviewers:
 - davidopp
 title: Configuring Kubernetes with Salt
+weight: 70
+content_template: templates/concept
 ---
 -->
+
+{{% capture overview %}}
 
 <!--
 The Kubernetes cluster can be configured using Salt.
@@ -22,6 +27,10 @@ Kubernetes 集群可以使用 Salt 进行配置
 The Salt scripts are shared across multiple hosting providers and depending on where you host your Kubernetes cluster, you may be using different operating systems and different networking configurations. As a result, it's important to understand some background information before making Salt changes in order to minimize introducing failures for other hosting providers.
 -->
 这些 Salt 脚本可以跨多个托管提供商共享，这取决于您在何处托管 Kubernetes 集群，您可能正在使用多种不同的操作系统和多种不同的网络配置。因此，在做修改 Salt 配置之前了解一些背景信息是很重要的，以便在使用其他主机托管提供商时降低集群配置失败的可能。
+
+{{% /capture %}}
+
+{{% capture body %}}
 
 <!--
 ## Salt cluster setup
@@ -44,7 +53,10 @@ Each salt-minion service is configured to interact with the **salt-master** serv
 每个 salt-minion 服务在 **master.conf** 文件中配置与 kubernetes-master 节点上的 **salt-master** 服务进行交互 [（除了 GCE 环境和 OpenStack-Heat 环境）](#standalone-salt-configuration-on-gce-and-others)。
 
 ```shell
-[root@kubernetes-master] $ cat /etc/salt/minion.d/master.conf
+cat /etc/salt/minion.d/master.conf
+```
+
+```none
 master: kubernetes-master
 ```
 
@@ -89,7 +101,10 @@ Security is not enabled on the salt-master, and the salt-master is configured to
 salt-master 没有启用安全功能，salt-master 被配置为自动接受所有来自 minion 的接入请求。在深入研究之前，不推荐在生产环境中启用安全配置。（在某些环境中，如果 salt-master 端口不能从外部访问，并且您信任您的网络上的每个节点，这并不像它看起来那么糟糕）
 
 ```shell
-[root@kubernetes-master] $ cat /etc/salt/master.d/auto-accept.conf
+cat /etc/salt/master.d/auto-accept.conf
+```
+
+```shell
 open_mode: True
 auto_accept: True
 ```
@@ -110,7 +125,10 @@ An example file is presented below using the Vagrant based environment.
 下面是一个基于 Vagrant 环境的示例文件：
 
 ```shell
-[root@kubernetes-master] $ cat /etc/salt/minion.d/grains.conf
+cat /etc/salt/minion.d/grains.conf
+```
+
+```yaml
 grains:
   etcd_servers: $MASTER_IP
   cloud: vagrant
@@ -189,13 +207,13 @@ In addition, a cluster may be running a Debian based operating system or Red Hat
 此外，一个集群可能运行在基于 Debian 的操作系统或基于 Red Hat 的操作系统（Centos、Fedora、RHEL等）。因此，有时区分基于操作系统的行为（如果像下面这样的分支）是很重要的。
 
 ```liquid
-{% raw %}
+
 {% if grains['os_family'] == 'RedHat' %}
 // something specific to a RedHat environment (Centos, Fedora, RHEL) where you may use yum, systemd, etc.
 {% else %}
 // something specific to Debian environment (apt-get, initd)
 {% endif %}
-{% endraw %}
+
 ```
 
 <!--
@@ -223,12 +241,4 @@ We should define a grains.conf key that captures more specifically what network 
 -->
 我们应该定义一个 grains.conf 键，这样能更明确地捕获正在使用的网络环境配置，以避免将来在不同的提供商之间产生混淆。
 
-<!--
-## Further reading
--->
-## 进一步阅读
-
-<!--
-The [cluster/saltbase](http://releases.k8s.io/{{page.githubbranch}}/cluster/saltbase/) tree has more details on the current SaltStack configuration.
--->
-[cluster/saltbase](http://releases.k8s.io/{{page.githubbranch}}/cluster/saltbase/) 项目有更多关于当前 SaltStack 配置的详细信息。
+{{% /capture %}}
