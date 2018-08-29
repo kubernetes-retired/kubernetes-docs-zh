@@ -447,7 +447,7 @@ To run this basic deployment, we are co-opting the integration testing script th
 
  
 
-由于Kubernetes运营商尚未发布，我们尚未发布官方[helm] https://helm.sh/ 图表或operator（但两者目前都在进行中）。 但是，我们在下面列出了基本部署的说明，并且正在积极寻找测试人员来尝试这一新功能。 要试用此系统，请按以下步骤操作：
+由于Kubernetes运营商尚未发布，我们尚未发布官方[helm](https://helm.sh/) 图表或operator（但两者目前都在进行中）。 但是，我们在下面列出了基本部署的说明，并且正在积极寻找测试人员来尝试这一新功能。 要试用此系统，请按以下步骤操作：
 
  
 
@@ -467,7 +467,7 @@ To run this basic deployment, we are co-opting the integration testing script th
 
  
 
-为了运行这个基本Ddeployment，我们正在选择我们目前用于Kubernetes Executor的集成测试脚本（将在本系列的下一篇文章中对此进行解释）。 要启动此部署，请运行以下三个命令：
+为了运行这个基本Deployment，我们正在选择我们目前用于Kubernetes Executor的集成测试脚本（将在本系列的下一篇文章中对此进行解释）。 要启动此部署，请运行以下三个命令：
 
  
 
