@@ -69,7 +69,7 @@ Apache Airflow is one realization of the DevOps philosophy of "Configuration As 
 
  
 
-Apache Airflow是DevOps“Configuration As Code”理念的一种实现。 Airflow允许用户使用简单的Python对象DAG（定向非循环图）启动多步骤流水线。 您可以在易于阅读的UI中定义依赖项，以编程方式构建复杂的工作流，并监视调度的作业。
+Apache Airflow是DevOps“Configuration As Code”理念的一种实现。 Airflow允许用户使用简单的Python对象DAG（有向无环图）启动多步骤流水线。 您可以在易于阅读的UI中定义依赖关系，以编程方式构建复杂的工作流，并监视调度的作业。
 
  
 
@@ -127,11 +127,11 @@ Airflow users are always looking for ways to make deployments and ETL pipelines 
 
  
 
-在我们进一步发展之前，我们应该澄清Airflow中的[Operator]（https://airflow.apache.org/concepts.html#operators）是一个任务定义。 当用户创建DAG时，他们将使用像“SparkSubmitOperator”或“PythonOperator”这样的operator分别提交/监视Spark作业或Python函数。 Airflow附带了Apache Spark，BigQuery，Hive和EMR等框架的内置运算符。 它还提供了一个插件入口点，允许DevOps工程师开发自己的连接器。
+在进一步讨论之前，我们应该澄清Airflow中的[Operator]（https://airflow.apache.org/concepts.html#operators）是一个任务定义。 当用户创建DAG时，他们将使用像“SparkSubmitOperator”或“PythonOperator”这样的operator分别提交/监视Spark作业或Python函数。 Airflow附带了Apache Spark，BigQuery，Hive和EMR等框架的内置运算符。 它还提供了一个插件入口点，允许DevOps工程师开发自己的连接器。
 
  
 
-Airflow用户一直在寻找更易于管理部署和ETL流的方法。 在增加监控的同时，任何解耦流程的机会都可以减少未来的停机等问题。 以下是Airflow Kubernetes Operator提供的性能：
+Airflow用户一直在寻找更易于管理部署和ETL流的方法。 在增加监控的同时，任何解耦流程的机会都可以减少未来的停机等问题。 以下是Airflow Kubernetes Operator提供的好处：
 
  
 
@@ -177,7 +177,7 @@ Handling sensitive data is a core responsibility of any DevOps engineer. At ever
 
  
 
-* 使用kubernetes秘密以增加安全性：
+* 使用kubernetes Secret以增加安全性：
 
 处理敏感数据是任何开发工程师的核心职责。 Airflow用户总有机会在严格条款的基础上隔离任何API密钥，数据库密码和登录凭据。 使用Kubernetes运算符，用户可以利用Kubernetes Vault技术存储所有敏感数据。 这意味着Airflow工作人员将永远无法访问此信息，并且可以容易地请求仅使用他们需要的密码信息构建pod。
 
@@ -207,7 +207,7 @@ The Kubernetes Operator uses the Kubernetes Python Client to generate a request 
 
  
 
-Kubernetes Operator使用[Kubernetes Python客户端]（https://github.com/kubernetes-client/Python)生成由APIServer处理的请求（1）。 然后，Kubernetes将使用您定义的需求启动您的pod（2）。 图像将所有必要的环境变量，秘密和依赖项进行加载，制定单个命令。 一旦启动作业，operator只需要监视跟踪日志的状况（3）。 用户可以选择将日志本地收集到调度程序或当前位于其Kubernetes集群中的任何分布式日志记录服务。
+Kubernetes Operator使用[Kubernetes Python客户端]（https://github.com/kubernetes-client/Python)生成由APIServer处理的请求（1）。 然后，Kubernetes将使用您定义的需求启动您的pod（2）。映像文件中将加载环境变量，Secret和依赖项，执行单个命令。 一旦启动作业，operator只需要监视跟踪日志的状况（3）。 用户可以选择将日志本地收集到调度程序或当前位于其Kubernetes集群中的任何分布式日志记录服务。
 
  
 
@@ -251,9 +251,6 @@ from airflow.contrib.operators.kubernetes_pod_operator import KubernetesPodOpera
 
 from airflow.operators.dummy_operator import DummyOperator
 
- 
-
- 
 
 default_args = {
 
@@ -281,14 +278,7 @@ dag = DAG(
 
     'kubernetes_sample', default_args=default_args, schedule_interval=timedelta(minutes=10))
 
- 
-
- 
-
 start = DummyOperator(task_id='run_this_first', dag=dag)
-
- 
-
 passing = KubernetesPodOperator(namespace='default',
 
                           image="Python:3.6",
@@ -309,9 +299,7 @@ passing = KubernetesPodOperator(namespace='default',
 
                           )
 
- 
-
-failing = KubernetesPodOperator(namespace='default',
+ failing = KubernetesPodOperator(namespace='default',
 
                           image="ubuntu:1604",
 
@@ -331,15 +319,11 @@ failing = KubernetesPodOperator(namespace='default',
 
                           )
 
- 
-
 passing.set_upstream(start)
 
 failing.set_upstream(start)
 
 ```
-
-
 
 <!--
 
@@ -377,7 +361,7 @@ Finally, update your DAGs to reflect the new release version and you should be r
 
  
 
-虽然这个例子只使用基本图像，但Docker的神奇之处在于，这个相同的DAG可以用于您想要的任何图像/命令配对。 以下是推荐的CI / CD管道，用于在Airflow DAG上运行生产就绪代码。
+虽然这个例子只使用基本映像，但Docker的神奇之处在于，这个相同的DAG可以用于您想要的任何图像/命令配对。 以下是推荐的CI / CD管道，用于在Airflow DAG上运行生产就绪代码。
 
  
 
@@ -463,7 +447,7 @@ To run this basic deployment, we are co-opting the integration testing script th
 
  
 
-由于Kubernetes运营商尚未发布，我们尚未发布官方[helm]（https://helm.sh/ 图表或operator（但两者目前都在进行中）。 但是，我们在下面列出了基本部署的说明，并且正在积极寻找测试人员来尝试这一新功能。 要试用此系统，请按以下步骤操作：
+由于Kubernetes运营商尚未发布，我们尚未发布官方[helm] https://helm.sh/ 图表或operator（但两者目前都在进行中）。 但是，我们在下面列出了基本部署的说明，并且正在积极寻找测试人员来尝试这一新功能。 要试用此系统，请按以下步骤操作：
 
  
 
@@ -483,7 +467,7 @@ To run this basic deployment, we are co-opting the integration testing script th
 
  
 
-为了运行这个基本部署，我们正在选择我们目前用于Kubernetes Executor的集成测试脚本（将在本系列的下一篇文章中对此进行解释）。 要启动此部署，请运行以下三个命令：
+为了运行这个基本Ddeployment，我们正在选择我们目前用于Kubernetes Executor的集成测试脚本（将在本系列的下一篇文章中对此进行解释）。 要启动此部署，请运行以下三个命令：
 
  
 
@@ -553,7 +537,7 @@ Kubernetes Executor是另一种Airflow功能，允许动态分配任务已解决
 
  
 
-此脚本将对Airflow主分支代码进行压缩，以根据Airflow分布构建Docker容器
+此脚本将对Airflow主分支代码进行打包，以根据Airflow的发行文件构建Docker容器
 
  
 
@@ -597,7 +581,7 @@ To modify/add your own DAGs, you can use kubectl cp to upload local files into t
 
  
 
-现在，Airflow UI将存在于http：// localhost：8080上。 要登录，只需输入airflow /airflow，您就可以完全访问Airflow Web UI。
+现在，Airflow UI将存在于http://localhost:8080上。 要登录，只需输入airflow /airflow，您就可以完全访问Airflow Web UI。
 
  
 
@@ -659,7 +643,7 @@ Special thanks to the Apache Airflow and Kubernetes communities, particularly Gr
 
  
 
-＃那么我什么时候可以使用它？
+#那么我什么时候可以使用它？
 
  
 
@@ -667,7 +651,7 @@ Special thanks to the Apache Airflow and Kubernetes communities, particularly Gr
 
  
 
-＃ 参与其中
+#参与其中
 
  
 
