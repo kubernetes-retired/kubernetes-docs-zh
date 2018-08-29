@@ -56,7 +56,7 @@ The remainder of the Getting Started Guide explains how to enforce both L3/L4
 (i.e., IP address + port) security policies, as well as L7 (e.g., HTTP) security
 policies using an example application.
  -->
-入门指南其余的部分用一个示例应用说明了如何强制执行L3/L4（即 IP address + 端口）的安全策略以及L7 （如 HTTP）的安全策略。
+入门指南其余的部分用一个示例应用说明了如何强制执行L3/L4（即 IP 地址+端口）的安全策略以及L7 （如 HTTP）的安全策略。
 
 <!-- 
 ## Deploying Cilium for Production Use
@@ -108,7 +108,7 @@ includes an example DaemonSet which can be customized to point to this key-value
 store cluster. The simple ''all-in-one'' DaemonSet for minikube requires no such
 configuration because it automatically connects to the minikube's etcd instance.
  -->
-有两个重点需要注意：
+有两个主要组件需要注意：
 
 - 在集群中的每个节点上都会运行一个 `cilium` Pod，并利用Linux BPF执行网络策略管理该节点上进出 Pod 的流量。
 - 对于生产部署，Cilium 应该复用 Kubernetes 所使用的键值存储集群（如 etcd），其通常在Kubernetes 的 master 节点上运行。
