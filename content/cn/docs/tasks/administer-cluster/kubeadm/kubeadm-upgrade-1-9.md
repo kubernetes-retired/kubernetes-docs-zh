@@ -1,4 +1,15 @@
+---
+reviewers:
+- pipejakob
+- luxas
+- roberthbailey
+- jbeda
+title: 将 kubeadm 集群在 v1.8 版本到 v1.9 版本之间升级/降级 
+content_template: templates/task
+---
+
 <!--
+
 ---
 reviewers:
 - pipejakob
@@ -10,16 +21,6 @@ content_template: templates/task
 ---
 
 --->
-
----
-reviewers:
-- pipejakob
-- luxas
-- roberthbailey
-- jbeda
-title: 将 kubeadm 集群在 v1.8 版本到 v1.9 版本之间升级/降级 
-content_template: templates/task
----
 
 {{% capture overview %}}
 
@@ -434,15 +435,16 @@ If the `STATUS` column of the above command shows `Ready` for all of your hosts,
 ## Recovering from a failure state
 --->
 ## ##从坏的状态中恢复
-<!----
+<!--
 
 If `kubeadm upgrade` somehow fails and fails to roll back, for example due to an unexpected shutdown during execution,
 you can run `kubeadm upgrade` again as it is idempotent and should eventually make sure the actual state is the desired state you are declaring.
-
-You can use `kubeadm upgrade` to change a running cluster with `x.x.x --> x.x.x` with `--force`, which can be used to recover from a bad state.
-
->
+--->
 如果 `kubeadm upgrade` 以某种方式失败了并无法回滚，原因有在执行过程中出现意外关机，可以再次运行 `kubeadm upgrade`，因为它是幂等的，并且最终确保实际状态是期待的状态。
+
+<!--
+You can use `kubeadm upgrade` to change a running cluster with `x.x.x -> x.x.x` with `--force`, which can be used to recover from a bad state.
+--->
 
 可以使用 `kubeadm upgrade` 来更改运行的集群并使用具有  `--force` 参数的 `x.x.x --> x.x.x`，这样可以恢复坏的状态。
 
