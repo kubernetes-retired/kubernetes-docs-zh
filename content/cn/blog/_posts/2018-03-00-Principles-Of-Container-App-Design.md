@@ -7,7 +7,7 @@ url: /blog/2018/03/Principles-Of-Container-App-Design
 
 <!-- It's possible nowadays to put almost any application in a container and run it. Creating cloud-native applications, however—containerized applications that are automated and orchestrated effectively by a cloud-native platform such as Kubernetes—requires additional effort. Cloud-native applications anticipate failure; they run and scale reliably even when their infrastructure experiences outages. To offer such capabilities, cloud-native platforms like Kubernetes impose a set of contracts and constraints on applications. These contracts ensure that applications they run conform to certain constraints and allow the platform to automate application management. -->
 
-现如今，你可以将任何的应用程序放到容器中运行。但创建云原生应用，通过诸如 Kubernetes 的云原生平台更有效地自动化运行、管理容器化的应用却需要额外的工作。
+现如今，几乎所有的的应用程序都可以在容器中运行。但创建云原生应用，通过诸如 Kubernetes 的云原生平台更有效地自动化运行、管理容器化的应用却需要额外的工作。
 云原生应用需要考虑故障；即使是在底层架构发生故障时也需要可靠地运行。
 为了提供这样的功能，像 Kubernetes 这样的云原生平台需要向运行的应用程序强加一些契约和约束。
 这些契约确保应用可以在符合某些约束的条件下运行，从而使得平台可以自动化应用管理。
@@ -26,15 +26,15 @@ url: /blog/2018/03/Principles-Of-Container-App-Design
 这里所述的七项原则涉及到构建时和运行时，两类关注点。
 
 <!-- ####  Build time -->
-#### 编译时
+#### 构建时
 
 <!-- * **Single Concern:** Each container addresses a single concern and does it well.
 * **Self-Containment:** A container relies only on the presence of the Linux kernel. Additional libraries are added when the container is built.
 * **Image Immutability:** Containerized applications are meant to be immutable, and once built are not expected to change between different environments. -->
 
-* **单一关注点：** 每个容器只解决一个关注点，而且解决的很好。
-* **自包含：**一个容器只依赖Linux内核。额外的库依赖可以在构建容器时加入。
-* **镜像不变性：** 容器化的应用意味着不可变的，不需要根据环境的不同而重新构建。
+* **单一关注点：** 每个容器只解决一个关注点，并且完成的很好。
+* **自包含：** 一个容器只依赖Linux内核。额外的库要求可以在构建容器时加入。
+* **镜像不变性：** 容器化的应用意味着不变性，一旦构建完成，不需要根据环境的不同而重新构建。
 
 <!-- ####  Runtime -->
 #### 运行时
@@ -44,10 +44,10 @@ url: /blog/2018/03/Principles-Of-Container-App-Design
 * **Process Disposability:** Containerized applications must be as ephemeral as possible and ready to be replaced by another container instance at any point in time.
 * **Runtime Confinement:** Every container must declare its resource requirements and restrict resource use to the requirements indicated. -->
 
-* **高可观测性：** 每个容器必须实现必要的 API 来帮助平台以最好的方式来观测和管理应用。
-* **生命周期一致性：** 一个容器必须要能从平台获取事件信息，并作出相应的反应。
-* **进程易处理性：** 容器化应用一定要尽可能的短暂，可以随时被另一个容器所替换。
-* **运行时限制：** 每个容器都必须要声明自己的资源需求，将资源使用限制在所需要的范围之内。
+* **高可观测性：** 每个容器必须实现所有必要的 API 来帮助平台以最好的方式来观测、管理应用。
+* **生命周期一致性：** 一个容器必须要能从平台中获取事件信息，并作出相应的反应。
+* **进程易处理性：** 容器化应用的寿命一定要尽可能的短暂，这样，可以随时被另一个容器所替换。
+* **运行时限制：** 每个容器都必须要声明自己的资源需求，并将资源使用限制在所需要的范围之内。
 
 <!-- The build time principles ensure that containers have the right granularity, consistency, and structure in place. The runtime principles dictate what functionalities must be implemented in order for containerized applications to possess cloud-native function. Adhering to these principles helps ensure that your applications are suitable for automation in Kubernetes. -->
 
