@@ -15,7 +15,7 @@ By default all connections between every provided node are secured via TLS by ea
 
 This page explains the security considerations of a deployed cluster and production recommendations.
 -->
-默认情况下，所有提供的节点之间的所有连接（包括etcd集群）都通过 easyrsa 的 TLS 进行保护。
+默认情况下，所有提供的节点之间的所有连接（包括 etcd 集群）都通过 easyrsa 的 TLS 进行保护。
 
 本文介绍已部署集群的安全注意事项和生产环境建议。
 {{% /capture %}}
@@ -56,7 +56,7 @@ Refer to the [model management](https://jujucharms.com/docs/2.2/models) page in 
 -->
 ## 限制 ssh 访问
 
-默认情况下，管理员可以 ss h到集群中的任意已部署节点。您可以通过以下命令来批量禁用集群节点的ssh访问权限。
+默认情况下，管理员可以 ssh 到集群中的任意已部署节点。您可以通过以下命令来批量禁用集群节点的 ssh 访问权限。
 
     juju model-config proxy-ssh=true
 
