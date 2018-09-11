@@ -20,8 +20,8 @@ various mechanisms (primarily through the apiserver) and ensures that the contai
 described in those PodSpecs are running and healthy. The kubelet doesn't manage
 containers which were not created by Kubernetes.
 -->
-kubelet 是在每个节点上运行的主要"节点代理"。kubelet 通过 PodSpec 来运行，PodSpec 是一个描述 pod 的 YAML 或 JSON 对象。
-kubelet 采用通过各种机制（主要通过 apiserver）提供的一组 PodSpec，并确保这些 PodSpecs 中描述的容器健康运行。
+kubelet 是在每个节点上运行的主要 "节点代理"。kubelet 以 PodSpec 为单位来运行任务，PodSpec 是一个描述 pod 的 YAML 或 JSON 对象。
+kubelet 运行多种机制（主要通过 apiserver）提供的一组 PodSpec，并确保这些 PodSpecs 中描述的容器健康运行。
 不是 Kubernetes 创建的容器将不在 kubelet 的管理范围。
 
 <!--
@@ -40,11 +40,11 @@ HTTP server: The kubelet can also listen for HTTP and respond to a simple API
 -->
 除了来自 apiserver 的 PodSpec 之外，还有三种方法可以将容器清单提供给 Kubelet。
 
-文件：通过命令行传入的文件路径。kubelet 将定期监听该路径下的文件以获得更新。监视周期默认为 20 秒，可通过标志进行配置。
+文件：通过命令行传入的文件路径。kubelet 将定期监听该路径下的文件以获得更新。监视周期默认为 20 秒，可通过参数进行配置。
 
-HTTP 终端：HTTP 终端以命令行参数传入。该终端每 20 秒检查一次（该时间间隔也是可以通过命令行配置的）。
+HTTP 端点：HTTP 端点以命令行参数传入。每 20 秒检查一次该端点（该时间间隔也是可以通过命令行配置的）。
 
-HTTP 服务：kubelet 还可以监听 HTTP 并响应简单的 API（当前未检测到）以提交新的清单。
+HTTP 服务：kubelet 还可以监听 HTTP 并响应简单的 API（当前未指定）以提交新的清单。
 
 ```
 kubelet [flags]
@@ -69,7 +69,7 @@ kubelet [flags]
 <!--
       <td></td><td style="line-height: 130%; word-wrap: break-word;">Path to the file containing Azure container registry configuration information.</td>
 -->
-      <td></td><td style="line-height: 130%; word-wrap: break-word;">包含 Azure 容器注册表配置信息的文件的路径</td>
+      <td></td><td style="line-height: 130%; word-wrap: break-word;">包含 Azure 容器注册配置信息的文件路径</td>
     </tr>
 
     <tr>
@@ -86,7 +86,7 @@ kubelet [flags]
 <!--
       <td colspan="2">--log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Default: 5s</td>
 -->
-      <td colspan="2">--log-flush-frequency duration&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认: 5s</td>
+      <td colspan="2">--log-flush-frequency 间隔&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;默认: 5s</td>
     </tr>
     <tr>
 <!--
