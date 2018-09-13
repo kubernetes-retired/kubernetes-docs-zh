@@ -34,7 +34,7 @@ In this exercise you will use kubectl to fetch all of the Pods
 running in a cluster, and format the output to pull out the list
 of Containers for each.
 -->
-在本练习中，您将使用 kubectl 来获取集群中运行的所有Pod，并格式化输出来提取每个 pod 中的容器列表。
+在本练习中，您将使用 kubectl 来获取集群中运行的所有 Pod，并格式化输出来提取每个 pod 中的容器列表。
 
 <!--
 ## List all Containers in all namespaces
@@ -51,6 +51,15 @@ of Containers for each.
   - Use `uniq` to aggregate image counts
 -->
 ## 列出所有命名空间下的所有容器
+
+- 使用 `kubectl get pods --all-namespaces` 获取所有命名空间下的所有 Pod
+- 使用 `-o jsonpath={..image}` 来格式化输出，以仅包含容器镜像名称。
+  这将以递归方式从返回的 json 中解析出 `image` 字段。
+  - 参阅 [jsonpath reference](/docs/user-guide/jsonpath/) 来获取更多关于如何使用 jsonpath 的信息。
+- 使用标准化工具来格式化输出：`tr`, `sort`, `uniq`
+  - 使用 `tr` 以用换行符替换空格
+  - 使用 `sort` 来对结果进行排序
+  - 使用 `uniq` 来聚合镜像计数
 
 ```sh
 kubectl get pods --all-namespaces -o jsonpath="{..image}" |\
