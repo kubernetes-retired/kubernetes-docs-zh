@@ -18,7 +18,7 @@ This page shows how to create a Kubernetes Service object that external
 clients can use to access an application running in a cluster. The Service
 provides load balancing for an application that has two running instances.
 -->
-本文展示如何创建一个 Kubernetes 服务对象，以让外部客户端能够访问在集群中运行的应用。该服务为一个应用的两个运行实例提供负载均衡。
+本文展示如何创建一个 Kubernetes 服务对象，能让外部客户端能够访问在集群中运行的应用。该服务为一个应用的两个运行实例提供负载均衡。
 
 {{% /capture %}}
 
@@ -37,7 +37,7 @@ provides load balancing for an application that has two running instances.
 * Create a Service object that exposes a node port.
 * Use the Service object to access the running application.
 -->
-* 为 Hello World 应用运行两个实例。
+* 运行 Hello World 应用的两个实例。
 * 创建一个服务对象来暴露一个 node port。
 * 使用服务对象来访问正在运行的应用。
 
@@ -66,7 +66,7 @@ provides load balancing for an application that has two running instances.
     [Pods](/docs/concepts/workloads/pods/pod/),
     each of which runs the Hello World application.
 -->
-    上面的命令创建一个 [Deployment](/docs/concepts/workloads/controllers/deployment/) 对象和一个关联的 [ReplicaSet](/docs/concepts/workloads/controllers/replicaset/) 对象。这个 ReplicaSet 有两个 [Pod](/docs/concepts/workloads/pods/pod/)，每个 pod 都运行 Hello World 应用。
+    上面的命令创建一个 [Deployment](/docs/concepts/workloads/controllers/deployment/) 对象和一个关联的 [ReplicaSet](/docs/concepts/workloads/controllers/replicaset/) 对象。这个 ReplicaSet 有两个 [Pod](/docs/concepts/workloads/pods/pod/)，每个 pod 都运行着 Hello World 应用。
 
 <!--
 1. Display information about the Deployment:
@@ -176,7 +176,7 @@ provides load balancing for an application that has two running instances.
    response to a successful request is a hello message:
 -->
    这里的 `<public-node-ip>` 是您节点的公共 IP 地址，`<node-port>` 是您服务的 NodePort 值。
-   对于请求的成功响应是一个 hello 消息：
+   对于请求成功的响应是一个 hello 消息：
    ```shell
    Hello Kubernetes!
    ```
