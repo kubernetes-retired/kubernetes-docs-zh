@@ -18,7 +18,7 @@ This page shows how to create a Kubernetes Service object that external
 clients can use to access an application running in a cluster. The Service
 provides load balancing for an application that has two running instances.
 -->
-本文展示如何创建一个 Kubernetes 服务对象，能让外部客户端能够访问在集群中运行的应用。该服务为一个应用的两个运行实例提供负载均衡。
+本文展示如何创建一个 Kubernetes 服务对象，能让外部客户端访问在集群中运行的应用。该服务为一个应用的两个运行实例提供负载均衡。
 
 {{% /capture %}}
 
@@ -66,7 +66,7 @@ provides load balancing for an application that has two running instances.
     [Pods](/docs/concepts/workloads/pods/pod/),
     each of which runs the Hello World application.
 -->
-    上面的命令创建一个 [Deployment](/docs/concepts/workloads/controllers/deployment/) 对象和一个关联的 [ReplicaSet](/docs/concepts/workloads/controllers/replicaset/) 对象。这个 ReplicaSet 有两个 [Pod](/docs/concepts/workloads/pods/pod/)，每个 pod 都运行着 Hello World 应用。
+    上面的命令创建一个 [Deployment](/docs/concepts/workloads/controllers/deployment/) 对象和一个关联的 [ReplicaSet](/docs/concepts/workloads/controllers/replicaset/) 对象。这个 ReplicaSet 有两个 [Pod](/docs/concepts/workloads/pods/pod/)，每个 Pod 都运行着 Hello World 应用。
 
 <!--
 1. Display information about the Deployment:
