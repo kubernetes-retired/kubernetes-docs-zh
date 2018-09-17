@@ -29,7 +29,7 @@ Per the Kubernetes 1.11 release blog post , we announced that IPVS-Based In-Clus
 
 介绍
 
-根据 Kubernetes 1.11 发布的博客文章, 我们宣布基于 IPVS 的集群内部服务负载均衡已达到 一般可用性。 在这篇博客中，我们将带您深入了解该功能。
+根据 Kubernetes 1.11 发布的博客文章, 我们宣布基于 IPVS 的集群内部服务负载均衡已达到一般可用性。 在这篇博客中，我们将带您深入了解该功能。
 
 <!--
 
@@ -43,9 +43,9 @@ IPVS is incorporated into the LVS (Linux Virtual Server), where it runs on a hos
 
 什么是 IPVS ?
 
-IPVS (IP Virtual Server)是在 Netfileter 上层构建的，并作为 Linux 内核的一部分，实现传输层负载均衡。
+IPVS (IP Virtual Server)是在 Netfilter 上层构建的，并作为 Linux 内核的一部分，实现传输层负载均衡。
 
-IPVS 集成在 LVS（Linux 虚拟服务器）中，它在主机上运行，并在物理服务器集群前作为负载均衡器。IPVS 可以将基于 TCP 和 UDP 服务的请求定向到真实服务器，并使真实服务器的服务在单个IP地址上显示为虚拟服务。 因此，IPVS 自然支持 Kubernetes 服务。
+IPVS 集成在 LVS（Linux Virtual Server，Linux 虚拟服务器）中，它在主机上运行，并在物理服务器集群前作为负载均衡器。IPVS 可以将基于 TCP 和 UDP 服务的请求定向到真实服务器，并使真实服务器的服务在单个IP地址上显示为虚拟服务。 因此，IPVS 自然支持 Kubernetes 服务。
 
 <!--
 
@@ -131,7 +131,7 @@ Parameter: --ipvs-min-sync-period Minimum interval of how often the IPVS rules a
 
 参数: --ipvs-sync-period 刷新 IPVS 规则的最大间隔时间（例如'5s'，'1m'）。 必须大于0。
 
-参数r: --ipvs-min-sync-period 刷新 IPVS 规则的最小间隔时间间隔（例如'5s'，'1m'）。 必须大于0。
+参数: --ipvs-min-sync-period 刷新 IPVS 规则的最小间隔时间间隔（例如'5s'，'1m'）。 必须大于0。
 
 <!--
 
@@ -355,7 +355,7 @@ Finally, for Kubernetes v1.10, feature gate SupportIPVSProxyMode is set to true 
 
 在 IPVS 模式下运行 kube-proxy
 
-目前，本地脚本，GCE 脚本和 kubeadm 支持通过导出环境变量（KUBE_PROXY_MODE = ipvs）或指定标志（--proxy-mode = ipvs）来切换 IPVS 代理模式。 在运行IPVS 代理之前，请确保已安装 IPVS 所需的内核模块。
+目前，本地脚本，GCE 脚本和 kubeadm 支持通过导出环境变量（KUBE_PROXY_MODE=ipvs）或指定标志（--proxy-mode=ipvs）来切换 IPVS 代理模式。 在运行IPVS 代理之前，请确保已安装 IPVS 所需的内核模块。
 
     ip_vs
     ip_vs_rr
