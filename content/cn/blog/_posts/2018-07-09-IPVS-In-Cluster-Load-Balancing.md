@@ -387,16 +387,15 @@ Share your Kubernetes story
 
 参与其中
 
-参与 Kubernetes 的最简单方法是加入众多[特别兴趣小组]（https://github.com/kubernetes/community/blob/master/sig-list.md)  (SIG）中与您的兴趣一致的小组。 你有什么想要向 Kubernetes 社区广播的吗？ 在我们的每周[社区会议]（https://github.com/kubernetes/community/blob/master/communication.md#weekly-meeting) 或通过以下渠道分享您的声音。
+参与 Kubernetes 的最简单方法是加入众多[特别兴趣小组](https://github.com/kubernetes/community/blob/master/sig-list.md) (SIG）中与您的兴趣一致的小组。 你有什么想要向 Kubernetes 社区广播的吗？ 在我们的每周[社区会议](https://github.com/kubernetes/community/blob/master/communication.md#weekly-meeting)或通过以下渠道分享您的声音。
 
 感谢您的持续反馈和支持。
+在[Stack Overflow](http://stackoverflow.com/questions/tagged/kubernetes)上发布问题（或回答问题）
 
-在[Stack Overflow]上发布问题（或回答问题）(http://stackoverflow.com/questions/tagged/kubernetes)
+加入[K8sPort](http://k8sport.org/)的倡导者社区门户网站
 
-加入[K8sPort]（http://k8sport.org/ )的倡导者社区门户网站
+在 Twitter 上关注我们 [@Kubernetesio](https://twitter.com/kubernetesio )获取最新更新
 
-在 Twitter 上关注我们 [@Kubernetesio]（https://twitter.com/kubernetesio )获取最新更新
+在[Slack](http://slack.k8s.io/)上与社区聊天
 
-在[Slack] （http://slack.k8s.io/)上与社区聊天
-
-分享您的 Kubernetes [故事]（https://docs.google.com/a/linuxfoundation.org/forms/d/e/1FAIpQLScuI7Ye3VQHQTwBASrgkjQDSS5TP0g3AXfFhwSM9YpHgxRKFA/viewform)
+分享您的 Kubernetes [故事](https://docs.google.com/a/linuxfoundation.org/forms/d/e/1FAIpQLScuI7Ye3VQHQTwBASrgkjQDSS5TP0g3AXfFhwSM9YpHgxRKFA/viewform)
