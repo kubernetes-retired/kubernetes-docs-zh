@@ -94,6 +94,8 @@ load-balanced access to an application running in a cluster.
 -->
     这里的 `<your-deployment-name>` 是您的 deployment 的名称。
 
+1. 显示您服务的 IP 地址：
+
        ```
        kubectl get services example-service
        ```
@@ -150,7 +152,7 @@ load-balanced access to an application running in a cluster.
    value for your service. Then enter this command to access the Hello World
    application:
 -->
-   输出将扎实您的 Minikube 节点的 IP 地址和您服务的 NodePort 值。然后输入以下命令来访问这个 Hello World 应用：
+   输出将展示您的 Minikube 节点的 IP 地址和您服务的 NodePort 值。然后输入以下命令来访问这个 Hello World 应用：
 
        curl <minikube-node-ip-address>:<service-node-port>
 
