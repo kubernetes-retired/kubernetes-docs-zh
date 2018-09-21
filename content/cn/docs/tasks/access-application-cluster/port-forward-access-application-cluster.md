@@ -26,7 +26,10 @@ for database debugging.
 
 * {{< include "task-tutorial-prereqs.md" >}} {{< version-check >}}
 
+<!--
 * Install [redis-cli](http://redis.io/topics/rediscli).
+-->
+* 安装 [redis-cli](http://redis.io/topics/rediscli)。
 
 {{% /capture %}}
 
