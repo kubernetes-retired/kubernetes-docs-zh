@@ -391,12 +391,12 @@ Share your Kubernetes story
 
 感谢您的持续反馈和支持。
 
-在[Stack Overflow]上发布问题（或回答问题）（http://stackoverflow.com/questions/tagged/kubernetes)
+在[Stack Overflow]上发布问题（或回答问题）(http://stackoverflow.com/questions/tagged/kubernetes)
 
 加入[K8sPort]（http://k8sport.org/ )的倡导者社区门户网站
 
 在 Twitter 上关注我们 [@Kubernetesio]（https://twitter.com/kubernetesio )获取最新更新
 
-在[Slack] （http://slack.k8s.io/ )上与社区聊天
+在[Slack] （http://slack.k8s.io/)上与社区聊天
 
 分享您的 Kubernetes [故事]（https://docs.google.com/a/linuxfoundation.org/forms/d/e/1FAIpQLScuI7Ye3VQHQTwBASrgkjQDSS5TP0g3AXfFhwSM9YpHgxRKFA/viewform)
