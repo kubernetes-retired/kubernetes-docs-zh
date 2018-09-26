@@ -1,8 +1,15 @@
 ---
+title: 安装 kubeadm
+content_template: templates/task
+weight: 20
+---
+<!--
+---
 title: Installing kubeadm
 content_template: templates/task
 weight: 20
 ---
+-->
 
 {{% capture overview %}}
 
