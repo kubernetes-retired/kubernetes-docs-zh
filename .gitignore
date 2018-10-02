@@ -1,0 +1,31 @@
+**/.DS_Store
+**/desktop.ini
+_site/**
+.sass-cache/**
+CNAME
+.travis.yml
+.idea/
+.vscode/
+
+# Vim ignore
+# source: https://github.com/github/gitignore/blob/master/Global/Vim.gitignore
+
+# swap
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-v][a-z]
+[._]sw[a-p]
+# session
+Session.vim
+# temporary
+.netrwhist
+*~
+# auto-generated tag files
+tags
+
+kubernetes.github.io.iml
+
+nohup.out
+
+# Hugo output
+public/
