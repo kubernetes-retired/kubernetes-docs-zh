@@ -1,0 +1,113 @@
+baseURL = "https://kubernetes.io"
+title = "Kubernetes"
+
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
+enableRobotsTXT = true
+
+disableKinds = ["taxonomy", "taxonomyTerm"]
+
+# ignoreFiles = [ "^OWNERS$", "README.md", "^node_modules$"
+# Ignore extra things in archives
+ignoreFiles = [ "^OWNERS$", "README.md", "^node_modules$", "content/en/blog", "content/en/case-studies", "content/en/community", "content/en/partners" ]
+
+contentDir = "content/en"
+
+timeout = 3000
+
+# Highlighting config.
+pygmentsCodeFences = true
+pygmentsUseClasses = false
+# See https://help.farbox.com/pygments.html
+pygmentsStyle = "emacs"
+
+[blackfriday]
+hrefTargetBlank = true
+fractions = false
+
+[frontmatter]
+date = ["date", ":filename", "publishDate", "lastmod"]
+
+[permalinks]
+  blog = "/:section/:year/:month/:day/:slug/"
+
+# Be explicit about the output formats. We (currently) only want an RSS feed for the home page.
+[outputs]
+home = [ "HTML", "RSS"]
+page = [ "HTML"]
+section = [ "HTML"]
+
+[outputFormats]
+[outputFormats.RSS]
+baseName = "feed"
+
+[params]
+
+time_format_blog = "Monday, January 02, 2006"
+description = "Production-Grade Container Orchestration"
+showedit = true
+
+latest = "v1.11"
+
+fullversion = "v1.10.5"
+version = "v1.10"
+githubbranch = "v1.10.5"
+docsbranch = "release-1.10"
+deprecated = true
+currentUrl = "https://kubernetes.io/docs/home/"
+nextUrl = "http://kubernetes-io-vnext-staging.netlify.com/"
+githubWebsiteRepo = "github.com/kubernetes/website"
+githubWebsiteRaw = "raw.githubusercontent.com/kubernetes/website"
+
+[[params.versions]]
+fullversion = "v1.11.0"
+version = "v1.11"
+githubbranch = "master"
+docsbranch = "release-1.11"
+url = "https://kubernetes.io/docs/"
+
+[[params.versions]]
+fullversion = "v1.10.5"
+version = "v1.10"
+githubbranch = "v1.10.5"
+docsbranch = "release-1.10"
+url = "https://v1-10.docs.kubernetes.io"
+
+[[params.versions]]
+fullversion = "v1.9.8"
+version = "v1.9"
+githubbranch = "v1.9.8"
+docsbranch = "release-1.9"
+url = "https://v1-9.docs.kubernetes.io"
+
+[[params.versions]]
+fullversion = "v1.8.14"
+version = "v1.8"
+githubbranch = "v1.8.14"
+docsbranch = "release-1.8"
+url = "https://v1-8.docs.kubernetes.io"
+
+[[params.versions]]
+fullversion = "v1.7.16"
+version = "v1.7"
+githubbranch = "v1.7.16"
+docsbranch = "release-1.7"
+url = "https://v1-7.docs.kubernetes.io"
+
+# Language definitions.
+
+[languages]
+[languages.en]
+title = "Kubernetes"
+description = "Production-Grade Container Orchestration"
+languageName ="English"
+# Weight used for sorting.
+weight = 1
+[languages.cn]
+title = "Kubernetes"
+description = "Production-Grade Container Orchestration"
+languageName ="Chinese"
+weight = 2
+contentDir = "content/cn"
+
+
