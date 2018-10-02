@@ -1,0 +1,17 @@
+{{ define "main" }}
+{{ .Content }}
+<section id="cncf">
+    <main>
+        <center>
+        <p style="font-size: 20px">{{ T "main_cncf_project" | safeHTML }}
+        </center>
+    </main>
+</section>
+{{ end }}
+
+
+{{ define "hero-more" }}
+{{ with .Site.GetPage "section" "docs/tutorials/kubernetes-basics" }}
+<a href="{{ .RelPermalink }}" id="quickstartButton" class="button">{{ .LinkTitle }}</a>
+{{ end }}
+{{ end }}
