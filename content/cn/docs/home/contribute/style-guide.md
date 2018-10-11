@@ -197,7 +197,7 @@ document, use the backtick (`). -->
 
 <!-- ### Separate commands from output -->
 
-### 从输出中分离命令
+### 将命令和输出分开
 
 <!-- Verify that the pod is running on your chosen node:
 
@@ -287,7 +287,7 @@ Hugo [Shortcodes](https://gohugo.io/content-management/shortcodes) 帮助创造�
 
 <!-- 2. Use the following syntax to apply a style: -->
 
-2. 使用以下的语法来应用样式上：
+2. 使用以下的语法来应用一个样式：
     
     ```
     {{</* note */>}}
@@ -311,7 +311,7 @@ Hugo [Shortcodes](https://gohugo.io/content-management/shortcodes) 帮助创造�
 
 For example: -->
 
-使用 {{</* note */>}} 进行高亮有助于了解提示或信息。
+使用 {{</* note */>}} 来高亮一个可能会有帮助的提示或者一段信息。
 
 例如：
     
@@ -436,7 +436,7 @@ For example: -->
 <!-- Exception: Use future or past tense if it is required to convey the correct
 meaning. -->
 
-例外：有必要的情况下，使用未来时或者过去时来传达正确的含义。
+例外：有必要的情况下，使用将来时或者过去时来传达正确的含义。
 
 <!-- ### Use active voice -->
 
@@ -494,11 +494,11 @@ meaning. -->
 
 <!-- Exception: Use "etc." for et cetera. -->
 
-例外：使用 ”etc“ 表示等等。
+例外：使用 ”etc.“ 表示等等。
 
 <!-- ## Patterns to avoid -->
 
-## 要避免的模式
+## 需要避免的模式
 
 <!-- ### Avoid using "we" -->
 
